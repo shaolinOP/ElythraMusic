@@ -48,7 +48,7 @@ import 'package:receive_sharing_intent/receive_sharing_intent.dart';
 import 'package:responsive_framework/responsive_framework.dart';
 // Removed duplicate import - using features/player/blocs/mediaPlayer/bloomee_player_cubit.dart
 import 'package:flutter_displaymode/flutter_displaymode.dart';
-import 'package:elythra_music/core/services/discord_service.dart';
+import 'package:elythra_music/core/services/discord_service_platform.dart';
 
 void processIncomingIntent(List<SharedMediaFile> sharedMediaFiles) {
   if (isUrl(sharedMediaFiles[0].path)) {

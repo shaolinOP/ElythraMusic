@@ -16,7 +16,7 @@ import 'package:just_audio/just_audio.dart';
 import 'package:rxdart/rxdart.dart';
 import 'package:elythra_music/core/model/song_model.dart';
 import '../model/media_playlist_model.dart';
-import 'package:elythra_music/core/services/discord_service.dart';
+import 'package:elythra_music/core/services/discord_service_platform.dart';
 
 List<int> generateRandomIndices(int length) {
   List<int> indices = List<int>.generate(length, (i) => i);
