@@ -648,6 +648,27 @@ class PlayerCtrlWidgets extends StatelessWidget {
                                   ),
                                 ),
                               ));
+                        default:
+                          return Container(
+                              decoration: const BoxDecoration(
+                                boxShadow: [
+                                  BoxShadow(
+                                      color: Default_Theme.accentColor2,
+                                      spreadRadius: 1,
+                                      blurRadius: 20)
+                                ],
+                                shape: BoxShape.circle,
+                                color: Default_Theme.accentColor2,
+                              ),
+                              width: 75,
+                              height: 75,
+                              child: const Center(
+                                child: Icon(
+                                  MingCute.play_fill,
+                                  color: Default_Theme.primaryColor1,
+                                  size: 35,
+                                ),
+                              ));
                       }
                     },
                   ),

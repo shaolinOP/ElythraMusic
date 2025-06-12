@@ -1,15 +1,22 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import 'package:palette_generator/palette_generator.dart';
+import 'package:elythra_music/core/services/color_extraction_service.dart';
+import 'package:http/http.dart' as http;
 
-Future<PaletteGenerator> getPalleteFromImage(String url) async {
-  ImageProvider<Object> placeHolder =
-      const AssetImage("assets/icons/bloomee_new_logo_c.png");
-
+Future<Color> getPalleteFromImage(String url) async {
   try {
-    return (await PaletteGenerator.fromImageProvider(
-        CachedNetworkImageProvider(url)));
+    final colorService = ColorExtractionService();
+    
+    // Fetch image from network
+    final response = await http.get(Uri.parse(url));
+    if (response.statusCode == 200) {
+      return await colorService.extractDominantColor(response.bodyBytes);
+    } else {
+      // Fallback to default color
+      return Colors.deepPurple;
+    }
   } catch (e) {
-    return await PaletteGenerator.fromImageProvider(placeHolder);
+    // Return default color on error
+    return Colors.deepPurple;
   }
 }

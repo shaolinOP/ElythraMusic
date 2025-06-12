@@ -3,7 +3,7 @@ import 'package:elythra_music/core/services/db/bloomee_db_service.dart';
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter/foundation.dart';
-import 'package:palette_generator/palette_generator.dart';
+import 'package:elythra_music/core/services/color_extraction_service.dart';
 import 'package:elythra_music/core/model/MediaPlaylistModel.dart';
 import 'package:elythra_music/core/model/songModel.dart';
 import 'package:elythra_music/core/services/db/GlobalDB.dart';
@@ -13,7 +13,7 @@ part 'current_playlist_state.dart';
 
 class CurrentPlaylistCubit extends Cubit<CurrentPlaylistState> {
   MediaPlaylist? mediaPlaylist;
-  PaletteGenerator? paletteGenerator;
+  ColorExtractionService? colorExtractor;
   late ElythraDBCubit bloomeeDBCubit;
   CurrentPlaylistCubit({
     this.mediaPlaylist,
@@ -75,7 +75,7 @@ class CurrentPlaylistCubit extends Cubit<CurrentPlaylistState> {
     }
   }
 
-  PaletteGenerator? getCurrentPlaylistPallete() {
-    return paletteGenerator;
+  ColorExtractionService? getCurrentPlaylistPallete() {
+    return colorExtractor;
   }
 }

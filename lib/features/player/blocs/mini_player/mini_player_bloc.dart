@@ -65,20 +65,23 @@ class MiniPlayerBloc extends Bloc<MiniPlayerEvent, MiniPlayerState> {
   }
 
   void _onNext(MiniPlayerNext event, Emitter<MiniPlayerState> emit) {
-    emit(const MiniPlayerProcessing(isPlaying: state.isPlaying));
+    final currentState = state;
+    emit(MiniPlayerProcessing(isPlaying: currentState.isPlaying));
     // Implement next track logic
-    emit(MiniPlayerCompleted(isPlaying: state.isPlaying));
+    emit(MiniPlayerCompleted(isPlaying: currentState.isPlaying));
   }
 
   void _onPrevious(MiniPlayerPrevious event, Emitter<MiniPlayerState> emit) {
-    emit(const MiniPlayerProcessing(isPlaying: state.isPlaying));
+    final currentState = state;
+    emit(MiniPlayerProcessing(isPlaying: currentState.isPlaying));
     // Implement previous track logic
-    emit(MiniPlayerCompleted(isPlaying: state.isPlaying));
+    emit(MiniPlayerCompleted(isPlaying: currentState.isPlaying));
   }
 
   void _onSeek(MiniPlayerSeek event, Emitter<MiniPlayerState> emit) {
-    emit(const MiniPlayerProcessing(isPlaying: state.isPlaying));
+    final currentState = state;
+    emit(MiniPlayerProcessing(isPlaying: currentState.isPlaying));
     // Implement seek logic
-    emit(MiniPlayerCompleted(isPlaying: state.isPlaying));
+    emit(MiniPlayerCompleted(isPlaying: currentState.isPlaying));
   }
 }

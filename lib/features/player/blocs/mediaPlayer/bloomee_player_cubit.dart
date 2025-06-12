@@ -1,181 +1,191 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:audio_service/audio_service.dart' as audio_service;
 import 'package:just_audio/just_audio.dart';
+import 'package:rxdart/rxdart.dart';
 
-// Player States
-abstract class ElythraPlayerState {
-  final bool isPlaying;
-  final bool showLyrics;
-  final MediaItem? currentMedia;
-  final Duration position;
-  final Duration duration;
+// Custom MediaItem class to avoid conflicts
+class MediaItem {
+  final String id;
+  final String title;
+  final String artist;
+  final String? album;
+  final String? artUri;
+  final Duration? duration;
 
-  const ElythraPlayerState({
-    this.isPlaying = false,
-    this.showLyrics = false,
-    this.currentMedia,
-    this.position = Duration.zero,
-    this.duration = Duration.zero,
+  const MediaItem({
+    required this.id,
+    required this.title,
+    required this.artist,
+    this.album,
+    this.artUri,
+    this.duration,
   });
 }
 
+// Progress bar streams for UI
+class ProgressBarStreams {
+  final Duration currentPos;
+  final PlaybackEvent currentPlaybackState;
+  final PlayerState currentPlayerState;
+
+  const ProgressBarStreams({
+    required this.currentPos,
+    required this.currentPlaybackState,
+    required this.currentPlayerState,
+  });
+}
+
+// Player states
+abstract class ElythraPlayerState {}
+
 class ElythraPlayerInitial extends ElythraPlayerState {}
 
-class ElythraPlayerLoaded extends ElythraPlayerState {
-  const ElythraPlayerLoaded({
-    required bool isPlaying,
-    required bool showLyrics,
-    required MediaItem? currentMedia,
-    required Duration position,
-    required Duration duration,
-  }) : super(
-    isPlaying: isPlaying,
-    showLyrics: showLyrics,
-    currentMedia: currentMedia,
-    position: position,
-    duration: duration,
-  );
+class ElythraPlayerLoading extends ElythraPlayerState {}
+
+class ElythraPlayerPlaying extends ElythraPlayerState {
+  final MediaItem mediaItem;
+  ElythraPlayerPlaying(this.mediaItem);
+}
+
+class ElythraPlayerPaused extends ElythraPlayerState {
+  final MediaItem mediaItem;
+  ElythraPlayerPaused(this.mediaItem);
 }
 
 class ElythraPlayerError extends ElythraPlayerState {
   final String message;
-  const ElythraPlayerError(this.message);
+  ElythraPlayerError(this.message);
 }
 
-// Media Item Model
-class MediaItem {
-  final String? id;
-  final String? title;
-  final String? artist;
-  final String? album;
-  final String? artworkUrl;
-  final String? url;
-
-  MediaItem({
-    this.id,
-    this.title,
-    this.artist,
-    this.album,
-    this.artworkUrl,
-    this.url,
-  });
+// Mock BloomeePlayer class to match expected interface
+class BloomeePlayer {
+  final AudioPlayer audioPlayer = AudioPlayer();
+  
+  // Streams
+  Stream<String> get queueTitle => Stream.value("Current Queue");
+  Stream<MediaItem?> get mediaItem => _mediaItemController.stream;
+  Stream<bool> get shuffleMode => _shuffleModeController.stream;
+  
+  // Controllers
+  final BehaviorSubject<MediaItem?> _mediaItemController = BehaviorSubject<MediaItem?>();
+  final BehaviorSubject<bool> _shuffleModeController = BehaviorSubject<bool>.seeded(false);
+  
+  // Methods
+  Future<void> shuffle(bool enabled) async {
+    _shuffleModeController.add(enabled);
+    await audioPlayer.setShuffleModeEnabled(enabled);
+  }
+  
+  Future<void> skipToNext() async {
+    // Implementation for next track
+  }
+  
+  Future<void> skipToPrevious() async {
+    // Implementation for previous track
+  }
+  
+  Future<void> setRepeatMode(LoopMode mode) async {
+    await audioPlayer.setLoopMode(mode);
+  }
+  
+  void dispose() {
+    _mediaItemController.close();
+    _shuffleModeController.close();
+    audioPlayer.dispose();
+  }
 }
 
-// Progress Bar Streams Model
-class ProgressBarStreams {
-  final Duration position;
-  final Duration duration;
-  final Duration bufferedPosition;
-
-  ProgressBarStreams({
-    required this.position,
-    required this.duration,
-    required this.bufferedPosition,
-  });
-}
-
-// Player Cubit
+// Main player cubit
 class ElythraPlayerCubit extends Cubit<ElythraPlayerState> {
-  final AudioPlayer _audioPlayer = AudioPlayer();
+  final BloomeePlayer _bloomeePlayer = BloomeePlayer();
+  MediaItem? _currentMedia;
   bool _showLyrics = false;
 
-  ElythraPlayerCubit() : super(ElythraPlayerInitial()) {
-    _initializePlayer();
-  }
+  ElythraPlayerCubit() : super(ElythraPlayerInitial());
 
-  void _initializePlayer() {
-    // Listen to player state changes
-    _audioPlayer.playerStateStream.listen((playerState) {
-      _updateState();
-    });
-
-    // Listen to position changes
-    _audioPlayer.positionStream.listen((position) {
-      _updateState();
-    });
-
-    // Listen to duration changes
-    _audioPlayer.durationStream.listen((duration) {
-      _updateState();
-    });
-  }
-
-  void _updateState() {
-    final currentMedia = _getCurrentMedia();
-    emit(ElythraPlayerLoaded(
-      isPlaying: _audioPlayer.playing,
-      showLyrics: _showLyrics,
-      currentMedia: currentMedia,
-      position: _audioPlayer.position,
-      duration: _audioPlayer.duration ?? Duration.zero,
-    ));
-  }
-
-  MediaItem? _getCurrentMedia() {
-    // This would get the current media from the audio player
-    // For now, return a placeholder
-    return MediaItem(
-      id: "1",
-      title: "Sample Song",
-      artist: "Sample Artist",
-      album: "Sample Album",
+  // Getters
+  MediaItem? get currentMedia => _currentMedia;
+  BloomeePlayer get bloomeePlayer => _bloomeePlayer;
+  
+  // Progress streams
+  Stream<ProgressBarStreams> get progressStreams {
+    return Rx.combineLatest3<Duration, PlaybackEvent, PlayerState, ProgressBarStreams>(
+      _bloomeePlayer.audioPlayer.positionStream,
+      _bloomeePlayer.audioPlayer.playbackEventStream,
+      _bloomeePlayer.audioPlayer.playerStateStream,
+      (position, playbackEvent, playerState) => ProgressBarStreams(
+        currentPos: position,
+        currentPlaybackState: playbackEvent,
+        currentPlayerState: playerState,
+      ),
     );
   }
 
-  // Player Controls
+  // Lyrics control
+  void switchShowLyrics({required bool value}) {
+    _showLyrics = value;
+  }
+
+  bool get showLyrics => _showLyrics;
+
+  // Basic playback methods
   Future<void> play() async {
-    await _audioPlayer.play();
-  }
-
-  Future<void> pause() async {
-    await _audioPlayer.pause();
-  }
-
-  Future<void> stop() async {
-    await _audioPlayer.stop();
-  }
-
-  Future<void> seek(Duration position) async {
-    await _audioPlayer.seek(position);
-  }
-
-  Future<void> setUrl(String url) async {
     try {
-      await _audioPlayer.setUrl(url);
+      await _bloomeePlayer.audioPlayer.play();
+      if (_currentMedia != null) {
+        emit(ElythraPlayerPlaying(_currentMedia!));
+      }
     } catch (e) {
-      emit(ElythraPlayerError("Failed to load audio: $e"));
+      emit(ElythraPlayerError('Failed to play: $e'));
     }
   }
 
-  // Lyrics Controls
-  void toggleLyrics() {
-    _showLyrics = !_showLyrics;
-    _updateState();
+  Future<void> pause() async {
+    try {
+      await _bloomeePlayer.audioPlayer.pause();
+      if (_currentMedia != null) {
+        emit(ElythraPlayerPaused(_currentMedia!));
+      }
+    } catch (e) {
+      emit(ElythraPlayerError('Failed to pause: $e'));
+    }
   }
 
-  void showLyrics() {
-    _showLyrics = true;
-    _updateState();
+  Future<void> stop() async {
+    try {
+      await _bloomeePlayer.audioPlayer.stop();
+      emit(ElythraPlayerInitial());
+    } catch (e) {
+      emit(ElythraPlayerError('Failed to stop: $e'));
+    }
   }
 
-  void hideLyrics() {
-    _showLyrics = false;
-    _updateState();
+  Future<void> seek(Duration position) async {
+    try {
+      await _bloomeePlayer.audioPlayer.seek(position);
+    } catch (e) {
+      emit(ElythraPlayerError('Failed to seek: $e'));
+    }
   }
 
-  // Progress Stream
-  Stream<ProgressBarStreams> get progressBarStream {
-    return _audioPlayer.positionStream.map((position) {
-      return ProgressBarStreams(
-        position: position,
-        duration: _audioPlayer.duration ?? Duration.zero,
-        bufferedPosition: _audioPlayer.bufferedPosition,
-      );
-    });
+  Future<void> loadMedia(MediaItem mediaItem) async {
+    try {
+      emit(ElythraPlayerLoading());
+      _currentMedia = mediaItem;
+      _bloomeePlayer._mediaItemController.add(mediaItem);
+      
+      // Load audio source (placeholder implementation)
+      // await _bloomeePlayer.audioPlayer.setUrl(mediaItem.artUri ?? '');
+      
+      emit(ElythraPlayerPaused(mediaItem));
+    } catch (e) {
+      emit(ElythraPlayerError('Failed to load media: $e'));
+    }
   }
 
   @override
   Future<void> close() {
-    _audioPlayer.dispose();
+    _bloomeePlayer.dispose();
     return super.close();
   }
 }

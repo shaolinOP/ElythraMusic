@@ -387,11 +387,11 @@ class CrossPlatformSyncService {
 
       // Update user document
       final userRef = _firestore.collection('users').doc(user.uid);
-      batch.set(userRef, data['settings'], const SetOptions(merge: true));
+      batch.set(userRef, data['settings'], SetOptions(merge: true));
 
       // Update favorites
       final favoritesRef = userRef.collection('preferences').doc('favorites');
-      batch.set(favoritesRef, data['favorites'], const SetOptions(merge: true));
+      batch.set(favoritesRef, data['favorites'], SetOptions(merge: true));
 
       await batch.commit();
       log('✅ CrossPlatform Sync: Data uploaded to Firebase');

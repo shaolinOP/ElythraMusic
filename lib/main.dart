@@ -47,7 +47,7 @@ import 'package:metadata_god/metadata_god.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:receive_sharing_intent/receive_sharing_intent.dart';
 import 'package:responsive_framework/responsive_framework.dart';
-import 'core/blocs/mediaPlayer/bloomee_player_cubit.dart';
+// Removed duplicate import - using features/player/blocs/mediaPlayer/bloomee_player_cubit.dart
 import 'package:flutter_displaymode/flutter_displaymode.dart';
 import 'package:elythra_music/core/services/discord_service.dart';
 
