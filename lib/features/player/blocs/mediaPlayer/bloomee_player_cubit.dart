@@ -295,7 +295,21 @@ class ElythraPlayerCubit extends Cubit<ElythraPlayerState> {
   ElythraMediaItem? _currentMedia;
   bool _showLyrics = false;
 
-  ElythraPlayerCubit() : super(ElythraPlayerInitial());
+  ElythraPlayerCubit() : super(ElythraPlayerInitial()) {
+    // Initialize the player automatically
+    _initialize();
+  }
+
+  Future<void> _initialize() async {
+    try {
+      // Initialize the audio player and emit ready state
+      await Future.delayed(const Duration(milliseconds: 100)); // Small delay for initialization
+      // Emit a ready state - using paused with null media to indicate ready
+      emit(ElythraPlayerPaused(null, showLyrics: false));
+    } catch (e) {
+      emit(ElythraPlayerError('Failed to initialize player: $e'));
+    }
+  }
 
   // Getters
   ElythraMediaItem? get currentMedia => _currentMedia;
