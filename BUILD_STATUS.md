@@ -128,13 +128,13 @@ The app is now ready for:
 ### 🔧 FLUTTER 3.32.1 & LATEST VERSIONS COMPATIBILITY FIXES
 
 - ✅ **CardTheme Compatibility**: Reverted CardTheme back to CardThemeData for Flutter 3.32.1
-- ✅ **Kotlin Version**: Updated to 1.9.25 (compatible with current Flutter plugins)
+- ✅ **Kotlin Version**: Updated to 2.1.0 (matches Google Play Services/Firebase)
 - ✅ **Android Gradle Plugin**: Updated to 8.7.2 (latest stable)
 - ✅ **minSdkVersion**: Updated from 21 to 23 (required by Firebase Auth 23.2.1)
 - ✅ **Keystore Setup**: Created key.properties and debug.keystore for Android signing
 - ✅ **Build Configuration**: Fixed keystore path references in build.gradle
 - ✅ **Missing Dependencies**: Added cupertino_icons to pubspec.yaml
-- ✅ **NDK Version**: Updated to 27.0.12077973 (required by latest plugins)
+- ✅ **NDK Version**: Updated to 29.0.13599879 (latest available)
 - ✅ **Debug Keystore**: Included debug.keystore and key.properties in repository
 
 ### 📋 BUILD COMMAND
@@ -146,5 +146,5 @@ flutter build apk --target-platform android-arm64
 ---
 
 **Repository**: https://github.com/shaolinOP/ElythraMusic.git  
-**Latest Commit**: d9daf44 - "Include debug keystore and key.properties for development builds"  
+**Latest Commit**: f4e01f5 - "Update to latest Kotlin and NDK versions for compatibility"  
 **Status**: ✅ READY FOR PRODUCTION BUILD
