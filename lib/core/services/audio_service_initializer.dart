@@ -11,10 +11,10 @@ class PlayerInitializer {
   PlayerInitializer._internal();
 
   static bool _isInitialized = false;
-  static ElythraMusicPlayer? bloomeeMusicPlayer;
+  static ElythraMusicPlayer? elythraMusicPlayer;
 
   Future<void> _initialize() async {
-    bloomeeMusicPlayer = await AudioService.init(
+    elythraMusicPlayer = await AudioService.init(
       builder: () => ElythraMusicPlayer(),
       config: const AudioServiceConfig(
         androidStopForegroundOnPause: false,
@@ -33,6 +33,6 @@ class PlayerInitializer {
       await _initialize();
       _isInitialized = true;
     }
-    return bloomeeMusicPlayer!;
+    return elythraMusicPlayer!;
   }
 }

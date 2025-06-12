@@ -1,7 +1,7 @@
 import 'dart:developer';
 import 'package:elythra_music/core/blocs/explore/cubit/explore_cubits.dart';
 import 'package:elythra_music/core/blocs/internet_connectivity/cubit/connectivity_cubit.dart';
-import 'package:elythra_music/core/blocs/lastdotfm/lastdotfm_cubit.dart';
+// import 'package:elythra_music/core/blocs/lastdotfm/lastdotfm_cubit.dart'; // Disabled
 import 'package:elythra_music/features/player/blocs/mediaPlayer/bloomee_player_cubit.dart';
 import 'package:elythra_music/core/blocs/notification/notification_cubit.dart';
 import 'package:elythra_music/core/blocs/settings_cubit/cubit/settings_cubit.dart';
@@ -59,7 +59,7 @@ class ExploreScreenStateState extends State<ExploreScreen> {
         if (data.mediaItems.isNotEmpty) {
           return data;
         }
-        lFMData = ctx.read<LastdotfmCubit>().getRecommendedTracks();
+        // lFMData = ctx.read<LastdotfmCubit>().getRecommendedTracks(); // Disabled
         return (await lFMData);
       } catch (e) {
         log(e.toString(), name: "ExploreScreen");

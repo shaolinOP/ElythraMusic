@@ -12,11 +12,11 @@ import 'package:elythra_music/features/social/social_features_service.dart';
 import 'package:elythra_music/features/performance/performance_optimizer.dart';
 import 'package:elythra_music/core/blocs/downloader/cubit/downloader_cubit.dart';
 import 'package:elythra_music/core/blocs/internet_connectivity/cubit/connectivity_cubit.dart';
-import 'package:elythra_music/core/blocs/lastdotfm/lastdotfm_cubit.dart';
-import 'package:elythra_music/features/lyrics/lyrics_cubit.dart';
-import 'package:elythra_music/features/player/blocs/mediaPlayer/bloomee_player_cubit.dart';
+// import 'package:elythra_music/core/blocs/lastdotfm/lastdotfm_cubit.dart'; // Disabled
+// import 'package:elythra_music/features/lyrics/lyrics_cubit.dart'; // Disabled
+import 'package:elythra_music/core/blocs/mediaPlayer/elythra_player_cubit.dart';
 import 'package:elythra_music/features/auth/auth_cubit.dart';
-import 'package:elythra_music/core/blocs/mini_player/mini_player_bloc.dart';
+// import 'package:elythra_music/core/blocs/mini_player/mini_player_bloc.dart'; // Disabled
 import 'package:elythra_music/core/blocs/notification/notification_cubit.dart';
 import 'package:elythra_music/core/blocs/search_suggestions/search_suggestion_bloc.dart';
 import 'package:elythra_music/core/blocs/settings_cubit/cubit/settings_cubit.dart';
@@ -42,7 +42,7 @@ import 'package:elythra_music/features/player/screens/screen/library_views/cubit
 import 'package:elythra_music/features/player/screens/screen/library_views/cubit/import_playlist_cubit.dart';
 import 'package:elythra_music/core/services/db/cubit/bloomee_db_cubit.dart';
 import 'package:just_audio_media_kit/just_audio_media_kit.dart';
-import 'package:metadata_god/metadata_god.dart';
+// import 'package:metadata_god/metadata_god.dart'; // Disabled: Requires Rust
 import 'package:path_provider/path_provider.dart';
 import 'package:receive_sharing_intent/receive_sharing_intent.dart';
 import 'package:responsive_framework/responsive_framework.dart';
@@ -58,8 +58,8 @@ void processIncomingIntent(List<SharedMediaFile> sharedMediaFiles) {
         ExternalMediaImporter.sfyMediaImporter(sharedMediaFiles[0].path)
             .then((value) async {
           if (value != null) {
-            await bloomeePlayerCubit.bloomeePlayer.addQueueItem(
-              ElythraMediaItem.fromMediaItemModel(value),
+            await elythraPlayerCubit.elythraPlayer.addQueueItem(
+              value.toMediaItem(),
             );
           }
         });
@@ -77,8 +77,8 @@ void processIncomingIntent(List<SharedMediaFile> sharedMediaFiles) {
         ExternalMediaImporter.ytMediaImporter(sharedMediaFiles[0].path)
             .then((value) async {
           if (value != null) {
-            await bloomeePlayerCubit.bloomeePlayer.addQueueItem(
-              ElythraMediaItem.fromMediaItemModel(value),
+            await elythraPlayerCubit.elythraPlayer.addQueueItem(
+              value.toMediaItem(),
             );
           }
         });
@@ -115,9 +115,9 @@ Future<void> setHighRefreshRate() async {
   }
 }
 
-late ElythraPlayerCubit bloomeePlayerCubit;
+late ElythraPlayerCubit elythraPlayerCubit;
 void setupPlayerCubit() {
-  bloomeePlayerCubit = ElythraPlayerCubit();
+  elythraPlayerCubit = ElythraPlayerCubit();
 }
 
 Future<void> initServices() async {
@@ -169,7 +169,7 @@ Future<void> main() async {
   }
   await initServices();
   setHighRefreshRate();
-  // MetadataGod.initialize(); // Temporarily disabled due to library issues
+  // MetadataGod.initialize(); // Disabled: Requires Rust toolchain
   setupPlayerCubit();
   DiscordService.initialize();
   runApp(const MyApp());
@@ -227,8 +227,8 @@ class MyAppStateState extends State<MyApp> {
   @override
   void dispose() {
     _intentSub.cancel();
-    bloomeePlayerCubit.bloomeePlayer.audioPlayer.dispose();
-    bloomeePlayerCubit.close();
+    elythraPlayerCubit.elythraPlayer.audioPlayer.dispose();
+    elythraPlayerCubit.close();
     if (io.Platform.isWindows || io.Platform.isLinux || io.Platform.isMacOS) {
       DiscordService.clearPresence();
     }
@@ -240,13 +240,13 @@ class MyAppStateState extends State<MyApp> {
     return MultiBlocProvider(
       providers: [
         BlocProvider(
-          create: (context) => bloomeePlayerCubit,
+          create: (context) => elythraPlayerCubit,
           lazy: false,
         ),
-        BlocProvider(
-            create: (context) =>
-                MiniPlayerBloc(playerCubit: bloomeePlayerCubit),
-            lazy: true),
+        // BlocProvider(
+        //     create: (context) =>
+        //         MiniPlayerBloc(playerCubit: elythraPlayerCubit),
+        //     lazy: true),
         BlocProvider(
           create: (context) => elythraDBCubit(),
           lazy: false,
@@ -258,7 +258,7 @@ class MyAppStateState extends State<MyApp> {
         BlocProvider(create: (context) => NotificationCubit(), lazy: false),
         BlocProvider(
             create: (context) => TimerBloc(
-                ticker: const Ticker(), bloomeePlayer: bloomeePlayerCubit)),
+                ticker: const Ticker(), bloomeePlayer: elythraPlayerCubit)),
         BlocProvider(
           create: (context) => ConnectivityCubit(),
           lazy: false,
@@ -283,13 +283,13 @@ class MyAppStateState extends State<MyApp> {
           create: (context) => FetchSearchResultsCubit(),
         ),
         BlocProvider(create: (context) => SearchSuggestionBloc()),
-        BlocProvider<LyricsCubit>(
-          create: (context) => LyricsCubit(context.read<ElythraPlayerCubit>()),
-        ),
-        BlocProvider(
-          create: (context) => LastdotfmCubit(playerCubit: bloomeePlayerCubit),
-          lazy: false,
-        ),
+        // BlocProvider<LyricsCubit>(
+        //   create: (context) => LyricsCubit(context.read<ElythraPlayerCubit>()),
+        // ),
+        // BlocProvider(
+        //   create: (context) => LastdotfmCubit(playerCubit: elythraPlayerCubit),
+        //   lazy: false,
+        // ),
         BlocProvider(
           create: (context) => AuthCubit(),
           lazy: false,

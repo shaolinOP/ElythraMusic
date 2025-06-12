@@ -8,7 +8,7 @@ import 'package:elythra_music/features/player/screens/widgets/snackbar.dart';
 import 'package:elythra_music/core/services/db/bloomee_db_service.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter_downloader/flutter_downloader.dart';
-import 'package:metadata_god/metadata_god.dart';
+// import 'package:metadata_god/metadata_god.dart'; // Disabled: Requires Rust
 import 'package:path_provider/path_provider.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:image/image.dart' as img;
@@ -134,32 +134,34 @@ class ElythraDownloader {
     // final imgPath =
     //     await downloadFile(song.artUri.toString(), "${song.id}.jpg");
     // log("Image downloaded for $imgPath", name: "ElythraDownloader");
-    try {
-      await MetadataGod.writeMetadata(
-          file: filePath,
-          metadata: Metadata(
-            title: song.title,
-            artist: song.artist,
-            album: song.album,
-            genre: song.genre,
-            picture: Picture(
-              data: (await getSquareImg(
-                  await getImgBytes(song.artUri.toString())))!,
-              mimeType: 'image/jpeg',
-            ),
-          ));
-    } catch (e) {
-      log("Failed to tag with image ${song.title} by ${song.artist}",
-          error: e, name: "ElythraDownloader");
-      await MetadataGod.writeMetadata(
-          file: filePath,
-          metadata: Metadata(
-            title: song.title,
-            artist: song.artist,
-            album: song.album,
-            genre: song.genre,
-          ));
-    }
+    // Metadata writing disabled - requires Rust toolchain
+    // try {
+    //   await MetadataGod.writeMetadata(
+    //       file: filePath,
+    //       metadata: Metadata(
+    //         title: song.title,
+    //         artist: song.artist,
+    //         album: song.album,
+    //         genre: song.genre,
+    //         picture: Picture(
+    //           data: (await getSquareImg(
+    //               await getImgBytes(song.artUri.toString())))!,
+    //           mimeType: 'image/jpeg',
+    //         ),
+    //       ));
+    // } catch (e) {
+    //   log("Failed to tag with image ${song.title} by ${song.artist}",
+    //       error: e, name: "ElythraDownloader");
+    //   await MetadataGod.writeMetadata(
+    //       file: filePath,
+    //       metadata: Metadata(
+    //         title: song.title,
+    //         artist: song.artist,
+    //         album: song.album,
+    //         genre: song.genre,
+    //       ));
+    // }
+    log("Metadata writing disabled (requires Rust toolchain)", name: "ElythraDownloader");
     // deleteFile(imgPath!);
   }
 

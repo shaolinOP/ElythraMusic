@@ -23,7 +23,7 @@ import 'package:sliding_up_panel/sliding_up_panel.dart';
 import 'package:url_launcher/url_launcher_string.dart';
 import '../../blocs/mediaPlayer/bloomee_player_cubit.dart';
 import '../../blocs/mini_player/mini_player_bloc.dart';
-import 'player_views/lyrics_widget.dart';
+// import 'player_views/lyrics_widget.dart'; // Disabled
 
 class AudioPlayerView extends StatefulWidget {
   const AudioPlayerView({super.key});
@@ -288,7 +288,7 @@ class AudioPlayerViewStateState extends State<AudioPlayerView>
                                         constraints: const BoxConstraints(
                                           minHeight: 200,
                                         ),
-                                        child: const LyricsWidget(),
+                                        child: const Center(child: Text("Lyrics disabled")), // LyricsWidget disabled
                                       ),
                                     ),
                                   ],

@@ -1,7 +1,7 @@
 import 'dart:async';
 import 'dart:developer';
 
-import 'package:elythra_music/features/player/blocs/mediaPlayer/bloomee_player_cubit.dart';
+import 'package:elythra_music/core/blocs/mediaPlayer/elythra_player_cubit.dart';
 import 'package:elythra_music/main.dart';
 import 'package:elythra_music/core/utils/ticker.dart';
 import 'package:bloc/bloc.dart';
@@ -12,12 +12,14 @@ part 'timer_state.dart';
 
 class TimerBloc extends Bloc<TimerEvent, TimerState> {
   final Ticker _ticker;
+  final ElythraPlayerCubit _playerCubit;
   static const int _duration = 0;
 
   StreamSubscription<int>? _tickerSubscription;
 
   TimerBloc({required Ticker ticker, required ElythraPlayerCubit bloomeePlayer})
       : _ticker = ticker,
+        _playerCubit = bloomeePlayer,
         super(const TimerInitial(_duration)) {
     on<TimerStarted>(_onTimerStarted);
     on<_TimerTicked>(_onTimerTicked);
@@ -69,7 +71,7 @@ class TimerBloc extends Bloc<TimerEvent, TimerState> {
     } else {
       emit(const TimerRunComplete());
       try {
-        bloomeePlayerCubit.bloomeePlayer.pause();
+        _playerCubit.elythraPlayer.pause();
       } catch (e) {
         log(e.toString(), name: "TimerBloc");
       }

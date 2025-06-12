@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
 import 'package:icons_plus/icons_plus.dart';
-import 'package:elythra_music/features/player/screens/widgets/mini_player_widget.dart';
+// import 'package:elythra_music/features/player/screens/widgets/mini_player_widget.dart'; // Disabled
 import 'package:responsive_framework/responsive_framework.dart';
 import '../../theme_data/default.dart';
 
@@ -38,7 +38,7 @@ class GlobalFooter extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           mainAxisSize: MainAxisSize.min,
           children: [
-            const MiniPlayerWidget(),
+            const SizedBox(), // MiniPlayerWidget disabled
             Container(
               color: Colors.transparent,
               margin: const EdgeInsets.symmetric(vertical: 5, horizontal: 10),

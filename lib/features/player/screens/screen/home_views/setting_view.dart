@@ -4,7 +4,7 @@ import 'package:elythra_music/features/player/screens/screen/home_views/setting_
 import 'package:elythra_music/features/player/screens/screen/home_views/setting_views/storage_setting.dart';
 import 'package:elythra_music/features/player/screens/screen/home_views/setting_views/country_setting.dart';
 import 'package:elythra_music/features/player/screens/screen/home_views/setting_views/download_setting.dart';
-import 'package:elythra_music/features/player/screens/screen/home_views/setting_views/lastfm_setting.dart';
+// import 'package:elythra_music/features/player/screens/screen/home_views/setting_views/lastfm_setting.dart'; // Disabled
 import 'package:elythra_music/features/player/screens/screen/home_views/setting_views/player_setting.dart';
 import 'package:elythra_music/features/player/screens/screen/home_views/setting_views/updates_setting.dart';
 import 'package:flutter/material.dart';
@@ -87,11 +87,14 @@ class SettingsView extends StatelessWidget {
               subtitle: "API Key, Secret, and Scrobbling settings.",
               icon: FontAwesome.lastfm_brand,
               onTap: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => const LastDotFM(),
-                  ),
+                // Navigator.push(
+                //   context,
+                //   MaterialPageRoute(
+                //     builder: (context) => const LastDotFM(),
+                //   ),
+                // ); // LastDotFM disabled
+                ScaffoldMessenger.of(context).showSnackBar(
+                  const SnackBar(content: Text("Last.fm integration disabled")),
                 );
               }),
           settingListTile(

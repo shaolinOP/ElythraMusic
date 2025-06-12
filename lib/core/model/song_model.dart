@@ -48,6 +48,11 @@ class MediaItemModel extends MediaItem {
         extras.hashCode ^
         genre.hashCode;
   }
+
+  // Convert to MediaItem (since this already extends MediaItem, just return this)
+  MediaItem toMediaItem() {
+    return this;
+  }
 }
 
 MediaItemModel mediaItem2MediaItemModel(MediaItem mediaItem) {
