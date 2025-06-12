@@ -1,8 +1,8 @@
 import 'dart:developer';
 
-import 'package:Bloomee/model/chart_model.dart';
-import 'package:Bloomee/plugins/ext_charts/chart_defines.dart';
-// import 'package:Bloomee/services/db/bloomee_db_service.dart';
+import 'package:elythra_music/core/model/chart_model.dart';
+import 'package:elythra_music/plugins/ext_charts/chart_defines.dart';
+// import 'package:elythra_music/core/services/db/bloomee_db_service.dart';
 import 'package:http/http.dart' as http;
 import 'package:html/parser.dart' as parser;
 
@@ -63,13 +63,13 @@ Future<ChartModel> getLastFmCharts(ChartURL url) async {
           chartItems: chartItems,
           url: url.url,
           lastUpdated: DateTime.now());
-      // BloomeeDBService.putChart(lastfmModel);
+      // ElythraDBService.putChart(lastfmModel);
       log('Last.fm Charts: ${lastfmModel.chartItems!.length} tracks',
           name: "LastFM");
 
       return lastfmModel;
     } else {
-      // final chart = await BloomeeDBService.getChart(url.title);
+      // final chart = await ElythraDBService.getChart(url.title);
       // if (chart != null) {
       //   log('LastFM Charts: ${chart.chartItems!.length} tracks loaded from cache',
       //       name: "LastFM");
@@ -79,7 +79,7 @@ Future<ChartModel> getLastFmCharts(ChartURL url) async {
           'Failed to load page with status code: ${response.statusCode}');
     }
   } on Exception catch (e) {
-    // final chart = await BloomeeDBService.getChart(url.title);
+    // final chart = await ElythraDBService.getChart(url.title);
     // if (chart != null) {
     //   log('LastFM Charts: ${chart.chartItems!.length} tracks loaded from cache',
     //       name: "LastFM");

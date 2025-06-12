@@ -1,43 +1,44 @@
 import 'dart:async';
 import 'dart:developer';
 import 'dart:io' as io;
-import 'package:Bloomee/blocs/downloader/cubit/downloader_cubit.dart';
-import 'package:Bloomee/blocs/internet_connectivity/cubit/connectivity_cubit.dart';
-import 'package:Bloomee/blocs/lastdotfm/lastdotfm_cubit.dart';
-import 'package:Bloomee/blocs/lyrics/lyrics_cubit.dart';
-import 'package:Bloomee/blocs/mini_player/mini_player_bloc.dart';
-import 'package:Bloomee/blocs/notification/notification_cubit.dart';
-import 'package:Bloomee/blocs/search_suggestions/search_suggestion_bloc.dart';
-import 'package:Bloomee/blocs/settings_cubit/cubit/settings_cubit.dart';
-import 'package:Bloomee/blocs/timer/timer_bloc.dart';
-import 'package:Bloomee/repository/Youtube/youtube_api.dart';
-import 'package:Bloomee/screens/widgets/snackbar.dart';
-import 'package:Bloomee/services/db/bloomee_db_service.dart';
-import 'package:Bloomee/services/shortcuts_intents.dart';
-import 'package:Bloomee/theme_data/default.dart';
-import 'package:Bloomee/services/import_export_service.dart';
-import 'package:Bloomee/utils/external_list_importer.dart';
-import 'package:Bloomee/utils/ticker.dart';
-import 'package:Bloomee/utils/url_checker.dart';
+import 'package:elythra_music/core/blocs/downloader/cubit/downloader_cubit.dart';
+import 'package:elythra_music/core/blocs/internet_connectivity/cubit/connectivity_cubit.dart';
+import 'package:elythra_music/core/blocs/lastdotfm/lastdotfm_cubit.dart';
+import 'package:elythra_music/features/lyrics/lyrics_cubit.dart';
+import 'package:elythra_music/features/auth/auth_cubit.dart';
+import 'package:elythra_music/core/blocs/mini_player/mini_player_bloc.dart';
+import 'package:elythra_music/core/blocs/notification/notification_cubit.dart';
+import 'package:elythra_music/core/blocs/search_suggestions/search_suggestion_bloc.dart';
+import 'package:elythra_music/core/blocs/settings_cubit/cubit/settings_cubit.dart';
+import 'package:elythra_music/core/blocs/timer/timer_bloc.dart';
+import 'package:elythra_music/core/repository/Youtube/youtube_api.dart';
+import 'package:elythra_music/features/player/screens/widgets/snackbar.dart';
+import 'package:elythra_music/core/services/db/bloomee_db_service.dart';
+import 'package:elythra_music/core/services/shortcuts_intents.dart';
+import 'package:elythra_music/core/theme_data/default.dart';
+import 'package:elythra_music/core/services/import_export_service.dart';
+import 'package:elythra_music/core/utils/external_list_importer.dart';
+import 'package:elythra_music/core/utils/ticker.dart';
+import 'package:elythra_music/core/utils/url_checker.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:Bloomee/blocs/add_to_playlist/cubit/add_to_playlist_cubit.dart';
-import 'package:Bloomee/blocs/library/cubit/library_items_cubit.dart';
-import 'package:Bloomee/blocs/search/fetch_search_results.dart';
-import 'package:Bloomee/routes_and_consts/routes.dart';
-import 'package:Bloomee/screens/screen/library_views/cubit/current_playlist_cubit.dart';
-import 'package:Bloomee/screens/screen/library_views/cubit/import_playlist_cubit.dart';
-import 'package:Bloomee/services/db/cubit/bloomee_db_cubit.dart';
+import 'package:elythra_music/core/blocs/add_to_playlist/cubit/add_to_playlist_cubit.dart';
+import 'package:elythra_music/core/blocs/library/cubit/library_items_cubit.dart';
+import 'package:elythra_music/core/blocs/search/fetch_search_results.dart';
+import 'package:elythra_music/core/routes_and_consts/routes.dart';
+import 'package:elythra_music/features/player/screens/screen/library_views/cubit/current_playlist_cubit.dart';
+import 'package:elythra_music/features/player/screens/screen/library_views/cubit/import_playlist_cubit.dart';
+import 'package:elythra_music/core/services/db/cubit/bloomee_db_cubit.dart';
 import 'package:just_audio_media_kit/just_audio_media_kit.dart';
 import 'package:metadata_god/metadata_god.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:receive_sharing_intent/receive_sharing_intent.dart';
 import 'package:responsive_framework/responsive_framework.dart';
-import 'blocs/mediaPlayer/bloomee_player_cubit.dart';
+import 'core/blocs/mediaPlayer/bloomee_player_cubit.dart';
 import 'package:flutter_displaymode/flutter_displaymode.dart';
-import 'package:Bloomee/services/discord_service.dart';
+import 'package:elythra_music/core/services/discord_service.dart';
 
 void processIncomingIntent(List<SharedMediaFile> sharedMediaFiles) {
   if (isUrl(sharedMediaFiles[0].path)) {
@@ -104,15 +105,15 @@ Future<void> setHighRefreshRate() async {
   }
 }
 
-late BloomeePlayerCubit bloomeePlayerCubit;
+late ElythraPlayerCubit bloomeePlayerCubit;
 void setupPlayerCubit() {
-  bloomeePlayerCubit = BloomeePlayerCubit();
+  bloomeePlayerCubit = ElythraPlayerCubit();
 }
 
 Future<void> initServices() async {
   String appDocPath = (await getApplicationDocumentsDirectory()).path;
   String appSuppPath = (await getApplicationSupportDirectory()).path;
-  BloomeeDBService(appDocPath: appDocPath, appSuppPath: appSuppPath);
+  ElythraDBService(appDocPath: appDocPath, appSuppPath: appSuppPath);
   YouTubeServices(appDocPath: appDocPath, appSuppPath: appSuppPath);
 }
 
@@ -200,7 +201,7 @@ class _MyAppState extends State<MyApp> {
                 MiniPlayerBloc(playerCubit: bloomeePlayerCubit),
             lazy: true),
         BlocProvider(
-          create: (context) => BloomeeDBCubit(),
+          create: (context) => ElythraDBCubit(),
           lazy: false,
         ),
         BlocProvider(
@@ -217,12 +218,12 @@ class _MyAppState extends State<MyApp> {
         ),
         BlocProvider(
           create: (context) => CurrentPlaylistCubit(
-              bloomeeDBCubit: context.read<BloomeeDBCubit>()),
+              bloomeeDBCubit: context.read<ElythraDBCubit>()),
           lazy: false,
         ),
         BlocProvider(
           create: (context) =>
-              LibraryItemsCubit(bloomeeDBCubit: context.read<BloomeeDBCubit>()),
+              LibraryItemsCubit(bloomeeDBCubit: context.read<ElythraDBCubit>()),
         ),
         BlocProvider(
           create: (context) => AddToPlaylistCubit(),
@@ -242,14 +243,18 @@ class _MyAppState extends State<MyApp> {
           create: (context) => LastdotfmCubit(playerCubit: bloomeePlayerCubit),
           lazy: false,
         ),
+        BlocProvider(
+          create: (context) => AuthCubit(),
+          lazy: false,
+        ),
       ],
       child: RepositoryProvider(
         create: (context) => DownloaderCubit(
             connectivityCubit: context.read<ConnectivityCubit>()),
         lazy: false,
-        child: BlocBuilder<BloomeePlayerCubit, BloomeePlayerState>(
+        child: BlocBuilder<ElythraPlayerCubit, ElythraPlayerState>(
           builder: (context, state) {
-            if (state is BloomeePlayerInitial) {
+            if (state is ElythraPlayerInitial) {
               return const SizedBox(
                   width: 50, height: 50, child: CircularProgressIndicator());
             } else {
@@ -278,18 +283,18 @@ class _MyAppState extends State<MyApp> {
                 actions: {
                   PlayPauseIntent: CallbackAction(onInvoke: (intent) {
                     if (context
-                        .read<BloomeePlayerCubit>()
+                        .read<ElythraPlayerCubit>()
                         .bloomeePlayer
                         .audioPlayer
                         .playing) {
                       context
-                          .read<BloomeePlayerCubit>()
+                          .read<ElythraPlayerCubit>()
                           .bloomeePlayer
                           .audioPlayer
                           .pause();
                     } else {
                       context
-                          .read<BloomeePlayerCubit>()
+                          .read<ElythraPlayerCubit>()
                           .bloomeePlayer
                           .audioPlayer
                           .play();
@@ -298,39 +303,39 @@ class _MyAppState extends State<MyApp> {
                   }),
                   NextIntent: CallbackAction(onInvoke: (intent) {
                     context
-                        .read<BloomeePlayerCubit>()
+                        .read<ElythraPlayerCubit>()
                         .bloomeePlayer
                         .skipToNext();
                     return null;
                   }),
                   PreviousIntent: CallbackAction(onInvoke: (intent) {
                     context
-                        .read<BloomeePlayerCubit>()
+                        .read<ElythraPlayerCubit>()
                         .bloomeePlayer
                         .skipToPrevious();
                     return null;
                   }),
                   NSecForwardIntent: CallbackAction(onInvoke: (intent) {
                     context
-                        .read<BloomeePlayerCubit>()
+                        .read<ElythraPlayerCubit>()
                         .bloomeePlayer
                         .seekNSecForward(const Duration(seconds: 5));
                     return null;
                   }),
                   NSecBackwardIntent: CallbackAction(onInvoke: (intent) {
                     context
-                        .read<BloomeePlayerCubit>()
+                        .read<ElythraPlayerCubit>()
                         .bloomeePlayer
                         .seekNSecBackward(const Duration(seconds: 5));
                     return null;
                   }),
                   VolumeUpIntent: CallbackAction(onInvoke: (intent) {
                     context
-                        .read<BloomeePlayerCubit>()
+                        .read<ElythraPlayerCubit>()
                         .bloomeePlayer
                         .audioPlayer
                         .setVolume((context
-                                    .read<BloomeePlayerCubit>()
+                                    .read<ElythraPlayerCubit>()
                                     .bloomeePlayer
                                     .audioPlayer
                                     .volume +
@@ -340,11 +345,11 @@ class _MyAppState extends State<MyApp> {
                   }),
                   VolumeDownIntent: CallbackAction(onInvoke: (intent) {
                     context
-                        .read<BloomeePlayerCubit>()
+                        .read<ElythraPlayerCubit>()
                         .bloomeePlayer
                         .audioPlayer
                         .setVolume((context
-                                    .read<BloomeePlayerCubit>()
+                                    .read<ElythraPlayerCubit>()
                                     .bloomeePlayer
                                     .audioPlayer
                                     .volume -

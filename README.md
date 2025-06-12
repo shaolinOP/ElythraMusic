@@ -1,94 +1,249 @@
- ![BloomeeTunes](./assets/docs/bloomeetunes_new_banner.png)
-**<h1 align=center>Bloomee🌸</h1>**
-<p align="center"><a href="https://github.com/HemantKArya/BloomeeTunes/releases/latest"><img alt="GitHub Downloads (all assets, all releases)" src="https://img.shields.io/github/downloads/HemantKArya/BloomeeTunes/total?style=for-the-badge" >
-<img alt="GitHub Release" src="https://img.shields.io/github/v/release/HemantKArya/BloomeeTunes?display_name=release&style=for-the-badge&color=f01d7c" ></a>
-<img alt="GitHub License" src="https://img.shields.io/github/license/HemantKArya/BloomeeTunes?style=for-the-badge&color=1881cc" > <img alt="GitHub Actions Workflow Status" src="https://img.shields.io/github/actions/workflow/status/HemantKArya/BloomeeTunes/checkout.yml?style=for-the-badge" > <img src=https://img.shields.io/badge/Flutter-02569B?style=for-the-badge&logo=flutter&logoColor=white /><br><img src=https://img.shields.io/badge/Windows-0078D6?style=for-the-badge&logo=windows&logoColor=white > <img src=https://img.shields.io/badge/Android-3DDC84?style=for-the-badge&logo=android&logoColor=white /> <img src="https://img.shields.io/badge/Linux-FCC624?style=for-the-badge&logo=linux&logoColor=black"/>
+# Elythra Music
 
-
+<p align="center">
+  <img src="https://via.placeholder.com/200x200/6366f1/ffffff?text=EM" alt="Elythra Music Logo" width="200"/>
 </p>
-<br>
-Bloomee is experimental cross-platform open Source Music player designed to bring you Ad-free tunes from various sources. Dive into a world of limitless music from platforms like YouTube and Jio Saavn, with more sources blooming soon! 🌼🎵
 
+<p align="center">
+  <strong>🎵 Your music, your way 🎵</strong>
+</p>
 
-![BloomeeTunesScrnShots](./assets/docs/banner2BloomeScrnShot.png)
+<p align="center">
+  <a href="https://github.com/btrshaolin/ElythraMusic/releases">
+    <img src="https://img.shields.io/github/v/release/btrshaolin/ElythraMusic?style=for-the-badge&logo=github&color=blue" alt="GitHub Release"/>
+  </a>
+  <a href="https://github.com/btrshaolin/ElythraMusic/blob/main/LICENSE">
+    <img src="https://img.shields.io/github/license/btrshaolin/ElythraMusic?style=for-the-badge&color=green" alt="License"/>
+  </a>
+  <a href="https://github.com/btrshaolin/ElythraMusic/stargazers">
+    <img src="https://img.shields.io/github/stars/btrshaolin/ElythraMusic?style=for-the-badge&color=yellow" alt="Stars"/>
+  </a>
+</p>
 
-![BloomeeDesktop](./assets/docs/lyricsscrn.png)
+---
 
-### **Why Bloomee?**
+## 🌟 What is Elythra Music?
 
-🌟 **Ad-Free Experience:** Say goodbye to interruptions and enjoy uninterrupted musical bliss.
+**Elythra Music** is a cross-platform music streaming app built with Flutter, combining the best features from BloomeeTunes, Metrolist, and Harmony-Music. It delivers a premium music experience with enhanced lyrics, authentication, and improved performance.
 
-🌍 **Multi-Source Player:** Access your favorite tracks from diverse platforms, with more sources continually joining our melody garden.
+### ✨ Key Highlights
+- 🎶 **Stream millions of songs** from multiple sources
+- 📱 **Cross-platform** - Android, iOS, Windows, Linux, macOS
+- 🎨 **Beautiful UI** with modern design
+- 📥 **Download & offline playback**
+- 🎵 **Enhanced synchronized lyrics**
+- 🔐 **Google Sign-In authentication**
+- 🎧 **High-quality audio** up to 320kbps
+- 🌐 **No ads, completely free**
 
-🚀 **Flutter-Powered Learning:** Bloomee is not just about music; it's about learning and growing with Flutter and BLoC architecture. Explore the intersection of beautiful design and smooth functionality while mastering the art of app development.
+---
 
-### **Features**
-- [x] 🚫 Ad-Free Music
-- [x] 📝 Lyrics Support (Time Synced)
-- [x] 📊 Scrobble music with Last.FM
-- [x] 🎵 Offline Music Experience
-- [x] 🔽 Import playlists from various source.
-- [x] ⏲️ Sleep Timer
-- [x] 🎧 Personalized Playlist Creation and Sharing
-- [x] 🌐 Daily Updated Global Charts. (Billboard, Last.fm and more.)
-- [x] 🖥️ Support for Android, Windows and Linux.
-- [x] 📉 Minimal Data Usage
-- [x] 💾 Space Efficient
-- [x] 🏃 Lightweight App
-- [x] 🔓 Open Source
-- [x] 💿 Play Automatic Related Songs
-- [x] 🎸 Share your playlists with others
-- [ ] 🎼 AI-Generated Playlist
-- [ ] 💡 AI-Based Recommendations
-- [ ] 🆎 Multi-Language support
+## 🚀 Features
 
+### 🎵 Core Music Features
+- **Multi-platform support**: Android, iOS, Windows, Linux, macOS
+- **High-quality streaming**: Up to 320 kbps audio quality
+- **Multiple music sources**: YouTube Music, Saavn, Spotify integration
+- **Offline downloads**: Cache songs for offline listening
+- **Smart playlists**: Create and manage custom playlists
+- **Audio effects**: Equalizer and audio enhancement
+- **Background playback**: Continue listening while using other apps
 
+### 🎤 Enhanced Lyrics Experience
+- **Synchronized lyrics**: Real-time lyrics display with music
+- **Plain text lyrics**: Traditional lyrics view
+- **Lyrics caching**: Save lyrics for offline viewing
+- **Auto-save lyrics**: Automatically save lyrics for future use
+- **Multiple lyrics sources**: Fetch from various lyrics providers
 
-<h3 align=center>Download for Android, Windows & Linux(dev) 😍</h3>
-<p align="center"><a href="https://github.com/HemantKArya/BloomeeTunes/releases"><img src="https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white" height=40/></a>
-<a href="https://sourceforge.net/projects/bloomee/files/latest/download"><img alt="Download BloomeeTunes" src="https://a.fsdn.com/con/app/sf-download-button" height=40 srcset="https://a.fsdn.com/con/app/sf-download-button?button_size=2x 2x"></a></p>
-</br>
+### 🔐 Authentication & Sync
+- **Google Sign-In**: Secure authentication with Google
+- **Cloud sync**: Sync playlists and preferences across devices
+- **Backup & restore**: Backup your music library
+- **Personalized recommendations**: AI-powered music suggestions
 
-<h3 align="center"> Now you can support me via</h3>
-<p align="center"><a href="https://liberapay.com/hemantkarya/donate"><img alt="Donate using Liberapay" src="https://liberapay.com/assets/widgets/donate.svg"></p>
+### 🎨 User Experience
+- **Modern UI**: Clean, intuitive interface
+- **Dark/Light themes**: Multiple theme options
+- **Responsive design**: Optimized for all screen sizes
+- **Keyboard shortcuts**: Desktop keyboard controls
+- **Discord integration**: Rich presence support
+- **System integration**: Media keys and notifications
 
+---
 
-### **Contribute to BloomeeTunes! 🎶**
+## 🏗️ Architecture
 
-🌱 **Every Note Counts:** Your contribution, no matter how small, adds to the richness of Bloomee. Whether you're fixing a bug, enhancing features, or suggesting improvements, your notes in our melody matter. Also I'm new to flutter, So every contribution will help me and this project.
+The app follows a clean architecture pattern with feature-based organization:
 
-🚀 **Learn and Grow:** Contribute to Bloomee and enhance your Flutter and BLoC skills. Every pull request is an opportunity to learn, and we encourage contributors of all levels to join the journey.
+```
+lib/
+├── core/                    # Core functionality
+│   ├── blocs/              # State management (BLoC pattern)
+│   ├── model/              # Data models
+│   ├── repository/         # Data repositories
+│   ├── services/           # Core services
+│   ├── theme_data/         # Theme configuration
+│   └── utils/              # Utility functions
+├── features/               # Feature modules
+│   ├── player/            # Music player functionality
+│   ├── lyrics/            # Lyrics features
+│   └── auth/              # Authentication
+└── main.dart              # App entry point
+```
 
-**How to Contribute:**
+---
 
-1. **Fork the Repository:** Start your Bloomee journey by forking **main(Branch)**.
+## 📦 What We Kept From Each Repository
 
-2. **Clone Locally:** Clone the forked repository to your local machine.
+### From BloomeeTunes (Base)
+✅ **Core Architecture**
+- Flutter + BLoC state management
+- Multi-platform support (Android, iOS, Windows, Linux, macOS)
+- Isar database for local storage
+- Audio service with just_audio
 
-3. **Create a Branch:** Create a new branch for your contribution.
+✅ **Music Features**
+- YouTube Music integration
+- Saavn API integration
+- Playlist management
+- Download functionality
+- Audio caching system
+- Discord Rich Presence
 
-4. **Make Changes:** Make your contribution - fix a bug, add a feature, or improve the documentation.
+✅ **UI Components**
+- Responsive design framework
+- Custom themes and styling
+- Navigation system
+- Media controls
 
-5. **Push Changes:** Push your changes to your forked repository.
+### From Metrolist (Adapted to Flutter)
+✅ **Authentication System**
+- Google Sign-In integration
+- Firebase authentication
+- User profile management
 
-6. **Create a Pull Request:** Submit a pull request, and let your notes join the Bloomee Symphony!
+✅ **Lyrics Engine Concepts**
+- Advanced lyrics fetching logic
+- Multiple lyrics sources
+- Lyrics caching strategies
 
-</br>
-<p align=center>
-<a href="https://apt.izzysoft.de/fdroid/index/apk/ls.bloomee.musicplayer">
-<img alt="izzyondroid" src="https://gitlab.com/IzzyOnDroid/repo/-/raw/master/assets/IzzyOnDroidButtonGreyBorder.svg" height=45/></a></p>
+### From Harmony-Music
+✅ **Enhanced Lyrics UI**
+- `flutter_lyric` package integration
+- Synchronized lyrics display
+- Improved lyrics viewer
+- Lyrics mode switching (plain/synced)
 
-<h4 align=center>Get in touch with me at :-</h4>
-<p align=center>
-<a href=https://www.linkedin.com/in/iamhemantindia/>
-<img src="https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white"/>
-</a> <a href=https://instagram.com/iamhemantindia/>
-<img src="https://img.shields.io/badge/Instagram-E4405F?style=for-the-badge&logo=instagram&logoColor=white"/>
-</a>
-<a href=https://x.com/iamhemantindia/>
-<img src="https://img.shields.io/badge/X-000000?style=for-the-badge&logo=x&logoColor=white"/>
-</a>
-<a href=mailto:iamhemantindia@protonmail.com/>
-<img src="https://img.shields.io/badge/proton%20mail-6D4AFF?style=for-the-badge&logo=protonmail&logoColor=white"/>
-</a>
+✅ **UI/UX Improvements**
+- Better player controls
+- Enhanced visual feedback
+- Improved navigation patterns
+
+---
+
+## 🔧 Technical Improvements
+
+### Fixed Issues from BloomeeTunes
+- **Audio Service Stability**: Improved audio playback reliability
+- **320 kbps Streaming**: Ensured consistent high-quality streaming
+- **Error Handling**: Better error management and user feedback
+- **Performance**: Optimized caching and memory usage
+
+### New Features Added
+- **Enhanced Authentication**: Google Sign-In with Firebase
+- **Improved Lyrics**: Synchronized lyrics with flutter_lyric
+- **Better Architecture**: Clean feature-based organization
+- **Modern UI**: Updated design patterns and components
+
+---
+
+## 📱 Platform Support
+
+| Platform | Status | Notes |
+|----------|--------|-------|
+| Android  | ✅ Full | Primary platform |
+| iOS      | ✅ Full | Complete support |
+| Windows  | ✅ Full | Desktop optimized |
+| Linux    | ✅ Full | Native support |
+| macOS    | ✅ Full | Apple ecosystem |
+| Web      | 🚧 Limited | Basic functionality |
+
+---
+
+## 🛠️ Installation
+
+### 📱 Mobile (Android/iOS)
+1. Download the latest APK from [Releases](https://github.com/btrshaolin/ElythraMusic/releases)
+2. Install the APK (enable "Unknown Sources" if needed)
+3. Launch and enjoy!
+
+### 💻 Desktop (Windows/Linux/macOS)
+1. Download the appropriate installer from [Releases](https://github.com/btrshaolin/ElythraMusic/releases)
+2. Run the installer
+3. Launch Elythra Music from your applications
+
+### 🔧 Build from Source
+```bash
+# Clone the repository
+git clone https://github.com/btrshaolin/ElythraMusic.git
+cd ElythraMusic
+
+# Install dependencies
+flutter pub get
+
+# Run the app
+flutter run
+```
+
+---
+
+## 🤝 Contributing
+
+We welcome contributions! Here's how you can help:
+
+### 🐛 Bug Reports
+- Use the [issue tracker](https://github.com/btrshaolin/ElythraMusic/issues)
+- Include detailed steps to reproduce
+- Add screenshots if applicable
+
+### 💡 Feature Requests
+- Check existing [issues](https://github.com/btrshaolin/ElythraMusic/issues) first
+- Describe the feature and its benefits
+- Consider implementation complexity
+
+### 🔧 Code Contributions
+1. Fork the repository
+2. Create a feature branch (`git checkout -b feature/amazing-feature`)
+3. Commit your changes (`git commit -m 'Add amazing feature'`)
+4. Push to the branch (`git push origin feature/amazing-feature`)
+5. Open a Pull Request
+
+---
+
+## 🙏 Acknowledgments
+
+Special thanks to:
+- **BloomeeTunes**: Base architecture and core functionality
+- **Metrolist**: Authentication concepts and lyrics engine inspiration
+- **Harmony-Music**: UI/UX improvements and enhanced lyrics features
+- **Flutter Community**: Amazing packages and support
+
+---
+
+## 📄 License
+
+This project is licensed under the **GPL-3.0 License** - see the [LICENSE](LICENSE) file for details.
+
+---
+
+## 📞 Support
+
+- 🐛 **Bug Reports**: [GitHub Issues](https://github.com/btrshaolin/ElythraMusic/issues)
+- 💬 **Discussions**: [GitHub Discussions](https://github.com/btrshaolin/ElythraMusic/discussions)
+
+---
+
+<p align="center">
+  <strong>Elythra Music - Your music, your way 🎵</strong>
 </p>
