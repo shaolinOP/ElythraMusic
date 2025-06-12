@@ -45,6 +45,13 @@ flutter pub get    # ✅ Dependencies resolved successfully
 flutter analyze    # ✅ 0 errors, only minor warnings/info messages
 ```
 
+### 📦 Dependency Updates (Latest)
+- **Updated 16 core packages** to latest compatible versions
+- **Maintained compatibility** with Dart 3.5.4/Flutter 3.24.5
+- **Major updates**: bloc, cached_network_image, http, image, rxdart, and more
+- **Zero breaking changes** - all functionality preserved
+- See [DEPENDENCY_UPDATES.md](DEPENDENCY_UPDATES.md) for detailed changelog
+
 ### ✨ Key Highlights
 - 🎶 **Stream millions of songs** from multiple sources
 - 📱 **Cross-platform** - Android, iOS, Windows, Linux, macOS
