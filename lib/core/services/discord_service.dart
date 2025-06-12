@@ -23,10 +23,7 @@ class DiscordService {
   }
 
   /// Updates the Discord presence
-  static void updatePresence({
-    required MediaItemModel mediaItem,
-    required bool isPlaying,
-  }) {
+  static void updatePresence(MediaItemModel mediaItem) {
     if (_discordRPC != null && mediaItem != mediaItemModelNull) {
       try {
         _startTimeStamp ??= DateTime.now().millisecondsSinceEpoch;
@@ -34,9 +31,7 @@ class DiscordService {
         _discordRPC!.updatePresence(
           DiscordPresence(
               details: mediaItem.title,
-              state: isPlaying
-                  ? "Playing・${mediaItem.artist?.isNotEmpty == true ? mediaItem.artist : 'Unknown Artist'}"
-                  : "Paused・${mediaItem.artist?.isNotEmpty == true ? mediaItem.artist : 'Unknown Artist'}",
+              state: "Playing・${mediaItem.artist?.isNotEmpty == true ? mediaItem.artist : 'Unknown Artist'}",
               largeImageKey: "bloomeetunes_logo",
               largeImageText: "ElythraTunes",
               startTimeStamp: _startTimeStamp),

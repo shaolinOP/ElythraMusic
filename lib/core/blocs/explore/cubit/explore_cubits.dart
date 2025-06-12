@@ -4,7 +4,7 @@ import 'dart:convert';
 import 'dart:developer';
 import 'dart:isolate';
 import 'package:elythra_music/core/repository/Youtube/yt_music_home.dart';
-import 'package:elythra_music/core/services/db/global_db.dart';
+import 'package:elythra_music/core/services/db/global_db_platform.dart';
 import 'package:elythra_music/core/utils/country_info.dart';
 import 'package:elythra_music/core/model/media_playlist_model.dart';
 import 'package:elythra_music/core/model/chart_model.dart';

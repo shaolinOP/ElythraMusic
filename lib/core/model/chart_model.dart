@@ -1,4 +1,4 @@
-import 'package:elythra_music/core/services/db/global_db.dart';
+import 'package:elythra_music/core/services/db/global_db_platform.dart';
 
 class ChartModel {
   final String chartName;

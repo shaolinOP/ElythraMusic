@@ -6,7 +6,7 @@ import 'package:bloc/bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:elythra_music/core/model/media_playlist_model.dart';
 import 'package:elythra_music/core/model/song_model.dart';
-import 'package:elythra_music/core/services/db/global_db.dart';
+import 'package:elythra_music/core/services/db/global_db_platform.dart';
 import 'package:elythra_music/core/services/db/bloomee_db_service.dart';
 
 part 'bloomee_db_state.dart';

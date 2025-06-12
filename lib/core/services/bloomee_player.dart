@@ -118,10 +118,7 @@ class ElythraMusicPlayer extends BaseAudioHandler
       speed: audioPlayer.speed,
     ));
 
-    DiscordService.updatePresence(
-      mediaItem: currentMedia,
-      isPlaying: isPlaying,
-    );
+    DiscordService.updatePresence(currentMedia);
   }
 
   MediaItemModel get currentMedia => queue.value.isNotEmpty

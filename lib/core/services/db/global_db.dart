@@ -215,15 +215,14 @@ class MediaItemDB {
 }
 
 int fastHash(String string) {
-  var hash = 0xcbf29ce484222325;
-
-  var i = 0;
-  while (i < string.length) {
-    final codeUnit = string.codeUnitAt(i++);
-    hash ^= codeUnit >> 8;
-    hash *= 0x100000001b3;
-    hash ^= codeUnit & 0xFF;
-    hash *= 0x100000001b3;
+  // Web-compatible hash function using smaller integers
+  var hash = 0x811c9dc5; // 32-bit FNV offset basis
+  
+  for (var i = 0; i < string.length; i++) {
+    final codeUnit = string.codeUnitAt(i);
+    hash ^= codeUnit;
+    hash *= 0x01000193; // 32-bit FNV prime
+    hash = hash & 0x7FFFFFFF; // Keep within JavaScript safe integer range
   }
 
   return hash;

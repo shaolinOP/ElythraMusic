@@ -8,7 +8,7 @@ import 'package:elythra_music/core/blocs/add_to_playlist/cubit/add_to_playlist_c
 import 'package:elythra_music/core/model/song_model.dart';
 import 'package:elythra_music/features/player/screens/widgets/create_playlist_bottomsheet.dart';
 import 'package:elythra_music/features/player/screens/widgets/libitem_tile.dart';
-import 'package:elythra_music/core/services/db/global_db.dart';
+import 'package:elythra_music/core/services/db/global_db_platform.dart';
 import 'package:elythra_music/core/theme_data/default.dart';
 import 'package:elythra_music/core/routes_and_consts/global_conts.dart';
 import 'package:elythra_music/core/utils/load_image.dart';

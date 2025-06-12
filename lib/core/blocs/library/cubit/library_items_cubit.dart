@@ -8,7 +8,7 @@ import 'package:elythra_music/core/model/playlist_onl_model.dart';
 import 'package:equatable/equatable.dart';
 import 'package:elythra_music/core/model/song_model.dart';
 import 'package:elythra_music/features/player/screens/widgets/snackbar.dart';
-import 'package:elythra_music/core/services/db/global_db.dart';
+import 'package:elythra_music/core/services/db/global_db_platform.dart';
 import 'package:elythra_music/core/services/db/bloomee_db_service.dart';
 import 'package:elythra_music/core/services/db/cubit/bloomee_db_cubit.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
