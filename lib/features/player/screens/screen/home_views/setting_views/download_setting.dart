@@ -31,7 +31,7 @@ Future<bool> storagePermission() async {
     ].request(); //import 'package:permission_handler/permission_handler.dart';
 
     havePermission =
-        request.values.every((status) => status == PermissionStatus.granted);
+        request.toARGB32s.every((status) => status == PermissionStatus.granted);
   } else {
     final status = await Permission.storage.request();
     havePermission = status.isGranted;

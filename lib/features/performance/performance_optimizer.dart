@@ -492,7 +492,7 @@ class PerformanceOptimizer {
       
       // Remove old cache entries
       final now = DateTime.now();
-      final keysToRemove = <String>[];
+      final List<String> keysToRemove = <String>[];
       
       for (final key in _cache.keys) {
         final entry = _cache[key];
@@ -607,7 +607,7 @@ class PerformanceOptimizer {
         .where((m) => DateTime.now().difference(m.timestamp).inMinutes < 60)
         .map((m) => {
           'name': m.name,
-          'value': m.value,
+          'value': m.toARGB32,
           'timestamp': m.timestamp.toIso8601String(),
         })
         .toList();
@@ -637,7 +637,7 @@ class PerformanceOptimizer {
     if (entry is CacheEntry) {
       // Update access time
       entry.lastAccessed = DateTime.now();
-      return entry.value as T?;
+      return entry.toARGB32 as T?;
     }
     return null;
   }
@@ -653,15 +653,15 @@ class PerformanceOptimizer {
   void _evictOldestEntries(int spaceNeeded) {
     final entries = _cache.entries.toList();
     entries.sort((a, b) {
-      final aEntry = a.value as CacheEntry;
-      final bEntry = b.value as CacheEntry;
+      final aEntry = a.toARGB32 as CacheEntry;
+      final bEntry = b.toARGB32 as CacheEntry;
       return aEntry.lastAccessed.compareTo(bEntry.lastAccessed);
     });
     
     int freedSpace = 0;
     for (final entry in entries) {
       _removeFromCache(entry.key);
-      freedSpace += (entry.value as CacheEntry).size;
+      freedSpace += (entry.toARGB32 as CacheEntry).size;
       
       if (freedSpace >= spaceNeeded) break;
     }
@@ -749,7 +749,7 @@ class PerformanceMetric {
 
   const PerformanceMetric({
     required this.name,
-    required this.value,
+    required this.toARGB32,
     required this.timestamp,
   });
 }
@@ -762,7 +762,7 @@ class CacheEntry {
   DateTime lastAccessed;
 
   CacheEntry({
-    required this.value,
+    required this.toARGB32,
     required this.size,
     required this.timestamp,
   }) : lastAccessed = timestamp;

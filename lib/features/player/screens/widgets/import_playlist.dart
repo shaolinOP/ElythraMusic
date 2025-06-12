@@ -27,14 +27,14 @@ class _ImporterDialogWidgetState extends State<ImporterDialogWidget> {
           isFailed = event.isFailed;
         });
         await Future.delayed(const Duration(seconds: 1));
-        Navigator.of(context).pop();
+        if (mounted) Navigator.of(context).pop();
         SnackbarService.showMessage("Import Failed!");
       } else if (event.isDone) {
         setState(() {
           isCompleted = event.isDone;
         });
         await Future.delayed(const Duration(seconds: 1));
-        Navigator.of(context).pop();
+        if (mounted) Navigator.of(context).pop();
         // SnackbarService.showMessage("Import Completed");
       }
     });

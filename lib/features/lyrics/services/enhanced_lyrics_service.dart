@@ -177,7 +177,7 @@ class EnhancedLyricsService {
     try {
       final prefs = await SharedPreferences.getInstance();
       final cachedData = prefs.getString(cacheKey);
-      final cacheTime = prefs.getInt('${cacheKey}_time');
+      final cacheTime = prefs.getInt('$cacheKey_time');
       
       if (cachedData != null && cacheTime != null) {
         final cacheAge = DateTime.now().millisecondsSinceEpoch - cacheTime;
@@ -190,7 +190,7 @@ class EnhancedLyricsService {
             album: data['album'],
             lyricsPlain: data['lyricsPlain'] ?? '',
             lyricsSynced: data['lyricsSynced'],
-            provider: LyricsProvider.values.firstWhere(
+            provider: LyricsProvider.toARGB32s.firstWhere(
               (p) => p.toString() == data['provider'],
               orElse: () => LyricsProvider.none,
             ),
@@ -216,7 +216,7 @@ class EnhancedLyricsService {
         'provider': lyrics.provider.toString(),
       });
       await prefs.setString(cacheKey, data);
-      await prefs.setInt('${cacheKey}_time', DateTime.now().millisecondsSinceEpoch);
+      await prefs.setInt('$cacheKey_time', DateTime.now().millisecondsSinceEpoch);
     } catch (e) {
       log('Cache write error: $e');
     }
@@ -240,7 +240,7 @@ class EnhancedLyricsService {
       final keys = prefs.getKeys().where((key) => key.startsWith(_cachePrefix));
       for (final key in keys) {
         await prefs.remove(key);
-        await prefs.remove('${key}_time');
+        await prefs.remove('$key_time');
       }
     } catch (e) {
       log('Cache clear error: $e');

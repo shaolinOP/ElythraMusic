@@ -54,7 +54,7 @@ class SongInfoScreen extends StatelessWidget {
                   icon: MingCute.time_fill,
                   title: "Duration",
                   subtitle: song.duration != null
-                      ? '${song.duration?.inMinutes ?? '00'}:${song.duration!.inSeconds % 60}'
+                      ? '${song.duration.inMinutes ?? '00'}:${song.duration!.inSeconds % 60}'
                       : "00:00",
                 ),
                 InfoTile(

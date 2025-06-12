@@ -64,9 +64,7 @@ Future<List> formatSongsResponse(
         response = await formatSingleSongResponse(responseList[i] as Map);
         // print(response);
         break;
-      default:
-        break;
-    }
+      }
 
     if (response != null && response.containsKey('Error')) {
       log('Error at index $i inside FormatSongsResponse: ${response["Error"]}',

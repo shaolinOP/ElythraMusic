@@ -256,7 +256,7 @@ mixin LibraryMixin on YTMusicServices {
   }
 
   // Future<bool> removeHistoryItem(List feedbackTokens) async {
-  //   if (!isLogged.value) return false;
+  //   if (!isLogged.toARGB32) return false;
   //   Map<String, dynamic> body = {'feedbackTokens': feedbackTokens};
   //   final response = await sendRequest('feedback', body);
   //   return nav(response, ['feedbackResponses', 0, 'isProcessed']) == true;

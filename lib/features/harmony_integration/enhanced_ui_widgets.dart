@@ -104,7 +104,7 @@ class _EnhancedSongListTileState extends State<EnhancedSongListTile>
       animation: _scaleAnimation,
       builder: (context, child) {
         return Transform.scale(
-          scale: _scaleAnimation.value,
+          scale: _scaleAnimation.toARGB32,
           child: Container(
             margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 4),
             decoration: BoxDecoration(
@@ -164,7 +164,7 @@ class _EnhancedSongListTileState extends State<EnhancedSongListTile>
           height: 56,
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(8),
-            color: theme.colorScheme.surfaceVariant,
+            color: theme.colorScheme.surfaceContainerHighest,
           ),
           child: widget.imageUrl != null
               ? ClipRRect(
@@ -185,7 +185,7 @@ class _EnhancedSongListTileState extends State<EnhancedSongListTile>
           builder: (context, child) {
             return Positioned.fill(
               child: Opacity(
-                opacity: _playingAnimation.value,
+                opacity: _playingAnimation.toARGB32,
                 child: Container(
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(8),
@@ -357,9 +357,8 @@ class _EnhancedShimmerState extends State<EnhancedShimmer>
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
-    final baseColor = widget.baseColor ?? theme.colorScheme.surfaceVariant;
-    final highlightColor = widget.highlightColor ?? 
-        theme.colorScheme.surface.withOpacity(0.8);
+    final baseColor = widget.baseColor ?? theme.colorScheme.surfaceContainerHighest;
+    final highlightColor = widget.highlightColor ?? theme.colorScheme.surface.withOpacity(0.8);
 
     return AnimatedBuilder(
       animation: _animation,
@@ -375,9 +374,9 @@ class _EnhancedShimmerState extends State<EnhancedShimmer>
                 baseColor,
               ],
               stops: [
-                _animation.value - 0.3,
-                _animation.value,
-                _animation.value + 0.3,
+                _animation.toARGB32 - 0.3,
+                _animation.toARGB32,
+                _animation.toARGB32 + 0.3,
               ].map((stop) => stop.clamp(0.0, 1.0)).toList(),
             ).createShader(bounds);
           },
@@ -463,12 +462,12 @@ class _EnhancedCardState extends State<EnhancedCard>
       animation: _controller,
       builder: (context, child) {
         return Transform.scale(
-          scale: _scaleAnimation.value,
+          scale: _scaleAnimation.toARGB32,
           child: Container(
             margin: widget.margin,
             child: Material(
               color: widget.color ?? theme.cardColor,
-              elevation: _elevationAnimation.value,
+              elevation: _elevationAnimation.toARGB32,
               borderRadius: widget.borderRadius ?? BorderRadius.circular(12),
               child: InkWell(
                 borderRadius: widget.borderRadius ?? BorderRadius.circular(12),
@@ -559,10 +558,8 @@ class _EnhancedProgressBarState extends State<EnhancedProgressBar>
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
     final progressColor = widget.progressColor ?? theme.primaryColor;
-    final bufferedColor = widget.bufferedColor ?? 
-        theme.primaryColor.withOpacity(0.3);
-    final backgroundColor = widget.backgroundColor ?? 
-        theme.colorScheme.surfaceVariant;
+    final bufferedColor = widget.bufferedColor ?? theme.primaryColor.withOpacity(0.3);
+    final backgroundColor = widget.backgroundColor ?? theme.colorScheme.surfaceContainerHighest;
 
     return AnimatedBuilder(
       animation: _heightAnimation,
@@ -608,11 +605,10 @@ class _EnhancedProgressBarState extends State<EnhancedProgressBar>
             }
           },
           child: Container(
-            height: _heightAnimation.value,
+            height: _heightAnimation.toARGB32,
             decoration: BoxDecoration(
               color: backgroundColor,
-              borderRadius: widget.borderRadius ?? 
-                  BorderRadius.circular(_heightAnimation.value / 2),
+              borderRadius: widget.borderRadius ?? BorderRadius.circular(_heightAnimation.toARGB32 / 2),
             ),
             child: Stack(
               children: [
@@ -623,8 +619,7 @@ class _EnhancedProgressBarState extends State<EnhancedProgressBar>
                     child: Container(
                       decoration: BoxDecoration(
                         color: bufferedColor,
-                        borderRadius: widget.borderRadius ?? 
-                            BorderRadius.circular(_heightAnimation.value / 2),
+                        borderRadius: widget.borderRadius ?? BorderRadius.circular(_heightAnimation.toARGB32 / 2),
                       ),
                     ),
                   ),
@@ -635,8 +630,7 @@ class _EnhancedProgressBarState extends State<EnhancedProgressBar>
                   child: Container(
                     decoration: BoxDecoration(
                       color: progressColor,
-                      borderRadius: widget.borderRadius ?? 
-                          BorderRadius.circular(_heightAnimation.value / 2),
+                      borderRadius: widget.borderRadius ?? BorderRadius.circular(_heightAnimation.toARGB32 / 2),
                     ),
                   ),
                 ),

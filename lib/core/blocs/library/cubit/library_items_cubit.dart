@@ -18,7 +18,7 @@ class LibraryItemsCubit extends Cubit<LibraryItemsState> {
   Stream<void>? playlistWatcherDB;
   Stream<void>? savedCollecsWatcherDB;
   List<PlaylistItemProperties> playlistItems = List.empty();
-  ElythraDBCubit bloomeeDBCubit;
+  elythraDBCubit bloomeeDBCubit;
   List<MediaPlaylist> mediaPlaylists = [];
   StreamSubscription? strmSubsDB;
   StreamSubscription? strmSubsDB2;
@@ -80,9 +80,7 @@ class LibraryItemsCubit extends Cubit<LibraryItemsState> {
           _playlists.add(element as PlaylistOnlModel);
           log("${element.runtimeType}");
           break;
-        default:
-          break;
-      }
+        }
       emit(LibraryItemsState(
         artists: List<ArtistModel>.from(_artists),
         albums: List<AlbumModel>.from(_albums),

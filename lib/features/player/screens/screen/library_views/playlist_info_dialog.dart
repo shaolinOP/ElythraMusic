@@ -110,8 +110,7 @@ Future<dynamic> showPlaylistInfo(
                     ),
                     InfoTile(
                       title: "Artists",
-                      subtitle: state.mediaPlaylist.artists ??
-                          getArtists(state.mediaPlaylist.mediaItems),
+                      subtitle: state.mediaPlaylist.artists ?? getArtists(state.mediaPlaylist.mediaItems),
                       icon: MingCute.group_fill,
                       fg: fgColor,
                     ),

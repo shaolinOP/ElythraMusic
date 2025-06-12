@@ -88,7 +88,9 @@ class MiniPlayerBloc extends Bloc<MiniPlayerEvent, MiniPlayerState> {
         case ProcessingState.buffering:
           try {
             add(MiniPlayerBufferingEvent(mediaItem2));
-          } catch (e) {}
+          } catch (e) {
+    // Ignore error
+  }
           break;
         case ProcessingState.ready:
           try {
@@ -97,12 +99,16 @@ class MiniPlayerBloc extends Bloc<MiniPlayerEvent, MiniPlayerState> {
             } else {
               add(MiniPlayerPausedEvent(mediaItem2));
             }
-          } catch (e) {}
+          } catch (e) {
+    // Ignore error
+  }
           break;
         case ProcessingState.completed:
           try {
             add(MiniPlayerCompletedEvent(mediaItem2));
-          } catch (e) {}
+          } catch (e) {
+    // Ignore error
+  }
           break;
       }
     });

@@ -35,7 +35,7 @@ class SpotifyApi {
       log('Access token: $token', name: 'SpotifyAPI');
       return token;
     }
-    var response;
+    dynamic response;
     final tokenUrl = Uri.parse('https://accounts.spotify.com/api/token');
     String basicAuth =
         'Basic ${base64Encode(utf8.encode('$clientID:$clientSecret'))}';

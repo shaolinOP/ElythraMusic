@@ -133,7 +133,7 @@ class ElythraDownloader {
     log("Tagging ${song.title} by ${song.artist}", name: "ElythraDownloader");
     // final imgPath =
     //     await downloadFile(song.artUri.toString(), "${song.id}.jpg");
-    // log("Image downloaded for ${imgPath}", name: "ElythraDownloader");
+    // log("Image downloaded for $imgPath", name: "ElythraDownloader");
     try {
       await MetadataGod.writeMetadata(
           file: filePath,

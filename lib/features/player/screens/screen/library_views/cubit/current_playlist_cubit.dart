@@ -14,7 +14,7 @@ part 'current_playlist_state.dart';
 class CurrentPlaylistCubit extends Cubit<CurrentPlaylistState> {
   MediaPlaylist? mediaPlaylist;
   ColorExtractionService? colorExtractor;
-  late ElythraDBCubit bloomeeDBCubit;
+  late elythraDBCubit bloomeeDBCubit;
   CurrentPlaylistCubit({
     this.mediaPlaylist,
     required this.bloomeeDBCubit,

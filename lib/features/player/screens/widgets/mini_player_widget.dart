@@ -267,7 +267,9 @@ class MiniPlayerCard extends StatelessWidget {
                                     total: snapshot
                                         .data!.currentPlaybackState.duration!);
                               }
-                            } catch (e) {}
+                            } catch (e) {
+    // Ignore error
+  }
                             return const SizedBox();
                           }),
                     )

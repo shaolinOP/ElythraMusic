@@ -129,7 +129,7 @@ class SearchPageDelegate extends SearchDelegate {
                               .map(
                                 (e) => ListTile(
                                   title: Text(
-                                    e.values.first,
+                                    e.toARGB32s.first,
                                     style: const TextStyle(
                                       color: DefaultTheme.primaryColor1,
                                     ).merge(DefaultTheme.secondoryTextStyle),
@@ -146,7 +146,7 @@ class SearchPageDelegate extends SearchDelegate {
                                     onPressed: () {
                                       context.read<SearchSuggestionBloc>().add(
                                           SearchSuggestionClear(
-                                              e.values.first));
+                                              e.toARGB32s.first));
                                     },
                                     icon: Icon(
                                       MingCute.close_fill,
@@ -156,7 +156,7 @@ class SearchPageDelegate extends SearchDelegate {
                                     ),
                                   ),
                                   onTap: () {
-                                    query = e.values.first;
+                                    query = e.toARGB32s.first;
                                     showResults(context);
                                   },
                                 ),

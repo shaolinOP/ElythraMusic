@@ -113,7 +113,7 @@ class EnhancedStreamService {
         itag: stream.tag,
         audioCodec: stream.audioCodec.contains('mp4') ? AudioCodec.mp4a : AudioCodec.opus,
         bitrate: stream.bitrate.bitsPerSecond,
-        duration: 0, // stream.duration?.inMilliseconds ?? 0,
+        duration: 0, // stream.duration.inMilliseconds ?? 0,
         loudnessDb: null, // stream.loudnessDb,
         url: stream.url.toString(),
         size: stream.size.totalBytes,
@@ -212,7 +212,7 @@ class EnhancedStreamService {
   /// Get cache statistics
   Map<String, dynamic> getCacheStats() {
     final total = _streamCache.length;
-    final playable = _streamCache.values.where((v) => v.playable).length;
+    final playable = _streamCache.toARGB32s.where((v) => v.playable).length;
     final failed = total - playable;
 
     return {

@@ -92,7 +92,7 @@ class _ToggleButtonState extends State<ToggleButton>
               return Text(
                 widget.label,
                 style: TextStyle(
-                  color: _textColorAnimation.value!, // Animated text color
+                  color: _textColorAnimation.toARGB32!, // Animated text color
                   fontSize: 12, // Default font size, will scale with FittedBox
                   fontWeight: FontWeight.bold, // Bold text for clarity
                 ),

@@ -37,7 +37,7 @@ class DefaultTheme {
       foregroundColor: primaryColor1,
       elevation: 0,
     ),
-    cardTheme: const CardTheme(
+    cardTheme: const CardThemeData(
       color: Color(0xCC1A1A1A), // themeColor.withOpacity(0.8) equivalent
       elevation: 4,
     ),
@@ -58,7 +58,7 @@ class DefaultTheme {
       foregroundColor: Colors.black,
       elevation: 0,
     ),
-    cardTheme: const CardTheme(
+    cardTheme: const CardThemeData(
       color: Colors.white,
       elevation: 4,
     ),

@@ -165,7 +165,7 @@ void showMoreBottomSheet(
                 ),
                 onTap: () {
                   Navigator.pop(context);
-                  context.read<ElythraDBCubit>().addMediaItemToPlaylist(
+                  context.read<elythraDBCubit>().addMediaItemToPlaylist(
                       song, MediaPlaylistDB(playlistName: "Liked"));
                   // SnackbarService.showMessage("Added to Favorites",
                   //     duration: const Duration(seconds: 2));
@@ -198,7 +198,7 @@ void showMoreBottomSheet(
                   size: 28,
                 ),
                 title: const Text(
-                  'Share',
+                  'SharePlus',
                   style: TextStyle(
                       color: DefaultTheme.primaryColor1,
                       fontFamily: "Unageo",
@@ -211,7 +211,7 @@ void showMoreBottomSheet(
                       "Preparing ${song.title} for share.");
                   final tmpPath = await ImportExportService.exportMediaItem(
                       mediaItem2MediaItemDB(song));
-                  tmpPath != null ? Share.shareXFiles([XFile(tmpPath)]) : null;
+                  tmpPath != null ? SharePlus.shareXFiles([XFile(tmpPath)]) : null;
                 },
               ),
               Platform.isAndroid

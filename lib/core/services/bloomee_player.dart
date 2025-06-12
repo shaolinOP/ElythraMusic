@@ -75,7 +75,7 @@ class ElythraMusicPlayer extends BaseAudioHandler
               audioPlayer.duration?.inSeconds != 0 &&
               event.inMilliseconds >
                   audioPlayer.duration!.inMilliseconds - endingOffset)) &&
-          loopMode.value != LoopMode.one) {
+          loopMode.toARGB32 != LoopMode.one) {
         EasyThrottle.throttle('skipNext', const Duration(milliseconds: 2000),
             () async => await skipToNext());
       }
@@ -124,8 +124,8 @@ class ElythraMusicPlayer extends BaseAudioHandler
     );
   }
 
-  MediaItemModel get currentMedia => queue.value.isNotEmpty
-      ? mediaItem2MediaItemModel(queue.value[currentPlayingIdx])
+  MediaItemModel get currentMedia => queue.toARGB32.isNotEmpty
+      ? mediaItem2MediaItemModel(queue.toARGB32[currentPlayingIdx])
       : mediaItemModelNull;
 
   @override
@@ -134,14 +134,14 @@ class ElythraMusicPlayer extends BaseAudioHandler
   }
 
   Future<void> check4RelatedSongs() async {
-    log("Checking for related songs: ${queue.value.isNotEmpty && (queue.value.length - currentPlayingIdx) < 2}",
+    log("Checking for related songs: ${queue.toARGB32.isNotEmpty && (queue.toARGB32.length - currentPlayingIdx) < 2}",
         name: "bloomeePlayer");
     final autoPlay =
         await ElythraDBService.getSettingBool(GlobalStrConsts.autoPlay);
     if (autoPlay != null && !autoPlay) return;
-    if (queue.value.isNotEmpty &&
-        (queue.value.length - currentPlayingIdx) < 2 &&
-        loopMode.value != LoopMode.all) {
+    if (queue.toARGB32.isNotEmpty &&
+        (queue.toARGB32.length - currentPlayingIdx) < 2 &&
+        loopMode.toARGB32 != LoopMode.all) {
       if (currentMedia.extras?["source"] == "saavn") {
         final songs = await compute(SaavnAPI().getRelated, currentMedia.id);
         if (songs['total'] > 0) {
@@ -164,10 +164,10 @@ class ElythraMusicPlayer extends BaseAudioHandler
   }
 
   Future<void> loadRelatedSongs() async {
-    if (relatedSongs.value.isNotEmpty &&
-        (queue.value.length - currentPlayingIdx) < 3 &&
-        loopMode.value != LoopMode.all) {
-      await addQueueItems(relatedSongs.value, atLast: true);
+    if (relatedSongs.toARGB32.isNotEmpty &&
+        (queue.toARGB32.length - currentPlayingIdx) < 3 &&
+        loopMode.toARGB32 != LoopMode.all) {
+      await addQueueItems(relatedSongs.toARGB32, atLast: true);
       fromPlaylist.add(false);
       relatedSongs.add([]);
     }
@@ -209,7 +209,7 @@ class ElythraMusicPlayer extends BaseAudioHandler
     shuffleMode.add(shuffle);
     if (shuffle) {
       shuffleIdx = 0;
-      shuffleList = generateRandomIndices(queue.value.length);
+      shuffleList = generateRandomIndices(queue.toARGB32.length);
     }
   }
 
@@ -220,7 +220,7 @@ class ElythraMusicPlayer extends BaseAudioHandler
     relatedSongs.add([]);
     queue.add(mediaList.mediaItems);
     queueTitle.add(mediaList.playlistName);
-    shuffle(shuffling || shuffleMode.value);
+    shuffle(shuffling || shuffleMode.toARGB32);
     await prepare4play(idx: idx, doPlay: doPlay);
     // if (doPlay) play();
   }
@@ -260,14 +260,14 @@ class ElythraMusicPlayer extends BaseAudioHandler
 
   @override
   Future<void> skipToQueueItem(int index) async {
-    if (index < queue.value.length) {
+    if (index < queue.toARGB32.length) {
       currentPlayingIdx = index;
-      await playMediaItem(queue.value[index]);
+      await playMediaItem(queue.toARGB32[index]);
     } else {
       // await loadRelatedSongs();
-      if (index < queue.value.length) {
+      if (index < queue.toARGB32.length) {
         currentPlayingIdx = index;
-        await playMediaItem(queue.value[index]);
+        await playMediaItem(queue.toARGB32[index]);
       }
     }
 
@@ -305,7 +305,7 @@ class ElythraMusicPlayer extends BaseAudioHandler
   }
 
   Future<void> prepare4play({int idx = 0, bool doPlay = false}) async {
-    if (queue.value.isNotEmpty) {
+    if (queue.toARGB32.isNotEmpty) {
       currentPlayingIdx = idx;
       await playMediaItem(currentMedia, doPlay: doPlay);
       ElythraDBService.putRecentlyPlayed(mediaItem2MediaItemDB(currentMedia));
@@ -323,19 +323,19 @@ class ElythraMusicPlayer extends BaseAudioHandler
 
   @override
   Future<void> skipToNext() async {
-    if (!shuffleMode.value) {
-      if (currentPlayingIdx < (queue.value.length - 1)) {
+    if (!shuffleMode.toARGB32) {
+      if (currentPlayingIdx < (queue.toARGB32.length - 1)) {
         currentPlayingIdx++;
         prepare4play(idx: currentPlayingIdx, doPlay: true);
-      } else if (loopMode.value == LoopMode.all) {
+      } else if (loopMode.toARGB32 == LoopMode.all) {
         currentPlayingIdx = 0;
         prepare4play(idx: currentPlayingIdx, doPlay: true);
       }
     } else {
-      if (shuffleIdx < (queue.value.length - 1)) {
+      if (shuffleIdx < (queue.toARGB32.length - 1)) {
         shuffleIdx++;
         prepare4play(idx: shuffleList[shuffleIdx], doPlay: true);
-      } else if (loopMode.value == LoopMode.all) {
+      } else if (loopMode.toARGB32 == LoopMode.all) {
         shuffleIdx = 0;
         prepare4play(idx: shuffleList[shuffleIdx], doPlay: true);
       }
@@ -352,7 +352,7 @@ class ElythraMusicPlayer extends BaseAudioHandler
 
   @override
   Future<void> skipToPrevious() async {
-    if (!shuffleMode.value) {
+    if (!shuffleMode.toARGB32) {
       if (currentPlayingIdx > 0) {
         currentPlayingIdx--;
         prepare4play(idx: currentPlayingIdx, doPlay: true);
@@ -384,8 +384,8 @@ class ElythraMusicPlayer extends BaseAudioHandler
 
   @override
   Future<void> insertQueueItem(int index, MediaItem mediaItem) async {
-    List<MediaItem> temp = queue.value;
-    if (index < queue.value.length) {
+    List<MediaItem> temp = queue.toARGB32;
+    if (index < queue.toARGB32.length) {
       temp.insert(index, mediaItem);
     } else {
       temp.add(mediaItem);
@@ -402,11 +402,11 @@ class ElythraMusicPlayer extends BaseAudioHandler
   Future<void> addQueueItem(
     MediaItem mediaItem,
   ) async {
-    if (queue.value.any((e) => e.id == mediaItem.id)) return;
+    if (queue.toARGB32.any((e) => e.id == mediaItem.id)) return;
     queueTitle.add("Queue");
-    queue.add(queue.value..add(mediaItem));
-    if (queue.value.length == 1) {
-      prepare4play(idx: queue.value.length - 1, doPlay: true);
+    queue.add(queue.toARGB32..add(mediaItem));
+    if (queue.toARGB32.length == 1) {
+      prepare4play(idx: queue.toARGB32.length - 1, doPlay: true);
     }
   }
 
@@ -427,19 +427,19 @@ class ElythraMusicPlayer extends BaseAudioHandler
         );
       }
     } else {
-      if (fromPlaylist.value) {
+      if (fromPlaylist.toARGB32) {
         fromPlaylist.add(false);
       }
-      queue.add(queue.value..addAll(mediaItems));
+      queue.add(queue.toARGB32..addAll(mediaItems));
       queueTitle.add("Queue");
     }
   }
 
   Future<void> addPlayNextItem(MediaItem mediaItem) async {
-    if (queue.value.isNotEmpty) {
+    if (queue.toARGB32.isNotEmpty) {
       // check if mediaItem is already exist return if it is
-      if (queue.value.any((e) => e.id == mediaItem.id)) return;
-      queue.add(queue.value..insert(currentPlayingIdx + 1, mediaItem));
+      if (queue.toARGB32.any((e) => e.id == mediaItem.id)) return;
+      queue.add(queue.toARGB32..insert(currentPlayingIdx + 1, mediaItem));
     } else {
       updateQueue([mediaItem], doPlay: true);
     }
@@ -447,13 +447,13 @@ class ElythraMusicPlayer extends BaseAudioHandler
 
   @override
   Future<void> removeQueueItemAt(int index) async {
-    if (index < queue.value.length) {
-      List<MediaItem> temp = queue.value;
+    if (index < queue.toARGB32.length) {
+      List<MediaItem> temp = queue.toARGB32;
       temp.removeAt(index);
       queue.add(temp);
 
       if (currentPlayingIdx == index) {
-        if (index < queue.value.length) {
+        if (index < queue.toARGB32.length) {
           prepare4play(idx: index, doPlay: true);
         } else if (index > 0) {
           prepare4play(idx: index - 1, doPlay: true);
@@ -468,7 +468,7 @@ class ElythraMusicPlayer extends BaseAudioHandler
 
   Future<void> moveQueueItem(int oldIndex, int newIndex) async {
     log("Moving from $oldIndex to $newIndex", name: "bloomeePlayer");
-    List<MediaItem> temp = queue.value;
+    List<MediaItem> temp = queue.toARGB32;
     if (oldIndex < newIndex) {
       newIndex--;
     }

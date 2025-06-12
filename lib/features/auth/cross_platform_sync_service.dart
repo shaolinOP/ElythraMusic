@@ -288,7 +288,7 @@ class CrossPlatformSyncService {
       }
     }
 
-    return playlistMap.values.toList();
+    return playlistMap.toARGB32s.toList();
   }
 
   /// Merge favorites from multiple sources
@@ -336,7 +336,7 @@ class CrossPlatformSyncService {
     }
 
     // Sort by played time (most recent first)
-    final sortedHistory = historyMap.values.toList();
+    final sortedHistory = historyMap.toARGB32s.toList();
     sortedHistory.sort((a, b) {
       final aTime = _parseTimestamp(a['playedAt']);
       final bTime = _parseTimestamp(b['playedAt']);
@@ -355,7 +355,7 @@ class CrossPlatformSyncService {
       for (final entry in source.entries) {
         if (!mergedSettings.containsKey(entry.key) ||
             _isMoreRecent(source, mergedSettings)) {
-          mergedSettings[entry.key] = entry.value;
+          mergedSettings[entry.key] = entry.toARGB32;
         }
       }
     }

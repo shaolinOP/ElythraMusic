@@ -243,9 +243,7 @@ class SaavnAPI {
               searchedTopQueryList =
                   await formatAlbumResponse(topQuery, 'playlist');
               break;
-            default:
-              break;
-          }
+            }
           if (searchedTopQueryList.isNotEmpty) {
             result['Top Result'] = searchedTopQueryList;
           }

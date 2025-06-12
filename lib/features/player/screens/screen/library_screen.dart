@@ -58,7 +58,7 @@ class LibraryScreen extends StatelessWidget {
                             title: state.artists[index].name,
                             coverArt: state.artists[index].imageUrl,
                             subtitle:
-                                'Artist - ${state.artists[index].source == "ytm" ? SourceEngine.engYtm.value : (state.artists[index].source == 'saavn' ? SourceEngine.engJis.value : SourceEngine.engYtv.value)}',
+                                'Artist - ${state.artists[index].source == "ytm" ? SourceEngine.engYtm.toARGB32 : (state.artists[index].source == 'saavn' ? SourceEngine.engJis.toARGB32 : SourceEngine.engYtv.toARGB32)}',
                             type: LibItemTypes.artist,
                             onTap: () {
                               Navigator.push(
@@ -86,7 +86,7 @@ class LibraryScreen extends StatelessWidget {
                             title: state.albums[index].name,
                             coverArt: state.albums[index].imageURL,
                             subtitle:
-                                'Album - ${state.albums[index].source == "ytm" ? SourceEngine.engYtm.value : (state.albums[index].source == 'saavn' ? SourceEngine.engJis.value : SourceEngine.engYtv.value)}',
+                                'Album - ${state.albums[index].source == "ytm" ? SourceEngine.engYtm.toARGB32 : (state.albums[index].source == 'saavn' ? SourceEngine.engJis.toARGB32 : SourceEngine.engYtv.toARGB32)}',
                             type: LibItemTypes.album,
                             onTap: () {
                               Navigator.push(
@@ -115,7 +115,7 @@ class LibraryScreen extends StatelessWidget {
                             title: state.playlistsOnl[index].name,
                             coverArt: state.playlistsOnl[index].imageURL,
                             subtitle:
-                                'Playlist - ${state.playlistsOnl[index].source == "ytm" ? SourceEngine.engYtm.value : (state.playlistsOnl[index].source == 'saavn' ? SourceEngine.engJis.value : SourceEngine.engYtv.value)}',
+                                'Playlist - ${state.playlistsOnl[index].source == "ytm" ? SourceEngine.engYtm.toARGB32 : (state.playlistsOnl[index].source == 'saavn' ? SourceEngine.engJis.toARGB32 : SourceEngine.engYtv.toARGB32)}',
                             type: LibItemTypes.onlPlaylist,
                             onTap: () {
                               Navigator.push(

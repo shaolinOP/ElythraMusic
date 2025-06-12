@@ -77,7 +77,7 @@ class ImportPlaylistCubit extends Cubit<ImportPlaylistState> {
   ImportPlaylistCubit() : super(ImportPlaylistStateInitial());
   Future<void> fetchYtPlaylistByID(
     String ytPlaylistID,
-    ElythraDBCubit ElythraDBCubit,
+    elythraDBCubit elythraDBCubit,
   ) async {
     importYtPlaylistBS.add(ImportPlaylistStateInitial());
     // try {
@@ -99,7 +99,7 @@ class ImportPlaylistCubit extends Cubit<ImportPlaylistState> {
         // print("5 ${playlist[i].toString()}");
         MediaItemModel mediaItemModel = fromYtVidSongMap2MediaItem(playlist[i]);
         // print("5 ${mediaItemModel.toString()}");
-        ElythraDBCubit.addMediaItemToPlaylist(mediaItemModel,
+        elythraDBCubit.addMediaItemToPlaylist(mediaItemModel,
             MediaPlaylistDB(playlistName: result[0]["metadata"].title));
       }
     }

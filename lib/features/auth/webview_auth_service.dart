@@ -233,7 +233,7 @@ class _WebViewSignInScreenState extends State<WebViewSignInScreen> {
     };
 
     final queryString = params.entries
-        .map((e) => '${Uri.encodeComponent(e.key)}=${Uri.encodeComponent(e.value)}')
+        .map((e) => '${Uri.encodeComponent(e.key)}=${Uri.encodeComponent(e.toARGB32)}')
         .join('&');
 
     return 'https://accounts.google.com/oauth/authorize?$queryString';
@@ -295,8 +295,8 @@ class _WebViewSignInScreenState extends State<WebViewSignInScreen> {
             // Look for email in various places
             var emailElements = document.querySelectorAll('[data-email], [aria-label*="email"], input[type="email"]');
             for (var i = 0; i < emailElements.length; i++) {
-              if (emailElements[i].value || emailElements[i].textContent) {
-                userEmail = emailElements[i].value || emailElements[i].textContent;
+              if (emailElements[i].toARGB32 || emailElements[i].textContent) {
+                userEmail = emailElements[i].toARGB32 || emailElements[i].textContent;
                 break;
               }
             }

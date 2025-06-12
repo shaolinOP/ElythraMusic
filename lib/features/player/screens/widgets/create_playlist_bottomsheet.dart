@@ -102,7 +102,7 @@ void createPlaylistBottomSheet(BuildContext context) {
                                       if (value.isNotEmpty &&
                                           value.length > 2) {
                                         context
-                                            .read<ElythraDBCubit>()
+                                            .read<elythraDBCubit>()
                                             .addNewPlaylistToDB(MediaPlaylistDB(
                                                 playlistName: value));
                                         context.pop();

@@ -214,8 +214,8 @@ class EnhancedLyricsService {
   /// Get cache statistics
   Map<String, dynamic> getCacheStats() {
     final total = _lyricsCache.length;
-    final synced = _lyricsCache.values.where((l) => l.hasSyncedLyrics).length;
-    final custom = _lyricsCache.values.where((l) => l.isCustom).length;
+    final synced = _lyricsCache.toARGB32s.where((l) => l.hasSyncedLyrics).length;
+    final custom = _lyricsCache.toARGB32s.where((l) => l.isCustom).length;
 
     return {
       'total_cached': total,

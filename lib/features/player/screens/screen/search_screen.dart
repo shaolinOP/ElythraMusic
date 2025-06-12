@@ -58,7 +58,7 @@ class _SearchScreenState extends State<SearchScreen> {
   @override
   void initState() {
     super.initState();
-    availSourceEngines = SourceEngine.values;
+    availSourceEngines = SourceEngine.toARGB32s;
     _sourceEngine = availSourceEngines[0];
 
     setState(() {
@@ -73,7 +73,7 @@ class _SearchScreenState extends State<SearchScreen> {
       context.read<FetchSearchResultsCubit>().search(
             widget.searchQuery.toString(),
             sourceEngine: _sourceEngine,
-            resultType: resultType.value,
+            resultType: resultType.toARGB32,
           );
     }
   }
@@ -93,7 +93,7 @@ class _SearchScreenState extends State<SearchScreen> {
                 context.read<FetchSearchResultsCubit>().checkAndRefreshSearch(
                       query: _textEditingController.text.toString(),
                       sE: sourceEngine,
-                      rT: resultType.value,
+                      rT: resultType.toARGB32,
                     );
               });
             },
@@ -109,7 +109,7 @@ class _SearchScreenState extends State<SearchScreen> {
                     style: BorderStyle.solid,
                     width: 2)),
             child: Text(
-              sourceEngine.value,
+              sourceEngine.toARGB32,
               style: TextStyle(
                       color: _sourceEngine == sourceEngine
                           ? DefaultTheme.primaryColor2
@@ -146,7 +146,7 @@ class _SearchScreenState extends State<SearchScreen> {
                     showSearch(
                             context: context,
                             delegate: SearchPageDelegate(
-                                _sourceEngine, resultType.value),
+                                _sourceEngine, resultType.toARGB32),
                             query: _textEditingController.text)
                         .then((value) {
                       if (value != null) {
@@ -283,8 +283,8 @@ class _SearchScreenState extends State<SearchScreen> {
                                                                       20)),
                                                   isDense: true,
                                                 ),
-                                                value: resultType.value.index,
-                                                items: ResultTypes.values
+                                                value: resultType.toARGB32.index,
+                                                items: ResultTypes.toARGB32s
                                                     .map(
                                                         (e) => DropdownMenuItem(
                                                               value: e.index,
@@ -315,8 +315,8 @@ class _SearchScreenState extends State<SearchScreen> {
                                                             ))
                                                     .toList(),
                                                 onChanged: (value) {
-                                                  resultType.value = ResultTypes
-                                                      .values[value!];
+                                                  resultType.toARGB32 = ResultTypes
+                                                      .toARGB32s[value!];
                                                   context
                                                       .read<
                                                           FetchSearchResultsCubit>()
@@ -326,7 +326,7 @@ class _SearchScreenState extends State<SearchScreen> {
                                                                 .text
                                                                 .toString(),
                                                         sE: _sourceEngine,
-                                                        rT: resultType.value,
+                                                        rT: resultType.toARGB32,
                                                       );
                                                 },
                                               );
@@ -472,7 +472,7 @@ class _SearchScreenState extends State<SearchScreen> {
                             },
                             listener: (BuildContext context,
                                 FetchSearchResultsState state) {
-                              resultType.value = state.resultType;
+                              resultType.toARGB32 = state.resultType;
                               if (state is! FetchSearchResultsLoaded &&
                                   state is! FetchSearchResultsInitial) {
                                 _sourceEngine =

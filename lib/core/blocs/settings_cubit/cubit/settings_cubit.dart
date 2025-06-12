@@ -116,10 +116,10 @@ class SettingsCubit extends Cubit<SettingsState> {
       emit(state.copyWith(autoSaveLyrics: value ?? false));
     });
 
-    for (var eg in SourceEngine.values) {
-      ElythraDBService.getSettingBool(eg.value).then((value) {
+    for (var eg in SourceEngine.toARGB32s) {
+      ElythraDBService.getSettingBool(eg.toARGB32).then((value) {
         List<bool> switches = List.from(state.sourceEngineSwitches);
-        switches[SourceEngine.values.indexOf(eg)] = value ?? true;
+        switches[SourceEngine.toARGB32s.indexOf(eg)] = value ?? true;
         emit(state.copyWith(sourceEngineSwitches: switches));
         log(switches.toString(), name: 'SettingsCubit');
       });
@@ -233,7 +233,7 @@ class SettingsCubit extends Cubit<SettingsState> {
   void setSourceEngineSwitches(int index, bool value) {
     List<bool> switches = List.from(state.sourceEngineSwitches);
     switches[index] = value;
-    ElythraDBService.putSettingBool(SourceEngine.values[index].value, value);
+    ElythraDBService.putSettingBool(SourceEngine.toARGB32s[index].toARGB32, value);
     emit(state.copyWith(sourceEngineSwitches: List.from(switches)));
   }
 

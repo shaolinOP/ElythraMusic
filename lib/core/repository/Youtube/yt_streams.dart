@@ -11,7 +11,7 @@ final Map<String, String> headers = {
   'origin': "https://www.youtube.com/",
 };
 
-final ANDROID_CONTEXT = {
+final androidContext = {
   'client': {
     'clientName': 'ANDROID_MUSIC',
     'clientVersion': '5.22.1',
@@ -24,7 +24,7 @@ final ANDROID_CONTEXT = {
   },
 };
 
-final IOS_CONTEXT = {
+final iosContext = {
   'client': {
     'clientName': 'IOS',
     'clientVersion': '19.29.1',
@@ -48,7 +48,7 @@ String getUrl(int option) =>
     "https://www.youtube.com/youtubei/v1/player?key=${allKeys[option]}&prettyPrint=false";
 
 Map<String, dynamic> getBody(int option) => {
-      "context": option == 0 ? IOS_CONTEXT : ANDROID_CONTEXT,
+      "context": option == 0 ? iosContext : androidContext,
     };
 
 enum Codec { mp4a, opus }

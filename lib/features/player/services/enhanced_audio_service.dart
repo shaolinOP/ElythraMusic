@@ -257,13 +257,13 @@ class EnhancedAudioService {
       final prefs = await SharedPreferences.getInstance();
       
       final qualityIndex = prefs.getInt(_qualityPreferenceKey);
-      if (qualityIndex != null && qualityIndex < AudioQuality.values.length) {
-        _currentQuality = AudioQuality.values[qualityIndex];
+      if (qualityIndex != null && qualityIndex < AudioQuality.toARGB32s.length) {
+        _currentQuality = AudioQuality.toARGB32s[qualityIndex];
       }
       
       final streamingModeIndex = prefs.getInt(_streamingModeKey);
-      if (streamingModeIndex != null && streamingModeIndex < StreamingMode.values.length) {
-        _streamingMode = StreamingMode.values[streamingModeIndex];
+      if (streamingModeIndex != null && streamingModeIndex < StreamingMode.toARGB32s.length) {
+        _streamingMode = StreamingMode.toARGB32s[streamingModeIndex];
       }
       
       _cacheEnabled = prefs.getBool(_cacheEnabledKey) ?? true;

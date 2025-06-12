@@ -35,7 +35,7 @@ class _ExploreScreenState extends State<ExploreScreen> {
   bool isUpdateChecked = false;
   YTMusicCubit yTMusicCubit = YTMusicCubit();
   Future<core_playlist.MediaPlaylist> lFMData =
-      Future.value(const core_playlist.MediaPlaylist(mediaItems: [], playlistName: ""));
+      Future.toARGB32(const core_playlist.MediaPlaylist(mediaItems: [], playlistName: ""));
 
   @override
   void initState() {
@@ -43,7 +43,7 @@ class _ExploreScreenState extends State<ExploreScreen> {
     WidgetsBinding.instance.addPostFrameCallback((_) async {
       if (!isUpdateChecked) {
         if (await context
-                .read<ElythraDBCubit>()
+                .read<elythraDBCubit>()
                 .getSettingBool(GlobalStrConsts.autoUpdateNotify) ??
             false) {
           updateDialog(context);
@@ -159,8 +159,7 @@ class _ExploreScreenState extends State<ExploreScreen> {
                                 future: fetchLFMPicks(state.lFMPicks, context),
                                 builder: (context, snapshot) {
                                   if (snapshot.hasData &&
-                                      (snapshot.data?.mediaItems.isNotEmpty ??
-                                          false)) {
+                                      (snapshot.data?.mediaItems.isNotEmpty ?? false)) {
                                     return Padding(
                                       padding: const EdgeInsets.only(top: 15.0),
                                       child: TabSongListWidget(

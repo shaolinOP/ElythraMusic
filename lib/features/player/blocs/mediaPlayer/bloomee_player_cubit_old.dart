@@ -4,7 +4,8 @@ import 'package:just_audio/just_audio.dart';
 // Player States
 abstract class ElythraPlayerState {
   final bool isPlaying;
-  final bool showLyrics;
+  final @override
+ bool showLyrics;
   final MediaItem? currentMedia;
   final Duration position;
   final Duration duration;
@@ -23,7 +24,8 @@ class ElythraPlayerInitial extends ElythraPlayerState {}
 class ElythraPlayerLoaded extends ElythraPlayerState {
   const ElythraPlayerLoaded({
     required bool isPlaying,
-    required bool showLyrics,
+    required @override
+ bool showLyrics,
     required MediaItem? currentMedia,
     required Duration position,
     required Duration duration,

@@ -332,10 +332,10 @@ class CoverImageVolSlider extends StatelessWidget {
                       maxHeight: constraints.maxHeight * 0.98),
                   child: LoadImageCached(
                       imageUrl: formatImgURL(
-                          (snapshot.data?.artUri ?? "").toString(),
+                          (snapshot.data.artUri ?? "").toString(),
                           ImageQuality.high),
                       fallbackUrl: formatImgURL(
-                        (snapshot.data?.artUri ?? "").toString(),
+                        (snapshot.data.artUri ?? "").toString(),
                         ImageQuality.medium,
                       ),
                       fit: BoxFit.fitWidth),
@@ -379,7 +379,7 @@ class PlayerCtrlWidgets extends StatelessWidget {
                             scrollDirection: Axis.horizontal,
                             clipBehavior: Clip.antiAlias,
                             child: SelectableText(
-                              snapshot.data?.title ?? "Unknown",
+                              snapshot.data.title ?? "Unknown",
                               textAlign: TextAlign.start,
                               // overflow: TextOverflow.ellipsis,
                               style: DefaultTheme.secondoryTextStyle.merge(
@@ -394,7 +394,7 @@ class PlayerCtrlWidgets extends StatelessWidget {
                           SingleChildScrollView(
                             scrollDirection: Axis.horizontal,
                             child: SelectableText(
-                              snapshot.data?.artist ?? "Unknown",
+                              snapshot.data.artist ?? "Unknown",
                               textAlign: TextAlign.start,
                               // overflow: TextOverflow.ellipsis,
                               style: DefaultTheme.secondoryTextStyle.merge(
@@ -418,7 +418,7 @@ class PlayerCtrlWidgets extends StatelessWidget {
                   builder: (context, snapshot) {
                     return FutureBuilder(
                       future: bloomeePlayerCubit.bloomeePlayer.currentMedia != null 
-                        ? context.read<ElythraDBCubit>().isLiked(
+                        ? context.read<elythraDBCubit>().isLiked(
                             audio_service.MediaItem(
                               id: bloomeePlayerCubit.bloomeePlayer.currentMedia!.id,
                               title: bloomeePlayerCubit.bloomeePlayer.currentMedia!.title,
@@ -430,7 +430,7 @@ class PlayerCtrlWidgets extends StatelessWidget {
                                 : null,
                               extras: bloomeePlayerCubit.bloomeePlayer.currentMedia!.extras,
                             ))
-                        : Future.value(false),
+                        : Future.toARGB32(false),
                       builder: (context, snapshot) {
                         if (snapshot.hasData && snapshot.data != null) {
                           return Padding(
@@ -442,7 +442,7 @@ class PlayerCtrlWidgets extends StatelessWidget {
                               iconSize: 35,
                               onLiked: () {
                                 if (bloomeePlayerCubit.bloomeePlayer.currentMedia != null) {
-                                  context.read<ElythraDBCubit>().setLike(
+                                  context.read<elythraDBCubit>().setLike(
                                     audio_service.MediaItem(
                                       id: bloomeePlayerCubit.bloomeePlayer.currentMedia!.id,
                                       title: bloomeePlayerCubit.bloomeePlayer.currentMedia!.title,
@@ -459,7 +459,7 @@ class PlayerCtrlWidgets extends StatelessWidget {
                               },
                               onDisliked: () {
                                 if (bloomeePlayerCubit.bloomeePlayer.currentMedia != null) {
-                                  context.read<ElythraDBCubit>().setLike(
+                                  context.read<elythraDBCubit>().setLike(
                                     audio_service.MediaItem(
                                       id: bloomeePlayerCubit.bloomeePlayer.currentMedia!.id,
                                       title: bloomeePlayerCubit.bloomeePlayer.currentMedia!.title,
@@ -500,12 +500,10 @@ class PlayerCtrlWidgets extends StatelessWidget {
                 stream: bloomeePlayerCubit.progressStreams,
                 builder: (context, snapshot) {
                   return ProgressBar(
-                    progress: snapshot.data?.currentPos ?? Duration.zero,
-                    total: snapshot.data?.currentPlaybackState.duration ??
-                        Duration.zero,
+                    progress: snapshot.data.currentPos ?? Duration.zero,
+                    total: snapshot.data?.currentPlaybackState.duration ?? Duration.zero,
                     buffered:
-                        snapshot.data?.currentPlaybackState.bufferedPosition ??
-                            Duration.zero,
+                        snapshot.data?.currentPlaybackState.bufferedPosition ?? Duration.zero,
                     onSeek: (value) {
                       bloomeePlayerCubit.seek(value);
                     },

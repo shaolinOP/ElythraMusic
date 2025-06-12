@@ -120,7 +120,7 @@ class ElythraDBService {
         directory: appSuppDir,
       );
     }
-    return Future.value(Isar.getInstance());
+    return Future.toARGB32(Isar.getInstance());
   }
 
   static Future<bool> createBackUp() async {
@@ -698,7 +698,7 @@ class ElythraDBService {
   }
 
   static Future<void> reorderItemPositionInPlaylist(
-      MediaPlaylistDB mediaPlaylistDB, int old_idx, int new_idx) async {
+      MediaPlaylistDB mediaPlaylistDB, int oldIdx, int newIdx) async {
     Isar isarDB = await db;
     MediaPlaylistDB? _mediaPlaylistDB = isarDB.mediaPlaylistDBs
         .where()
@@ -706,12 +706,12 @@ class ElythraDBService {
         .findFirstSync();
 
     if (_mediaPlaylistDB != null) {
-      if (_mediaPlaylistDB.mediaRanks.length > old_idx &&
-          _mediaPlaylistDB.mediaRanks.length > new_idx) {
+      if (_mediaPlaylistDB.mediaRanks.length > oldIdx &&
+          _mediaPlaylistDB.mediaRanks.length > newIdx) {
         List<int> _rankList =
             _mediaPlaylistDB.mediaRanks.toList(growable: true);
-        int _element = (_rankList.removeAt(old_idx));
-        _rankList.insert(new_idx, _element);
+        int _element = (_rankList.removeAt(oldIdx));
+        _rankList.insert(newIdx, _element);
         _mediaPlaylistDB.mediaRanks = _rankList;
         isarDB.writeTxnSync(
             () => isarDB.mediaPlaylistDBs.putSync(_mediaPlaylistDB));
@@ -894,7 +894,7 @@ class ElythraDBService {
       } else {
         isarDB.writeTxnSync(() => isarDB.recentlyPlayedDBs.putSync(
             RecentlyPlayedDB(lastPlayed: DateTime.now())
-              ..mediaItem.value = _mediaItemDB));
+              ..mediaItem.toARGB32 = _mediaItemDB));
       }
     } else {
       log("Failed to add in Recently_Played", name: "DB");
@@ -913,9 +913,9 @@ class ElythraDBService {
     for (var element in _recentlyPlayed) {
       if (DateTime.now().difference(element.lastPlayed).inDays > days) {
         await element.mediaItem.load();
-        if (element.mediaItem.value != null) {
-          log("Removing ${element.mediaItem.value!.title}", name: "DB");
-          removeMediaItemFromPlaylist(element.mediaItem.value!,
+        if (element.mediaItem.toARGB32 != null) {
+          log("Removing ${element.mediaItem.toARGB32!.title}", name: "DB");
+          removeMediaItemFromPlaylist(element.mediaItem.toARGB32!,
               MediaPlaylistDB(playlistName: "recently_played"));
           ids.add(element.id!);
         } else {
@@ -933,8 +933,8 @@ class ElythraDBService {
       List<RecentlyPlayedDB> recentlyPlayed =
           isarDB.recentlyPlayedDBs.where().sortByLastPlayedDesc().findAllSync();
       for (var element in recentlyPlayed) {
-        if (element.mediaItem.value != null) {
-          mediaItems.add(mediaItemDB2MediaItem(element.mediaItem.value!));
+        if (element.mediaItem.toARGB32 != null) {
+          mediaItems.add(mediaItemDB2MediaItem(element.mediaItem.toARGB32!));
         }
       }
     } else {
@@ -944,8 +944,8 @@ class ElythraDBService {
           .limit(limit)
           .findAllSync();
       for (var element in recentlyPlayed) {
-        if (element.mediaItem.value != null) {
-          mediaItems.add(mediaItemDB2MediaItem(element.mediaItem.value!));
+        if (element.mediaItem.toARGB32 != null) {
+          mediaItems.add(mediaItemDB2MediaItem(element.mediaItem.toARGB32!));
         }
       }
     }
@@ -1255,9 +1255,7 @@ class ElythraDBService {
         case "playlist":
           _savedCollections.add(formatSavedPlaylistOnl(element));
           break;
-        default:
-          break;
-      }
+        }
     }
     return _savedCollections;
   }

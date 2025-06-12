@@ -38,7 +38,7 @@ Future<Map<String, List>> getMusicHome({String countryCode = "IN"}) async {
       String title = element['title']['runs'][0]['text'].trim();
 
       try {
-        // dev.log("Inside loop: ${title}", name: "YTM");
+        // dev.log("Inside loop: $title", name: "YTM");
         List playlistItems = await formatHomeSections(element['contents']);
 
         if (playlistItems.isNotEmpty) {

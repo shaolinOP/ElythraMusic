@@ -11,10 +11,10 @@ import 'package:elythra_music/core/services/db/bloomee_db_service.dart';
 
 part 'bloomee_db_state.dart';
 
-class ElythraDBCubit extends Cubit<MediadbState> {
+class elythraDBCubit extends Cubit<MediadbState> {
   // BehaviorSubject<bool> refreshLibrary = BehaviorSubject<bool>.seeded(false);
   ElythraDBService bloomeeDBService = ElythraDBService();
-  ElythraDBCubit() : super(MediadbInitial()) {
+  elythraDBCubit() : super(MediadbInitial()) {
     addNewPlaylistToDB(MediaPlaylistDB(playlistName: "Liked"));
   }
 
@@ -55,9 +55,9 @@ class ElythraDBCubit extends Cubit<MediadbState> {
     List<MediaItemDB> reorderedList = orgMediaList;
     // orgMediaList.forEach((element) {
     //   log('orgMEdia - ${element.id} - ${element.title}',
-    //       name: "ElythraDBCubit");
+    //       name: "elythraDBCubit");
     // });
-    log(rankIndex.toString(), name: "ElythraDBCubit");
+    log(rankIndex.toString(), name: "elythraDBCubit");
     if (rankIndex.length == orgMediaList.length) {
       reorderedList = rankIndex
           .map((e) => orgMediaList.firstWhere(
@@ -66,7 +66,7 @@ class ElythraDBCubit extends Cubit<MediadbState> {
           .map((e) => e)
           .toList();
       log('ranklist length - ${rankIndex.length} org length - ${orgMediaList.length}',
-          name: "ElythraDBCubit");
+          name: "elythraDBCubit");
       return reorderedList;
     } else {
       return orgMediaList;
@@ -136,9 +136,9 @@ class ElythraDBCubit extends Cubit<MediadbState> {
   }
 
   Future<void> reorderPositionOfItemInDB(
-      String playlistName, int old_idx, int new_idx) async {
+      String playlistName, int oldIdx, int newIdx) async {
     ElythraDBService.reorderItemPositionInPlaylist(
-        MediaPlaylistDB(playlistName: playlistName), old_idx, new_idx);
+        MediaPlaylistDB(playlistName: playlistName), oldIdx, newIdx);
   }
 
   Future<void> removePlaylist(MediaPlaylistDB mediaPlaylistDB) async {

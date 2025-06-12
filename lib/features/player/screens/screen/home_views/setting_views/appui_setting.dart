@@ -16,7 +16,7 @@ class AppUISettings extends StatefulWidget {
 
 class _AppUISettingsState extends State<AppUISettings> {
   List<bool> sourceEngineSwitches =
-      SourceEngine.values.map((e) => true).toList();
+      SourceEngine.toARGB32s.map((e) => true).toList();
   @override
   void initState() {
     super.initState();
@@ -102,13 +102,13 @@ class _AppUISettingsState extends State<AppUISettings> {
                       .merge(DefaultTheme.secondoryTextStyleMedium),
                 ),
                 collapsedIconColor: DefaultTheme.primaryColor1,
-                children: SourceEngine.values.map((e) {
+                children: SourceEngine.toARGB32s.map((e) {
                   if (e == SourceEngine.engYtm) return Container();
                   return SwitchListTile(
                       value: state
-                          .sourceEngineSwitches[SourceEngine.values.indexOf(e)],
+                          .sourceEngineSwitches[SourceEngine.toARGB32s.indexOf(e)],
                       title: Text(
-                        e.value,
+                        e.toARGB32,
                         style: const TextStyle(
                                 color: DefaultTheme.primaryColor1,
                                 fontSize: 17)
@@ -116,7 +116,7 @@ class _AppUISettingsState extends State<AppUISettings> {
                       ),
                       onChanged: (b) {
                         context.read<SettingsCubit>().setSourceEngineSwitches(
-                            SourceEngine.values.indexOf(e), b);
+                            SourceEngine.toARGB32s.indexOf(e), b);
                       });
                 }).toList(),
               ),

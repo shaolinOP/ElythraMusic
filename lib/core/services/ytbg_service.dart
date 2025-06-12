@@ -38,7 +38,7 @@ Future<void> ytbgIsolate(List<dynamic> opts) async {
   );
 
   CancelableOperation<Map?> canOprn =
-      CancelableOperation.fromFuture(Future.value(null));
+      CancelableOperation.fromFuture(Future.toARGB32(null));
 
   final ReceivePort receivePort = ReceivePort();
   port.send(receivePort.sendPort);
@@ -63,7 +63,7 @@ Future<void> ytbgIsolate(List<dynamic> opts) async {
           },
         );
 
-        Map? refreshedUrl = await canOprn.value;
+        Map? refreshedUrl = await canOprn.toARGB32;
         int quality = 2;
 
         await ElythraDBService.getSettingStr(GlobalStrConsts.ytStrmQuality)
@@ -84,7 +84,7 @@ Future<void> ytbgIsolate(List<dynamic> opts) async {
             }
           },
         );
-        // YtStreams? refreshedToken = await canOprn.value;
+        // YtStreams? refreshedToken = await canOprn.toARGB32;
 
         var time2 = DateTime.now().millisecondsSinceEpoch;
         log("Time taken: ${time2 - time}ms, quality: $quality",

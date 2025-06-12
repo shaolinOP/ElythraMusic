@@ -64,14 +64,13 @@ class LastdotfmCubit extends Cubit<LastdotfmState> {
           }
         } else if ((stopwatch.elapsed.inSeconds > 30 ||
                 (stopwatch.elapsed.inSeconds /
-                        (playerCubit.bloomeePlayer.currentMedia?.duration ??
-                                const Duration(
+                        (playerCubit.bloomeePlayer.currentMedia.duration ?? const Duration(
                                     hours:
                                         1)) // if duration is null, set it to 1 hour to avoid division by zero
                             .inSeconds) >
                     0.5) &&
             currentMediaModel == lastPlayed &&
-            currentMediaModel != playedMedia.value) {
+            currentMediaModel != playedMedia.toARGB32) {
           if (currentMediaModel != null) {
             playedMedia.add(currentMediaModel);
           }
@@ -218,15 +217,15 @@ class LastdotfmCubit extends Cubit<LastdotfmState> {
         GlobalStrConsts.lFMScrobbleSetting,
         defaultValue: false);
 
-    final durationMin = mediaItem.duration?.inMinutes ?? 20000;
-    final durationSec = mediaItem.duration?.inSeconds ?? 20000;
+    final durationMin = mediaItem.duration.inMinutes ?? 20000;
+    final durationSec = mediaItem.duration.inSeconds ?? 20000;
 
     final track = ScrobbleTrack(
       artist: mediaItem.artist ?? 'Unknown',
       trackName: mediaItem.title,
       timestamp: DateTime.now().millisecondsSinceEpoch ~/ 1000,
       album: mediaItem.album ?? 'Unknown',
-      duration: mediaItem.duration?.inSeconds ?? 0,
+      duration: mediaItem.duration.inSeconds ?? 0,
       chosenByUser: false,
     );
     if (shouldScrobble ?? false) {

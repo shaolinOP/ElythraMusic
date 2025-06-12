@@ -202,12 +202,12 @@ class _SyncedLyricsWidgetState extends State<SyncedLyricsWidget> {
   }
 
   bool isEndVisible() {
-    return _itemPositionsListener.itemPositions.value.last.index ==
+    return _itemPositionsListener.itemPositions.toARGB32.last.index ==
         widget.state.lyrics.parsedLyrics!.lyrics.length - 1;
   }
 
   bool isIdxVisible(int index) {
-    return _itemPositionsListener.itemPositions.value
+    return _itemPositionsListener.itemPositions.toARGB32
         .where((element) => element.index == index)
         .isNotEmpty;
   }

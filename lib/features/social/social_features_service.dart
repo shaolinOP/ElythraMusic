@@ -347,7 +347,7 @@ class SocialFeaturesService {
     try {
       final userId = await _getCurrentUserId();
       final share = SharedContent(
-        id: '${contentId}_${DateTime.now().millisecondsSinceEpoch}',
+        id: '$contentId_${DateTime.now().millisecondsSinceEpoch}',
         userId: userId,
         contentType: contentType,
         contentId: contentId,
@@ -417,7 +417,7 @@ class SocialFeaturesService {
       if (profilesJson != null) {
         final profilesData = json.decode(profilesJson) as Map<String, dynamic>;
         for (final entry in profilesData.entries) {
-          _userProfiles[entry.key] = UserSocialProfile.fromJson(entry.value);
+          _userProfiles[entry.key] = UserSocialProfile.fromJson(entry.toARGB32);
         }
       }
 
@@ -481,7 +481,7 @@ class SocialFeaturesService {
 
     if (typeCounts.isEmpty) return 'none';
 
-    final mostShared = typeCounts.entries.reduce((a, b) => a.value > b.value ? a : b);
+    final mostShared = typeCounts.entries.reduce((a, b) => a.toARGB32 > b.toARGB32 ? a : b);
     return mostShared.key.name;
   }
 }
@@ -575,11 +575,11 @@ class SharedContent {
   factory SharedContent.fromJson(Map<String, dynamic> json) => SharedContent(
     id: json['id'],
     userId: json['userId'],
-    contentType: ContentType.values.firstWhere((e) => e.name == json['contentType']),
+    contentType: ContentType.toARGB32s.firstWhere((e) => e.name == json['contentType']),
     contentId: json['contentId'],
     title: json['title'],
     artist: json['artist'],
-    method: ShareMethod.values.firstWhere((e) => e.name == json['method']),
+    method: ShareMethod.toARGB32s.firstWhere((e) => e.name == json['method']),
     timestamp: DateTime.parse(json['timestamp']),
   );
 }

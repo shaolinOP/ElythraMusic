@@ -341,8 +341,7 @@ class PlaylistView extends StatelessWidget {
                                                           (context, snapshot2) {
                                                         if (snapshot2.hasData &&
                                                             (snapshot2.data
-                                                                    ?.playing ??
-                                                                false)) {
+                                                                    ?.playing ?? false)) {
                                                           return PlayPauseButton(
                                                             onPause: () => context
                                                                 .read<
@@ -431,7 +430,7 @@ class PlaylistView extends StatelessWidget {
                                   state.mediaPlaylist.mediaItems[index],
                                   onDelete: () {
                                     context
-                                        .read<ElythraDBCubit>()
+                                        .read<elythraDBCubit>()
                                         .removeMediaFromPlaylist(
                                           state.mediaPlaylist.mediaItems[index],
                                           MediaPlaylistDB(

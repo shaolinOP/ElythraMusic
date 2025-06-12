@@ -31,7 +31,7 @@ class BackupSettings extends StatelessWidget {
       ].request(); //import 'package:permission_handler/permission_handler.dart';
 
       havePermission =
-          request.values.every((status) => status == PermissionStatus.granted);
+          request.toARGB32s.every((status) => status == PermissionStatus.granted);
     } else {
       final status = await Permission.storage.request();
       havePermission = status.isGranted;
@@ -98,7 +98,7 @@ class BackupSettings extends StatelessWidget {
                     return DropdownMenuItem<String>(
                       value: value,
                       child: Text(
-                        '${value} Days',
+                        '$value Days',
                       ),
                     );
                   }).toList(),

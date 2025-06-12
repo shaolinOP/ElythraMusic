@@ -237,7 +237,7 @@ class _MyAppState extends State<MyApp> {
                 MiniPlayerBloc(playerCubit: bloomeePlayerCubit),
             lazy: true),
         BlocProvider(
-          create: (context) => ElythraDBCubit(),
+          create: (context) => elythraDBCubit(),
           lazy: false,
         ),
         BlocProvider(
@@ -254,12 +254,12 @@ class _MyAppState extends State<MyApp> {
         ),
         BlocProvider(
           create: (context) => CurrentPlaylistCubit(
-              bloomeeDBCubit: context.read<ElythraDBCubit>()),
+              bloomeeDBCubit: context.read<elythraDBCubit>()),
           lazy: false,
         ),
         BlocProvider(
           create: (context) =>
-              LibraryItemsCubit(bloomeeDBCubit: context.read<ElythraDBCubit>()),
+              LibraryItemsCubit(bloomeeDBCubit: context.read<elythraDBCubit>()),
         ),
         BlocProvider(
           create: (context) => AddToPlaylistCubit(),

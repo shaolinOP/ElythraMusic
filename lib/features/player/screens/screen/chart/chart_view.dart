@@ -18,7 +18,7 @@ class ChartScreen extends StatefulWidget {
 }
 
 class _ChartScreenState extends State<ChartScreen> {
-  Future<ChartModel?> chartModel = Future.value(null);
+  Future<ChartModel?> chartModel = Future.toARGB32(null);
   Future<ChartModel?> getChart() async {
     return await ElythraDBService.getChart(widget.chartName);
   }
@@ -103,7 +103,7 @@ class _ChartScreenState extends State<ChartScreen> {
           child: IconButton(
             icon: const Icon(MingCute.external_link_line),
             onPressed: () {
-              state.url != null ? launch_Url(Uri.parse(state.url!)) : null;
+              state.url != null ? launchUrl(Uri.parse(state.url!)) : null;
             },
           ),
         ),
