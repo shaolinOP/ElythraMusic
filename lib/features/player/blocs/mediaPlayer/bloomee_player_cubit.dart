@@ -132,7 +132,7 @@ class BloomeePlayer {
   Stream<String> get queueTitle => Stream.value("Current Queue");
   String get queueTitleValue => "Current Queue";
   Stream<ElythraMediaItem?> get mediaItem => _mediaItemController.stream;
-  ElythraMediaItem? get currentMedia => _currentElythraMediaItem.value;
+  ElythraMediaItem? get currentMedia => _currentElythraMediaItem.valueOrNull;
   Stream<bool> get shuffleMode => _shuffleModeController.stream;
   bool get shuffleModeValue => _shuffleModeController.value;
   

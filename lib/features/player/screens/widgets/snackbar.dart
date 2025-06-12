@@ -11,8 +11,8 @@ class SnackbarService {
     Duration duration = const Duration(seconds: 2),
     bool loading = false,
   }) {
-    messengerKey.currentState!.removeCurrentSnackBar();
-    messengerKey.currentState!.showSnackBar(
+    messengerKey.currentState?.removeCurrentSnackBar();
+    messengerKey.currentState?.showSnackBar(
       SnackBar(
         content: loading
             ? Row(

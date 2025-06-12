@@ -169,7 +169,7 @@ Future<void> main() async {
   }
   await initServices();
   setHighRefreshRate();
-  MetadataGod.initialize();
+  // MetadataGod.initialize(); // Temporarily disabled due to library issues
   setupPlayerCubit();
   DiscordService.initialize();
   runApp(const MyApp());
@@ -196,9 +196,13 @@ class MyAppStateState extends State<MyApp> {
           ReceiveSharingIntent.instance.getMediaStream().listen((event) {
         sharedMediaFiles.clear();
         sharedMediaFiles.addAll(event);
-        log(sharedMediaFiles[0].mimeType.toString(), name: "Shared Files");
-        log(sharedMediaFiles[0].path, name: "Shared Files");
-        processIncomingIntent(sharedMediaFiles);
+        if (sharedMediaFiles.isNotEmpty) {
+          log(sharedMediaFiles[0].mimeType.toString(), name: "Shared Files");
+        }
+        if (sharedMediaFiles.isNotEmpty) {
+          log(sharedMediaFiles[0].path, name: "Shared Files");
+          processIncomingIntent(sharedMediaFiles);
+        }
 
         // Tell the library that we are done processing the intent.
         ReceiveSharingIntent.instance.reset();
@@ -209,10 +213,12 @@ class MyAppStateState extends State<MyApp> {
       ReceiveSharingIntent.instance.getInitialMedia().then((event) {
         sharedMediaFiles.clear();
         sharedMediaFiles.addAll(event);
-        log(sharedMediaFiles[0].mimeType.toString(),
-            name: "Shared Files Offline");
-        log(sharedMediaFiles[0].path, name: "Shared Files Offline");
-        processIncomingIntent(sharedMediaFiles);
+        if (sharedMediaFiles.isNotEmpty) {
+          log(sharedMediaFiles[0].mimeType.toString(),
+              name: "Shared Files Offline");
+          log(sharedMediaFiles[0].path, name: "Shared Files Offline");
+          processIncomingIntent(sharedMediaFiles);
+        }
         ReceiveSharingIntent.instance.reset();
       });
     }

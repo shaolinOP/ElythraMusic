@@ -1,11 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!-- Elythra Music Launch Splash Screen -->
+<!-- Elythra Music Launch Background - No Splash Screen -->
 <layer-list xmlns:android="http://schemas.android.com/apk/res/android">
     <item android:drawable="@color/elythra_purple" />
-
-    <item>
-        <bitmap
-            android:gravity="center"
-            android:src="@drawable/splash_screen" />
-    </item>
 </layer-list>
