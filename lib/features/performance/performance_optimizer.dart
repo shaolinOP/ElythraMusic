@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'dart:developer';
 import 'dart:io';
 import 'dart:isolate';
@@ -26,8 +27,181 @@ class PerformanceOptimizer {
   int _maxCacheSize = 100 * 1024 * 1024; // 100MB
   int _currentCacheSize = 0;
 
-  /// Initialize performance optimizer
+  /// Initialize performance optimizer with enhanced features
   Future<void> initialize() async {
+    await _loadSettings();
+    await _setupMemoryMonitoring();
+    await _optimizeForCurrentDevice();
+    log('Enhanced Performance Optimizer initialized');
+  }
+
+  /// Load performance settings from preferences
+  Future<void> _loadSettings() async {
+    try {
+      final prefs = await SharedPreferences.getInstance();
+      _batteryOptimizationEnabled = prefs.getBool('battery_optimization') ?? true;
+      _backgroundTasksEnabled = prefs.getBool('background_tasks') ?? true;
+      _highQualityOnBatteryEnabled = prefs.getBool('high_quality_battery') ?? false;
+      _maxCacheSize = prefs.getInt('max_cache_size') ?? (100 * 1024 * 1024);
+    } catch (e) {
+      log('Error loading performance settings: $e');
+    }
+  }
+
+  /// Setup memory monitoring
+  Future<void> _setupMemoryMonitoring() async {
+    if (!kIsWeb) {
+      // Monitor memory usage periodically
+      Timer.periodic(const Duration(minutes: 5), (timer) {
+        _checkMemoryUsage();
+      });
+    }
+  }
+
+  /// Optimize for current device capabilities
+  Future<void> _optimizeForCurrentDevice() async {
+    try {
+      if (!kIsWeb && Platform.isAndroid) {
+        // Detect device capabilities and adjust settings
+        final deviceInfo = await _getDeviceInfo();
+        _adjustSettingsForDevice(deviceInfo);
+      }
+    } catch (e) {
+      log('Error optimizing for device: $e');
+    }
+  }
+
+  /// Get device information for optimization
+  Future<Map<String, dynamic>> _getDeviceInfo() async {
+    // This would use device_info_plus package in a real implementation
+    return {
+      'totalMemory': 4096, // MB - placeholder
+      'availableMemory': 2048, // MB - placeholder
+      'cpuCores': 8, // placeholder
+      'isLowEndDevice': false, // placeholder
+    };
+  }
+
+  /// Adjust settings based on device capabilities
+  void _adjustSettingsForDevice(Map<String, dynamic> deviceInfo) {
+    final totalMemory = deviceInfo['totalMemory'] as int;
+    final isLowEndDevice = deviceInfo['isLowEndDevice'] as bool;
+
+    if (isLowEndDevice || totalMemory < 3000) {
+      // Low-end device optimizations
+      _maxCacheSize = 50 * 1024 * 1024; // 50MB
+      _batteryOptimizationEnabled = true;
+      _backgroundTasksEnabled = false;
+      log('Applied low-end device optimizations');
+    } else if (totalMemory > 6000) {
+      // High-end device optimizations
+      _maxCacheSize = 200 * 1024 * 1024; // 200MB
+      _backgroundTasksEnabled = true;
+      log('Applied high-end device optimizations');
+    }
+  }
+
+  /// Check and manage memory usage
+  void _checkMemoryUsage() async {
+    try {
+      if (_currentCacheSize > _maxCacheSize * 0.8) {
+        await _performMemoryCleanup();
+      }
+    } catch (e) {
+      log('Error checking memory usage: $e');
+    }
+  }
+
+  /// Perform memory cleanup
+  Future<void> _performMemoryCleanup() async {
+    try {
+      // Clear image cache
+      PaintingBinding.instance.imageCache.clear();
+      PaintingBinding.instance.imageCache.clearLiveImages();
+      
+      // Clear internal cache
+      _cache.clear();
+      _currentCacheSize = 0;
+      
+      log('Memory cleanup performed');
+    } catch (e) {
+      log('Error during memory cleanup: $e');
+    }
+  }
+
+  /// Enhanced audio quality optimization
+  Map<String, dynamic> getOptimalAudioSettings() {
+    if (_batteryOptimizationEnabled && !_highQualityOnBatteryEnabled) {
+      return {
+        'quality': 'medium', // 192 kbps
+        'bufferSize': 'small',
+        'preloadNext': false,
+        'gaplessPlayback': false,
+      };
+    } else {
+      return {
+        'quality': 'extreme', // 320 kbps
+        'bufferSize': 'large',
+        'preloadNext': true,
+        'gaplessPlayback': true,
+      };
+    }
+  }
+
+  /// Enhanced image loading optimization
+  void optimizeImageLoading() {
+    final imageCache = PaintingBinding.instance.imageCache;
+    
+    if (_batteryOptimizationEnabled) {
+      imageCache.maximumSize = 50;
+      imageCache.maximumSizeBytes = 50 * 1024 * 1024; // 50MB
+    } else {
+      imageCache.maximumSize = 200;
+      imageCache.maximumSizeBytes = 200 * 1024 * 1024; // 200MB
+    }
+    
+    log('Image loading optimized');
+  }
+
+  /// Set battery optimization mode
+  Future<void> setBatteryOptimization(bool enabled) async {
+    _batteryOptimizationEnabled = enabled;
+    
+    final prefs = await SharedPreferences.getInstance();
+    await prefs.setBool('battery_optimization', enabled);
+    
+    // Apply immediate optimizations
+    optimizeImageLoading();
+    
+    log('Battery optimization ${enabled ? 'enabled' : 'disabled'}');
+  }
+
+  /// Set high quality on battery mode
+  Future<void> setHighQualityOnBattery(bool enabled) async {
+    _highQualityOnBatteryEnabled = enabled;
+    
+    final prefs = await SharedPreferences.getInstance();
+    await prefs.setBool('high_quality_battery', enabled);
+    
+    log('High quality on battery ${enabled ? 'enabled' : 'disabled'}');
+  }
+
+  /// Get performance statistics
+  Map<String, dynamic> getPerformanceStats() {
+    return {
+      'batteryOptimizationEnabled': _batteryOptimizationEnabled,
+      'backgroundTasksEnabled': _backgroundTasksEnabled,
+      'highQualityOnBatteryEnabled': _highQualityOnBatteryEnabled,
+      'currentCacheSize': _currentCacheSize,
+      'maxCacheSize': _maxCacheSize,
+      'imageCacheSize': PaintingBinding.instance.imageCache.currentSize,
+      'imageCacheMaxSize': PaintingBinding.instance.imageCache.maximumSize,
+      'recentMetrics': _metrics.take(10).toList(),
+    };
+  }
+
+  /// Original initialize method (keeping for compatibility)
+  Future<void> initializeOriginal() async {
     try {
       await _loadSettings();
       await _setupPerformanceMonitoring();
