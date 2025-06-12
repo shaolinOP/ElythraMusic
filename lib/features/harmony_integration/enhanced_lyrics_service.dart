@@ -12,7 +12,7 @@ class EnhancedLyricsService {
 
   /// Initialize the enhanced lyrics service
   Future<void> initialize() async {
-    print('🎤 Enhanced Lyrics Service initialized');
+    // print('🎤 Enhanced Lyrics Service initialized');
     // Initialize any required services or configurations
   }
 

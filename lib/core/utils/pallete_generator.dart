@@ -1,4 +1,3 @@
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:elythra_music/core/services/color_extraction_service.dart';
 import 'package:http/http.dart' as http;

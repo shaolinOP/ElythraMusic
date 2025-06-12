@@ -1,10 +1,8 @@
 import 'dart:async';
-import 'dart:ui';
 import 'package:elythra_music/features/player/screens/screen/home_views/timer_view.dart';
 import 'package:elythra_music/features/player/screens/widgets/more_bottom_sheet.dart';
 import 'package:elythra_music/features/player/screens/widgets/up_next_panel.dart';
 import 'package:elythra_music/features/player/screens/widgets/volume_slider.dart';
-import 'package:elythra_music/core/services/bloomeePlayer.dart';
 import 'package:elythra_music/core/services/shortcuts_intents.dart';
 import 'package:elythra_music/core/utils/imgurl_formator.dart';
 import 'package:audio_service/audio_service.dart' as audio_service;

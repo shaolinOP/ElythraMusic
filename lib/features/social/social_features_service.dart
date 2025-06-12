@@ -2,7 +2,6 @@ import 'dart:developer';
 import 'dart:convert';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:share_plus/share_plus.dart';
-import 'package:url_launcher/url_launcher.dart';
 
 /// Social features service for sharing and community features
 class SocialFeaturesService {

@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:elythra_music/features/auth/services/enhanced_auth_service.dart';
 import 'package:elythra_music/features/player/services/enhanced_audio_service.dart';
 import 'package:elythra_music/features/lyrics/services/enhanced_lyrics_service.dart';

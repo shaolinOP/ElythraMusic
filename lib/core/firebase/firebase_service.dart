@@ -47,7 +47,7 @@ class FirebaseService {
       // Once signed in, return the UserCredential
       return await auth.signInWithCredential(credential);
     } catch (e) {
-      print('Error signing in with Google: $e');
+      // print('Error signing in with Google: $e');
       return null;
     }
   }

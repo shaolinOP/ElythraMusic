@@ -194,7 +194,7 @@ class LyricsCubit extends Cubit<LyricsState> {
       );
       
       // Save to local database
-      print('Saving lyrics for media ID: $mediaId');
+      // print('Saving lyrics for media ID: $mediaId');
       emit(LyricsLoaded(lyrics: lyricsModel, mediaItem: mediaItem));
       // Implementation would go here
     } catch (e) {
@@ -206,7 +206,7 @@ class LyricsCubit extends Cubit<LyricsState> {
     // Implementation for deleting lyrics from database
     try {
       // Delete from local database
-      print('Deleting lyrics for media ID: ${mediaItem.id}');
+      // print('Deleting lyrics for media ID: ${mediaItem.id}');
       // Implementation would go here
       
       // Reset lyrics state

@@ -1,7 +1,6 @@
 import 'package:elythra_music/core/blocs/library/cubit/library_items_cubit.dart';
 import 'package:elythra_music/features/player/blocs/mediaPlayer/bloomee_player_cubit.dart' as player;
 import 'package:elythra_music/core/blocs/offline/offline_cubit.dart';
-import 'package:elythra_music/core/model/MediaPlaylistModel.dart';
 import 'package:elythra_music/features/player/screens/widgets/more_bottom_sheet.dart';
 import 'package:elythra_music/features/player/screens/widgets/sign_board_widget.dart';
 import 'package:elythra_music/features/player/screens/widgets/song_tile.dart';

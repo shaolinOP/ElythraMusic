@@ -124,7 +124,7 @@ List<AlbumModel> ytmMap2Albums(List<Map> items) {
         description: item['subtitle'],
       ));
     } catch (e) {
-      print(e);
+      // print(e);
     }
   }
   return albums;

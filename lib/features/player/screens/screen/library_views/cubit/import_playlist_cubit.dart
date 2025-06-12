@@ -82,14 +82,14 @@ class ImportPlaylistCubit extends Cubit<ImportPlaylistState> {
     importYtPlaylistBS.add(ImportPlaylistStateInitial());
     // try {
     final result = await YouTubeServices().fetchPlaylistItems(ytPlaylistID);
-    print("1 ${result.toString()}");
+    // print("1 ${result.toString()}");
     final playlist = (result[0]["items"] as List);
-    print("2 ${playlist.toString()}");
+    // print("2 ${playlist.toString()}");
     if (playlist.isNotEmpty) {
-      print("3");
+      // print("3");
       for (int i = 0; i < playlist.length; i++) {
-        print("4 ${result[0]["metadata"]}");
-        print(playlist[i].toString());
+        // print("4 ${result[0]["metadata"]}");
+        // print(playlist[i].toString());
         importYtPlaylistBS.add(ImportPlaylistState(
             playlistName: result[0]["metadata"].title,
             itemName: playlist[i]["title"],
@@ -98,7 +98,7 @@ class ImportPlaylistCubit extends Cubit<ImportPlaylistState> {
         // print("${result[0]["metadata"]["title"]} added!!");
         // print("5 ${playlist[i].toString()}");
         MediaItemModel mediaItemModel = fromYtVidSongMap2MediaItem(playlist[i]);
-        print("5 ${mediaItemModel.toString()}");
+        // print("5 ${mediaItemModel.toString()}");
         ElythraDBCubit.addMediaItemToPlaylist(mediaItemModel,
             MediaPlaylistDB(playlistName: result[0]["metadata"].title));
       }

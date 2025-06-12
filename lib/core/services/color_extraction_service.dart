@@ -70,7 +70,7 @@ class ColorExtractionService {
 
       return dominantColor;
     } catch (e) {
-      print('Error extracting color: $e');
+      // print('Error extracting color: $e');
       final fallbackColor = Colors.deepPurple;
       _dominantColor = fallbackColor;
       _lightVibrantColor = fallbackColor;
@@ -112,7 +112,7 @@ class ColorExtractionService {
           .map((entry) => Color(entry.key))
           .toList();
     } catch (e) {
-      print('Error extracting palette: $e');
+      // print('Error extracting palette: $e');
       return [Colors.deepPurple];
     }
   }

@@ -131,7 +131,7 @@ mixin BrowsingMixin on YTMusicServices {
       {Map<String, dynamic>? body,
       int limit = 1,
       String additionalParams = ''}) async {
-    print('browseContinuation');
+    // print('browseContinuation');
     String endpoint = 'browse';
     body ??= {"browseId": "FEmusic_home"};
 
@@ -393,16 +393,16 @@ List<Map<String, dynamic>> handleOuterContents(List contents,
     Map? gridRenderer = nav(content, ['gridRenderer']);
     if (musicCarouselShelfRenderer != null) {
       results.add(handleMusicCarouselShelfRenderer(musicCarouselShelfRenderer));
-      print('musicCarouselShelfRenderer');
+      // print('musicCarouselShelfRenderer');
     } else if (musicPlaylistShelfRenderer != null) {
       results.add(handleMusicPlaylistShelfRenderer(musicPlaylistShelfRenderer));
-      print('musicPlaylistShelfRenderer');
+      // print('musicPlaylistShelfRenderer');
     } else if (musicShelfRenderer != null) {
-      print('musicShelfRenderer');
+      // print('musicShelfRenderer');
       results.add(
           handleMusicShelfRenderer(musicShelfRenderer, thumbnails: thumbnails));
     } else if (gridRenderer != null) {
-      print('gridRenderer');
+      // print('gridRenderer');
       results.add(handleGridRenderer(gridRenderer));
     } else {}
     results.add(result);

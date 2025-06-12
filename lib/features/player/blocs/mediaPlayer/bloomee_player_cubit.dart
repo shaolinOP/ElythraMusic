@@ -177,7 +177,7 @@ class BloomeePlayer {
   // Queue management
   Future<void> addQueueItem(ElythraMediaItem? mediaItem) async {
     // Implementation for adding items to queue
-    print('Adding to queue: ${mediaItem?.title}');
+    // print('Adding to queue: ${mediaItem?.title}');
   }
 
   // Loop mode control
@@ -201,7 +201,7 @@ class BloomeePlayer {
       _currentElythraMediaItem?.add(playlist.items.first);
       _mediaItemController.add(playlist.items.first);
     }
-    print('Loading playlist: ${playlist.name}');
+    // print('Loading playlist: ${playlist.name}');
   }
 
   // Missing methods from error messages
@@ -275,7 +275,7 @@ class BloomeePlayer {
 
   Future<void> check4RelatedSongs() async {
     // Implementation for checking related songs
-    print('Checking for related songs...');
+    // print('Checking for related songs...');
   }
   
   void dispose() {

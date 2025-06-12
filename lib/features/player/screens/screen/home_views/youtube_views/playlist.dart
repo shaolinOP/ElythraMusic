@@ -3,7 +3,6 @@ import 'dart:core';
 import 'dart:developer';
 import 'package:elythra_music/core/blocs/internet_connectivity/cubit/connectivity_cubit.dart';
 import 'package:elythra_music/features/player/blocs/mediaPlayer/bloomee_player_cubit.dart' as player;
-import 'package:elythra_music/core/model/MediaPlaylistModel.dart';
 import 'package:elythra_music/core/model/yt_music_model.dart';
 import 'package:elythra_music/core/repository/Youtube/ytm/ytmusic.dart';
 import 'package:elythra_music/features/player/screens/widgets/more_bottom_sheet.dart';
@@ -149,7 +148,7 @@ class _YoutubePlaylistState extends State<YoutubePlaylist> {
                                               right: 10.0),
                                           child: IconButton(
                                             onPressed: () {
-                                              Share.share(
+                                              SharePlus.share(
                                                   "${widget.title} - ${widget.subtitle} \nhttps://youtube.com/playlist?list=${widget.id.replaceAll("youtube", "")}",
                                                   subject: "Youtube Playlist");
                                             },
