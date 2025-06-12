@@ -6,19 +6,19 @@ import 'package:flutter_test/flutter_test.dart';
 
 void main() {
   test("Billboard Charts HOT100", () async {
-    final bb = await getBillboardChart(BillboardCharts.hot100);
+    final bb = await getBillboardChart(BillboardCharts.HOT_100);
     expect(bb.chartItems != null, true);
     expect(bb.chartItems!.isNotEmpty, true);
   });
 
   test("Billboard Charts Billboard200", () async {
-    final bb = await getBillboardChart(BillboardCharts.billboard200);
+    final bb = await getBillboardChart(BillboardCharts.BILLBOARD_200);
     expect(bb.chartItems != null, true);
     expect(bb.chartItems!.isNotEmpty, true);
   });
 
   test("Billboard Charts Billboard 200", () async {
-    final bb = await getBillboardChart(BillboardCharts.billboard200);
+    final bb = await getBillboardChart(BillboardCharts.BILLBOARD_200);
     expect(bb.chartItems != null, true);
     expect(bb.chartItems!.isNotEmpty, true);
   });
