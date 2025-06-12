@@ -3,6 +3,8 @@ import 'dart:developer';
 import 'dart:io' as io;
 import 'package:firebase_core/firebase_core.dart';
 import 'package:elythra_music/core/firebase/firebase_options.dart';
+import 'package:elythra_music/features/auth/webview_auth_service.dart';
+import 'package:elythra_music/features/auth/cross_platform_sync_service.dart';
 import 'package:elythra_music/core/blocs/downloader/cubit/downloader_cubit.dart';
 import 'package:elythra_music/core/blocs/internet_connectivity/cubit/connectivity_cubit.dart';
 import 'package:elythra_music/core/blocs/lastdotfm/lastdotfm_cubit.dart';
@@ -117,6 +119,10 @@ Future<void> initServices() async {
   String appSuppPath = (await getApplicationSupportDirectory()).path;
   ElythraDBService(appDocPath: appDocPath, appSuppPath: appSuppPath);
   YouTubeServices(appDocPath: appDocPath, appSuppPath: appSuppPath);
+  
+  // Initialize authentication services
+  await WebViewAuthService().initialize();
+  await CrossPlatformSyncService().initialize();
 }
 
 Future<void> main() async {
