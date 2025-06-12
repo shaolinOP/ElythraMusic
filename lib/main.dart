@@ -150,10 +150,15 @@ Future<void> initServices() async {
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   
-  // Initialize Firebase
-  await Firebase.initializeApp(
-    options: DefaultFirebaseOptions.currentPlatform,
-  );
+  // Initialize Firebase (check if already initialized)
+  try {
+    await Firebase.initializeApp(
+      options: DefaultFirebaseOptions.currentPlatform,
+    );
+  } catch (e) {
+    // Firebase already initialized, continue
+    log('Firebase already initialized: $e');
+  }
   
   GestureBinding.instance.resamplingEnabled = true;
   if (io.Platform.isLinux || io.Platform.isWindows) {
