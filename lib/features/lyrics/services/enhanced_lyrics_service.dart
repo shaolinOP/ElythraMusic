@@ -1,6 +1,6 @@
 import 'dart:convert';
 import 'dart:developer';
-import 'package:http/http.dart' as http;
+
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:elythra_music/core/model/lyrics_models.dart';
 import 'package:elythra_music/features/lyrics/repository/lrcnet_api.dart';

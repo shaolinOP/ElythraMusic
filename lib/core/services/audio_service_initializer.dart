@@ -1,4 +1,4 @@
-import 'package:elythra_music/core/services/bloomeePlayer.dart';
+import 'package:elythra_music/core/services/bloomee_player.dart';
 import 'package:elythra_music/core/theme_data/default.dart';
 import 'package:audio_service/audio_service.dart';
 
