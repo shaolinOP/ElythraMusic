@@ -81,9 +81,8 @@ class _EnhancedLyricsWidgetState extends State<EnhancedLyricsWidget> {
             final hasPlainLyrics = lyrics.lyricsPlain != null && 
                                    lyrics.lyricsPlain!.isNotEmpty &&
                                    lyrics.lyricsPlain != "No Lyrics Found";
-            final hasSyncedLyrics = lyrics.lyricsSynced != null && 
-                                    lyrics.lyricsSynced!.isNotEmpty &&
-                                    lyrics.lyricsSynced != "No Lyrics Found";
+            final hasSyncedLyrics = lyrics.parsedLyrics != null && 
+                                    lyrics.parsedLyrics!.lyrics.isNotEmpty;
 
             if (!hasPlainLyrics && !hasSyncedLyrics) {
               return Center(
@@ -143,7 +142,7 @@ class _EnhancedLyricsWidgetState extends State<EnhancedLyricsWidget> {
                 // Lyrics content
                 Expanded(
                   child: _showSyncedLyrics && hasSyncedLyrics
-                      ? _buildSyncedLyrics(lyrics.lyricsSynced!, playerState)
+                      ? _buildSyncedLyrics(lyrics.parsedLyrics!, playerState)
                       : _buildPlainLyrics(lyrics.lyricsPlain ?? ''),
                 ),
               ],
@@ -154,7 +153,7 @@ class _EnhancedLyricsWidgetState extends State<EnhancedLyricsWidget> {
     );
   }
 
-  Widget _buildSyncedLyrics(String syncedLyrics, ElythraPlayerState playerState) {
+  Widget _buildSyncedLyrics(ParsedLyrics parsedLyrics, ElythraPlayerState playerState) {
     // Get current position from player state
     Duration currentPosition = Duration.zero;
     if (playerState is ElythraPlayerPlaying) {
@@ -163,10 +162,15 @@ class _EnhancedLyricsWidgetState extends State<EnhancedLyricsWidget> {
     }
 
     try {
+      // Convert ParsedLyrics to string format for LyricsReader
+      final lyricsString = parsedLyrics.lyrics
+          .map((line) => '[${line.start.inMilliseconds}]${line.text}')
+          .join('\n');
+      
       return LyricsReader(
-        padding: widget.padding,
+        padding: widget.padding as EdgeInsets?,
         model: LyricsModelBuilder.create()
-            .bindLyricToMain(syncedLyrics)
+            .bindLyricToMain(lyricsString)
             .getModel(),
         position: currentPosition.inMilliseconds,
         lyricUi: UINetease(),
@@ -186,7 +190,8 @@ class _EnhancedLyricsWidgetState extends State<EnhancedLyricsWidget> {
       );
     } catch (e) {
       // Fallback to plain lyrics if synced lyrics parsing fails
-      return _buildPlainLyrics(syncedLyrics);
+      final plainText = parsedLyrics.lyrics.map((line) => line.text).join('\n');
+      return _buildPlainLyrics(plainText);
     }
   }
 
@@ -247,4 +252,7 @@ class UINetease extends LyricUI {
 
   @override
   Offset getBiasOffset() => const Offset(0, 0);
+
+  @override
+  LyricAlign getLyricHorizontalAlign() => LyricAlign.CENTER;
 }

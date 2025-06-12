@@ -115,7 +115,9 @@ class BloomeePlayer {
   
   // Streams
   Stream<String> get queueTitle => Stream.value("Current Queue");
+  String get queueTitleValue => "Current Queue";
   Stream<MediaItem?> get mediaItem => _mediaItemController.stream;
+  MediaItem? get currentMedia => _currentMediaItem.value;
   Stream<bool> get shuffleMode => _shuffleModeController.stream;
   bool get shuffleModeValue => _shuffleModeController.value;
   

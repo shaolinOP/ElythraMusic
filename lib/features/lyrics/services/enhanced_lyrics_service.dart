@@ -4,6 +4,7 @@ import 'package:http/http.dart' as http;
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:elythra_music/core/model/lyrics_models.dart';
 import 'package:elythra_music/features/lyrics/repository/lrcnet_api.dart';
+import 'package:elythra_music/features/lyrics/repository/lyrics.dart';
 
 /// Enhanced lyrics service with multiple providers and caching
 class EnhancedLyricsService {
@@ -46,7 +47,7 @@ class EnhancedLyricsService {
         artist: artist,
         album: album,
         duration: duration?.inSeconds.toString(),
-        provider: 'lrclib',
+        provider: LyricsProvider.lrcnet,
       );
       
       if (lyrics.lyricsSynced != null && lyrics.lyricsSynced!.isNotEmpty) {

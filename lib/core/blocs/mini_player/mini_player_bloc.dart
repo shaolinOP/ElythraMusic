@@ -1,7 +1,7 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'dart:async';
 import 'dart:developer';
-import 'package:audio_service/audio_service.dart' as audio_service;
+
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:elythra_music/features/player/blocs/mediaPlayer/bloomee_player_cubit.dart';
@@ -74,7 +74,7 @@ class MiniPlayerBloc extends Bloc<MiniPlayerEvent, MiniPlayerState> {
       var mediaItem = event[1] as MediaItem?;
       if (mediaItem == null) return;
 
-      var mediaItem2 = mediaItem2MediaItemModel(mediaItem);
+      var mediaItem2 = mediaItem.toMediaItemModel();
 
       log("$state", name: "MiniPlayer");
       switch (state.processingState) {

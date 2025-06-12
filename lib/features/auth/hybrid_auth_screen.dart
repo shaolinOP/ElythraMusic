@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:elythra_music/features/auth/auth_cubit.dart';
-import 'package:elythra_music/features/auth/auth_state.dart';
 import 'package:elythra_music/features/auth/webview_auth_service.dart';
 
 /// Hybrid authentication screen offering both Firebase and WebView options

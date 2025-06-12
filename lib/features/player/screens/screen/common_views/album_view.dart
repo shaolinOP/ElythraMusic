@@ -162,8 +162,7 @@ class _AlbumViewState extends State<AlbumView> {
                                                           .read<
                                                               ElythraPlayerCubit>()
                                                           .bloomeePlayer
-                                                          .queueTitle
-                                                          .value !=
+                                                          .queueTitleValue !=
                                                       widget.album.name) {
                                                     context
                                                         .read<
@@ -171,9 +170,7 @@ class _AlbumViewState extends State<AlbumView> {
                                                         .bloomeePlayer
                                                         .loadPlaylist(
                                                             state
-                                                                .album.playlist,
-                                                            doPlay: true,
-                                                            idx: 0);
+                                                                .album.playlist);
                                                   } else if (!context
                                                       .read<
                                                           ElythraPlayerCubit>()
@@ -288,8 +285,7 @@ class _AlbumViewState extends State<AlbumView> {
                               if (context
                                           .read<ElythraPlayerCubit>()
                                           .bloomeePlayer
-                                          .queueTitle
-                                          .value !=
+                                          .queueTitleValue !=
                                       widget.album.name ||
                                   context
                                           .read<ElythraPlayerCubit>()
@@ -299,8 +295,7 @@ class _AlbumViewState extends State<AlbumView> {
                                 context
                                     .read<ElythraPlayerCubit>()
                                     .bloomeePlayer
-                                    .loadPlaylist(state.album.playlist,
-                                        doPlay: true, idx: index);
+                                    .loadPlaylist(state.album.playlist);
                               } else if (!context
                                   .read<ElythraPlayerCubit>()
                                   .bloomeePlayer

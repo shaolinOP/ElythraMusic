@@ -39,14 +39,15 @@ class LyricsCubit extends Cubit<LyricsState> {
 
   LyricsCubit(this.playerCubit) : super(LyricsInitial()) {
     // Listen to player state changes
-    playerCubit.stream.listen((playerState) {
-      if (playerState.currentMedia != null) {
-        fetchLyrics(
-          playerState.currentMedia!.title ?? '',
-          playerState.currentMedia!.artist ?? '',
-        );
-      }
-    });
+    // TODO: Fix currentMedia access
+    // playerCubit.stream.listen((playerState) {
+    //   if (playerState.currentMedia != null) {
+    //     fetchLyrics(
+    //       playerState.currentMedia!.title ?? '',
+    //       playerState.currentMedia!.artist ?? '',
+    //     );
+    //   }
+    // });
   }
 
   Future<void> fetchLyrics(String title, String artist) async {

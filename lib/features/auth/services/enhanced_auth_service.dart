@@ -162,6 +162,7 @@ class EnhancedAuthService {
       if (user == null) return null;
 
       final token = await user.getIdToken(true);
+      if (token == null) return null;
       
       // Cache the token
       final prefs = await SharedPreferences.getInstance();

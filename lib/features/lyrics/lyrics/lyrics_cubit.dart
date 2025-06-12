@@ -1,6 +1,6 @@
 import 'dart:async';
 import 'dart:developer';
-import 'package:elythra_music/features/player/blocs/mediaPlayer/bloomee_player_cubit.dart';
+import 'package:elythra_music/features/player/blocs/mediaPlayer/bloomee_player_cubit.dart' show ElythraPlayerCubit, MediaItem;
 import 'package:elythra_music/core/model/lyrics_models.dart';
 import 'package:elythra_music/core/model/songModel.dart';
 import 'package:elythra_music/features/lyrics/repository/lyrics.dart';
@@ -16,11 +16,35 @@ class LyricsCubit extends Cubit<LyricsState> {
   StreamSubscription? _mediaItemSubscription;
   LyricsCubit(ElythraPlayerCubit playerCubit) : super(LyricsInitial()) {
     _mediaItemSubscription =
-        playerCubit.bloomeePlayer.mediaItem.stream.listen((v) {
+        playerCubit.bloomeePlayer.mediaItem.listen((v) {
       if (v != null) {
-        getLyrics(mediaItem2MediaItemModel(v));
+        getLyrics(_convertToMediaItemModel(v));
       }
     });
+  }
+
+  MediaItemModel _convertToMediaItemModel(MediaItem mediaItem) {
+    return MediaItemModel(
+      id: mediaItem.id,
+      title: mediaItem.title,
+      album: mediaItem.album,
+      artUri: mediaItem.artUri != null ? Uri.parse(mediaItem.artUri!) : null,
+      artist: mediaItem.artist,
+      extras: mediaItem.extras,
+      duration: mediaItem.duration,
+    );
+  }
+
+  MediaItemModel _convertToMediaItemModel(MediaItem mediaItem) {
+    return MediaItemModel(
+      id: mediaItem.id,
+      title: mediaItem.title,
+      album: mediaItem.album,
+      artUri: mediaItem.artUri != null ? Uri.parse(mediaItem.artUri!) : null,
+      artist: mediaItem.artist,
+      extras: mediaItem.extras,
+      duration: mediaItem.duration,
+    );
   }
 
   void getLyrics(MediaItemModel mediaItem) async {

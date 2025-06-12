@@ -177,9 +177,6 @@ class ColorExtractionService {
         backgroundColor: primaryColor,
         foregroundColor: _getContrastColor(primaryColor),
       ),
-      cardTheme: CardThemeData(
-        color: colors[1], // Light variant
-      ),
     );
   }
 
