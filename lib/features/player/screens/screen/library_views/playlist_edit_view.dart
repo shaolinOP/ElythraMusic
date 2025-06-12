@@ -1,7 +1,7 @@
 // Page for editing playlist title,description and reordering playlist items
 import 'dart:developer';
 import 'dart:ui';
-import 'package:elythra_music/core/model/songModel.dart';
+import 'package:elythra_music/core/model/song_model.dart';
 import 'package:elythra_music/features/player/screens/screen/library_views/cubit/current_playlist_cubit.dart';
 import 'package:elythra_music/features/player/screens/widgets/snackbar.dart';
 import 'package:elythra_music/features/player/screens/widgets/song_tile.dart';

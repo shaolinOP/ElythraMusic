@@ -4,7 +4,7 @@ import 'dart:isolate';
 import 'dart:ui';
 
 import 'package:elythra_music/core/blocs/internet_connectivity/cubit/connectivity_cubit.dart';
-import 'package:elythra_music/core/model/songModel.dart';
+import 'package:elythra_music/core/model/song_model.dart';
 import 'package:elythra_music/core/routes_and_consts/global_str_consts.dart';
 import 'package:elythra_music/features/player/screens/widgets/snackbar.dart';
 import 'package:elythra_music/core/services/db/bloomee_db_service.dart';

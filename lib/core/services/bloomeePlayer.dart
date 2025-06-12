@@ -1,6 +1,6 @@
 import 'dart:developer';
 import 'dart:io';
-import 'package:elythra_music/core/model/saavnModel.dart';
+import 'package:elythra_music/core/model/saavn_model.dart';
 import 'package:elythra_music/core/model/yt_music_model.dart';
 import 'package:elythra_music/core/repository/Saavn/saavn_api.dart';
 import 'package:elythra_music/core/repository/Youtube/ytm/ytmusic.dart';
@@ -14,7 +14,7 @@ import 'package:easy_debounce/easy_throttle.dart';
 import 'package:flutter/foundation.dart';
 import 'package:just_audio/just_audio.dart';
 import 'package:rxdart/rxdart.dart';
-import 'package:elythra_music/core/model/songModel.dart';
+import 'package:elythra_music/core/model/song_model.dart';
 import '../model/media_playlist_model.dart';
 import 'package:elythra_music/core/services/discord_service.dart';
 

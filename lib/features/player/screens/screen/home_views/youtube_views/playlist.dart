@@ -10,7 +10,7 @@ import 'package:elythra_music/features/player/screens/widgets/playPause_widget.d
 import 'package:elythra_music/features/player/screens/widgets/snackbar.dart';
 import 'package:elythra_music/features/player/screens/widgets/song_tile.dart';
 import 'package:elythra_music/core/services/db/bloomee_db_service.dart';
-import 'package:elythra_music/core/model/songModel.dart';
+import 'package:elythra_music/core/model/song_model.dart';
 import 'package:elythra_music/core/model/youtube_vid_model.dart';
 import 'package:elythra_music/core/repository/Youtube/youtube_api.dart';
 import 'package:elythra_music/features/player/screens/widgets/sign_board_widget.dart';

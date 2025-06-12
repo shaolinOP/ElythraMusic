@@ -2,7 +2,7 @@ import 'dart:async';
 import 'dart:developer';
 import 'package:elythra_music/features/player/blocs/mediaPlayer/bloomee_player_cubit.dart' show ElythraPlayerCubit, ElythraMediaItem;
 import 'package:elythra_music/core/model/lyrics_models.dart';
-import 'package:elythra_music/core/model/songModel.dart';
+import 'package:elythra_music/core/model/song_model.dart';
 import 'package:elythra_music/features/lyrics/repository/lyrics.dart';
 import 'package:elythra_music/core/routes_and_consts/global_conts.dart';
 import 'package:elythra_music/core/routes_and_consts/global_str_consts.dart';

@@ -1,6 +1,6 @@
 import 'package:elythra_music/core/model/playlist_onl_model.dart';
-import 'package:elythra_music/core/model/saavnModel.dart';
-import 'package:elythra_music/core/model/songModel.dart';
+import 'package:elythra_music/core/model/saavn_model.dart';
+import 'package:elythra_music/core/model/song_model.dart';
 import 'package:elythra_music/core/model/source_engines.dart';
 import 'package:elythra_music/core/model/youtube_vid_model.dart';
 import 'package:elythra_music/core/model/yt_music_model.dart';

@@ -2,7 +2,7 @@
 import 'package:elythra_music/features/player/screens/widgets/snackbar.dart';
 import 'package:elythra_music/core/utils/imgurl_formator.dart';
 import 'package:flutter/material.dart';
-import 'package:elythra_music/core/model/songModel.dart';
+import 'package:elythra_music/core/model/song_model.dart';
 import 'package:elythra_music/core/theme_data/default.dart';
 import 'package:elythra_music/core/utils/load_Image.dart';
 import 'package:flutter/services.dart';

@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:elythra_music/core/blocs/add_to_playlist/cubit/add_to_playlist_cubit.dart';
-import 'package:elythra_music/core/model/songModel.dart';
+import 'package:elythra_music/core/model/song_model.dart';
 import 'package:elythra_music/features/player/screens/widgets/createPlaylist_bottomsheet.dart';
 import 'package:elythra_music/features/player/screens/widgets/libitem_tile.dart';
 import 'package:elythra_music/core/services/db/GlobalDB.dart';

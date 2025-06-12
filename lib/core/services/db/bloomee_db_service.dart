@@ -7,7 +7,7 @@ import 'package:elythra_music/core/model/artist_onl_model.dart';
 import 'package:elythra_music/core/model/chart_model.dart';
 import 'package:elythra_music/core/model/lyrics_models.dart';
 import 'package:elythra_music/core/model/playlist_onl_model.dart';
-import 'package:elythra_music/core/model/songModel.dart';
+import 'package:elythra_music/core/model/song_model.dart';
 import 'package:elythra_music/core/routes_and_consts/global_str_consts.dart';
 import 'package:path/path.dart' as p;
 import 'package:isar/isar.dart';

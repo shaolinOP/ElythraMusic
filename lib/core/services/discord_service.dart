@@ -1,6 +1,6 @@
 import 'dart:developer';
 import 'dart:io';
-import 'package:elythra_music/core/model/songModel.dart';
+import 'package:elythra_music/core/model/song_model.dart';
 import 'package:elythra_music/core/routes_and_consts/global_conts.dart';
 import 'package:dart_discord_rpc/dart_discord_rpc.dart';
 

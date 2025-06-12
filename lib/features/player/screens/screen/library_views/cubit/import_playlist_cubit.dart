@@ -1,6 +1,6 @@
 import 'package:bloc/bloc.dart';
 import 'package:rxdart/rxdart.dart';
-import 'package:elythra_music/core/model/songModel.dart';
+import 'package:elythra_music/core/model/song_model.dart';
 import 'package:elythra_music/core/model/youtube_vid_model.dart';
 import 'package:elythra_music/core/repository/Youtube/youtube_api.dart';
 import 'package:elythra_music/core/services/db/GlobalDB.dart';

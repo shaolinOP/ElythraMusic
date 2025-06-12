@@ -5,7 +5,7 @@ import 'package:equatable/equatable.dart';
 import 'package:flutter/foundation.dart';
 import 'package:elythra_music/core/services/color_extraction_service.dart';
 import 'package:elythra_music/core/model/media_playlist_model.dart';
-import 'package:elythra_music/core/model/songModel.dart';
+import 'package:elythra_music/core/model/song_model.dart';
 import 'package:elythra_music/core/services/db/GlobalDB.dart';
 import 'package:elythra_music/core/services/db/cubit/bloomee_db_cubit.dart';
 import 'package:elythra_music/core/utils/pallete_generator.dart';

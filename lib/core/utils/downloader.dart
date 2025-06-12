@@ -1,7 +1,7 @@
 import 'dart:developer';
 import 'dart:io';
-import 'package:elythra_music/core/model/saavnModel.dart';
-import 'package:elythra_music/core/model/songModel.dart';
+import 'package:elythra_music/core/model/saavn_model.dart';
+import 'package:elythra_music/core/model/song_model.dart';
 import 'package:elythra_music/core/repository/Youtube/youtube_api.dart';
 import 'package:elythra_music/core/routes_and_consts/global_str_consts.dart';
 import 'package:elythra_music/features/player/screens/widgets/snackbar.dart';

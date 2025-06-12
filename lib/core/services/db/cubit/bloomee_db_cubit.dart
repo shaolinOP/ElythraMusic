@@ -5,7 +5,7 @@ import 'package:audio_service/audio_service.dart';
 import 'package:bloc/bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:elythra_music/core/model/media_playlist_model.dart';
-import 'package:elythra_music/core/model/songModel.dart';
+import 'package:elythra_music/core/model/song_model.dart';
 import 'package:elythra_music/core/services/db/GlobalDB.dart';
 import 'package:elythra_music/core/services/db/bloomee_db_service.dart';
 

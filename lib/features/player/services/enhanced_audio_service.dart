@@ -2,7 +2,7 @@ import 'dart:developer';
 import 'dart:io';
 import 'package:just_audio/just_audio.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:elythra_music/core/model/songModel.dart';
+import 'package:elythra_music/core/model/song_model.dart';
 
 /// Audio quality options
 enum AudioQuality {
