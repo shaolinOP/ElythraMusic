@@ -2,7 +2,7 @@ import 'dart:io';
 
 import 'package:elythra_music/core/blocs/library/cubit/library_items_cubit.dart';
 import 'package:elythra_music/features/player/blocs/mediaPlayer/bloomee_player_cubit.dart';
-import 'package:elythra_music/core/model/media_playlist_model.dart' as core_playlist;
+
 import 'package:elythra_music/features/player/screens/screen/library_views/playlist_edit_view.dart';
 import 'package:elythra_music/features/player/screens/widgets/snackbar.dart';
 import 'package:elythra_music/core/services/db/GlobalDB.dart';
@@ -250,7 +250,7 @@ class PltOptBtn extends StatelessWidget {
         children: [
           Icon(
             icon,
-            color: Default_Theme.primaryColor1,
+            color: DefaultTheme.primaryColor1,
             size: 25,
           ),
           Expanded(
@@ -259,7 +259,7 @@ class PltOptBtn extends StatelessWidget {
               child: Text(
                 title,
                 style: const TextStyle(
-                    color: Default_Theme.primaryColor1,
+                    color: DefaultTheme.primaryColor1,
                     fontFamily: "Unageo",
                     fontSize: 17,
                     fontWeight: FontWeight.w400),
@@ -269,7 +269,7 @@ class PltOptBtn extends StatelessWidget {
         ],
       ),
       onPressed: onPressed,
-      hoverColor: Default_Theme.primaryColor1.withOpacity(0.04),
+      hoverColor: DefaultTheme.primaryColor1.withOpacity(0.04),
     );
   }
 }

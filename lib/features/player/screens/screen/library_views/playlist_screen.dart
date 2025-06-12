@@ -70,7 +70,7 @@ class PlaylistView extends StatelessWidget {
     return SafeArea(
       child: Scaffold(
         extendBodyBehindAppBar: true,
-        backgroundColor: Default_Theme.themeColor,
+        backgroundColor: DefaultTheme.themeColor,
         body: BlocBuilder<CurrentPlaylistCubit, CurrentPlaylistState>(
           builder: (context, state) {
             const double maxExtent = 300;
@@ -100,8 +100,8 @@ class PlaylistView extends StatelessWidget {
                               context.pop();
                             },
                           ),
-                          backgroundColor: Default_Theme.themeColor,
-                          surfaceTintColor: Default_Theme.themeColor,
+                          backgroundColor: DefaultTheme.themeColor,
+                          surfaceTintColor: DefaultTheme.themeColor,
                           expandedHeight: maxExtent,
                           floating: false,
                           pinned: true,
@@ -121,7 +121,7 @@ class PlaylistView extends StatelessWidget {
                             final span = TextSpan(
                               text: state.mediaPlaylist.playlistName,
                               style:
-                                  Default_Theme.secondoryTextStyleMedium.merge(
+                                  DefaultTheme.secondoryTextStyleMedium.merge(
                                 TextStyle(
                                   fontSize: titleFontSize,
                                   color: getFBColor(context)[0],
@@ -148,7 +148,7 @@ class PlaylistView extends StatelessWidget {
                               title: Text(
                                 state.mediaPlaylist.playlistName,
                                 maxLines: isCollapsed ? 1 : 3,
-                                style: Default_Theme.secondoryTextStyleMedium
+                                style: DefaultTheme.secondoryTextStyleMedium
                                     .merge(
                                   TextStyle(
                                     fontSize: titleFontSize,
@@ -285,9 +285,9 @@ class PlaylistView extends StatelessWidget {
                                 Expanded(
                                   child: Text(
                                     "${state.mediaPlaylist.isAlbum ? "Album" : "Playlist"} • ${state.mediaPlaylist.mediaItems.length} Songs \nby ${state.mediaPlaylist.artists ?? 'You'}",
-                                    style: Default_Theme.secondoryTextStyle
+                                    style: DefaultTheme.secondoryTextStyle
                                         .merge(TextStyle(
-                                      color: Default_Theme.primaryColor1
+                                      color: DefaultTheme.primaryColor1
                                           .withOpacity(0.8),
                                       fontSize: 12,
                                     )),
@@ -311,7 +311,7 @@ class PlaylistView extends StatelessWidget {
                                         },
                                         padding: EdgeInsets.zero,
                                         icon: Icon(MingCute.shuffle_line,
-                                            color: Default_Theme.primaryColor1
+                                            color: DefaultTheme.primaryColor1
                                                 .withOpacity(0.8))),
                                     Padding(
                                       padding: const EdgeInsets.only(
@@ -405,7 +405,7 @@ class PlaylistView extends StatelessWidget {
                                                 items: state.mediaPlaylist.mediaItems.map((item) => player.ElythraMediaItem.fromMediaItemModel(item)).toList()));
                                         },
                                         icon: Icon(MingCute.more_2_line,
-                                            color: Default_Theme.primaryColor1
+                                            color: DefaultTheme.primaryColor1
                                                 .withOpacity(0.8))),
                                   ],
                                 ),

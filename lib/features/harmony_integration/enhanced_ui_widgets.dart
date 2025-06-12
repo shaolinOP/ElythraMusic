@@ -421,6 +421,7 @@ class _EnhancedCardState extends State<EnhancedCard>
   late Animation<double> _elevationAnimation;
   late Animation<double> _scaleAnimation;
 
+  // ignore: unused_field
   bool _isHovered = false;
 
   @override

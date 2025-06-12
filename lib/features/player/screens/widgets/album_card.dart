@@ -99,20 +99,20 @@ class AlbumCard extends StatelessWidget {
                           album.name,
                           maxLines: 2,
                           textAlign: TextAlign.center,
-                          style: Default_Theme.secondoryTextStyleMedium
+                          style: DefaultTheme.secondoryTextStyleMedium
                               .merge(TextStyle(
                             fontSize: 14,
-                            color: Default_Theme.primaryColor1.withOpacity(0.9),
+                            color: DefaultTheme.primaryColor1.withOpacity(0.9),
                           )),
                         ),
                       ),
                       Text(album.artists,
                           maxLines: 1,
                           textAlign: TextAlign.center,
-                          style: Default_Theme.secondoryTextStyleMedium
+                          style: DefaultTheme.secondoryTextStyleMedium
                               .merge(TextStyle(
                             fontSize: 12,
-                            color: Default_Theme.primaryColor1.withOpacity(0.7),
+                            color: DefaultTheme.primaryColor1.withOpacity(0.7),
                             overflow: TextOverflow.ellipsis,
                           ))),
                     ],

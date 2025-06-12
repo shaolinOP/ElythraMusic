@@ -11,19 +11,19 @@ class UpdatesSettings extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Default_Theme.themeColor,
+      backgroundColor: DefaultTheme.themeColor,
       appBar: AppBar(
-        backgroundColor: Default_Theme.themeColor,
-        foregroundColor: Default_Theme.primaryColor1,
-        surfaceTintColor: Default_Theme.themeColor,
+        backgroundColor: DefaultTheme.themeColor,
+        foregroundColor: DefaultTheme.primaryColor1,
+        surfaceTintColor: DefaultTheme.themeColor,
         centerTitle: true,
         title: Text(
           'Updates',
           style: const TextStyle(
-                  color: Default_Theme.primaryColor1,
+                  color: DefaultTheme.primaryColor1,
                   fontSize: 20,
                   fontWeight: FontWeight.bold)
-              .merge(Default_Theme.secondoryTextStyle),
+              .merge(DefaultTheme.secondoryTextStyle),
         ),
       ),
       body: BlocBuilder<SettingsCubit, SettingsState>(
@@ -47,15 +47,15 @@ class UpdatesSettings extends StatelessWidget {
                   subtitle: Text(
                     "Get notified when new updates are available in app start up.",
                     style: TextStyle(
-                            color: Default_Theme.primaryColor1.withOpacity(0.5),
+                            color: DefaultTheme.primaryColor1.withOpacity(0.5),
                             fontSize: 12.5)
-                        .merge(Default_Theme.secondoryTextStyleMedium),
+                        .merge(DefaultTheme.secondoryTextStyleMedium),
                   ),
                   title: Text(
                     "Auto update notify",
                     style: const TextStyle(
-                            color: Default_Theme.primaryColor1, fontSize: 17)
-                        .merge(Default_Theme.secondoryTextStyleMedium),
+                            color: DefaultTheme.primaryColor1, fontSize: 17)
+                        .merge(DefaultTheme.secondoryTextStyleMedium),
                   ),
                   onChanged: (value) {
                     context.read<SettingsCubit>().setAutoUpdateNotify(value);

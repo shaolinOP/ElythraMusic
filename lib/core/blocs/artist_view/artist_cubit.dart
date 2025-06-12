@@ -23,7 +23,7 @@ class ArtistCubit extends Cubit<ArtistState> {
     emit(ArtistLoading(artist: artist));
     checkIsSaved();
     switch (sourceEngine) {
-      case SourceEngine.eng_JIS:
+      case SourceEngine.engJis:
         SaavnAPI()
             .fetchArtistDetails(Uri.parse(artist.sourceURL).pathSegments.last)
             .then((value) {
@@ -39,7 +39,7 @@ class ArtistCubit extends Cubit<ArtistState> {
           ));
         });
         break;
-      case SourceEngine.eng_YTM:
+      case SourceEngine.engYtm:
         YTMusic().getArtistFull(artist.sourceId).then((value) {
           List<AlbumModel> albums = [];
           if (value != null && value['albums'] != null) {
@@ -67,7 +67,7 @@ class ArtistCubit extends Cubit<ArtistState> {
           }
         });
         break;
-      case SourceEngine.eng_YTV:
+      case SourceEngine.engYtv:
       // TODO: Handle this case.
     }
   }

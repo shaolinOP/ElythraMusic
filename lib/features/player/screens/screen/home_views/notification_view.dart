@@ -19,11 +19,11 @@ class NotificationView extends StatelessWidget {
         }
       },
       child: Scaffold(
-        backgroundColor: Default_Theme.themeColor,
+        backgroundColor: DefaultTheme.themeColor,
         appBar: AppBar(
-          backgroundColor: Default_Theme.themeColor,
-          foregroundColor: Default_Theme.primaryColor1,
-          surfaceTintColor: Default_Theme.themeColor,
+          backgroundColor: DefaultTheme.themeColor,
+          foregroundColor: DefaultTheme.primaryColor1,
+          surfaceTintColor: DefaultTheme.themeColor,
           centerTitle: true,
           actions: [
             IconButton(
@@ -32,17 +32,17 @@ class NotificationView extends StatelessWidget {
               },
               icon: const Icon(
                 MingCute.broom_fill,
-                color: Default_Theme.primaryColor1,
+                color: DefaultTheme.primaryColor1,
               ),
             ),
           ],
           title: Text(
             'Notifications',
             style: const TextStyle(
-                    color: Default_Theme.primaryColor1,
+                    color: DefaultTheme.primaryColor1,
                     fontSize: 20,
                     fontWeight: FontWeight.bold)
-                .merge(Default_Theme.secondoryTextStyle),
+                .merge(DefaultTheme.secondoryTextStyle),
           ),
         ),
         body: BlocBuilder<NotificationCubit, NotificationState>(

@@ -130,7 +130,7 @@ class BloomeePlayer {
   Stream<String> get queueTitle => Stream.value("Current Queue");
   String get queueTitleValue => "Current Queue";
   Stream<ElythraMediaItem?> get mediaItem => _mediaItemController.stream;
-  ElythraMediaItem? get currentMedia => _currentElythraMediaItem?.value;
+  ElythraMediaItem? get currentMedia => _currentElythraMediaItem.value;
   Stream<bool> get shuffleMode => _shuffleModeController.stream;
   bool get shuffleModeValue => _shuffleModeController.value;
   
@@ -198,7 +198,7 @@ class BloomeePlayer {
     // Implementation for loading playlist
     _queueController.add(playlist.items);
     if (playlist.items.isNotEmpty) {
-      _currentElythraMediaItem?.add(playlist.items.first);
+      _currentElythraMediaItem.add(playlist.items.first);
       _mediaItemController.add(playlist.items.first);
     }
     // print('Loading playlist: ${playlist.name}');
@@ -222,7 +222,7 @@ class BloomeePlayer {
     _queueController.add(mediaItems);
     if (mediaItems.isNotEmpty) {
       final targetItem = idx < mediaItems.length ? mediaItems[idx] : mediaItems.first;
-      _currentElythraMediaItem?.add(targetItem);
+      _currentElythraMediaItem.add(targetItem);
       _mediaItemController.add(targetItem);
       if (doPlay) {
         await play();
@@ -248,7 +248,7 @@ class BloomeePlayer {
     final currentQueue = _queueController.value;
     if (index >= 0 && index < currentQueue.length) {
       final targetItem = currentQueue[index];
-      _currentElythraMediaItem?.add(targetItem);
+      _currentElythraMediaItem.add(targetItem);
       _mediaItemController.add(targetItem);
     }
   }
@@ -280,7 +280,7 @@ class BloomeePlayer {
   
   void dispose() {
     _mediaItemController.close();
-    _currentElythraMediaItem?.close();
+    _currentElythraMediaItem.close();
     _shuffleModeController.close();
     _queueController.close();
     audioPlayer.dispose();

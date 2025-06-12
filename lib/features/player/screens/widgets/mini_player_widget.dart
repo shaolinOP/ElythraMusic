@@ -101,7 +101,7 @@ class MiniPlayerCard extends StatelessWidget {
           child: Stack(
             children: [
               Container(
-                color: Default_Theme.themeColor,
+                color: DefaultTheme.themeColor,
                 width: MediaQuery.of(context).size.width,
                 height: MediaQuery.of(context).size.width,
                 child: LoadImageCached(
@@ -147,21 +147,21 @@ class MiniPlayerCard extends StatelessWidget {
                       children: [
                         Text(
                           state.song.title,
-                          style: Default_Theme.secondoryTextStyle.merge(
+                          style: DefaultTheme.secondoryTextStyle.merge(
                               const TextStyle(
                                   fontSize: 15,
                                   fontWeight: FontWeight.bold,
-                                  color: Default_Theme.primaryColor1)),
+                                  color: DefaultTheme.primaryColor1)),
                           maxLines: 1,
                           overflow: TextOverflow.ellipsis,
                         ),
                         Text(
                           state.song.artist ?? 'Unknown Artist',
-                          style: Default_Theme.secondoryTextStyle.merge(
+                          style: DefaultTheme.secondoryTextStyle.merge(
                               TextStyle(
                                   fontWeight: FontWeight.bold,
                                   fontSize: 12.5,
-                                  color: Default_Theme.primaryColor1
+                                  color: DefaultTheme.primaryColor1
                                       .withOpacity(0.7))),
                           maxLines: 1,
                           overflow: TextOverflow.ellipsis,
@@ -189,7 +189,7 @@ class MiniPlayerCard extends StatelessWidget {
                           child: SizedBox.square(
                               dimension: 20,
                               child: CircularProgressIndicator(
-                                color: Default_Theme.primaryColor1,
+                                color: DefaultTheme.primaryColor1,
                               )),
                         )
                       : (isCompleted

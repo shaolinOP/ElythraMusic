@@ -2,23 +2,23 @@ import 'package:elythra_music/core/routes_and_consts/global_str_consts.dart';
 import 'package:elythra_music/core/services/db/bloomee_db_service.dart';
 
 enum SourceEngine {
-  eng_JIS("JISaavn"),
-  eng_YTM("YTMusic"),
-  eng_YTV("YTVideo");
+  engJis("JISaavn"),
+  engYtm("YTMusic"),
+  engYtv("YTVideo");
 
   final String value;
   const SourceEngine(this.value);
 }
 
 Map<SourceEngine, List<String>> sourceEngineCountries = {
-  SourceEngine.eng_JIS: [
+  SourceEngine.engJis: [
     "IN",
     "NP",
     "BT",
     "LK",
   ],
-  SourceEngine.eng_YTM: [],
-  SourceEngine.eng_YTV: [],
+  SourceEngine.engYtm: [],
+  SourceEngine.engYtv: [],
 };
 
 Future<List<SourceEngine>> availableSourceEngines() async {

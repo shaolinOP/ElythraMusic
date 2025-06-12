@@ -28,6 +28,7 @@ class CrossPlatformSyncService {
   // Local storage keys
   static const String _lastSyncKey = 'last_sync_timestamp';
   static const String _syncDataKey = 'cached_sync_data';
+  // ignore: unused_field
   static const String _conflictResolutionKey = 'conflict_resolution_strategy';
 
   /// Initialize the sync service

@@ -406,7 +406,7 @@ class _MyAppState extends State<MyApp> {
                 ),
                 scaffoldMessengerKey: SnackbarService.messengerKey,
                 routerConfig: GlobalRoutes.globalRouter,
-                theme: Default_Theme().defaultThemeData,
+                theme: DefaultTheme().defaultThemeData,
                 scrollBehavior: CustomScrollBehavior(),
                 debugShowCheckedModeBanner: false,
               );

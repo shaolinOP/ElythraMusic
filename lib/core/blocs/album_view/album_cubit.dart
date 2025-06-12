@@ -20,7 +20,7 @@ class AlbumCubit extends Cubit<AlbumState> {
     emit(AlbumLoading(album: album));
     checkIsSaved();
     switch (sourceEngine) {
-      case SourceEngine.eng_JIS:
+      case SourceEngine.engJis:
         SaavnAPI().fetchAlbumDetails(album.extra['token']).then(
           (value) {
             emit(
@@ -35,7 +35,7 @@ class AlbumCubit extends Cubit<AlbumState> {
           },
         );
         break;
-      case SourceEngine.eng_YTM:
+      case SourceEngine.engYtm:
         YTMusic().getAlbumFull(album.sourceId.replaceAll("youtube", '')).then(
           (value) {
             if (value != null) {
@@ -56,7 +56,7 @@ class AlbumCubit extends Cubit<AlbumState> {
             }
           },
         );
-      case SourceEngine.eng_YTV:
+      case SourceEngine.engYtv:
       // TODO: Handle this case.
     }
   }

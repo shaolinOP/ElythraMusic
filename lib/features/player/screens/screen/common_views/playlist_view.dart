@@ -97,13 +97,13 @@ class _OnlPlaylistViewState extends State<OnlPlaylistView> {
                                     children: [
                                       Text(
                                         "Playlist by",
-                                        style: Default_Theme
+                                        style: DefaultTheme
                                             .secondoryTextStyleMedium
                                             .merge(
                                           TextStyle(
                                             overflow: TextOverflow.ellipsis,
                                             fontSize: 14,
-                                            color: Default_Theme.primaryColor1
+                                            color: DefaultTheme.primaryColor1
                                                 .withOpacity(0.4),
                                           ),
                                         ),
@@ -111,13 +111,13 @@ class _OnlPlaylistViewState extends State<OnlPlaylistView> {
                                       Text(
                                         widget.playlist.artists,
                                         maxLines: 3,
-                                        style: Default_Theme
+                                        style: DefaultTheme
                                             .secondoryTextStyleMedium
                                             .merge(
                                           TextStyle(
                                             overflow: TextOverflow.ellipsis,
                                             fontSize: 14,
-                                            color: Default_Theme.primaryColor1
+                                            color: DefaultTheme.primaryColor1
                                                 .withOpacity(0.9),
                                           ),
                                         ),
@@ -125,14 +125,14 @@ class _OnlPlaylistViewState extends State<OnlPlaylistView> {
                                       state.playlist.description != null
                                           ? Text(
                                               state.playlist.description ?? "",
-                                              style: Default_Theme
+                                              style: DefaultTheme
                                                   .secondoryTextStyle
                                                   .merge(
                                                 TextStyle(
                                                   overflow:
                                                       TextOverflow.ellipsis,
                                                   fontSize: 13,
-                                                  color: Default_Theme
+                                                  color: DefaultTheme
                                                       .primaryColor1
                                                       .withOpacity(0.5),
                                                 ),
@@ -151,7 +151,7 @@ class _OnlPlaylistViewState extends State<OnlPlaylistView> {
                                                 style: OutlinedButton.styleFrom(
                                                   side: const BorderSide(
                                                     width: 2,
-                                                    color: Default_Theme
+                                                    color: DefaultTheme
                                                         .accentColor2,
                                                   ),
                                                 ),
@@ -184,7 +184,7 @@ class _OnlPlaylistViewState extends State<OnlPlaylistView> {
                                                 },
                                                 label: const Text(
                                                   "Play",
-                                                  style: Default_Theme
+                                                  style: DefaultTheme
                                                       .secondoryTextStyleMedium,
                                                 ),
                                                 icon: const Icon(
@@ -206,7 +206,7 @@ class _OnlPlaylistViewState extends State<OnlPlaylistView> {
                                                           .heart_solid)
                                                       : const Icon(
                                                           FontAwesome.heart),
-                                                  color: Default_Theme
+                                                  color: DefaultTheme
                                                       .accentColor2,
                                                 ),
                                               ),
@@ -254,10 +254,10 @@ class _OnlPlaylistViewState extends State<OnlPlaylistView> {
                       widget.playlist.name,
                       maxLines: 3,
                       textAlign: TextAlign.center,
-                      style: Default_Theme.secondoryTextStyleMedium.merge(
+                      style: DefaultTheme.secondoryTextStyleMedium.merge(
                         TextStyle(
                           fontSize: 20,
-                          color: Default_Theme.primaryColor1.withOpacity(0.8),
+                          color: DefaultTheme.primaryColor1.withOpacity(0.8),
                         ),
                       ),
                     ),

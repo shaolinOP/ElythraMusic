@@ -16,93 +16,93 @@ const List<String> billboardIMGs = [
 RandomIMGs billboardRandomIMGs = RandomIMGs(imgURLs: billboardIMGs);
 
 class BillboardChartLinks {
-  static const String HOT_100 = 'https://www.billboard.com/charts/hot-100/';
-  static const String BILLBOARD_200 =
+  static const String hot100 = 'https://www.billboard.com/charts/hot-100/';
+  static const String billboard200 =
       'https://www.billboard.com/charts/billboard-200/';
-  static const String SOCIAL_50 = 'https://www.billboard.com/charts/social-50/';
-  static const String STREAMING_SONGS =
+  static const String social50 = 'https://www.billboard.com/charts/social-50/';
+  static const String streamingSongs =
       'https://www.billboard.com/charts/streaming-songs/';
-  static const String DIGITAL_SONG_SALES =
+  static const String digitalSongSales =
       'https://www.billboard.com/charts/digital-song-sales/';
-  static const String RADIO_SONGS =
+  static const String radioSongs =
       'https://www.billboard.com/charts/radio-songs/';
-  static const String TOP_ALBUM_SALES =
+  static const String topAlbumSales =
       'https://www.billboard.com/charts/top-album-sales/';
-  static const String CURRENT_ALBUMS =
+  static const String currentAlbums =
       'https://www.billboard.com/charts/current-albums/';
-  static const String INDEPENDENT_ALBUMS =
+  static const String independentAlbums =
       'https://www.billboard.com/charts/independent-albums/';
-  static const String CATALOG_ALBUMS =
+  static const String catalogAlbums =
       'https://www.billboard.com/charts/catalog-albums/';
-  static const String SOUNDTRACKS =
+  static const String soundtracks =
       'https://www.billboard.com/charts/soundtracks/';
-  static const String VINYL_ALBUMS =
+  static const String vinylAlbums =
       'https://www.billboard.com/charts/vinyl-albums/';
-  static const String HEATSEEKERS_ALBUMS =
+  static const String heatseekersAlbums =
       'https://www.billboard.com/charts/heatseekers-albums/';
-  static const String WORLD_ALBUMS =
+  static const String worldAlbums =
       'https://www.billboard.com/charts/world-albums/';
-  static const String CANADIAN_HOT_100 =
+  static const String canadianHot100 =
       'https://www.billboard.com/charts/canadian-hot-100/';
-  static const String JAPAN_HOT_100 =
+  static const String japanHot100 =
       'https://www.billboard.com/charts/japan-hot-100/';
-  static const String KOREA_100 =
+  static const String korea100 =
       'https://www.billboard.com/charts/billboard-korea-100/';
-  static const String INDIA_SONGS =
+  static const String indiaSongs =
       'https://www.billboard.com/charts/india-songs-hotw/';
-  static const String BILLBOARD_GLOBAL_200 =
+  static const String billboardGlobal200 =
       'https://www.billboard.com/charts/billboard-global-200/';
 }
 
 class BillboardCharts {
   static final ChartURL HOT_100 =
-      ChartURL(title: "Billboard\nHot 100", url: BillboardChartLinks.HOT_100);
+      ChartURL(title: "Billboard\nHot 100", url: BillboardChartLinks.hot100);
   static final ChartURL BILLBOARD_200 =
-      ChartURL(title: "Billboard\n200", url: BillboardChartLinks.BILLBOARD_200);
+      ChartURL(title: "Billboard\n200", url: BillboardChartLinks.billboard200);
   static final ChartURL SOCIAL_50 = ChartURL(
-      title: "Billboard\nSocial 50", url: BillboardChartLinks.SOCIAL_50);
+      title: "Billboard\nSocial 50", url: BillboardChartLinks.social50);
   static final ChartURL STREAMING_SONGS = ChartURL(
       title: "Billboard\nStreaming Songs",
-      url: BillboardChartLinks.STREAMING_SONGS);
+      url: BillboardChartLinks.streamingSongs);
   static final ChartURL DIGITAL_SONG_SALES = ChartURL(
       title: "Billboard\nDigital Song Sales",
-      url: BillboardChartLinks.DIGITAL_SONG_SALES);
+      url: BillboardChartLinks.digitalSongSales);
   static final ChartURL RADIO_SONGS = ChartURL(
-      title: "Billboard\nRadio Songs", url: BillboardChartLinks.RADIO_SONGS);
+      title: "Billboard\nRadio Songs", url: BillboardChartLinks.radioSongs);
   static final ChartURL TOP_ALBUM_SALES = ChartURL(
       title: "Billboard\nTop Album Sales",
-      url: BillboardChartLinks.TOP_ALBUM_SALES);
+      url: BillboardChartLinks.topAlbumSales);
   static final ChartURL CURRENT_ALBUMS = ChartURL(
       title: "Billboard\nCurrent Albums",
-      url: BillboardChartLinks.CURRENT_ALBUMS);
+      url: BillboardChartLinks.currentAlbums);
   static final ChartURL INDEPENDENT_ALBUMS = ChartURL(
       title: "Billboard\nIndependent Albums",
-      url: BillboardChartLinks.INDEPENDENT_ALBUMS);
+      url: BillboardChartLinks.independentAlbums);
   static final ChartURL CATALOG_ALBUMS = ChartURL(
       title: "Billboard\nCatalog Albums",
-      url: BillboardChartLinks.CATALOG_ALBUMS);
+      url: BillboardChartLinks.catalogAlbums);
   static final ChartURL SOUNDTRACKS = ChartURL(
-      title: "Billboard\nSoundtracks", url: BillboardChartLinks.SOUNDTRACKS);
+      title: "Billboard\nSoundtracks", url: BillboardChartLinks.soundtracks);
   static final ChartURL VINYL_ALBUMS = ChartURL(
-      title: "Billboard\nVinyl Albums", url: BillboardChartLinks.VINYL_ALBUMS);
+      title: "Billboard\nVinyl Albums", url: BillboardChartLinks.vinylAlbums);
   static final ChartURL HEATSEEKERS_ALBUMS = ChartURL(
       title: "Billboard\nHeatseekers Albums",
-      url: BillboardChartLinks.HEATSEEKERS_ALBUMS);
+      url: BillboardChartLinks.heatseekersAlbums);
   static final ChartURL WORLD_ALBUMS = ChartURL(
-      title: "Billboard\nWorld Albums", url: BillboardChartLinks.WORLD_ALBUMS);
+      title: "Billboard\nWorld Albums", url: BillboardChartLinks.worldAlbums);
   static final ChartURL CANADIAN_HOT_100 = ChartURL(
       title: "Billboard\nCanadian Hot 100",
-      url: BillboardChartLinks.CANADIAN_HOT_100);
+      url: BillboardChartLinks.canadianHot100);
   static final ChartURL JAPAN_HOT_100 = ChartURL(
       title: "Billboard\nJapan Hot 100",
-      url: BillboardChartLinks.JAPAN_HOT_100);
+      url: BillboardChartLinks.japanHot100);
   static final ChartURL KOREA_100 = ChartURL(
-      title: "Billboard\nKorea 100", url: BillboardChartLinks.KOREA_100);
+      title: "Billboard\nKorea 100", url: BillboardChartLinks.korea100);
   static final ChartURL INDIA_SONGS = ChartURL(
-      title: "Billboard\nIndia Songs", url: BillboardChartLinks.INDIA_SONGS);
+      title: "Billboard\nIndia Songs", url: BillboardChartLinks.indiaSongs);
   static final ChartURL BILLBOARD_GLOBAL_200 = ChartURL(
       title: "Billboard\nGlobal 200",
-      url: BillboardChartLinks.BILLBOARD_GLOBAL_200);
+      url: BillboardChartLinks.billboardGlobal200);
 }
 
 enum Status { NEW, UP, DOWN, SAME, REENTRY, ERROR }

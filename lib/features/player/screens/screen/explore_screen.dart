@@ -111,7 +111,7 @@ class _ExploreScreenState extends State<ExploreScreen> {
                                       height: 60,
                                       width: 60,
                                       child: CircularProgressIndicator(
-                                        color: Default_Theme.accentColor2,
+                                        color: DefaultTheme.accentColor2,
                                       )),
                                 );
                               }
@@ -230,7 +230,7 @@ class _ExploreScreenState extends State<ExploreScreen> {
               ],
             ),
           ),
-          backgroundColor: Default_Theme.themeColor,
+          backgroundColor: DefaultTheme.themeColor,
         ),
       ),
     );
@@ -246,14 +246,14 @@ class CustomDiscoverBar extends StatelessWidget {
   Widget build(BuildContext context) {
     return SliverAppBar(
       floating: true,
-      surfaceTintColor: Default_Theme.themeColor,
-      backgroundColor: Default_Theme.themeColor,
+      surfaceTintColor: DefaultTheme.themeColor,
+      backgroundColor: DefaultTheme.themeColor,
       title: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           Text("Discover",
-              style: Default_Theme.primaryTextStyle.merge(const TextStyle(
-                  fontSize: 34, color: Default_Theme.primaryColor1))),
+              style: DefaultTheme.primaryTextStyle.merge(const TextStyle(
+                  fontSize: 34, color: DefaultTheme.primaryColor1))),
           const Spacer(),
           const NotificationIcon(),
           const TimerIcon(),
@@ -282,7 +282,7 @@ class NotificationIcon extends StatelessWidget {
                       builder: (context) => const NotificationView()));
             },
             icon: const Icon(MingCute.notification_line,
-                color: Default_Theme.primaryColor1, size: 30.0),
+                color: DefaultTheme.primaryColor1, size: 30.0),
           );
         }
         return badges.Badge(
@@ -290,14 +290,14 @@ class NotificationIcon extends StatelessWidget {
             padding: const EdgeInsets.all(1.5),
             child: Text(
               state.notifications.length.toString(),
-              style: Default_Theme.primaryTextStyle.merge(const TextStyle(
+              style: DefaultTheme.primaryTextStyle.merge(const TextStyle(
                   fontSize: 11,
                   fontWeight: FontWeight.bold,
-                  color: Default_Theme.primaryColor2)),
+                  color: DefaultTheme.primaryColor2)),
             ),
           ),
           badgeStyle: const badges.BadgeStyle(
-            badgeColor: Default_Theme.accentColor2,
+            badgeColor: DefaultTheme.accentColor2,
             shape: badges.BadgeShape.circle,
           ),
           position: badges.BadgePosition.topEnd(top: -10, end: -5),
@@ -311,7 +311,7 @@ class NotificationIcon extends StatelessWidget {
                       builder: (context) => const NotificationView()));
             },
             icon: const Icon(MingCute.notification_line,
-                color: Default_Theme.primaryColor1, size: 30.0),
+                color: DefaultTheme.primaryColor1, size: 30.0),
           ),
         );
       },
@@ -332,7 +332,7 @@ class TimerIcon extends StatelessWidget {
             MaterialPageRoute(builder: (context) => const TimerView()));
       },
       icon: const Icon(MingCute.stopwatch_line,
-          color: Default_Theme.primaryColor1, size: 30.0),
+          color: DefaultTheme.primaryColor1, size: 30.0),
     );
   }
 }
@@ -350,7 +350,7 @@ class SettingsIcon extends StatelessWidget {
             MaterialPageRoute(builder: (context) => const SettingsView()));
       },
       icon: const Icon(MingCute.settings_3_line,
-          color: Default_Theme.primaryColor1, size: 30.0),
+          color: DefaultTheme.primaryColor1, size: 30.0),
     );
   }
 }

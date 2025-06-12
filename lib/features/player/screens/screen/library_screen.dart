@@ -58,7 +58,7 @@ class LibraryScreen extends StatelessWidget {
                             title: state.artists[index].name,
                             coverArt: state.artists[index].imageUrl,
                             subtitle:
-                                'Artist - ${state.artists[index].source == "ytm" ? SourceEngine.eng_YTM.value : (state.artists[index].source == 'saavn' ? SourceEngine.eng_JIS.value : SourceEngine.eng_YTV.value)}',
+                                'Artist - ${state.artists[index].source == "ytm" ? SourceEngine.engYtm.value : (state.artists[index].source == 'saavn' ? SourceEngine.engJis.value : SourceEngine.engYtv.value)}',
                             type: LibItemTypes.artist,
                             onTap: () {
                               Navigator.push(
@@ -86,7 +86,7 @@ class LibraryScreen extends StatelessWidget {
                             title: state.albums[index].name,
                             coverArt: state.albums[index].imageURL,
                             subtitle:
-                                'Album - ${state.albums[index].source == "ytm" ? SourceEngine.eng_YTM.value : (state.albums[index].source == 'saavn' ? SourceEngine.eng_JIS.value : SourceEngine.eng_YTV.value)}',
+                                'Album - ${state.albums[index].source == "ytm" ? SourceEngine.engYtm.value : (state.albums[index].source == 'saavn' ? SourceEngine.engJis.value : SourceEngine.engYtv.value)}',
                             type: LibItemTypes.album,
                             onTap: () {
                               Navigator.push(
@@ -115,7 +115,7 @@ class LibraryScreen extends StatelessWidget {
                             title: state.playlistsOnl[index].name,
                             coverArt: state.playlistsOnl[index].imageURL,
                             subtitle:
-                                'Playlist - ${state.playlistsOnl[index].source == "ytm" ? SourceEngine.eng_YTM.value : (state.playlistsOnl[index].source == 'saavn' ? SourceEngine.eng_JIS.value : SourceEngine.eng_YTV.value)}',
+                                'Playlist - ${state.playlistsOnl[index].source == "ytm" ? SourceEngine.engYtm.value : (state.playlistsOnl[index].source == 'saavn' ? SourceEngine.engJis.value : SourceEngine.engYtv.value)}',
                             type: LibItemTypes.onlPlaylist,
                             onTap: () {
                               Navigator.push(
@@ -127,12 +127,12 @@ class LibraryScreen extends StatelessWidget {
                                                       .playlistsOnl[index]
                                                       .source ==
                                                   "ytm"
-                                              ? SourceEngine.eng_YTM
+                                              ? SourceEngine.engYtm
                                               : (state.playlistsOnl[index]
                                                           .source ==
                                                       'saavn'
-                                                  ? SourceEngine.eng_JIS
-                                                  : SourceEngine.eng_YTV),
+                                                  ? SourceEngine.engJis
+                                                  : SourceEngine.engYtv),
                                         )),
                               );
                             },
@@ -144,7 +144,7 @@ class LibraryScreen extends StatelessWidget {
             ),
           ],
         ),
-        backgroundColor: Default_Theme.themeColor,
+        backgroundColor: DefaultTheme.themeColor,
       ),
     );
   }
@@ -152,14 +152,14 @@ class LibraryScreen extends StatelessWidget {
   SliverAppBar customDiscoverBar(BuildContext context) {
     return SliverAppBar(
       floating: true,
-      surfaceTintColor: Default_Theme.themeColor,
-      backgroundColor: Default_Theme.themeColor,
+      surfaceTintColor: DefaultTheme.themeColor,
+      backgroundColor: DefaultTheme.themeColor,
       title: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           Text("Library",
-              style: Default_Theme.primaryTextStyle.merge(const TextStyle(
-                  fontSize: 34, color: Default_Theme.primaryColor1))),
+              style: DefaultTheme.primaryTextStyle.merge(const TextStyle(
+                  fontSize: 34, color: DefaultTheme.primaryColor1))),
           const Spacer(),
           OverflowBar(
             children: [
@@ -174,7 +174,7 @@ class LibraryScreen extends StatelessWidget {
                     createPlaylistBottomSheet(context);
                   },
                   icon: const Icon(MingCute.add_fill,
-                      size: 25, color: Default_Theme.primaryColor1)),
+                      size: 25, color: DefaultTheme.primaryColor1)),
               IconButton(
                   padding: const EdgeInsets.all(5),
                   constraints: const BoxConstraints(),
@@ -183,10 +183,10 @@ class LibraryScreen extends StatelessWidget {
                         MaterialTapTargetSize.shrinkWrap, // the '2023' part
                   ),
                   onPressed: () {
-                    context.pushNamed(GlobalStrConsts.ImportMediaFromPlatforms);
+                    context.pushNamed(GlobalStrConsts.importMediaFromPlatforms);
                   },
                   icon: const Icon(FontAwesome.file_import_solid,
-                      size: 25, color: Default_Theme.primaryColor1))
+                      size: 25, color: DefaultTheme.primaryColor1))
             ],
           ),
         ],

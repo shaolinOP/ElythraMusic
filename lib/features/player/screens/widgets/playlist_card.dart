@@ -106,10 +106,10 @@ class PlaylistCard extends StatelessWidget {
                       playlist.name,
                       maxLines: 2,
                       textAlign: TextAlign.center,
-                      style: Default_Theme.secondoryTextStyleMedium
+                      style: DefaultTheme.secondoryTextStyleMedium
                           .merge(const TextStyle(
                         fontSize: 14,
-                        color: Default_Theme.primaryColor1,
+                        color: DefaultTheme.primaryColor1,
                       )),
                     ),
                   ),

@@ -100,10 +100,10 @@ class ArtistCard extends StatelessWidget {
                       artist.name,
                       maxLines: 3,
                       textAlign: TextAlign.center,
-                      style: Default_Theme.secondoryTextStyleMedium
+                      style: DefaultTheme.secondoryTextStyleMedium
                           .merge(TextStyle(
                         fontSize: 14,
-                        color: Default_Theme.primaryColor1.withOpacity(0.9),
+                        color: DefaultTheme.primaryColor1.withOpacity(0.9),
                       )),
                     ),
                   ),

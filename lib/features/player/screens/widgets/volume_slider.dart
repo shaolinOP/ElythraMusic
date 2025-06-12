@@ -130,13 +130,13 @@ class _VolumeDragControllerState extends State<VolumeDragController> {
                               (_volume == 0)
                                   ? MingCute.volume_off_fill
                                   : MingCute.volume_fill,
-                              color: Default_Theme.primaryColor2,
+                              color: DefaultTheme.primaryColor2,
                             ),
                             RotatedBox(
                               quarterTurns: -1,
                               child: SliderTheme(
                                 data: SliderTheme.of(context).copyWith(
-                                  inactiveTrackColor: Default_Theme
+                                  inactiveTrackColor: DefaultTheme
                                       .primaryColor2
                                       .withOpacity(0.3),
                                   thumbShape: const RoundSliderThumbShape(

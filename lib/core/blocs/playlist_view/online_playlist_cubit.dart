@@ -24,7 +24,7 @@ class OnlPlaylistCubit extends Cubit<OnlPlaylistState> {
     emit(OnlPlaylistLoading(playlist: playlist));
     checkIsSaved();
     switch (sourceEngine) {
-      case SourceEngine.eng_JIS:
+      case SourceEngine.engJis:
         SaavnAPI()
             .fetchPlaylistDetails(
                 Uri.parse(playlist.sourceURL).pathSegments.last)
@@ -55,7 +55,7 @@ class OnlPlaylistCubit extends Cubit<OnlPlaylistState> {
           ));
         });
         break;
-      case SourceEngine.eng_YTM:
+      case SourceEngine.engYtm:
         YTMusic()
             .getPlaylistFull(playlist.sourceId.replaceAll("youtubeVL", ""))
             .then(
@@ -72,7 +72,7 @@ class OnlPlaylistCubit extends Cubit<OnlPlaylistState> {
           },
         );
         break;
-      case SourceEngine.eng_YTV:
+      case SourceEngine.engYtv:
         YouTubeServices().fetchPlaylistItems(playlist.sourceId).then((value) {
           final songs = fromYtVidSongMapList2MediaItemList(value[0]['items']);
           emit(OnlPlaylistLoaded(

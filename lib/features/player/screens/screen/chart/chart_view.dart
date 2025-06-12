@@ -45,13 +45,13 @@ class _ChartScreenState extends State<ChartScreen> {
                     height: 50,
                     width: 50,
                     child: CircularProgressIndicator(
-                      color: Default_Theme.accentColor2,
+                      color: DefaultTheme.accentColor2,
                     )),
               );
             } else if (state.data!.chartItems!.isEmpty) {
               return Center(
                 child: Text("Error: No Item in Chart",
-                    style: Default_Theme.secondoryTextStyleMedium.merge(
+                    style: DefaultTheme.secondoryTextStyleMedium.merge(
                         const TextStyle(
                             fontSize: 24,
                             color: Color.fromARGB(255, 255, 235, 251)))),
@@ -84,7 +84,7 @@ class _ChartScreenState extends State<ChartScreen> {
             }
           },
         ),
-        backgroundColor: Default_Theme.themeColor,
+        backgroundColor: DefaultTheme.themeColor,
       ),
     );
   }
@@ -92,8 +92,8 @@ class _ChartScreenState extends State<ChartScreen> {
   SliverAppBar customDiscoverBar(BuildContext context, ChartModel state) {
     return SliverAppBar(
       floating: true,
-      surfaceTintColor: Default_Theme.themeColor,
-      backgroundColor: Default_Theme.themeColor,
+      surfaceTintColor: DefaultTheme.themeColor,
+      backgroundColor: DefaultTheme.themeColor,
       expandedHeight: 200,
       actions: [
         Padding(
@@ -115,7 +115,7 @@ class _ChartScreenState extends State<ChartScreen> {
         title: Text(state.chartName,
             textScaler: const TextScaler.linear(1.0),
             textAlign: TextAlign.start,
-            style: Default_Theme.secondoryTextStyleMedium.merge(const TextStyle(
+            style: DefaultTheme.secondoryTextStyleMedium.merge(const TextStyle(
                 fontSize: 24, color: Color.fromARGB(255, 255, 235, 251)))),
         background: Stack(
           children: [
@@ -137,10 +137,10 @@ class _ChartScreenState extends State<ChartScreen> {
                             begin: Alignment.bottomCenter,
                             end: Alignment.topCenter,
                             colors: [
-                  Default_Theme.themeColor.withOpacity(0.8),
-                  Default_Theme.themeColor.withOpacity(0.4),
-                  Default_Theme.themeColor.withOpacity(0.1),
-                  Default_Theme.themeColor.withOpacity(0),
+                  DefaultTheme.themeColor.withOpacity(0.8),
+                  DefaultTheme.themeColor.withOpacity(0.4),
+                  DefaultTheme.themeColor.withOpacity(0.1),
+                  DefaultTheme.themeColor.withOpacity(0),
                 ]))))
           ],
         ),

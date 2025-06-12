@@ -143,7 +143,7 @@ class _LyricsMenuState extends State<LyricsMenu> {
               MingCute.settings_3_fill,
               size: 20,
             ),
-            color: Default_Theme.primaryColor1.withOpacity(0.9),
+            color: DefaultTheme.primaryColor1.withOpacity(0.9),
           ),
         );
       },

@@ -67,17 +67,17 @@ class _YtSongTileState extends State<YtSongTile> {
             textAlign: TextAlign.start,
             overflow: TextOverflow.ellipsis,
             maxLines: 1,
-            style: Default_Theme.tertiaryTextStyle.merge(const TextStyle(
+            style: DefaultTheme.tertiaryTextStyle.merge(const TextStyle(
                 fontWeight: FontWeight.w600,
-                color: Default_Theme.primaryColor1,
+                color: DefaultTheme.primaryColor1,
                 fontSize: 14)),
           ),
           subtitle: Text(widget.subtitle,
               textAlign: TextAlign.start,
               overflow: TextOverflow.ellipsis,
               maxLines: 1,
-              style: Default_Theme.tertiaryTextStyle.merge(TextStyle(
-                  color: Default_Theme.primaryColor1.withOpacity(0.8),
+              style: DefaultTheme.tertiaryTextStyle.merge(TextStyle(
+                  color: DefaultTheme.primaryColor1.withOpacity(0.8),
                   fontSize: 13))),
           // dense: true,
           contentPadding: const EdgeInsets.all(0),
@@ -91,7 +91,7 @@ class _YtSongTileState extends State<YtSongTile> {
             },
             icon: const Icon(
               Icons.more_vert,
-              color: Default_Theme.primaryColor1,
+              color: DefaultTheme.primaryColor1,
             ),
           ),
         ),

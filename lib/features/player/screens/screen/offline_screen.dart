@@ -60,7 +60,7 @@ class OfflineScreen extends StatelessWidget {
               ]))
             ],
           ),
-          backgroundColor: Default_Theme.themeColor,
+          backgroundColor: DefaultTheme.themeColor,
         ),
       ),
     );
@@ -69,14 +69,14 @@ class OfflineScreen extends StatelessWidget {
   SliverAppBar customDiscoverBar(BuildContext context) {
     return SliverAppBar(
       floating: true,
-      surfaceTintColor: Default_Theme.themeColor,
-      backgroundColor: Default_Theme.themeColor,
+      surfaceTintColor: DefaultTheme.themeColor,
+      backgroundColor: DefaultTheme.themeColor,
       title: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           Text("Offline",
-              style: Default_Theme.primaryTextStyle.merge(const TextStyle(
-                  fontSize: 34, color: Default_Theme.primaryColor1))),
+              style: DefaultTheme.primaryTextStyle.merge(const TextStyle(
+                  fontSize: 34, color: DefaultTheme.primaryColor1))),
           const Spacer(),
           // IconButton(
           //     onPressed: () {

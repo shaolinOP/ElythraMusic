@@ -63,7 +63,7 @@ MediaItemModel mediaItem2MediaItemModel(MediaItem mediaItem) {
   );
 }
 
-MediaItemDB MediaItem2MediaItemDB(MediaItem mediaItem) {
+MediaItemDB mediaItem2MediaItemDB(MediaItem mediaItem) {
   return MediaItemDB(
       title: mediaItem.title,
       album: mediaItem.album ?? "Unknown",
@@ -79,7 +79,7 @@ MediaItemDB MediaItem2MediaItemDB(MediaItem mediaItem) {
       source: mediaItem.extras?["source"] ?? "Saavn");
 }
 
-MediaItemModel MediaItemDB2MediaItem(MediaItemDB mediaItemDB) {
+MediaItemModel mediaItemDB2MediaItem(MediaItemDB mediaItemDB) {
   return MediaItemModel(
       id: mediaItemDB.mediaID,
       title: mediaItemDB.title,

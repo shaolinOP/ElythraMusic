@@ -308,7 +308,7 @@ class ElythraMusicPlayer extends BaseAudioHandler
     if (queue.value.isNotEmpty) {
       currentPlayingIdx = idx;
       await playMediaItem(currentMedia, doPlay: doPlay);
-      ElythraDBService.putRecentlyPlayed(MediaItem2MediaItemDB(currentMedia));
+      ElythraDBService.putRecentlyPlayed(mediaItem2MediaItemDB(currentMedia));
     }
   }
 

@@ -23,7 +23,7 @@ class PlayerInitializer {
         androidResumeOnClick: true,
         // androidNotificationIcon: 'assets/icons/elythra_logo_fore.png',
         androidShowNotificationBadge: true,
-        notificationColor: Default_Theme.accentColor2,
+        notificationColor: DefaultTheme.accentColor2,
       ),
     );
   }

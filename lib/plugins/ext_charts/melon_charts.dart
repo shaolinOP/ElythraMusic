@@ -19,53 +19,53 @@ const List<String> melonIMGs = [
 final RandomIMGs melonRandomIMGs = RandomIMGs(imgURLs: melonIMGs);
 
 class MelonChartsLinks {
-  static const String TOP_100 = 'https://www.melon.com/chart/index.htm';
-  static const String HOT_100 = 'https://www.melon.com/chart/hot100/index.htm';
-  static const String GENREOMICS_DAILY =
+  static const String top100 = 'https://www.melon.com/chart/index.htm';
+  static const String hot100 = 'https://www.melon.com/chart/hot100/index.htm';
+  static const String genreomicsDaily =
       'https://www.melon.com/chart/day/index.htm?classCd=GN0000';
-  static const String DOMESTIC_DAILY =
+  static const String domesticDaily =
       'https://www.melon.com/chart/day/index.htm?classCd=DM0000';
-  static const String OVERSEAS_DAILY =
+  static const String overseasDaily =
       'https://www.melon.com/chart/day/index.htm?classCd=AB0000';
-  static const String GENREOMICS_WEEKLY =
+  static const String genreomicsWeekly =
       'https://www.melon.com/chart/week/index.htm?classCd=GN0000';
-  static const String DOMESTIC_WEEKLY =
+  static const String domesticWeekly =
       'https://www.melon.com/chart/week/index.htm?classCd=DM0000';
-  static const String OVERSEAS_WEEKLY =
+  static const String overseasWeekly =
       'https://www.melon.com/chart/week/index.htm?classCd=AB0000';
-  static const String GENREOMICS_MONTHLY =
+  static const String genreomicsMonthly =
       'https://www.melon.com/chart/month/index.htm?classCd=GN0000';
-  static const String DOMESTIC_MONTHLY =
+  static const String domesticMonthly =
       'https://www.melon.com/chart/month/index.htm?classCd=DM0000';
-  static const String OVERSEAS_MONTHLY =
+  static const String overseasMonthly =
       'https://www.melon.com/chart/month/index.htm?classCd=AB0000';
 }
 
 class MelonCharts {
-  static final ChartURL TOP_100 =
-      ChartURL(title: "Melon\nTop 100", url: MelonChartsLinks.TOP_100);
-  static final ChartURL HOT_100 =
-      ChartURL(title: "Melon\nHot 100", url: MelonChartsLinks.HOT_100);
-  static final ChartURL GENREOMICS_DAILY = ChartURL(
-      title: "Melon\nGenremics Daily", url: MelonChartsLinks.GENREOMICS_DAILY);
-  static final ChartURL DOMESTIC_DAILY = ChartURL(
-      title: "Melon\nDomestic Daily", url: MelonChartsLinks.DOMESTIC_DAILY);
-  static final ChartURL OVERSEAS_DAILY = ChartURL(
-      title: "Melon\nOverseas Daily", url: MelonChartsLinks.OVERSEAS_DAILY);
-  static final ChartURL GENREOMICS_WEEKLY = ChartURL(
+  static final ChartURL top100 =
+      ChartURL(title: "Melon\nTop 100", url: MelonChartsLinks.top100);
+  static final ChartURL hot100 =
+      ChartURL(title: "Melon\nHot 100", url: MelonChartsLinks.hot100);
+  static final ChartURL genreomicsDaily = ChartURL(
+      title: "Melon\nGenremics Daily", url: MelonChartsLinks.genreomicsDaily);
+  static final ChartURL domesticDaily = ChartURL(
+      title: "Melon\nDomestic Daily", url: MelonChartsLinks.domesticDaily);
+  static final ChartURL overseasDaily = ChartURL(
+      title: "Melon\nOverseas Daily", url: MelonChartsLinks.overseasDaily);
+  static final ChartURL genreomicsWeekly = ChartURL(
       title: "Melon\nGenremics Weekly",
-      url: MelonChartsLinks.GENREOMICS_WEEKLY);
-  static final ChartURL DOMESTIC_WEEKLY = ChartURL(
-      title: "Melon\nDomestic Weekly", url: MelonChartsLinks.DOMESTIC_WEEKLY);
-  static final ChartURL OVERSEAS_WEEKLY = ChartURL(
-      title: "Melon\nOverseas Weekly", url: MelonChartsLinks.OVERSEAS_WEEKLY);
-  static final ChartURL GENREOMICS_MONTHLY = ChartURL(
+      url: MelonChartsLinks.genreomicsWeekly);
+  static final ChartURL domesticWeekly = ChartURL(
+      title: "Melon\nDomestic Weekly", url: MelonChartsLinks.domesticWeekly);
+  static final ChartURL overseasWeekly = ChartURL(
+      title: "Melon\nOverseas Weekly", url: MelonChartsLinks.overseasWeekly);
+  static final ChartURL genreomicsMonthly = ChartURL(
       title: "Melon\nGenremics Monthly",
-      url: MelonChartsLinks.GENREOMICS_MONTHLY);
-  static final ChartURL DOMESTIC_MONTHLY = ChartURL(
-      title: "Melon\nDomestic Monthly", url: MelonChartsLinks.DOMESTIC_MONTHLY);
-  static final ChartURL OVERSEAS_MONTHLY = ChartURL(
-      title: "Melon\nOverseas Monthly", url: MelonChartsLinks.OVERSEAS_MONTHLY);
+      url: MelonChartsLinks.genreomicsMonthly);
+  static final ChartURL domesticMonthly = ChartURL(
+      title: "Melon\nDomestic Monthly", url: MelonChartsLinks.domesticMonthly);
+  static final ChartURL overseasMonthly = ChartURL(
+      title: "Melon\nOverseas Monthly", url: MelonChartsLinks.overseasMonthly);
 }
 
 Future<ChartModel> getMelonChart(ChartURL url) async {

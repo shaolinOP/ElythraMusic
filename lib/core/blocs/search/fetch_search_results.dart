@@ -141,11 +141,11 @@ class FetchSearchResultsCubit extends Cubit<FetchSearchResultsState> {
   }
 
   LastSearch last_YTM_search =
-      LastSearch(query: "", sourceEngine: SourceEngine.eng_YTM);
+      LastSearch(query: "", sourceEngine: SourceEngine.engYtm);
   LastSearch last_YTV_search =
-      LastSearch(query: "", sourceEngine: SourceEngine.eng_YTV);
+      LastSearch(query: "", sourceEngine: SourceEngine.engYtv);
   LastSearch last_JIS_search =
-      LastSearch(query: "", sourceEngine: SourceEngine.eng_JIS);
+      LastSearch(query: "", sourceEngine: SourceEngine.engJis);
 
   List<MediaItemModel> _mediaItemList = List.empty(growable: true);
 
@@ -179,7 +179,7 @@ class FetchSearchResultsCubit extends Cubit<FetchSearchResultsState> {
             loadingState: LoadingState.loaded,
             hasReachedMax: true,
             resultType: ResultTypes.songs,
-            sourceEngine: SourceEngine.eng_YTM,
+            sourceEngine: SourceEngine.engYtm,
           ));
           return;
         } else {
@@ -191,7 +191,7 @@ class FetchSearchResultsCubit extends Cubit<FetchSearchResultsState> {
             loadingState: LoadingState.loaded,
             hasReachedMax: true,
             resultType: ResultTypes.songs,
-            sourceEngine: SourceEngine.eng_YTM,
+            sourceEngine: SourceEngine.engYtm,
           ));
         }
         break;
@@ -203,7 +203,7 @@ class FetchSearchResultsCubit extends Cubit<FetchSearchResultsState> {
             loadingState: LoadingState.loaded,
             hasReachedMax: true,
             resultType: ResultTypes.playlists,
-            sourceEngine: SourceEngine.eng_YTM,
+            sourceEngine: SourceEngine.engYtm,
           ));
           return;
         }
@@ -213,7 +213,7 @@ class FetchSearchResultsCubit extends Cubit<FetchSearchResultsState> {
           loadingState: LoadingState.loaded,
           hasReachedMax: true,
           resultType: ResultTypes.playlists,
-          sourceEngine: SourceEngine.eng_YTM,
+          sourceEngine: SourceEngine.engYtm,
         ));
         log("Got results: ${playlist.length}", name: "FetchSearchRes");
         break;
@@ -225,7 +225,7 @@ class FetchSearchResultsCubit extends Cubit<FetchSearchResultsState> {
             loadingState: LoadingState.loaded,
             hasReachedMax: true,
             resultType: ResultTypes.albums,
-            sourceEngine: SourceEngine.eng_YTM,
+            sourceEngine: SourceEngine.engYtm,
           ));
           return;
         }
@@ -235,7 +235,7 @@ class FetchSearchResultsCubit extends Cubit<FetchSearchResultsState> {
           loadingState: LoadingState.loaded,
           hasReachedMax: true,
           resultType: ResultTypes.albums,
-          sourceEngine: SourceEngine.eng_YTM,
+          sourceEngine: SourceEngine.engYtm,
         ));
         log("Got results: ${albums.length}", name: "FetchSearchRes");
         break;
@@ -247,7 +247,7 @@ class FetchSearchResultsCubit extends Cubit<FetchSearchResultsState> {
             loadingState: LoadingState.loaded,
             hasReachedMax: true,
             resultType: ResultTypes.artists,
-            sourceEngine: SourceEngine.eng_YTM,
+            sourceEngine: SourceEngine.engYtm,
           ));
           return;
         }
@@ -257,7 +257,7 @@ class FetchSearchResultsCubit extends Cubit<FetchSearchResultsState> {
           loadingState: LoadingState.loaded,
           hasReachedMax: true,
           resultType: ResultTypes.artists,
-          sourceEngine: SourceEngine.eng_YTM,
+          sourceEngine: SourceEngine.engYtm,
         ));
         log("Got results: ${artists.length}", name: "FetchSearchRes");
         break;
@@ -286,7 +286,7 @@ class FetchSearchResultsCubit extends Cubit<FetchSearchResultsState> {
           resultType: ResultTypes.playlists,
           hasReachedMax: true,
           loadingState: LoadingState.loaded,
-          sourceEngine: SourceEngine.eng_YTV,
+          sourceEngine: SourceEngine.engYtv,
         ));
         break;
       case ResultTypes.albums:
@@ -300,7 +300,7 @@ class FetchSearchResultsCubit extends Cubit<FetchSearchResultsState> {
           loadingState: LoadingState.loaded,
           resultType: ResultTypes.songs,
           hasReachedMax: true,
-          sourceEngine: SourceEngine.eng_YTV,
+          sourceEngine: SourceEngine.engYtv,
         ));
         log("got all searches ${last_YTV_search.mediaItemList.length}",
             name: "FetchSearchRes");
@@ -338,7 +338,7 @@ class FetchSearchResultsCubit extends Cubit<FetchSearchResultsState> {
           loadingState: LoadingState.loaded,
           hasReachedMax: last_JIS_search.hasReachedMax,
           resultType: ResultTypes.songs,
-          sourceEngine: SourceEngine.eng_JIS,
+          sourceEngine: SourceEngine.engJis,
         ));
 
         log("got all searches ${last_JIS_search.mediaItemList.length}",
@@ -354,7 +354,7 @@ class FetchSearchResultsCubit extends Cubit<FetchSearchResultsState> {
           loadingState: LoadingState.loaded,
           hasReachedMax: true,
           resultType: ResultTypes.albums,
-          sourceEngine: SourceEngine.eng_JIS,
+          sourceEngine: SourceEngine.engJis,
         ));
         break;
       case ResultTypes.playlists:
@@ -367,7 +367,7 @@ class FetchSearchResultsCubit extends Cubit<FetchSearchResultsState> {
           loadingState: LoadingState.loaded,
           hasReachedMax: true,
           resultType: ResultTypes.playlists,
-          sourceEngine: SourceEngine.eng_JIS,
+          sourceEngine: SourceEngine.engJis,
         ));
         break;
       case ResultTypes.artists:
@@ -380,23 +380,23 @@ class FetchSearchResultsCubit extends Cubit<FetchSearchResultsState> {
           loadingState: LoadingState.loaded,
           hasReachedMax: true,
           resultType: ResultTypes.artists,
-          sourceEngine: SourceEngine.eng_JIS,
+          sourceEngine: SourceEngine.engJis,
         ));
         break;
     }
   }
 
   Future<void> search(String query,
-      {SourceEngine sourceEngine = SourceEngine.eng_YTM,
+      {SourceEngine sourceEngine = SourceEngine.engYtm,
       ResultTypes resultType = ResultTypes.songs}) async {
     switch (sourceEngine) {
-      case SourceEngine.eng_YTM:
+      case SourceEngine.engYtm:
         searchYTMTracks(query, resultType: resultType);
         break;
-      case SourceEngine.eng_YTV:
+      case SourceEngine.engYtv:
         searchYTVTracks(query, resultType: resultType);
         break;
-      case SourceEngine.eng_JIS:
+      case SourceEngine.engJis:
         searchJISTracks(query, resultType: resultType);
         break;
       default:

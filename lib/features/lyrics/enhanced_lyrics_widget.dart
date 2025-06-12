@@ -78,8 +78,7 @@ class _EnhancedLyricsWidgetState extends State<EnhancedLyricsWidget> {
             }
 
             final lyrics = lyricsState.lyrics;
-            final hasPlainLyrics = lyrics.lyricsPlain != null && 
-                                   lyrics.lyricsPlain!.isNotEmpty &&
+            final hasPlainLyrics = lyrics.lyricsPlain.isNotEmpty &&
                                    lyrics.lyricsPlain != "No Lyrics Found";
             final hasSyncedLyrics = lyrics.parsedLyrics != null && 
                                     lyrics.parsedLyrics!.lyrics.isNotEmpty;
@@ -143,7 +142,7 @@ class _EnhancedLyricsWidgetState extends State<EnhancedLyricsWidget> {
                 Expanded(
                   child: _showSyncedLyrics && hasSyncedLyrics
                       ? _buildSyncedLyrics(lyrics.parsedLyrics!, playerState)
-                      : _buildPlainLyrics(lyrics.lyricsPlain ?? ''),
+                      : _buildPlainLyrics(lyrics.lyricsPlain),
                 ),
               ],
             );
@@ -250,7 +249,6 @@ class UINetease extends LyricUI {
   @override
   double getPlayingLineBias() => 0.5;
 
-  @override
   Offset getBiasOffset() => const Offset(0, 0);
 
   @override

@@ -117,19 +117,19 @@ class InfoTile extends StatelessWidget {
       dense: true,
       leading: Icon(
         icon,
-        color: Default_Theme.primaryColor1,
+        color: DefaultTheme.primaryColor1,
       ),
       title: Text(
         title,
-        style: Default_Theme.secondoryTextStyle.merge(TextStyle(
-            color: Default_Theme.primaryColor1.withOpacity(0.7),
+        style: DefaultTheme.secondoryTextStyle.merge(TextStyle(
+            color: DefaultTheme.primaryColor1.withOpacity(0.7),
             fontSize: 13,
             fontWeight: FontWeight.bold)),
       ),
       subtitle: Text(
         subtitle,
-        style: Default_Theme.secondoryTextStyle.merge(const TextStyle(
-            color: Default_Theme.primaryColor1,
+        style: DefaultTheme.secondoryTextStyle.merge(const TextStyle(
+            color: DefaultTheme.primaryColor1,
             fontWeight: FontWeight.bold,
             fontSize: 16)),
       ),

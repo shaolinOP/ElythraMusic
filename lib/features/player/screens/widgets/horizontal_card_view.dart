@@ -55,8 +55,8 @@ class HorizontalCardView extends StatelessWidget {
               style: const TextStyle(
                       fontSize: 20,
                       fontWeight: FontWeight.bold,
-                      color: Default_Theme.accentColor2)
-                  .merge(Default_Theme.secondoryTextStyle),
+                      color: DefaultTheme.accentColor2)
+                  .merge(DefaultTheme.secondoryTextStyle),
             ),
           ),
           SizedBox(

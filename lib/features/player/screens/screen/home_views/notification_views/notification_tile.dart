@@ -18,7 +18,7 @@ class NotificationTile extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.only(top: 5),
       child: ListTile(
-        // splashColor: Default_Theme.accentColor2.withOpacity(0.1),
+        // splashColor: DefaultTheme.accentColor2.withOpacity(0.1),
         onTap: () {
           if (notification.type == "app_update") {
             Navigator.push(
@@ -31,27 +31,27 @@ class NotificationTile extends StatelessWidget {
             log("Notification type not found: ${notification.type}");
           }
         },
-        tileColor: Default_Theme.primaryColor1.withOpacity(0.07),
+        tileColor: DefaultTheme.primaryColor1.withOpacity(0.07),
         leading: const Icon(
           MingCute.medal_fill,
-          color: Default_Theme.primaryColor1,
+          color: DefaultTheme.primaryColor1,
           size: 40,
         ),
         title: Text(
           notification.title,
           style: const TextStyle(
-                  color: Default_Theme.accentColor2,
+                  color: DefaultTheme.accentColor2,
                   fontSize: 16,
                   fontWeight: FontWeight.bold)
-              .merge(Default_Theme.secondoryTextStyle),
+              .merge(DefaultTheme.secondoryTextStyle),
         ),
         subtitle: Text(
           notification.body,
           style: const TextStyle(
-                  color: Default_Theme.primaryColor2,
+                  color: DefaultTheme.primaryColor2,
                   fontSize: 14,
                   fontWeight: FontWeight.bold)
-              .merge(Default_Theme.secondoryTextStyle),
+              .merge(DefaultTheme.secondoryTextStyle),
         ),
       ),
     );

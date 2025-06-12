@@ -934,7 +934,7 @@ class ElythraDBService {
           isarDB.recentlyPlayedDBs.where().sortByLastPlayedDesc().findAllSync();
       for (var element in recentlyPlayed) {
         if (element.mediaItem.value != null) {
-          mediaItems.add(MediaItemDB2MediaItem(element.mediaItem.value!));
+          mediaItems.add(mediaItemDB2MediaItem(element.mediaItem.value!));
         }
       }
     } else {
@@ -945,7 +945,7 @@ class ElythraDBService {
           .findAllSync();
       for (var element in recentlyPlayed) {
         if (element.mediaItem.value != null) {
-          mediaItems.add(MediaItemDB2MediaItem(element.mediaItem.value!));
+          mediaItems.add(mediaItemDB2MediaItem(element.mediaItem.value!));
         }
       }
     }
@@ -1051,7 +1051,7 @@ class ElythraDBService {
     Isar isarDB = await db;
     isarDB.writeTxnSync(() => isarDB.downloadDBs.putSync(downloadDB));
     addMediaItem(
-        MediaItem2MediaItemDB(mediaItem), GlobalStrConsts.downloadPlaylist);
+        mediaItem2MediaItemDB(mediaItem), GlobalStrConsts.downloadPlaylist);
   }
 
   static Future<void> removeDownloadDB(MediaItemModel mediaItem) async {
@@ -1062,7 +1062,7 @@ class ElythraDBService {
         .findFirstSync();
     if (downloadDB != null) {
       isarDB.writeTxnSync(() => isarDB.downloadDBs.deleteSync(downloadDB.id!));
-      removeMediaItemFromPlaylist(MediaItem2MediaItemDB(mediaItem),
+      removeMediaItemFromPlaylist(mediaItem2MediaItemDB(mediaItem),
           MediaPlaylistDB(playlistName: GlobalStrConsts.downloadPlaylist));
     }
 
@@ -1104,13 +1104,13 @@ class ElythraDBService {
     for (var element in _downloadedSongs) {
       if (File("${element.filePath}/${element.fileName}").existsSync()) {
         log("File exists", name: "DB");
-        _mediaItems.add(MediaItemDB2MediaItem(isarDB.mediaItemDBs
+        _mediaItems.add(mediaItemDB2MediaItem(isarDB.mediaItemDBs
             .filter()
             .mediaIDEqualTo(element.mediaId)
             .findFirstSync()!));
       } else {
         log("File not exists ${element.fileName} ", name: "DB");
-        removeDownloadDB(MediaItemDB2MediaItem(isarDB.mediaItemDBs
+        removeDownloadDB(mediaItemDB2MediaItem(isarDB.mediaItemDBs
             .filter()
             .mediaIDEqualTo(element.mediaId)
             .findFirstSync()!));

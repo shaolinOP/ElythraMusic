@@ -10,19 +10,19 @@ class About extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Default_Theme.themeColor,
+      backgroundColor: DefaultTheme.themeColor,
       appBar: AppBar(
-        backgroundColor: Default_Theme.themeColor,
-        foregroundColor: Default_Theme.primaryColor1,
-        surfaceTintColor: Default_Theme.themeColor,
+        backgroundColor: DefaultTheme.themeColor,
+        foregroundColor: DefaultTheme.primaryColor1,
+        surfaceTintColor: DefaultTheme.themeColor,
         centerTitle: true,
         title: Text(
           'About',
           style: const TextStyle(
-                  color: Default_Theme.primaryColor1,
+                  color: DefaultTheme.primaryColor1,
                   fontSize: 20,
                   fontWeight: FontWeight.bold)
-              .merge(Default_Theme.secondoryTextStyle),
+              .merge(DefaultTheme.secondoryTextStyle),
         ),
       ),
       body: LayoutBuilder(
@@ -41,7 +41,7 @@ class About extends StatelessWidget {
                         "Elythra🌸\nAn Open Cross-Platform Music Player\nby",
                         textAlign: TextAlign.center,
                         style: TextStyle(
-                            color: Default_Theme.accentColor2,
+                            color: DefaultTheme.accentColor2,
                             fontSize: 25,
                             fontFamily: 'Unageo',
                             fontWeight: FontWeight.bold),
@@ -51,19 +51,19 @@ class About extends StatelessWidget {
                             "@iamhemantindia",
                             textAlign: TextAlign.center,
                             style: TextStyle(
-                                color: Default_Theme.accentColor2,
+                                color: DefaultTheme.accentColor2,
                                 fontSize: 30,
                                 fontFamily: 'Unageo',
                                 fontWeight: FontWeight.bold),
                           ),
                           gradient: LinearGradient(colors: [
-                            Default_Theme.accentColor1,
+                            DefaultTheme.accentColor1,
                             Color.fromARGB(255, 224, 14, 192)
                           ])),
                       const Text("Crafting symphonies in code.",
                           textAlign: TextAlign.center,
                           style: TextStyle(
-                              color: Default_Theme.accentColor2,
+                              color: DefaultTheme.accentColor2,
                               fontSize: 15,
                               fontFamily: 'Unageo',
                               fontWeight: FontWeight.bold)),
@@ -79,7 +79,7 @@ class About extends StatelessWidget {
                               return Text(
                                 "v${packageInfo.version}+${int.parse(packageInfo.buildNumber) % 1000}",
                                 style: TextStyle(
-                                  color: Default_Theme.primaryColor2
+                                  color: DefaultTheme.primaryColor2
                                       .withOpacity(0.5),
                                   fontSize: 15,
                                   fontFamily: 'Unageo',
@@ -104,7 +104,7 @@ class About extends StatelessWidget {
                                     mode: LaunchMode.externalApplication);
                               },
                               style: ElevatedButton.styleFrom(
-                                backgroundColor: Default_Theme.accentColor2,
+                                backgroundColor: DefaultTheme.accentColor2,
                               ),
                               child: const Row(
                                 mainAxisAlignment: MainAxisAlignment.center,
@@ -113,12 +113,12 @@ class About extends StatelessWidget {
                                   Padding(
                                     padding: EdgeInsets.only(right: 5),
                                     child: Icon(MingCute.github_fill,
-                                        color: Default_Theme.primaryColor2),
+                                        color: DefaultTheme.primaryColor2),
                                   ),
                                   Text(
                                     "Github",
                                     style: TextStyle(
-                                        color: Default_Theme.primaryColor1,
+                                        color: DefaultTheme.primaryColor1,
                                         fontSize: 15,
                                         fontFamily: 'Unageo',
                                         fontWeight: FontWeight.bold),

@@ -124,9 +124,9 @@ class _YoutubePlaylistState extends State<YoutubePlaylist> {
                               ? const CustomScrollView(
                                   slivers: [
                                     SliverAppBar(
-                                      backgroundColor: Default_Theme.themeColor,
+                                      backgroundColor: DefaultTheme.themeColor,
                                       surfaceTintColor:
-                                          Default_Theme.themeColor,
+                                          DefaultTheme.themeColor,
                                     ),
                                     SliverFillRemaining(
                                       child: Center(
@@ -156,15 +156,15 @@ class _YoutubePlaylistState extends State<YoutubePlaylist> {
                                             icon: const Icon(
                                               MingCute.share_forward_line,
                                               color:
-                                                  Default_Theme.primaryColor1,
+                                                  DefaultTheme.primaryColor1,
                                               size: 25,
                                             ),
                                           ),
                                         ),
                                       ],
-                                      backgroundColor: Default_Theme.themeColor,
+                                      backgroundColor: DefaultTheme.themeColor,
                                       surfaceTintColor:
-                                          Default_Theme.themeColor,
+                                          DefaultTheme.themeColor,
                                       // expandedHeight:
                                       //     (ResponsiveBreakpoints.of(
                                       //                 context)
@@ -252,9 +252,9 @@ class _YoutubePlaylistState extends State<YoutubePlaylist> {
                                                             fontSize: 20,
                                                             fontWeight:
                                                                 FontWeight.bold,
-                                                            color: Default_Theme
+                                                            color: DefaultTheme
                                                                 .primaryColor1,
-                                                          ).merge(Default_Theme
+                                                          ).merge(DefaultTheme
                                                                   .secondoryTextStyle),
                                                         ),
                                                       ),
@@ -267,10 +267,10 @@ class _YoutubePlaylistState extends State<YoutubePlaylist> {
                                                           fontSize: 13,
                                                           fontWeight:
                                                               FontWeight.bold,
-                                                          color: Default_Theme
+                                                          color: DefaultTheme
                                                               .primaryColor2
                                                               .withOpacity(0.8),
-                                                        ).merge(Default_Theme
+                                                        ).merge(DefaultTheme
                                                             .secondoryTextStyle),
                                                       ),
                                                       Text(
@@ -282,10 +282,10 @@ class _YoutubePlaylistState extends State<YoutubePlaylist> {
                                                           fontSize: 13,
                                                           fontWeight:
                                                               FontWeight.bold,
-                                                          color: Default_Theme
+                                                          color: DefaultTheme
                                                               .primaryColor2
                                                               .withOpacity(0.8),
-                                                        ).merge(Default_Theme
+                                                        ).merge(DefaultTheme
                                                             .secondoryTextStyle),
                                                       ),
                                                       Padding(
@@ -360,7 +360,7 @@ class _YoutubePlaylistState extends State<YoutubePlaylist> {
                                                                         const Icon(
                                                                       MingCute
                                                                           .shuffle_fill,
-                                                                      color: Default_Theme
+                                                                      color: DefaultTheme
                                                                           .primaryColor1,
                                                                     ),
                                                                   ),
@@ -444,7 +444,7 @@ class _YoutubePlaylistState extends State<YoutubePlaylist> {
                                                                           mediaitems,
                                                                           (element) {
                                                                         ElythraDBService.addMediaItem(
-                                                                            MediaItem2MediaItemDB(element),
+                                                                            mediaItem2MediaItemDB(element),
                                                                             "${widget.title} - Youtube");
                                                                       });
                                                                       SnackbarService.showMessage(
@@ -462,7 +462,7 @@ class _YoutubePlaylistState extends State<YoutubePlaylist> {
                                                                         const Icon(
                                                                       FontAwesome
                                                                           .square_plus,
-                                                                      color: Default_Theme
+                                                                      color: DefaultTheme
                                                                           .primaryColor1,
                                                                     ),
                                                                   ),

@@ -16,6 +16,7 @@ class EnhancedLyricsService {
     // Initialize any required services or configurations
   }
 
+  // ignore: unused_field
   final Dio _dio = Dio();
   final Map<String, LyricsData> _lyricsCache = {};
 

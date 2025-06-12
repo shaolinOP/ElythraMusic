@@ -106,15 +106,15 @@ class _CaraouselWidgetState extends State<CaraouselWidget> {
                               children: [
                                 // Text(
                                 //   "Featured",
-                                //   style: Default_Theme.secondoryTextStyle.merge(
+                                //   style: DefaultTheme.secondoryTextStyle.merge(
                                 //       const TextStyle(
-                                //           color: Default_Theme.primaryColor1,
+                                //           color: DefaultTheme.primaryColor1,
                                 //           fontWeight: FontWeight.bold,
                                 //           fontSize: 19)),
                                 // ),
                                 // const Icon(
                                 //   FontAwesome.bolt_lightning_solid,
-                                //   color: Default_Theme.primaryColor1,
+                                //   color: DefaultTheme.primaryColor1,
                                 // ),
                               ],
                             ),
@@ -136,7 +136,7 @@ class _CaraouselWidgetState extends State<CaraouselWidget> {
                                 value: chartCubitList[index],
                                 child: GestureDetector(
                                   onTap: () => GoRouter.of(context).pushNamed(
-                                      GlobalStrConsts.ChartScreen,
+                                      GlobalStrConsts.chartScreen,
                                       pathParameters: {
                                         "chartName": selectedCharts[index].title
                                       }),

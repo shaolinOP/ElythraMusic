@@ -49,19 +49,19 @@ class _DownloadSettingsState extends State<DownloadSettings> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Default_Theme.themeColor,
+      backgroundColor: DefaultTheme.themeColor,
       appBar: AppBar(
-        backgroundColor: Default_Theme.themeColor,
-        foregroundColor: Default_Theme.primaryColor1,
-        surfaceTintColor: Default_Theme.themeColor,
+        backgroundColor: DefaultTheme.themeColor,
+        foregroundColor: DefaultTheme.primaryColor1,
+        surfaceTintColor: DefaultTheme.themeColor,
         centerTitle: true,
         title: Text(
           'Download Settings',
           style: const TextStyle(
-                  color: Default_Theme.primaryColor1,
+                  color: DefaultTheme.primaryColor1,
                   fontSize: 20,
                   fontWeight: FontWeight.bold)
-              .merge(Default_Theme.secondoryTextStyle),
+              .merge(DefaultTheme.secondoryTextStyle),
         ),
       ),
       body: BlocBuilder<SettingsCubit, SettingsState>(
@@ -76,9 +76,9 @@ class _DownloadSettingsState extends State<DownloadSettings> {
                   value: state.downQuality,
                   style: const TextStyle(
                     fontWeight: FontWeight.bold,
-                    color: Default_Theme.primaryColor1,
+                    color: DefaultTheme.primaryColor1,
                     fontSize: 15,
-                  ).merge(Default_Theme.secondoryTextStyle),
+                  ).merge(DefaultTheme.secondoryTextStyle),
                   underline: const SizedBox(),
                   onChanged: (String? newValue) {
                     if (newValue != null) {
@@ -104,10 +104,10 @@ class _DownloadSettingsState extends State<DownloadSettings> {
                 trailing: DropdownButton(
                   value: state.ytDownQuality,
                   style: const TextStyle(
-                    color: Default_Theme.primaryColor1,
+                    color: DefaultTheme.primaryColor1,
                     fontSize: 15,
                     fontWeight: FontWeight.bold,
-                  ).merge(Default_Theme.secondoryTextStyle),
+                  ).merge(DefaultTheme.secondoryTextStyle),
                   underline: const SizedBox(),
                   onChanged: (String? newValue) {
                     if (newValue != null) {
@@ -132,7 +132,7 @@ class _DownloadSettingsState extends State<DownloadSettings> {
                 trailing: IconButton(
                   icon: const Icon(
                     MingCute.refresh_1_line,
-                    color: Default_Theme.primaryColor1,
+                    color: DefaultTheme.primaryColor1,
                   ),
                   onPressed: () {
                     context.read<SettingsCubit>().resetDownPath();

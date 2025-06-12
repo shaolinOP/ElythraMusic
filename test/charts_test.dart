@@ -6,19 +6,19 @@ import 'package:flutter_test/flutter_test.dart';
 
 void main() {
   test("Billboard Charts HOT100", () async {
-    final bb = await getBillboardChart(BillboardCharts.HOT_100);
+    final bb = await getBillboardChart(BillboardCharts.hot100);
     expect(bb.chartItems != null, true);
     expect(bb.chartItems!.isNotEmpty, true);
   });
 
   test("Billboard Charts Billboard200", () async {
-    final bb = await getBillboardChart(BillboardCharts.BILLBOARD_200);
+    final bb = await getBillboardChart(BillboardCharts.billboard200);
     expect(bb.chartItems != null, true);
     expect(bb.chartItems!.isNotEmpty, true);
   });
 
   test("Billboard Charts Billboard 200", () async {
-    final bb = await getBillboardChart(BillboardCharts.BILLBOARD_200);
+    final bb = await getBillboardChart(BillboardCharts.billboard200);
     expect(bb.chartItems != null, true);
     expect(bb.chartItems!.isNotEmpty, true);
   });
@@ -30,19 +30,19 @@ void main() {
   });
 
   test("Melon Charts", () async {
-    final melon = await getMelonChart(MelonCharts.TOP_100);
+    final melon = await getMelonChart(MelonCharts.top100);
     expect(melon.chartItems != null, true);
     expect(melon.chartItems!.isNotEmpty, true);
   });
 
   test("Melon Charts DMonthly", () async {
-    final melon = await getMelonChart(MelonCharts.DOMESTIC_MONTHLY);
+    final melon = await getMelonChart(MelonCharts.domesticMonthly);
     expect(melon.chartItems != null, true);
     expect(melon.chartItems!.isNotEmpty, true);
   });
 
   test("Spotify Charts", () async {
-    final spotify = await getSpotifyTop50Chart(SpotifyCharts.TOP_50);
+    final spotify = await getSpotifyTop50Chart(SpotifyCharts.top50);
     expect(spotify.chartItems != null, true);
     expect(spotify.chartItems!.isNotEmpty, true);
   });

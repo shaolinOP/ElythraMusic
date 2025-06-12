@@ -24,7 +24,7 @@ void createPlaylistBottomSheet(BuildContext context) {
               topLeft: Radius.circular(40), topRight: Radius.circular(40)),
           child: Container(
             height: (MediaQuery.of(context).size.height * 0.45) + 10,
-            color: Default_Theme.accentColor2,
+            color: DefaultTheme.accentColor2,
             child: Column(
               mainAxisSize: MainAxisSize.min,
               children: [
@@ -38,7 +38,7 @@ void createPlaylistBottomSheet(BuildContext context) {
                           topLeft: Radius.circular(40),
                           topRight: Radius.circular(40)),
                       child: Container(
-                        color: Default_Theme.themeColor,
+                        color: DefaultTheme.themeColor,
                         child: SingleChildScrollView(
                           child: Center(
                             child: Column(
@@ -52,10 +52,10 @@ void createPlaylistBottomSheet(BuildContext context) {
                                     fit: BoxFit.scaleDown,
                                     child: Text(
                                       "Create new Playlist 😍",
-                                      style: Default_Theme
+                                      style: DefaultTheme
                                           .secondoryTextStyleMedium
                                           .merge(const TextStyle(
-                                              color: Default_Theme.accentColor2,
+                                              color: DefaultTheme.accentColor2,
                                               fontSize: 35)),
                                     ),
                                   ),
@@ -77,11 +77,11 @@ void createPlaylistBottomSheet(BuildContext context) {
                                     showCursor: true,
                                     cursorWidth: 5,
                                     cursorRadius: const Radius.circular(5),
-                                    cursorColor: Default_Theme.accentColor2,
+                                    cursorColor: DefaultTheme.accentColor2,
                                     style: const TextStyle(
                                             fontSize: 45,
-                                            color: Default_Theme.accentColor2)
-                                        .merge(Default_Theme
+                                            color: DefaultTheme.accentColor2)
+                                        .merge(DefaultTheme
                                             .secondoryTextStyleMedium),
                                     decoration: const InputDecoration(
                                         enabledBorder: OutlineInputBorder(

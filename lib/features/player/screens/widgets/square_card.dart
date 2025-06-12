@@ -51,12 +51,12 @@ class SquareImgCard extends StatelessWidget {
                     child: Container(
                       padding: const EdgeInsets.all(5),
                       decoration: BoxDecoration(
-                        color: Default_Theme.accentColor2.withOpacity(0.95),
+                        color: DefaultTheme.accentColor2.withOpacity(0.95),
                         borderRadius: const BorderRadius.only(
                           bottomLeft: Radius.circular(15),
                         ),
                         // border: Border.all(
-                        //   color: Default_Theme.primaryColor1,
+                        //   color: DefaultTheme.primaryColor1,
                         //   width: 1.5,
                         // ),
                       ),
@@ -71,7 +71,7 @@ class SquareImgCard extends StatelessWidget {
                                   child: Icon(
                                     MingCute.playlist_2_line,
                                     size: 18,
-                                    color: Default_Theme.primaryColor2,
+                                    color: DefaultTheme.primaryColor2,
                                   ),
                                 ),
                                 Text(
@@ -79,8 +79,8 @@ class SquareImgCard extends StatelessWidget {
                                   style: const TextStyle(
                                           fontSize: 14,
                                           fontWeight: FontWeight.bold,
-                                          color: Default_Theme.primaryColor2)
-                                      .merge(Default_Theme.secondoryTextStyle),
+                                          color: DefaultTheme.primaryColor2)
+                                      .merge(DefaultTheme.secondoryTextStyle),
                                 ),
                               ],
                             )
@@ -93,7 +93,7 @@ class SquareImgCard extends StatelessWidget {
                                   child: Icon(
                                     MingCute.eye_2_line,
                                     size: 18,
-                                    color: Default_Theme.primaryColor2,
+                                    color: DefaultTheme.primaryColor2,
                                   ),
                                 ),
                                 Text(
@@ -101,8 +101,8 @@ class SquareImgCard extends StatelessWidget {
                                   style: const TextStyle(
                                           fontSize: 14,
                                           fontWeight: FontWeight.bold,
-                                          color: Default_Theme.primaryColor2)
-                                      .merge(Default_Theme.secondoryTextStyle),
+                                          color: DefaultTheme.primaryColor2)
+                                      .merge(DefaultTheme.secondoryTextStyle),
                                 ),
                               ],
                             ),
@@ -119,8 +119,8 @@ class SquareImgCard extends StatelessWidget {
               style: const TextStyle(
                       fontSize: 13,
                       fontWeight: FontWeight.bold,
-                      color: Default_Theme.primaryColor1)
-                  .merge(Default_Theme.secondoryTextStyle),
+                      color: DefaultTheme.primaryColor1)
+                  .merge(DefaultTheme.secondoryTextStyle),
             ),
             Text(
               subtitle,
@@ -130,8 +130,8 @@ class SquareImgCard extends StatelessWidget {
               style: TextStyle(
                       fontSize: 11,
                       fontWeight: FontWeight.bold,
-                      color: Default_Theme.primaryColor2.withOpacity(0.8))
-                  .merge(Default_Theme.secondoryTextStyle),
+                      color: DefaultTheme.primaryColor2.withOpacity(0.8))
+                  .merge(DefaultTheme.secondoryTextStyle),
             ),
           ],
         ),

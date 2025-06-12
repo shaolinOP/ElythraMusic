@@ -38,9 +38,9 @@ class LibItemCard extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.only(left: 8, right: 8),
       child: InkWell(
-        splashColor: Default_Theme.primaryColor2.withOpacity(0.1),
+        splashColor: DefaultTheme.primaryColor2.withOpacity(0.1),
         hoverColor: Colors.white.withOpacity(0.05),
-        highlightColor: Default_Theme.primaryColor2.withOpacity(0.1),
+        highlightColor: DefaultTheme.primaryColor2.withOpacity(0.1),
         borderRadius: BorderRadius.circular(10),
         onTap: onTap ?? () {},
         onSecondaryTap: onSecondaryTap ?? () {},
@@ -64,7 +64,7 @@ class LibItemCard extends StatelessWidget {
                             padding: const EdgeInsets.only(left: 8),
                             child: Icon(
                               FontAwesome.chart_simple_solid,
-                              color: Default_Theme.primaryColor2.withOpacity(1),
+                              color: DefaultTheme.primaryColor2.withOpacity(1),
                               size: 15,
                             ),
                           );
@@ -107,21 +107,21 @@ class LibItemCard extends StatelessWidget {
                       title,
                       overflow: TextOverflow.ellipsis,
                       maxLines: 2,
-                      style: Default_Theme.secondoryTextStyle.merge(
+                      style: DefaultTheme.secondoryTextStyle.merge(
                           const TextStyle(
                               fontSize: 16.5,
                               fontWeight: FontWeight.w700,
-                              color: Default_Theme.primaryColor1)),
+                              color: DefaultTheme.primaryColor1)),
                     ),
                     Text(
                       subtitle,
                       maxLines: 1,
-                      style: Default_Theme.secondoryTextStyle.merge(
+                      style: DefaultTheme.secondoryTextStyle.merge(
                           const TextStyle(
                               fontSize: 14,
                               overflow: TextOverflow.fade,
                               fontWeight: FontWeight.w500,
-                              color: Default_Theme.primaryColor1)),
+                              color: DefaultTheme.primaryColor1)),
                     ),
                   ],
                 ),

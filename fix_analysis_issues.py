@@ -1,146 +1,140 @@
 #!/usr/bin/env python3
 """
-Script to fix common Flutter analysis issues in Elythra Music project
+Script to fix common Flutter analysis issues in ElythraMusic project
 """
 
 import os
 import re
 import glob
 
-def fix_unused_imports():
-    """Remove specific unused imports"""
-    files_to_fix = [
-        ('lib/features/auth/webview_auth_service.dart', 'package:flutter/foundation.dart'),
-        ('lib/features/lyrics/services/enhanced_lyrics_service.dart', 'package:http/http.dart'),
-        ('lib/features/lyrics/services/enhanced_lyrics_service.dart', 'package:elythra_music/features/lyrics/repository/lyrics.dart'),
-        ('lib/features/music_intelligence/recommendation_engine.dart', 'dart:math'),
-        ('lib/features/performance/performance_optimizer.dart', 'dart:isolate'),
-        ('lib/features/player/screens/screen/home_views/youtube_views/playlist.dart', 'package:elythra_music/core/model/MediaPlaylistModel.dart'),
-        ('lib/features/player/screens/screen/library_views/more_opts_sheet.dart', 'package:elythra_music/core/model/MediaPlaylistModel.dart'),
-        ('lib/features/player/screens/screen/library_views/playlist_screen.dart', 'package:elythra_music/core/model/MediaPlaylistModel.dart'),
-        ('lib/features/player/screens/screen/library_views/playlist_screen.dart', 'package:flutter/foundation.dart'),
-        ('lib/features/player/screens/screen/offline_screen.dart', 'package:elythra_music/core/model/MediaPlaylistModel.dart'),
-        ('lib/features/player/screens/screen/player_screen.dart', 'dart:ui'),
-        ('lib/features/player/screens/screen/player_screen.dart', 'package:elythra_music/core/services/bloomeePlayer.dart'),
-        ('lib/features/player/screens/widgets/createPlaylist_bottomsheet.dart', 'package:flutter/cupertino.dart'),
-        ('lib/features/player/screens/widgets/song_tile.dart', 'package:audio_service/audio_service.dart'),
-        ('lib/features/player/services/enhanced_audio_service.dart', 'package:audio_service/audio_service.dart'),
-        ('lib/features/player/services/enhanced_audio_service.dart', 'package:elythra_music/core/repository/Saavn/saavn_api.dart'),
-        ('lib/features/player/services/enhanced_audio_service.dart', 'package:elythra_music/core/repository/Youtube/ytm/ytmusic.dart'),
-        ('lib/features/settings/enhanced_settings_screen.dart', 'package:flutter_bloc/flutter_bloc.dart'),
-        ('lib/features/social/social_features_service.dart', 'package:url_launcher/url_launcher.dart'),
-        ('lib/main.dart', 'package:elythra_music/features/harmony_integration/enhanced_stream_service.dart'),
-    ]
+def fix_constant_naming():
+    """Fix constant naming to lowerCamelCase"""
     
-    for file_path, import_to_remove in files_to_fix:
-        full_path = os.path.join('/workspace/ElythraMusic', file_path)
-        if os.path.exists(full_path):
-            with open(full_path, 'r', encoding='utf-8') as f:
-                content = f.read()
-            
-            # Remove the specific import line
-            import_pattern = f"import '{import_to_remove}';\n"
-            if import_pattern in content:
-                content = content.replace(import_pattern, '')
-                print(f"Removed unused import {import_to_remove} from {file_path}")
-            
-            # Also try with double quotes
-            import_pattern = f'import "{import_to_remove}";\n'
-            if import_pattern in content:
-                content = content.replace(import_pattern, '')
-                print(f"Removed unused import {import_to_remove} from {file_path}")
-            
-            with open(full_path, 'w', encoding='utf-8') as f:
-                f.write(content)
-
-def fix_deprecated_withopacity():
-    """Fix deprecated withOpacity usage"""
-    dart_files = glob.glob('/workspace/ElythraMusic/lib/**/*.dart', recursive=True)
-    
-    for file_path in dart_files:
+    # Fix billboard_charts.dart
+    file_path = 'lib/plugins/ext_charts/billboard_charts.dart'
+    if os.path.exists(file_path):
         try:
             with open(file_path, 'r', encoding='utf-8') as f:
                 content = f.read()
             
-            original_content = content
-            
-            # Replace .withOpacity( with .withValues(alpha: 
-            content = re.sub(r'\.withOpacity\(([^)]+)\)', r'.withValues(alpha: \1)', content)
-            
-            if content != original_content:
-                with open(file_path, 'w', encoding='utf-8') as f:
-                    f.write(content)
-                print(f"Fixed withOpacity in {file_path}")
-        except Exception as e:
-            print(f"Error processing {file_path}: {e}")
-
-def fix_print_statements():
-    """Remove or comment out print statements in production code"""
-    dart_files = glob.glob('/workspace/ElythraMusic/lib/**/*.dart', recursive=True)
-    
-    for file_path in dart_files:
-        try:
-            with open(file_path, 'r', encoding='utf-8') as f:
-                lines = f.readlines()
-            
-            modified = False
-            for i, line in enumerate(lines):
-                # Look for print statements that are not in comments
-                if 'print(' in line and not line.strip().startswith('//'):
-                    # Comment out the print statement
-                    lines[i] = line.replace('print(', '// print(')
-                    modified = True
-            
-            if modified:
-                with open(file_path, 'w', encoding='utf-8') as f:
-                    f.writelines(lines)
-                print(f"Commented out print statements in {file_path}")
-        except Exception as e:
-            print(f"Error processing {file_path}: {e}")
-
-def fix_const_constructors():
-    """Add const to constructors where suggested"""
-    dart_files = glob.glob('/workspace/ElythraMusic/lib/**/*.dart', recursive=True)
-    
-    for file_path in dart_files:
-        try:
-            with open(file_path, 'r', encoding='utf-8') as f:
-                content = f.read()
-            
-            original_content = content
-            
-            # Fix common const constructor patterns
-            patterns = [
-                (r'return ([A-Z][a-zA-Z]*)\(', r'return const \1('),
-                (r'emit\(([A-Z][a-zA-Z]*)\(', r'emit(const \1('),
+            # Replace constant declarations
+            constant_replacements = [
+                ('const String HOT_100', 'const String hot100'),
+                ('const String BILLBOARD_200', 'const String billboard200'),
+                ('const String SOCIAL_50', 'const String social50'),
+                ('const String STREAMING_SONGS', 'const String streamingSongs'),
+                ('const String DIGITAL_SONG_SALES', 'const String digitalSongSales'),
+                ('const String RADIO_SONGS', 'const String radioSongs'),
+                ('const String TOP_ALBUM_SALES', 'const String topAlbumSales'),
+                ('const String CURRENT_ALBUMS', 'const String currentAlbums'),
+                ('const String INDEPENDENT_ALBUMS', 'const String independentAlbums'),
+                ('const String CATALOG_ALBUMS', 'const String catalogAlbums'),
+                ('const String SOUNDTRACKS', 'const String soundtracks'),
+                ('const String VINYL_ALBUMS', 'const String vinylAlbums'),
+                ('const String HEATSEEKERS_ALBUMS', 'const String heatseekersAlbums'),
+                ('const String WORLD_ALBUMS', 'const String worldAlbums'),
+                ('const String CANADIAN_HOT_100', 'const String canadianHot100'),
+                ('const String JAPAN_HOT_100', 'const String japanHot100'),
+                ('const String KOREA_100', 'const String korea100'),
+                ('const String INDIA_SONGS', 'const String indiaSongs'),
+                ('const String BILLBOARD_GLOBAL_200', 'const String billboardGlobal200'),
             ]
             
-            for pattern, replacement in patterns:
-                content = re.sub(pattern, replacement, content)
+            for old, new in constant_replacements:
+                content = content.replace(old, new)
             
-            if content != original_content:
+            # Replace variable assignments
+            variable_replacements = [
+                ('String HOT_100 =', 'String hot100 ='),
+                ('String BILLBOARD_200 =', 'String billboard200 ='),
+                ('String SOCIAL_50 =', 'String social50 ='),
+                ('String STREAMING_SONGS =', 'String streamingSongs ='),
+                ('String DIGITAL_SONG_SALES =', 'String digitalSongSales ='),
+                ('String RADIO_SONGS =', 'String radioSongs ='),
+                ('String TOP_ALBUM_SALES =', 'String topAlbumSales ='),
+                ('String CURRENT_ALBUMS =', 'String currentAlbums ='),
+                ('String INDEPENDENT_ALBUMS =', 'String independentAlbums ='),
+                ('String CATALOG_ALBUMS =', 'String catalogAlbums ='),
+                ('String SOUNDTRACKS =', 'String soundtracks ='),
+                ('String VINYL_ALBUMS =', 'String vinylAlbums ='),
+                ('String HEATSEEKERS_ALBUMS =', 'String heatseekersAlbums ='),
+                ('String WORLD_ALBUMS =', 'String worldAlbums ='),
+                ('String CANADIAN_HOT_100 =', 'String canadianHot100 ='),
+                ('String JAPAN_HOT_100 =', 'String japanHot100 ='),
+                ('String KOREA_100 =', 'String korea100 ='),
+                ('String INDIA_SONGS =', 'String indiaSongs ='),
+                ('String BILLBOARD_GLOBAL_200 =', 'String billboardGlobal200 ='),
+            ]
+            
+            for old, new in variable_replacements:
+                content = content.replace(old, new)
+            
+            with open(file_path, 'w', encoding='utf-8') as f:
+                f.write(content)
+            print(f"Fixed constant naming in {file_path}")
+                
+        except Exception as e:
+            print(f"Error fixing constants in {file_path}: {e}")
+
+def fix_variable_naming():
+    """Fix specific variable naming issues"""
+    
+    # Fix song_model.dart
+    file_path = 'lib/core/model/song_model.dart'
+    if os.path.exists(file_path):
+        try:
+            with open(file_path, 'r', encoding='utf-8') as f:
+                content = f.read()
+            
+            content = content.replace('MediaItem2MediaItemDB', 'mediaItem2MediaItemDB')
+            content = content.replace('MediaItemDB2MediaItem', 'mediaItemDB2MediaItem')
+            
+            with open(file_path, 'w', encoding='utf-8') as f:
+                f.write(content)
+            print(f"Fixed variable naming in {file_path}")
+                
+        except Exception as e:
+            print(f"Error fixing variables in {file_path}: {e}")
+
+def fix_class_naming():
+    """Fix class naming issues"""
+    
+    # Fix Default_Theme class
+    theme_files = [
+        'lib/core/theme_data/default.dart',
+        'lib/features/player/theme_data/default.dart'
+    ]
+    
+    for file_path in theme_files:
+        if os.path.exists(file_path):
+            try:
+                with open(file_path, 'r', encoding='utf-8') as f:
+                    content = f.read()
+                
+                content = content.replace('class Default_Theme', 'class DefaultTheme')
+                content = content.replace('Default_Theme()', 'DefaultTheme()')
+                
                 with open(file_path, 'w', encoding='utf-8') as f:
                     f.write(content)
-                print(f"Added const constructors in {file_path}")
-        except Exception as e:
-            print(f"Error processing {file_path}: {e}")
+                print(f"Fixed class naming in {file_path}")
+                    
+            except Exception as e:
+                print(f"Error fixing classes in {file_path}: {e}")
 
 def main():
-    print("Starting to fix Flutter analysis issues...")
+    """Main function to run all fixes"""
+    print("Starting ElythraMusic analysis issue fixes...")
     
-    print("\n1. Fixing unused imports...")
-    fix_unused_imports()
+    print("\n1. Fixing constant naming...")
+    fix_constant_naming()
     
-    print("\n2. Fixing deprecated withOpacity usage...")
-    fix_deprecated_withopacity()
+    print("\n2. Fixing variable naming...")
+    fix_variable_naming()
     
-    print("\n3. Commenting out print statements...")
-    fix_print_statements()
+    print("\n3. Fixing class naming...")
+    fix_class_naming()
     
-    print("\n4. Adding const constructors...")
-    fix_const_constructors()
-    
-    print("\nDone! Please run 'flutter analyze' to check remaining issues.")
+    print("\nBasic fixes completed!")
 
 if __name__ == "__main__":
     main()

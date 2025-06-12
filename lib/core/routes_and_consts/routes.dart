@@ -71,7 +71,7 @@ class GlobalRoutes {
                   builder: (context, state) => const ExploreScreen(),
                   routes: [
                     GoRoute(
-                        name: GlobalStrConsts.ChartScreen,
+                        name: GlobalStrConsts.chartScreen,
                         path: 'ChartScreen:chartName',
                         builder: (context, state) => ChartScreen(
                             chartName:
@@ -85,8 +85,8 @@ class GlobalRoutes {
                   builder: (context, state) => const LibraryScreen(),
                   routes: [
                     GoRoute(
-                      path: GlobalStrConsts.ImportMediaFromPlatforms,
-                      name: GlobalStrConsts.ImportMediaFromPlatforms,
+                      path: GlobalStrConsts.importMediaFromPlatforms,
+                      name: GlobalStrConsts.importMediaFromPlatforms,
                       builder: (context, state) =>
                           const ImportMediaFromPlatformsView(),
                     ),

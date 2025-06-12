@@ -60,7 +60,7 @@ MediaPlaylist fromPlaylistDB2MediaPlaylist(MediaPlaylistDB mediaPlaylistDB,
       MediaPlaylist(mediaItems: [], playlistName: mediaPlaylistDB.playlistName);
   if (mediaPlaylistDB.mediaItems.isNotEmpty) {
     for (var element in mediaPlaylistDB.mediaItems) {
-      mediaPlaylist.mediaItems.add(MediaItemDB2MediaItem(element));
+      mediaPlaylist.mediaItems.add(mediaItemDB2MediaItem(element));
     }
   }
   if (playlistsInfoDB != null) {

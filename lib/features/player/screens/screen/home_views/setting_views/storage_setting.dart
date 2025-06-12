@@ -48,19 +48,19 @@ class BackupSettings extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Default_Theme.themeColor,
+      backgroundColor: DefaultTheme.themeColor,
       appBar: AppBar(
-        backgroundColor: Default_Theme.themeColor,
-        foregroundColor: Default_Theme.primaryColor1,
-        surfaceTintColor: Default_Theme.themeColor,
+        backgroundColor: DefaultTheme.themeColor,
+        foregroundColor: DefaultTheme.primaryColor1,
+        surfaceTintColor: DefaultTheme.themeColor,
         centerTitle: true,
         title: Text(
           'Storage',
           style: const TextStyle(
-                  color: Default_Theme.primaryColor1,
+                  color: DefaultTheme.primaryColor1,
                   fontSize: 20,
                   fontWeight: FontWeight.bold)
-              .merge(Default_Theme.secondoryTextStyle),
+              .merge(DefaultTheme.secondoryTextStyle),
         ),
       ),
       body: BlocBuilder<SettingsCubit, SettingsState>(
@@ -73,10 +73,10 @@ class BackupSettings extends StatelessWidget {
                 trailing: DropdownButton(
                   value: state.historyClearTime,
                   style: const TextStyle(
-                    color: Default_Theme.primaryColor1,
+                    color: DefaultTheme.primaryColor1,
                     fontSize: 14,
                     fontWeight: FontWeight.bold,
-                  ).merge(Default_Theme.secondoryTextStyle),
+                  ).merge(DefaultTheme.secondoryTextStyle),
                   underline: const SizedBox(),
                   onChanged: (String? newValue) {
                     if (newValue != null) {
@@ -163,7 +163,7 @@ class BackupSettings extends StatelessWidget {
                                 TextButton(
                                   child: Text(
                                     "Yes",
-                                    style: Default_Theme.secondoryTextStyle
+                                    style: DefaultTheme.secondoryTextStyle
                                         .merge(const TextStyle(
                                             color: Colors.white,
                                             fontWeight: FontWeight.bold)),
@@ -184,13 +184,13 @@ class BackupSettings extends StatelessWidget {
                                 ElevatedButton(
                                     style: ElevatedButton.styleFrom(
                                         backgroundColor:
-                                            Default_Theme.accentColor2),
+                                            DefaultTheme.accentColor2),
                                     onPressed: () {
                                       context.pop();
                                     },
                                     child: Text(
                                       "No",
-                                      style: Default_Theme.secondoryTextStyle
+                                      style: DefaultTheme.secondoryTextStyle
                                           .merge(const TextStyle(
                                               color: Colors.white,
                                               fontWeight: FontWeight.bold)),
@@ -202,7 +202,7 @@ class BackupSettings extends StatelessWidget {
                                     child: Text(
                                       "Your current data will be removed while importing all previous data from backup file.\nDo you want to proceed?",
                                       textAlign: TextAlign.left,
-                                      style: Default_Theme.secondoryTextStyle
+                                      style: DefaultTheme.secondoryTextStyle
                                           .merge(
                                         const TextStyle(
                                             color: Colors.white, fontSize: 16),
@@ -223,14 +223,14 @@ class BackupSettings extends StatelessWidget {
               SwitchListTile(
                 title: Text("Auto Backup",
                     style: const TextStyle(
-                            color: Default_Theme.primaryColor1, fontSize: 16)
-                        .merge(Default_Theme.secondoryTextStyleMedium)),
+                            color: DefaultTheme.primaryColor1, fontSize: 16)
+                        .merge(DefaultTheme.secondoryTextStyleMedium)),
                 subtitle: Text(
                     "Automatically create a backup of your data on regular basis.",
                     style: TextStyle(
-                            color: Default_Theme.primaryColor1.withOpacity(0.5),
+                            color: DefaultTheme.primaryColor1.withOpacity(0.5),
                             fontSize: 12)
-                        .merge(Default_Theme.secondoryTextStyleMedium)),
+                        .merge(DefaultTheme.secondoryTextStyleMedium)),
                 value: state.autoBackup,
                 onChanged: (value) {
                   context.read<SettingsCubit>().setAutoBackup(value);
@@ -239,15 +239,15 @@ class BackupSettings extends StatelessWidget {
               SwitchListTile(
                   title: Text("Auto Save Lyrics",
                       style: const TextStyle(
-                              color: Default_Theme.primaryColor1, fontSize: 16)
-                          .merge(Default_Theme.secondoryTextStyleMedium)),
+                              color: DefaultTheme.primaryColor1, fontSize: 16)
+                          .merge(DefaultTheme.secondoryTextStyleMedium)),
                   subtitle: Text(
                       "Automatically save lyrics of the song when played.",
                       style: TextStyle(
                               color:
-                                  Default_Theme.primaryColor1.withOpacity(0.5),
+                                  DefaultTheme.primaryColor1.withOpacity(0.5),
                               fontSize: 12)
-                          .merge(Default_Theme.secondoryTextStyleMedium)),
+                          .merge(DefaultTheme.secondoryTextStyleMedium)),
                   value: state.autoSaveLyrics,
                   onChanged: (value) {
                     context.read<SettingsCubit>().setAutoSaveLyrics(value);

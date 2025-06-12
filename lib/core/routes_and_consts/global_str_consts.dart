@@ -8,8 +8,8 @@ class GlobalStrConsts {
   static const String playerScreen = "MusicPlayer";
   static const String playlistView = "PlaylistView";
   static const String addToPlaylistScreen = "AddToPlaylist";
-  static const String ImportMediaFromPlatforms = "ImportMediaFromPlatforms";
-  static const String ChartScreen = "ChartScreen";
+  static const String importMediaFromPlatforms = "ImportMediaFromPlatforms";
+  static const String chartScreen = "ChartScreen";
 
   static const String autoUpdateNotify = "auto_update_notify";
   static const String autoSlideCharts = "auto_slide_charts";

@@ -14,7 +14,9 @@ class PerformanceOptimizer {
 
   // Performance monitoring
   final List<PerformanceMetric> _metrics = [];
+  // ignore: unused_field
   final Map<String, int> _memoryUsage = {};
+  // ignore: unused_field
   final Map<String, Duration> _operationTimes = {};
 
   // Battery optimization settings

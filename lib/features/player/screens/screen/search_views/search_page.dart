@@ -11,7 +11,7 @@ import 'package:icons_plus/icons_plus.dart';
 
 class SearchPageDelegate extends SearchDelegate {
   List<String> searchList = [];
-  SourceEngine sourceEngine = SourceEngine.eng_YTM;
+  SourceEngine sourceEngine = SourceEngine.engYtm;
   ResultTypes resultType = ResultTypes.songs;
   SearchPageDelegate(
     this.sourceEngine,
@@ -27,17 +27,17 @@ class SearchPageDelegate extends SearchDelegate {
         shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.all(Radius.circular(20))),
         backgroundColor: Color.fromARGB(255, 19, 19, 19),
-        iconTheme: IconThemeData(color: Default_Theme.primaryColor1),
+        iconTheme: IconThemeData(color: DefaultTheme.primaryColor1),
       ),
       textTheme: TextTheme(
         titleLarge: const TextStyle(
-          color: Default_Theme.primaryColor1,
-        ).merge(Default_Theme.secondoryTextStyleMedium),
+          color: DefaultTheme.primaryColor1,
+        ).merge(DefaultTheme.secondoryTextStyleMedium),
       ),
       inputDecorationTheme: InputDecorationTheme(
         hintStyle: TextStyle(
-          color: Default_Theme.primaryColor2.withOpacity(0.3),
-        ).merge(Default_Theme.secondoryTextStyle),
+          color: DefaultTheme.primaryColor2.withOpacity(0.3),
+        ).merge(DefaultTheme.secondoryTextStyle),
       ),
     );
   }
@@ -107,7 +107,7 @@ class SearchPageDelegate extends SearchDelegate {
             child: switch (state) {
               SearchSuggestionLoading() => const Center(
                   child: CircularProgressIndicator(
-                    color: Default_Theme.accentColor2,
+                    color: DefaultTheme.accentColor2,
                   ),
                 ),
               SearchSuggestionLoaded() => state.suggestionList.isEmpty &&
@@ -131,15 +131,15 @@ class SearchPageDelegate extends SearchDelegate {
                                   title: Text(
                                     e.values.first,
                                     style: const TextStyle(
-                                      color: Default_Theme.primaryColor1,
-                                    ).merge(Default_Theme.secondoryTextStyle),
+                                      color: DefaultTheme.primaryColor1,
+                                    ).merge(DefaultTheme.secondoryTextStyle),
                                   ),
                                   contentPadding:
                                       const EdgeInsets.only(left: 16, right: 8),
                                   leading: Icon(
                                     MingCute.history_line,
                                     size: 22,
-                                    color: Default_Theme.primaryColor1
+                                    color: DefaultTheme.primaryColor1
                                         .withOpacity(0.5),
                                   ),
                                   trailing: IconButton(
@@ -150,7 +150,7 @@ class SearchPageDelegate extends SearchDelegate {
                                     },
                                     icon: Icon(
                                       MingCute.close_fill,
-                                      color: Default_Theme.primaryColor1
+                                      color: DefaultTheme.primaryColor1
                                           .withOpacity(0.5),
                                       size: 22,
                                     ),
@@ -172,15 +172,15 @@ class SearchPageDelegate extends SearchDelegate {
                               title: Text(
                                 state.suggestionList[index],
                                 style: const TextStyle(
-                                  color: Default_Theme.primaryColor1,
-                                ).merge(Default_Theme.secondoryTextStyle),
+                                  color: DefaultTheme.primaryColor1,
+                                ).merge(DefaultTheme.secondoryTextStyle),
                               ),
                               contentPadding:
                                   const EdgeInsets.only(left: 16, right: 8),
                               leading: Icon(
                                 MingCute.search_line,
                                 size: 22,
-                                color: Default_Theme.primaryColor1
+                                color: DefaultTheme.primaryColor1
                                     .withOpacity(0.5),
                               ),
                               trailing: IconButton(
@@ -190,7 +190,7 @@ class SearchPageDelegate extends SearchDelegate {
                                 },
                                 icon: Icon(
                                   MingCute.arrow_left_up_line,
-                                  color: Default_Theme.primaryColor1
+                                  color: DefaultTheme.primaryColor1
                                       .withOpacity(0.5),
                                   size: 22,
                                 ),

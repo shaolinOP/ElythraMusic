@@ -100,7 +100,7 @@ class ExternalMediaImporter {
                 .formatVideo(video: video, quality: "High", getUrl: false);
             var item = fromYtVidSongMap2MediaItem(itemMap!);
             await ElythraDBService.addMediaItem(
-                MediaItem2MediaItemDB(item), playlistMeta.title);
+                mediaItem2MediaItemDB(item), playlistMeta.title);
             log("Added: ${item.title}", name: "Playlist Importer");
             yield ImporterState(
               totalItems: playlistMeta.videoCount ?? 0,
@@ -170,7 +170,7 @@ class ExternalMediaImporter {
 
         for (var item in mediaItems) {
           ElythraDBService.addMediaItem(
-              MediaItem2MediaItemDB(item), playlistMeta['name']);
+              mediaItem2MediaItemDB(item), playlistMeta['name']);
           log("Added: ${item.title}", name: "Playlist Importer");
           yield ImporterState(
             totalItems: mediaItems.length,
@@ -290,7 +290,7 @@ class ExternalMediaImporter {
               if (title.isNotEmpty) {
                 MediaItemModel? mediaItem;
                 // final country = await getCountry();
-                // if (sourceEngineCountries[SourceEngine.eng_JIS]!
+                // if (sourceEngineCountries[SourceEngine.engJis]!
                 //     .contains(country)) {
                 //   log("Getting from MixedAPI", name: "Playlist Importer");
                 //   mediaItem =
@@ -303,7 +303,7 @@ class ExternalMediaImporter {
                 // }
                 if (mediaItem != null) {
                   ElythraDBService.addMediaItem(
-                      MediaItem2MediaItemDB(mediaItem), playlistTitle);
+                      mediaItem2MediaItemDB(mediaItem), playlistTitle);
                   yield ImporterState(
                     totalItems: totalItems,
                     importedItems: i,
@@ -381,7 +381,7 @@ class ExternalMediaImporter {
         if (title.isNotEmpty) {
           MediaItemModel? mediaItem;
           // final country = await getCountry();
-          // if (sourceEngineCountries[SourceEngine.eng_JIS]!.contains(country)) {
+          // if (sourceEngineCountries[SourceEngine.engJis]!.contains(country)) {
           //   log("Getting from MixedAPI", name: "Playlist Importer");
           //   mediaItem =
           //       await MixedAPI().getTrackMixed("$title $artists".trim());
@@ -454,7 +454,7 @@ class ExternalMediaImporter {
             if (title.isNotEmpty) {
               MediaItemModel? mediaItem;
               // final country = await getCountry();
-              // if (sourceEngineCountries[SourceEngine.eng_JIS]!
+              // if (sourceEngineCountries[SourceEngine.engJis]!
               //     .contains(country)) {
               //   log("Getting from MixedAPI", name: "Playlist Importer");
               //   mediaItem =
@@ -466,7 +466,7 @@ class ExternalMediaImporter {
               // }
               if (mediaItem != null) {
                 ElythraDBService.addMediaItem(
-                    MediaItem2MediaItemDB(mediaItem), albumTitle);
+                    mediaItem2MediaItemDB(mediaItem), albumTitle);
                 yield ImporterState(
                   totalItems: totalItems,
                   importedItems: i,

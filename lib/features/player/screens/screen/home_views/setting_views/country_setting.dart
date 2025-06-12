@@ -10,19 +10,19 @@ class CountrySettings extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Default_Theme.themeColor,
+      backgroundColor: DefaultTheme.themeColor,
       appBar: AppBar(
-        backgroundColor: Default_Theme.themeColor,
-        foregroundColor: Default_Theme.primaryColor1,
-        surfaceTintColor: Default_Theme.themeColor,
+        backgroundColor: DefaultTheme.themeColor,
+        foregroundColor: DefaultTheme.primaryColor1,
+        surfaceTintColor: DefaultTheme.themeColor,
         centerTitle: true,
         title: Text(
           'Country & Language Settings',
           style: const TextStyle(
-                  color: Default_Theme.primaryColor1,
+                  color: DefaultTheme.primaryColor1,
                   fontSize: 20,
                   fontWeight: FontWeight.bold)
-              .merge(Default_Theme.secondoryTextStyle),
+              .merge(DefaultTheme.secondoryTextStyle),
         ),
       ),
       body: BlocBuilder<SettingsCubit, SettingsState>(
@@ -34,15 +34,15 @@ class CountrySettings extends StatelessWidget {
                   subtitle: Text(
                     "Automatically check the country to your location when you open the app.",
                     style: TextStyle(
-                            color: Default_Theme.primaryColor1.withOpacity(0.5),
+                            color: DefaultTheme.primaryColor1.withOpacity(0.5),
                             fontSize: 12.5)
-                        .merge(Default_Theme.secondoryTextStyleMedium),
+                        .merge(DefaultTheme.secondoryTextStyleMedium),
                   ),
                   title: Text(
                     "Auto check country",
                     style: const TextStyle(
-                            color: Default_Theme.primaryColor1, fontSize: 17)
-                        .merge(Default_Theme.secondoryTextStyleMedium),
+                            color: DefaultTheme.primaryColor1, fontSize: 17)
+                        .merge(DefaultTheme.secondoryTextStyleMedium),
                   ),
                   onChanged: (value) {
                     context.read<SettingsCubit>().setAutoGetCountry(value);
@@ -56,9 +56,9 @@ class CountrySettings extends StatelessWidget {
                   style: const TextStyle(
                     overflow: TextOverflow.ellipsis,
                     fontWeight: FontWeight.bold,
-                    color: Default_Theme.primaryColor1,
+                    color: DefaultTheme.primaryColor1,
                     fontSize: 15,
-                  ).merge(Default_Theme.secondoryTextStyle),
+                  ).merge(DefaultTheme.secondoryTextStyle),
                   underline: const SizedBox(),
                   onChanged: (String? newValue) {
                     if (newValue != null) {

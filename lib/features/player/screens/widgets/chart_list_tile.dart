@@ -92,17 +92,17 @@ class ChartListTile extends StatelessWidget {
             textAlign: TextAlign.start,
             overflow: TextOverflow.ellipsis,
             maxLines: 1,
-            style: Default_Theme.tertiaryTextStyle.merge(const TextStyle(
+            style: DefaultTheme.tertiaryTextStyle.merge(const TextStyle(
                 fontWeight: FontWeight.w600,
-                color: Default_Theme.primaryColor1,
+                color: DefaultTheme.primaryColor1,
                 fontSize: 14)),
           ),
           subtitle: Text(subtitle,
               textAlign: TextAlign.start,
               overflow: TextOverflow.ellipsis,
               maxLines: 1,
-              style: Default_Theme.tertiaryTextStyle.merge(TextStyle(
-                  color: Default_Theme.primaryColor1.withOpacity(0.8),
+              style: DefaultTheme.tertiaryTextStyle.merge(TextStyle(
+                  color: DefaultTheme.primaryColor1.withOpacity(0.8),
                   fontSize: 13))),
         ),
       ),

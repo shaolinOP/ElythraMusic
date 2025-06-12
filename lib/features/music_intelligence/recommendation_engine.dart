@@ -12,6 +12,7 @@ class RecommendationEngine {
   // User listening data
   final Map<String, UserListeningProfile> _userProfiles = {};
   final Map<String, SongMetadata> _songDatabase = {};
+  // ignore: unused_field
   final Map<String, List<String>> _artistSimilarity = {};
   final Map<String, List<String>> _genreSimilarity = {};
 

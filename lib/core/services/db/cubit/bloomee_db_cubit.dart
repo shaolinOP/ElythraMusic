@@ -32,9 +32,9 @@ class ElythraDBCubit extends Cubit<MediadbState> {
   }
 
   Future<void> setLike(MediaItem mediaItem, {isLiked = false}) async {
-    ElythraDBService.addMediaItem(MediaItem2MediaItemDB(mediaItem), "Liked");
+    ElythraDBService.addMediaItem(mediaItem2MediaItemDB(mediaItem), "Liked");
     // refreshLibrary.add(true);
-    ElythraDBService.likeMediaItem(MediaItem2MediaItemDB(mediaItem),
+    ElythraDBService.likeMediaItem(mediaItem2MediaItemDB(mediaItem),
         isLiked: isLiked);
     if (isLiked) {
       SnackbarService.showMessage("${mediaItem.title} is Liked!!");
@@ -45,7 +45,7 @@ class ElythraDBCubit extends Cubit<MediadbState> {
 
   Future<bool> isLiked(MediaItem mediaItem) {
     // bool res = true;
-    return ElythraDBService.isMediaLiked(MediaItem2MediaItemDB(mediaItem));
+    return ElythraDBService.isMediaLiked(mediaItem2MediaItemDB(mediaItem));
   }
 
   List<MediaItemDB> reorderByRank(
@@ -97,7 +97,7 @@ class ElythraDBCubit extends Cubit<MediadbState> {
         _mediaPlaylist.mediaItems.clear();
 
         for (var element in _dbList) {
-          _mediaPlaylist.mediaItems.add(MediaItemDB2MediaItem(element));
+          _mediaPlaylist.mediaItems.add(mediaItemDB2MediaItem(element));
         }
       }
     }
@@ -147,14 +147,14 @@ class ElythraDBCubit extends Cubit<MediadbState> {
         duration: const Duration(seconds: 3),
         action: SnackBarAction(
           label: "Undo",
-          textColor: Default_Theme.accentColor2,
+          textColor: DefaultTheme.accentColor2,
           onPressed: () => addNewPlaylistToDB(mediaPlaylistDB, undo: true),
         ));
   }
 
   Future<void> removeMediaFromPlaylist(
       MediaItem mediaItem, MediaPlaylistDB mediaPlaylistDB) async {
-    MediaItemDB _mediaItemDB = MediaItem2MediaItemDB(mediaItem);
+    MediaItemDB _mediaItemDB = mediaItem2MediaItemDB(mediaItem);
     ElythraDBService.removeMediaItemFromPlaylist(_mediaItemDB, mediaPlaylistDB)
         .then((value) {
       SnackbarService.showMessage(
@@ -162,9 +162,9 @@ class ElythraDBCubit extends Cubit<MediadbState> {
           duration: const Duration(seconds: 3),
           action: SnackBarAction(
               label: "Undo",
-              textColor: Default_Theme.accentColor2,
+              textColor: DefaultTheme.accentColor2,
               onPressed: () => addMediaItemToPlaylist(
-                  MediaItemDB2MediaItem(_mediaItemDB), mediaPlaylistDB,
+                  mediaItemDB2MediaItem(_mediaItemDB), mediaPlaylistDB,
                   undo: true)));
     });
   }
@@ -173,7 +173,7 @@ class ElythraDBCubit extends Cubit<MediadbState> {
       MediaItemModel mediaItemModel, MediaPlaylistDB mediaPlaylistDB,
       {bool undo = false}) async {
     final _id = await ElythraDBService.addMediaItem(
-        MediaItem2MediaItemDB(mediaItemModel), mediaPlaylistDB.playlistName);
+        mediaItem2MediaItemDB(mediaItemModel), mediaPlaylistDB.playlistName);
     // refreshLibrary.add(true);
     if (!undo) {
       SnackbarService.showMessage(

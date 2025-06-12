@@ -162,8 +162,6 @@ class ColorExtractionService {
 
   /// Create adaptive theme based on extracted color
   ThemeData createAdaptiveTheme(Color primaryColor, {bool isDark = false}) {
-    final colors = generateThemeColors(primaryColor);
-    
     return ThemeData(
       brightness: isDark ? Brightness.dark : Brightness.light,
       primarySwatch: _createMaterialColor(primaryColor),

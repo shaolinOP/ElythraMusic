@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-class Default_Theme {
+class DefaultTheme {
   //Text Styles
   static const primaryTextStyle = TextStyle(fontFamily: "Fjalla");
   static const secondoryTextStyle = TextStyle(fontFamily: "Gilroy");

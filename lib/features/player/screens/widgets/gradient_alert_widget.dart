@@ -82,9 +82,9 @@ class _GradientDialogState extends State<GradientDialog> {
                           Navigator.of(context).pop();
                         },
                         style: OutlinedButton.styleFrom(
-                          backgroundColor: Default_Theme.accentColor1,
+                          backgroundColor: DefaultTheme.accentColor1,
                           side: const BorderSide(
-                              color: Default_Theme.accentColor1),
+                              color: DefaultTheme.accentColor1),
                           shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(20.0)),
                         ),

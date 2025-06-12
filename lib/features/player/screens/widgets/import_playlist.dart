@@ -94,8 +94,8 @@ class _ImporterDialogWidgetState extends State<ImporterDialogWidget> {
                               message,
                               style: const TextStyle(
                                       fontSize: 16,
-                                      color: Default_Theme.primaryColor1)
-                                  .merge(Default_Theme.secondoryTextStyle),
+                                      color: DefaultTheme.primaryColor1)
+                                  .merge(DefaultTheme.secondoryTextStyle),
                               maxLines: 2,
                               textAlign: TextAlign.center,
                               overflow: TextOverflow.ellipsis,

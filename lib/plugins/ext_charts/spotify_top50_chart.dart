@@ -14,13 +14,13 @@ const List<String> spotifyIMGs = [
 final RandomIMGs spotifyRandomIMGs = RandomIMGs(imgURLs: spotifyIMGs);
 
 class SpotifyChartsLinks {
-  static const String TOP_50 =
+  static const String top50 =
       'https://charts-spotify-com-service.spotify.com/public/v0/charts';
 }
 
 class SpotifyCharts {
-  static final ChartURL TOP_50 =
-      ChartURL(title: "Spotify\nTop 50 Global", url: SpotifyChartsLinks.TOP_50);
+  static final ChartURL top50 =
+      ChartURL(title: "Spotify\nTop 50 Global", url: SpotifyChartsLinks.top50);
 }
 
 Future<ChartModel> getSpotifyTop50Chart(ChartURL url) async {

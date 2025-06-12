@@ -26,9 +26,9 @@ class CategoryLabel extends StatelessWidget {
             padding: const EdgeInsets.symmetric(horizontal: 10),
             child: Text(
               category,
-              style: Default_Theme.secondoryTextStyle.merge(
+              style: DefaultTheme.secondoryTextStyle.merge(
                 const TextStyle(
-                  color: Default_Theme.accentColor2,
+                  color: DefaultTheme.accentColor2,
                   fontWeight: FontWeight.bold,
                   fontSize: 20,
                 ),

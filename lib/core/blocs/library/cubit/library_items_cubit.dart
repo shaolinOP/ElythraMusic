@@ -151,7 +151,7 @@ class LibraryItemsCubit extends Cubit<LibraryItemsState> {
 
       if (_playlist != null) {
         final mediaItems =
-            _playlist.map((e) => MediaItemDB2MediaItem(e)).toList();
+            _playlist.map((e) => mediaItemDB2MediaItem(e)).toList();
         return mediaItems;
       }
     } catch (e) {

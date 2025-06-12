@@ -16,14 +16,14 @@ class HistoryView extends StatelessWidget {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        backgroundColor: Default_Theme.themeColor,
+        backgroundColor: DefaultTheme.themeColor,
         appBar: AppBar(
           centerTitle: true,
           actions: [
             IconButton(
               icon: const Icon(
                 MingCute.settings_1_line,
-                color: Default_Theme.primaryColor1,
+                color: DefaultTheme.primaryColor1,
               ),
               onPressed: () {
                 Navigator.push(
@@ -35,16 +35,16 @@ class HistoryView extends StatelessWidget {
               },
             ),
           ],
-          backgroundColor: Default_Theme.themeColor,
-          surfaceTintColor: Default_Theme.themeColor,
-          foregroundColor: Default_Theme.primaryColor1,
+          backgroundColor: DefaultTheme.themeColor,
+          surfaceTintColor: DefaultTheme.themeColor,
+          foregroundColor: DefaultTheme.primaryColor1,
           title: Text(
             'History',
             style: const TextStyle(
-                    color: Default_Theme.primaryColor1,
+                    color: DefaultTheme.primaryColor1,
                     fontSize: 20,
                     fontWeight: FontWeight.bold)
-                .merge(Default_Theme.secondoryTextStyle),
+                .merge(DefaultTheme.secondoryTextStyle),
           ),
         ),
         body: BlocProvider(
@@ -91,19 +91,19 @@ class HistoryView extends StatelessWidget {
       leading: Icon(
         icon,
         size: 30,
-        color: Default_Theme.primaryColor1,
+        color: DefaultTheme.primaryColor1,
       ),
       title: Text(
         title,
-        style: const TextStyle(color: Default_Theme.primaryColor1, fontSize: 17)
-            .merge(Default_Theme.secondoryTextStyleMedium),
+        style: const TextStyle(color: DefaultTheme.primaryColor1, fontSize: 17)
+            .merge(DefaultTheme.secondoryTextStyleMedium),
       ),
       subtitle: Text(
         subtitle,
         style: TextStyle(
-                color: Default_Theme.primaryColor1.withOpacity(0.5),
+                color: DefaultTheme.primaryColor1.withOpacity(0.5),
                 fontSize: 12.5)
-            .merge(Default_Theme.secondoryTextStyleMedium),
+            .merge(DefaultTheme.secondoryTextStyleMedium),
       ),
       onTap: () {
         if (onTap != null) {
