@@ -7,7 +7,7 @@ import 'package:elythra_music/core/model/song_model.dart';
 import 'package:elythra_music/core/routes_and_consts/global_str_consts.dart';
 import 'package:elythra_music/core/theme_data/default.dart';
 import 'package:elythra_music/core/utils/imgurl_formator.dart';
-import 'package:elythra_music/core/utils/load_Image.dart';
+import 'package:elythra_music/core/utils/load_image.dart';
 import 'package:audio_video_progress_bar/audio_video_progress_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';

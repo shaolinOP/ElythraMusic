@@ -1,4 +1,4 @@
-import 'package:elythra_music/core/services/bloomeeUpdaterTools.dart';
+import 'package:elythra_music/core/services/bloomee_updater_tools.dart';
 import 'package:flutter/material.dart';
 import 'package:elythra_music/core/theme_data/default.dart';
 import 'package:elythra_music/core/utils/url_launcher.dart';

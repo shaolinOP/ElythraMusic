@@ -1,8 +1,8 @@
 import 'dart:async';
 import 'dart:developer';
 
-import 'package:elythra_music/core/services/bloomeeUpdaterTools.dart';
-import 'package:elythra_music/core/services/db/GlobalDB.dart';
+import 'package:elythra_music/core/services/bloomee_updater_tools.dart';
+import 'package:elythra_music/core/services/db/global_db.dart';
 import 'package:elythra_music/core/services/db/bloomee_db_service.dart';
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';

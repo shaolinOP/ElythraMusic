@@ -6,7 +6,7 @@ import 'package:elythra_music/features/player/blocs/mediaPlayer/bloomee_player_c
 import 'package:elythra_music/core/model/yt_music_model.dart';
 import 'package:elythra_music/core/repository/Youtube/ytm/ytmusic.dart';
 import 'package:elythra_music/features/player/screens/widgets/more_bottom_sheet.dart';
-import 'package:elythra_music/features/player/screens/widgets/playPause_widget.dart';
+import 'package:elythra_music/features/player/screens/widgets/play_pause_widget.dart';
 import 'package:elythra_music/features/player/screens/widgets/snackbar.dart';
 import 'package:elythra_music/features/player/screens/widgets/song_tile.dart';
 import 'package:elythra_music/core/services/db/bloomee_db_service.dart';
@@ -17,7 +17,7 @@ import 'package:elythra_music/features/player/screens/widgets/sign_board_widget.
 import 'package:elythra_music/core/utils/imgurl_formator.dart';
 import 'package:flutter/material.dart';
 import 'package:elythra_music/core/theme_data/default.dart';
-import 'package:elythra_music/core/utils/load_Image.dart';
+import 'package:elythra_music/core/utils/load_image.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:icons_plus/icons_plus.dart';
 import 'package:just_audio/just_audio.dart';

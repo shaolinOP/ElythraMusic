@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:elythra_music/features/player/screens/widgets/playPause_widget.dart';
-import 'package:elythra_music/core/utils/load_Image.dart';
+import 'package:elythra_music/features/player/screens/widgets/play_pause_widget.dart';
+import 'package:elythra_music/core/utils/load_image.dart';
 
 class CarouselCardView extends StatelessWidget {
   final String coverImageUrl;

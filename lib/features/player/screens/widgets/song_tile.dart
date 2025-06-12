@@ -12,7 +12,7 @@ import 'package:icons_plus/icons_plus.dart';
 import 'package:elythra_music/features/player/blocs/mediaPlayer/bloomee_player_cubit.dart';
 import 'package:elythra_music/core/model/song_model.dart';
 import 'package:elythra_music/core/theme_data/default.dart';
-import 'package:elythra_music/core/utils/load_Image.dart';
+import 'package:elythra_music/core/utils/load_image.dart';
 
 class SongCardWidget extends StatelessWidget {
   final MediaItemModel song;

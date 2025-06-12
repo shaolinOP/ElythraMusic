@@ -2,7 +2,7 @@ import 'dart:convert';
 
 import 'package:isar/isar.dart';
 
-part 'GlobalDB.g.dart';
+part 'global_db.g.dart';
 
 @collection
 class MediaPlaylistDB {

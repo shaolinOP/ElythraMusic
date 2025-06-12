@@ -2,7 +2,7 @@
 import 'package:elythra_music/core/theme_data/default.dart';
 import 'package:elythra_music/core/utils/imgurl_formator.dart';
 import 'package:flutter/material.dart';
-import 'package:elythra_music/core/utils/load_Image.dart';
+import 'package:elythra_music/core/utils/load_image.dart';
 
 class YtSongTile extends StatefulWidget {
   final String title;

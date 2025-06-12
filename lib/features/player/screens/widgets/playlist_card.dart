@@ -3,7 +3,7 @@ import 'package:elythra_music/core/model/source_engines.dart';
 import 'package:elythra_music/features/player/screens/screen/common_views/playlist_view.dart';
 import 'package:elythra_music/core/theme_data/default.dart';
 import 'package:elythra_music/core/utils/imgurl_formator.dart';
-import 'package:elythra_music/core/utils/load_Image.dart';
+import 'package:elythra_music/core/utils/load_image.dart';
 import 'package:flutter/material.dart';
 import 'package:icons_plus/icons_plus.dart';
 import 'package:responsive_framework/responsive_framework.dart';

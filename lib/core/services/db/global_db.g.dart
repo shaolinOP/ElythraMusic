@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'GlobalDB.dart';
+part of 'global_db.dart';
 
 // **************************************************************************
 // IsarCollectionGenerator

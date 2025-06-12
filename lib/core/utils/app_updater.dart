@@ -1,7 +1,7 @@
 import 'dart:io';
 
 import 'package:elythra_music/features/player/screens/widgets/gradient_alert_widget.dart';
-import 'package:elythra_music/core/services/bloomeeUpdaterTools.dart';
+import 'package:elythra_music/core/services/bloomee_updater_tools.dart';
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
 

@@ -22,7 +22,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:icons_plus/icons_plus.dart';
 import 'chart/carousal_widget.dart';
 import '../widgets/horizontal_card_view.dart';
-import '../widgets/tabList_widget.dart';
+import '../widgets/tab_list_widget.dart';
 import 'package:badges/badges.dart' as badges;
 
 class ExploreScreen extends StatefulWidget {

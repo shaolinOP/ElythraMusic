@@ -2,7 +2,7 @@
 import 'package:elythra_music/core/model/chart_model.dart';
 import 'package:elythra_music/core/services/db/bloomee_db_service.dart';
 import 'package:elythra_music/core/utils/imgurl_formator.dart';
-import 'package:elythra_music/core/utils/load_Image.dart';
+import 'package:elythra_music/core/utils/load_image.dart';
 import 'package:elythra_music/core/utils/url_launcher.dart';
 import 'package:flutter/material.dart';
 import 'package:elythra_music/features/player/screens/widgets/chart_list_tile.dart';

@@ -10,7 +10,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:elythra_music/core/blocs/library/cubit/library_items_cubit.dart';
 import 'package:elythra_music/core/routes_and_consts/global_str_consts.dart';
-import 'package:elythra_music/features/player/screens/widgets/createPlaylist_bottomsheet.dart';
+import 'package:elythra_music/features/player/screens/widgets/create_playlist_bottomsheet.dart';
 import 'package:elythra_music/features/player/screens/widgets/libitem_tile.dart';
 import 'package:elythra_music/core/theme_data/default.dart';
 import 'package:icons_plus/icons_plus.dart';

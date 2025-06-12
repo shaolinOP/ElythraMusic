@@ -7,7 +7,7 @@ import 'package:elythra_music/core/model/song_model.dart';
 import 'package:elythra_music/core/routes_and_consts/global_str_consts.dart';
 import 'package:elythra_music/features/player/screens/widgets/snackbar.dart';
 import 'package:elythra_music/features/player/screens/widgets/song_tile.dart';
-import 'package:elythra_music/core/services/db/GlobalDB.dart';
+import 'package:elythra_music/core/services/db/global_db.dart';
 import 'package:elythra_music/core/services/db/bloomee_db_service.dart';
 import 'package:elythra_music/core/services/db/cubit/bloomee_db_cubit.dart';
 import 'package:elythra_music/core/theme_data/default.dart';

@@ -1,7 +1,7 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:elythra_music/features/player/blocs/mediaPlayer/bloomee_player_cubit.dart';
 import 'package:elythra_music/core/utils/imgurl_formator.dart';
-import 'package:elythra_music/core/utils/load_Image.dart';
+import 'package:elythra_music/core/utils/load_image.dart';
 import 'package:flutter/material.dart';
 import 'package:elythra_music/core/theme_data/default.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';

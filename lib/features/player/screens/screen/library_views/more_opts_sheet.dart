@@ -5,7 +5,7 @@ import 'package:elythra_music/features/player/blocs/mediaPlayer/bloomee_player_c
 
 import 'package:elythra_music/features/player/screens/screen/library_views/playlist_edit_view.dart';
 import 'package:elythra_music/features/player/screens/widgets/snackbar.dart';
-import 'package:elythra_music/core/services/db/GlobalDB.dart';
+import 'package:elythra_music/core/services/db/global_db.dart';
 import 'package:elythra_music/core/theme_data/default.dart';
 import 'package:elythra_music/core/services/import_export_service.dart';
 import 'package:file_picker/file_picker.dart';

@@ -9,7 +9,7 @@ import 'package:elythra_music/features/player/screens/widgets/snackbar.dart';
 import 'package:elythra_music/features/player/screens/widgets/song_tile.dart';
 import 'package:elythra_music/core/theme_data/default.dart';
 import 'package:elythra_music/core/utils/imgurl_formator.dart';
-import 'package:elythra_music/core/utils/load_Image.dart';
+import 'package:elythra_music/core/utils/load_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:icons_plus/icons_plus.dart';

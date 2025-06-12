@@ -5,7 +5,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:icons_plus/icons_plus.dart';
 import 'package:elythra_music/core/blocs/explore/cubit/explore_cubits.dart';
 import 'package:elythra_music/plugins/ext_charts/chart_defines.dart';
-import 'package:elythra_music/core/utils/load_Image.dart';
+import 'package:elythra_music/core/utils/load_image.dart';
 import 'package:responsive_framework/responsive_framework.dart';
 
 class ChartWidget extends StatefulWidget {
