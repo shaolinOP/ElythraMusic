@@ -60,7 +60,7 @@ void processIncomingIntent(List<SharedMediaFile> sharedMediaFiles) {
             .then((value) async {
           if (value != null) {
             await bloomeePlayerCubit.bloomeePlayer.addQueueItem(
-              value,
+              MediaItem.fromMediaItemModel(value),
             );
           }
         });
@@ -79,7 +79,7 @@ void processIncomingIntent(List<SharedMediaFile> sharedMediaFiles) {
             .then((value) async {
           if (value != null) {
             await bloomeePlayerCubit.bloomeePlayer.addQueueItem(
-              value,
+              MediaItem.fromMediaItemModel(value),
             );
           }
         });

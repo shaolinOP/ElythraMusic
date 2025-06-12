@@ -337,15 +337,10 @@ class _YoutubePlaylistState extends State<YoutubePlaylist> {
                                                                           .read<
                                                                               ElythraPlayerCubit>()
                                                                           .bloomeePlayer
-                                                                          .loadPlaylist(
-                                                                            MediaPlaylist(
-                                                                              mediaItems: mediaitems,
-                                                                              playlistName: "${widget.title} - Youtube",
-                                                                            ),
-                                                                            doPlay:
-                                                                                true,
-                                                                            shuffling:
-                                                                                true,
+                                                                          .updateQueue(
+                                                                            mediaitems,
+                                                                            doPlay: true,
+                                                                            idx: 0,
                                                                           );
                                                                     },
                                                                     padding:
@@ -499,12 +494,8 @@ class _YoutubePlaylistState extends State<YoutubePlaylist> {
                                                 context
                                                     .read<ElythraPlayerCubit>()
                                                     .bloomeePlayer
-                                                    .loadPlaylist(
-                                                        MediaPlaylist(
-                                                            mediaItems:
-                                                                mediaitems,
-                                                            playlistName:
-                                                                "${widget.title} - Youtube"),
+                                                    .updateQueue(
+                                                        mediaitems,
                                                         idx: index,
                                                         doPlay: true);
                                               },

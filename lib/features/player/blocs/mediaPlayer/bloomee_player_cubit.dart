@@ -2,6 +2,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:audio_service/audio_service.dart' as audio_service;
 import 'package:just_audio/just_audio.dart';
 import 'package:rxdart/rxdart.dart';
+import 'package:elythra_music/core/model/songModel.dart';
 
 // Custom MediaItem class to avoid conflicts
 class MediaItem {
@@ -11,6 +12,7 @@ class MediaItem {
   final String? album;
   final String? artUri;
   final Duration? duration;
+  final Map<String, dynamic>? extras;
 
   const MediaItem({
     required this.id,
@@ -19,7 +21,34 @@ class MediaItem {
     this.album,
     this.artUri,
     this.duration,
+    this.extras,
   });
+
+  // Convert from MediaItemModel
+  factory MediaItem.fromMediaItemModel(MediaItemModel model) {
+    return MediaItem(
+      id: model.id,
+      title: model.title,
+      artist: model.artist,
+      album: model.album,
+      artUri: model.artUri?.toString(),
+      duration: model.duration,
+      extras: model.extras,
+    );
+  }
+
+  // Convert to MediaItemModel
+  MediaItemModel toMediaItemModel() {
+    return MediaItemModel(
+      id: id,
+      title: title,
+      artist: artist,
+      album: album ?? '',
+      artUri: artUri != null ? Uri.parse(artUri!) : null,
+      duration: duration,
+      extras: extras,
+    );
+  }
 }
 
 // MediaPlaylist class
@@ -72,6 +101,14 @@ class ElythraPlayerError extends ElythraPlayerState {
   ElythraPlayerError(this.message);
 }
 
+// Player initialization states
+enum PlayerInitState {
+  uninitialized,
+  initializing,
+  initialized,
+  error,
+}
+
 // Mock BloomeePlayer class to match expected interface
 class BloomeePlayer {
   final AudioPlayer audioPlayer = AudioPlayer();
@@ -83,7 +120,12 @@ class BloomeePlayer {
   
   // Controllers
   final BehaviorSubject<MediaItem?> _mediaItemController = BehaviorSubject<MediaItem?>();
+  final BehaviorSubject<MediaItem?> _currentMediaItem = BehaviorSubject<MediaItem?>();
   final BehaviorSubject<bool> _shuffleModeController = BehaviorSubject<bool>.seeded(false);
+  final BehaviorSubject<List<MediaItem>> _queueController = BehaviorSubject<List<MediaItem>>.seeded([]);
+  
+  // Player state
+  PlayerInitState playerInitState = PlayerInitState.initialized;
   
   // Methods
   Future<void> shuffle(bool enabled) async {
@@ -139,12 +181,93 @@ class BloomeePlayer {
   // Load playlist
   Future<void> loadPlaylist(MediaPlaylist playlist) async {
     // Implementation for loading playlist
+    _queueController.add(playlist.items);
+    if (playlist.items.isNotEmpty) {
+      _currentMediaItem.add(playlist.items.first);
+      _mediaItemController.add(playlist.items.first);
+    }
     print('Loading playlist: ${playlist.name}');
+  }
+
+  // Missing methods from error messages
+  Future<void> pause() async {
+    await audioPlayer.pause();
+  }
+
+  Future<void> play() async {
+    await audioPlayer.play();
+  }
+
+  Future<void> rewind() async {
+    await audioPlayer.seek(Duration.zero);
+  }
+
+  Future<void> updateQueue(List<MediaItemModel> items, {bool doPlay = false, int idx = 0}) async {
+    final mediaItems = items.map((item) => MediaItem.fromMediaItemModel(item)).toList();
+    _queueController.add(mediaItems);
+    if (mediaItems.isNotEmpty) {
+      final targetItem = idx < mediaItems.length ? mediaItems[idx] : mediaItems.first;
+      _currentMediaItem.add(targetItem);
+      _mediaItemController.add(targetItem);
+      if (doPlay) {
+        await play();
+      }
+    }
+  }
+
+  Future<void> addPlayNextItem(MediaItemModel item) async {
+    final mediaItem = MediaItem.fromMediaItemModel(item);
+    final currentQueue = _queueController.value;
+    final newQueue = [mediaItem, ...currentQueue];
+    _queueController.add(newQueue);
+  }
+
+  Future<void> addQueueItems(List<MediaItemModel> items) async {
+    final mediaItems = items.map((item) => MediaItem.fromMediaItemModel(item)).toList();
+    final currentQueue = _queueController.value;
+    final newQueue = [...currentQueue, ...mediaItems];
+    _queueController.add(newQueue);
+  }
+
+  Future<void> skipToQueueItem(int index) async {
+    final currentQueue = _queueController.value;
+    if (index >= 0 && index < currentQueue.length) {
+      final targetItem = currentQueue[index];
+      _currentMediaItem.add(targetItem);
+      _mediaItemController.add(targetItem);
+    }
+  }
+
+  Future<void> removeQueueItemAt(int index) async {
+    final currentQueue = _queueController.value;
+    if (index >= 0 && index < currentQueue.length) {
+      final newQueue = List<MediaItem>.from(currentQueue);
+      newQueue.removeAt(index);
+      _queueController.add(newQueue);
+    }
+  }
+
+  Future<void> moveQueueItem(int oldIndex, int newIndex) async {
+    final currentQueue = _queueController.value;
+    if (oldIndex >= 0 && oldIndex < currentQueue.length && 
+        newIndex >= 0 && newIndex < currentQueue.length) {
+      final newQueue = List<MediaItem>.from(currentQueue);
+      final item = newQueue.removeAt(oldIndex);
+      newQueue.insert(newIndex, item);
+      _queueController.add(newQueue);
+    }
+  }
+
+  Future<void> check4RelatedSongs() async {
+    // Implementation for checking related songs
+    print('Checking for related songs...');
   }
   
   void dispose() {
     _mediaItemController.close();
+    _currentMediaItem.close();
     _shuffleModeController.close();
+    _queueController.close();
     audioPlayer.dispose();
   }
 }

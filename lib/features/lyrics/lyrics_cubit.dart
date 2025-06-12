@@ -31,14 +31,37 @@ class ParsedLyrics {
   const ParsedLyrics({required this.lyrics});
 }
 
-// Lyrics state
-class LyricsState {
+// Lyrics state classes
+abstract class LyricsState {}
+
+class LyricsInitial extends LyricsState {}
+
+class LyricsLoading extends LyricsState {}
+
+class LyricsLoaded extends LyricsState {
+  final LyricsModel lyrics;
+  final MediaItem mediaItem;
+  
+  LyricsLoaded({
+    required this.lyrics,
+    required this.mediaItem,
+  });
+}
+
+class LyricsError extends LyricsState {
+  final String message;
+  
+  LyricsError(this.message);
+}
+
+// Legacy state class for compatibility
+class LyricsStateCompat {
   final bool isLoading;
   final String? error;
   final LyricsModel lyrics;
   final MediaItem mediaItem;
   
-  const LyricsState({
+  const LyricsStateCompat({
     this.isLoading = false,
     this.error,
     required this.lyrics,
@@ -46,8 +69,8 @@ class LyricsState {
   });
   
   // Factory constructor for initial state
-  factory LyricsState.initial() {
-    return LyricsState(
+  factory LyricsStateCompat.initial() {
+    return LyricsStateCompat(
       lyrics: const LyricsModel(lyricsPlain: ''),
       mediaItem: const MediaItem(
         id: '',
@@ -77,7 +100,7 @@ class LyricsState {
 class LyricsCubit extends Cubit<LyricsState> {
   final ElythraPlayerCubit? playerCubit;
 
-  LyricsCubit([this.playerCubit]) : super(LyricsState.initial()) {
+  LyricsCubit([this.playerCubit]) : super(LyricsInitial()) {
     // Listen to player state changes if playerCubit is provided
     playerCubit?.stream.listen((playerState) {
       if (playerState is ElythraPlayerPlaying || playerState is ElythraPlayerPaused) {
@@ -91,11 +114,12 @@ class LyricsCubit extends Cubit<LyricsState> {
   }
 
   void updateMediaItem(MediaItem mediaItem) {
-    emit(state.copyWith(mediaItem: mediaItem));
+    // For now, just emit loading state
+    emit(LyricsLoading());
   }
 
   Future<void> fetchLyrics(String title, String artist) async {
-    emit(state.copyWith(isLoading: true, error: null));
+    emit(LyricsLoading());
     
     try {
       // This would integrate with the enhanced lyrics service
@@ -117,20 +141,23 @@ class LyricsCubit extends Cubit<LyricsState> {
         parsedLyrics: ParsedLyrics(lyrics: syncedLyrics),
       );
       
-      emit(state.copyWith(
-        isLoading: false,
+      final mediaItem = MediaItem(
+        id: '$title-$artist',
+        title: title,
+        artist: artist,
+      );
+      
+      emit(LyricsLoaded(
         lyrics: lyricsModel,
+        mediaItem: mediaItem,
       ));
     } catch (e) {
-      emit(state.copyWith(
-        isLoading: false,
-        error: "Failed to fetch lyrics: $e",
-      ));
+      emit(LyricsError("Failed to fetch lyrics: $e"));
     }
   }
 
   void searchLyrics(String query) {
-    emit(state.copyWith(isLoading: true, error: null));
+    emit(LyricsLoading());
     // Implement lyrics search
     fetchLyrics("Search Result", query);
   }
@@ -141,10 +168,15 @@ class LyricsCubit extends Cubit<LyricsState> {
       parsedLyrics: null, // No sync for custom lyrics
     );
     
-    emit(state.copyWith(
-      isLoading: false,
+    final mediaItem = MediaItem(
+      id: 'custom',
+      title: 'Custom Lyrics',
+      artist: 'User',
+    );
+    
+    emit(LyricsLoaded(
       lyrics: lyricsModel,
-      error: null,
+      mediaItem: mediaItem,
     ));
   }
 
@@ -155,15 +187,21 @@ class LyricsCubit extends Cubit<LyricsState> {
       // Convert to LyricsModel and save
       final lyricsModel = LyricsModel(
         lyricsPlain: lyrics.lyricsPlain,
-        parsedLyrics: lyrics.parsedLyrics,
+        parsedLyrics: ParsedLyrics(lyrics: []), // Convert if needed
+      );
+      
+      final mediaItem = MediaItem(
+        id: mediaId,
+        title: 'Saved Lyrics',
+        artist: 'Unknown',
       );
       
       // Save to local database
       print('Saving lyrics for media ID: $mediaId');
-      emit(state.copyWith(lyrics: lyricsModel));
+      emit(LyricsLoaded(lyrics: lyricsModel, mediaItem: mediaItem));
       // Implementation would go here
     } catch (e) {
-      emit(state.copyWith(error: "Failed to save lyrics: $e"));
+      emit(LyricsError("Failed to save lyrics: $e"));
     }
   }
 
@@ -175,11 +213,9 @@ class LyricsCubit extends Cubit<LyricsState> {
       // Implementation would go here
       
       // Reset lyrics state
-      emit(state.copyWith(
-        lyrics: const LyricsModel(lyricsPlain: ''),
-      ));
+      emit(LyricsInitial());
     } catch (e) {
-      emit(state.copyWith(error: "Failed to delete lyrics: $e"));
+      emit(LyricsError("Failed to delete lyrics: $e"));
     }
   }
 }

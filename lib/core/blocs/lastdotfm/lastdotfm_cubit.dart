@@ -2,7 +2,7 @@ import 'dart:async';
 import 'dart:convert';
 import 'dart:developer';
 import 'package:elythra_music/features/player/blocs/mediaPlayer/bloomee_player_cubit.dart';
-import 'package:elythra_music/core/model/MediaPlaylistModel.dart';
+import 'package:elythra_music/core/model/MediaPlaylistModel.dart' as core_playlist;
 import 'package:elythra_music/core/model/songModel.dart';
 import 'package:elythra_music/core/repository/LastFM/lastfmapi.dart';
 import 'package:elythra_music/core/repository/MixedAPI/mixed_api.dart';
@@ -49,26 +49,27 @@ class LastdotfmCubit extends Cubit<LastdotfmState> {
     scrobbleSub = playerCubit.progressStreams.listen((event) {
       if (playerCubit.bloomeePlayer.audioPlayer.playing &&
           event.currentPlaybackState.processingState == ProcessingState.ready) {
-        if (lastPlayed != playerCubit.bloomeePlayer.currentMedia ||
+        final currentMediaModel = playerCubit.bloomeePlayer.currentMedia?.toMediaItemModel();
+        if (lastPlayed != currentMediaModel ||
             !stopwatch.isRunning) {
           if (stopwatch.isRunning) {
             stopwatch.stop();
             stopwatch.reset();
           }
           stopwatch.start();
-          lastPlayed = playerCubit.bloomeePlayer.currentMedia;
+          lastPlayed = currentMediaModel;
         } else if ((stopwatch.elapsed.inSeconds > 30 ||
                 (stopwatch.elapsed.inSeconds /
-                        (playerCubit.bloomeePlayer.currentMedia.duration ??
+                        (playerCubit.bloomeePlayer.currentMedia?.duration ??
                                 const Duration(
                                     hours:
                                         1)) // if duration is null, set it to 1 hour to avoid division by zero
                             .inSeconds) >
                     0.5) &&
-            playerCubit.bloomeePlayer.currentMedia == lastPlayed &&
-            playerCubit.bloomeePlayer.currentMedia != playedMedia.value) {
-          playedMedia.add(playerCubit.bloomeePlayer.currentMedia);
-          log("Scrobbling: ${playerCubit.bloomeePlayer.currentMedia.title}",
+            currentMediaModel == lastPlayed &&
+            currentMediaModel != playedMedia.value) {
+          playedMedia.add(currentMediaModel);
+          log("Scrobbling: ${playerCubit.bloomeePlayer.currentMedia?.title}",
               name: "Last.FM");
           scrobble(lastPlayed).then(
             (value) {
@@ -80,7 +81,7 @@ class LastdotfmCubit extends Cubit<LastdotfmState> {
             },
           );
         }
-      } else if (lastPlayed != playerCubit.bloomeePlayer.currentMedia) {
+      } else if (lastPlayed != playerCubit.bloomeePlayer.currentMedia?.toMediaItemModel()) {
         stopwatch.stop();
         stopwatch.reset();
       } else {
@@ -294,6 +295,6 @@ class LastdotfmCubit extends Cubit<LastdotfmState> {
         mediaItems.add(mediaItem);
       }
     }
-    return MediaPlaylist(mediaItems: mediaItems, playlistName: 'Last.FM Picks');
+    return core_playlist.MediaPlaylist(mediaItems: mediaItems, playlistName: 'Last.FM Picks');
   }
 }
