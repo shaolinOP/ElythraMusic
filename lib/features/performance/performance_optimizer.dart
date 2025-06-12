@@ -3,6 +3,7 @@ import 'dart:developer';
 import 'dart:io';
 import 'dart:isolate';
 import 'package:flutter/foundation.dart';
+import 'package:flutter/painting.dart';
 import 'package:flutter/services.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -186,8 +187,8 @@ class PerformanceOptimizer {
     log('High quality on battery ${enabled ? 'enabled' : 'disabled'}');
   }
 
-  /// Get performance statistics
-  Map<String, dynamic> getPerformanceStats() {
+  /// Get enhanced performance statistics
+  Map<String, dynamic> getEnhancedPerformanceStats() {
     return {
       'batteryOptimizationEnabled': _batteryOptimizationEnabled,
       'backgroundTasksEnabled': _backgroundTasksEnabled,
@@ -723,18 +724,7 @@ class PerformanceOptimizer {
     }
   }
 
-  /// Load settings
-  Future<void> _loadSettings() async {
-    try {
-      final prefs = await SharedPreferences.getInstance();
-      _batteryOptimizationEnabled = prefs.getBool('battery_optimization_enabled') ?? true;
-      _backgroundTasksEnabled = prefs.getBool('background_tasks_enabled') ?? true;
-      _highQualityOnBatteryEnabled = prefs.getBool('high_quality_on_battery_enabled') ?? false;
-      _maxCacheSize = prefs.getInt('max_cache_size') ?? (100 * 1024 * 1024);
-    } catch (e) {
-      log('❌ Performance Optimizer: Failed to load settings: $e');
-    }
-  }
+  /// Load settings (duplicate removed)
 
   /// Save settings
   Future<void> _saveSettings() async {

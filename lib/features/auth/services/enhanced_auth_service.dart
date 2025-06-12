@@ -131,8 +131,12 @@ class EnhancedAuthService {
     if (user == null) throw Exception('No user signed in');
 
     try {
-      await user.updateDisplayName(displayName);
-      await user.updatePhotoURL(photoURL);
+      if (displayName != null) {
+        await user.updateDisplayName(displayName);
+      }
+      if (photoURL != null) {
+        await user.updatePhotoURL(photoURL);
+      }
       
       // Update cached data
       final profile = await getUserProfile();

@@ -46,6 +46,7 @@ class EnhancedLyricsService {
         artist: artist,
         album: album,
         duration: duration?.inSeconds.toString(),
+        provider: 'lrclib',
       );
       
       if (lyrics.lyricsSynced != null && lyrics.lyricsSynced!.isNotEmpty) {
@@ -71,12 +72,13 @@ class EnhancedLyricsService {
 
     // Return empty lyrics if all providers fail
     return Lyrics(
-      id: 0,
+      id: '0',
       title: title,
       artist: artist,
       album: album ?? '',
       lyricsPlain: 'Lyrics not found',
       lyricsSynced: null,
+      provider: LyricsProvider.none,
     );
   }
 
@@ -182,7 +184,18 @@ class EnhancedLyricsService {
         final cacheAge = DateTime.now().millisecondsSinceEpoch - cacheTime;
         if (cacheAge < _cacheExpiry.inMilliseconds) {
           final data = jsonDecode(cachedData);
-          return Lyrics.fromMap(data);
+          return Lyrics(
+            id: data['id'] ?? '0',
+            title: data['title'] ?? '',
+            artist: data['artist'] ?? '',
+            album: data['album'],
+            lyricsPlain: data['lyricsPlain'] ?? '',
+            lyricsSynced: data['lyricsSynced'],
+            provider: LyricsProvider.values.firstWhere(
+              (p) => p.toString() == data['provider'],
+              orElse: () => LyricsProvider.none,
+            ),
+          );
         }
       }
     } catch (e) {
@@ -194,7 +207,15 @@ class EnhancedLyricsService {
   static Future<void> _cacheLyrics(String cacheKey, Lyrics lyrics) async {
     try {
       final prefs = await SharedPreferences.getInstance();
-      final data = jsonEncode(lyrics.toMap());
+      final data = jsonEncode({
+        'id': lyrics.id,
+        'title': lyrics.title,
+        'artist': lyrics.artist,
+        'album': lyrics.album,
+        'lyricsPlain': lyrics.lyricsPlain,
+        'lyricsSynced': lyrics.lyricsSynced,
+        'provider': lyrics.provider.toString(),
+      });
       await prefs.setString(cacheKey, data);
       await prefs.setInt('${cacheKey}_time', DateTime.now().millisecondsSinceEpoch);
     } catch (e) {

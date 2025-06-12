@@ -5,9 +5,7 @@ import 'package:elythra_music/features/player/services/enhanced_audio_service.da
 import 'package:elythra_music/features/lyrics/services/enhanced_lyrics_service.dart';
 import 'package:elythra_music/features/performance/performance_optimizer.dart';
 
-// Type aliases for cleaner code
-typedef AudioQuality = EnhancedAudioService.AudioQuality;
-typedef StreamingMode = EnhancedAudioService.StreamingMode;
+// Import enums directly
 
 class EnhancedSettingsScreen extends StatefulWidget {
   const EnhancedSettingsScreen({super.key});
@@ -195,7 +193,7 @@ class _EnhancedSettingsScreenState extends State<EnhancedSettingsScreen> {
             ),
             const SizedBox(height: 16),
             FutureBuilder<Map<String, dynamic>>(
-              future: Future.value(PerformanceOptimizer().getPerformanceStats()),
+              future: Future.value(PerformanceOptimizer().getEnhancedPerformanceStats()),
               builder: (context, snapshot) {
                 final stats = snapshot.data ?? {};
                 final batteryOptEnabled = stats['batteryOptimizationEnabled'] ?? false;

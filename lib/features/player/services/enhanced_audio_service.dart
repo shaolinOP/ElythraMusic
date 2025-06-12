@@ -7,34 +7,34 @@ import 'package:elythra_music/core/model/songModel.dart';
 import 'package:elythra_music/core/repository/Saavn/saavn_api.dart';
 import 'package:elythra_music/core/repository/Youtube/ytm/ytmusic.dart';
 
+/// Audio quality options
+enum AudioQuality {
+  low(96, 'Low (96 kbps)'),
+  medium(128, 'Medium (128 kbps)'),
+  high(192, 'High (192 kbps)'),
+  veryHigh(256, 'Very High (256 kbps)'),
+  extreme(320, 'Extreme (320 kbps)');
+
+  const AudioQuality(this.bitrate, this.displayName);
+  final int bitrate;
+  final String displayName;
+}
+
+/// Streaming mode options
+enum StreamingMode {
+  wifi('WiFi Only'),
+  mobile('Mobile Data'),
+  offline('Offline Only');
+
+  const StreamingMode(this.displayName);
+  final String displayName;
+}
+
 /// Enhanced audio service with 320kbps streaming and quality management
 class EnhancedAudioService {
   static const String _qualityPreferenceKey = 'audio_quality_preference';
   static const String _streamingModeKey = 'streaming_mode';
   static const String _cacheEnabledKey = 'cache_enabled';
-
-  /// Audio quality options
-  enum AudioQuality {
-    low(96, 'Low (96 kbps)'),
-    medium(128, 'Medium (128 kbps)'),
-    high(192, 'High (192 kbps)'),
-    veryHigh(256, 'Very High (256 kbps)'),
-    extreme(320, 'Extreme (320 kbps)');
-
-    const AudioQuality(this.bitrate, this.displayName);
-    final int bitrate;
-    final String displayName;
-  }
-
-  /// Streaming mode options
-  enum StreamingMode {
-    wifi('WiFi Only'),
-    mobile('Mobile Data'),
-    offline('Offline Only');
-
-    const StreamingMode(this.displayName);
-    final String displayName;
-  }
 
   static AudioQuality _currentQuality = AudioQuality.extreme;
   static StreamingMode _streamingMode = StreamingMode.wifi;
@@ -89,18 +89,20 @@ class EnhancedAudioService {
     bool allowFallback,
   ) async {
     // Try Saavn first for high quality
-    if (mediaItem.source == 'saavn') {
+    final source = mediaItem.extras?['source'] as String?;
+    if (source == 'saavn') {
       return await _getSaavnQualitySource(mediaItem, quality, allowFallback);
     }
     
     // Try YouTube Music
-    if (mediaItem.source == 'youtube' || mediaItem.source == 'ytmusic') {
+    if (source == 'youtube' || source == 'ytmusic') {
       return await _getYouTubeQualitySource(mediaItem, quality, allowFallback);
     }
 
     // Fallback to original source
-    if (mediaItem.streamingUrl != null) {
-      return AudioSource.uri(Uri.parse(mediaItem.streamingUrl!));
+    final streamingUrl = mediaItem.extras?['streamingUrl'] as String?;
+    if (streamingUrl != null) {
+      return AudioSource.uri(Uri.parse(streamingUrl));
     }
 
     return null;
@@ -113,13 +115,12 @@ class EnhancedAudioService {
     bool allowFallback,
   ) async {
     try {
-      // Get song details from Saavn API
-      final songDetails = await SaavnAPI.getSongDetails(mediaItem.id);
-      
-      if (songDetails != null && songDetails.downloadUrl != null) {
-        // Saavn provides multiple quality options
+      // For now, use the existing streaming URL with quality parameter
+      final streamingUrl = mediaItem.extras?['streamingUrl'] as String?;
+      if (streamingUrl != null) {
+        // Add quality parameter to existing URL
         String qualityParam = _getSaavnQualityParam(quality);
-        String enhancedUrl = '${songDetails.downloadUrl}?quality=$qualityParam';
+        String enhancedUrl = '$streamingUrl?quality=$qualityParam';
         
         log('Using Saavn ${quality.displayName} for: ${mediaItem.title}');
         return AudioSource.uri(Uri.parse(enhancedUrl));
@@ -128,8 +129,11 @@ class EnhancedAudioService {
       log('Saavn quality source failed: $e');
     }
 
-    if (allowFallback && mediaItem.streamingUrl != null) {
-      return AudioSource.uri(Uri.parse(mediaItem.streamingUrl!));
+    if (allowFallback) {
+      final streamingUrl = mediaItem.extras?['streamingUrl'] as String?;
+      if (streamingUrl != null) {
+        return AudioSource.uri(Uri.parse(streamingUrl));
+      }
     }
 
     return null;
@@ -156,8 +160,11 @@ class EnhancedAudioService {
       log('YouTube Music quality source failed: $e');
     }
 
-    if (allowFallback && mediaItem.streamingUrl != null) {
-      return AudioSource.uri(Uri.parse(mediaItem.streamingUrl!));
+    if (allowFallback) {
+      final streamingUrl = mediaItem.extras?['streamingUrl'] as String?;
+      if (streamingUrl != null) {
+        return AudioSource.uri(Uri.parse(streamingUrl));
+      }
     }
 
     return null;
