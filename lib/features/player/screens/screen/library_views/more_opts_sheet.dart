@@ -77,7 +77,7 @@ void showPlaylistOptsInrSheet(
                       final _tmpPath = await ImportExportService.exportPlaylist(
                           mediaPlaylist.name);
                       _tmpPath != null
-                          ? SharePlus.shareXFiles([XFile(_tmpPath)])
+                          ? Share.shareXFiles([XFile(_tmpPath)])
                           : null;
                     },
                   ),
@@ -187,7 +187,7 @@ void showPlaylistOptsExtSheet(BuildContext context, String playlistName) {
                       final _tmpPath = await ImportExportService.exportPlaylist(
                           playlistName);
                       _tmpPath != null
-                          ? SharePlus.shareXFiles([XFile(_tmpPath)])
+                          ? Share.shareXFiles([XFile(_tmpPath)])
                           : null;
                     },
                   ),

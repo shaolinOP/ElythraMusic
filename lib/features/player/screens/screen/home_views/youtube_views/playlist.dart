@@ -148,9 +148,8 @@ class _YoutubePlaylistState extends State<YoutubePlaylist> {
                                               right: 10.0),
                                           child: IconButton(
                                             onPressed: () {
-                                              SharePlus.share(
-                                                  "${widget.title} - ${widget.subtitle} \nhttps://youtube.com/playlist?list=${widget.id.replaceAll("youtube", "")}",
-                                                  subject: "Youtube Playlist");
+                                              Share.share(
+                                                  "${widget.title} - ${widget.subtitle} \nhttps://youtube.com/playlist?list=${widget.id.replaceAll("youtube", "")}");
                                             },
                                             padding: const EdgeInsets.all(5),
                                             constraints: const BoxConstraints(),

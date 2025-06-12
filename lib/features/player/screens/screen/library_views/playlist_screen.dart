@@ -294,7 +294,6 @@ class PlaylistView extends StatelessWidget {
                                   ),
                                 ),
                                 OverflowBar(
-                                  buttonPadding: EdgeInsets.zero,
                                   children: [
                                     IconButton(
                                         onPressed: () {
