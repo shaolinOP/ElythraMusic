@@ -35,7 +35,7 @@ class ParsedLyrics {
 abstract class LyricsState {
   // Default implementations for compatibility
   LyricsModel get lyrics => const LyricsModel(lyricsPlain: '');
-  MediaItem get mediaItem => const MediaItem(id: '', title: '', artist: '');
+  ElythraMediaItem get mediaItem => const ElythraMediaItem(id: '', title: '', artist: '');
 }
 
 class LyricsInitial extends LyricsState {}
@@ -44,18 +44,18 @@ class LyricsLoading extends LyricsState {}
 
 class LyricsLoaded extends LyricsState {
   final LyricsModel _lyrics;
-  final MediaItem _mediaItem;
+  final ElythraMediaItem _mediaItem;
   
   LyricsLoaded({
     required LyricsModel lyrics,
-    required MediaItem mediaItem,
+    required ElythraMediaItem mediaItem,
   }) : _lyrics = lyrics, _mediaItem = mediaItem;
   
   @override
   LyricsModel get lyrics => _lyrics;
   
   @override
-  MediaItem get mediaItem => _mediaItem;
+  ElythraMediaItem get mediaItem => _mediaItem;
 }
 
 class LyricsError extends LyricsState {
@@ -69,7 +69,7 @@ class LyricsStateCompat {
   final bool isLoading;
   final String? error;
   final LyricsModel lyrics;
-  final MediaItem mediaItem;
+  final ElythraMediaItem mediaItem;
   
   const LyricsStateCompat({
     this.isLoading = false,
@@ -82,7 +82,7 @@ class LyricsStateCompat {
   factory LyricsStateCompat.initial() {
     return LyricsStateCompat(
       lyrics: const LyricsModel(lyricsPlain: ''),
-      mediaItem: const MediaItem(
+      mediaItem: const ElythraMediaItem(
         id: '',
         title: '',
         artist: '',
@@ -103,14 +103,14 @@ class LyricsCubit extends Cubit<LyricsState> {
       if (playerState is ElythraPlayerPlaying || playerState is ElythraPlayerPaused) {
         final mediaItem = playerCubit!.currentMedia;
         if (mediaItem != null) {
-          updateMediaItem(mediaItem);
+          updateElythraMediaItem(mediaItem);
           fetchLyrics(mediaItem.title, mediaItem.artist);
         }
       }
     });
   }
 
-  void updateMediaItem(MediaItem mediaItem) {
+  void updateElythraMediaItem(ElythraMediaItem mediaItem) {
     // For now, just emit loading state
     emit(LyricsLoading());
   }
@@ -138,7 +138,7 @@ class LyricsCubit extends Cubit<LyricsState> {
         parsedLyrics: ParsedLyrics(lyrics: syncedLyrics),
       );
       
-      final mediaItem = MediaItem(
+      final mediaItem = ElythraMediaItem(
         id: '$title-$artist',
         title: title,
         artist: artist,
@@ -165,7 +165,7 @@ class LyricsCubit extends Cubit<LyricsState> {
       parsedLyrics: null, // No sync for custom lyrics
     );
     
-    final mediaItem = MediaItem(
+    final mediaItem = ElythraMediaItem(
       id: 'custom',
       title: 'Custom Lyrics',
       artist: 'User',
@@ -187,7 +187,7 @@ class LyricsCubit extends Cubit<LyricsState> {
         parsedLyrics: ParsedLyrics(lyrics: []), // Convert if needed
       );
       
-      final mediaItem = MediaItem(
+      final mediaItem = ElythraMediaItem(
         id: mediaId,
         title: 'Saved Lyrics',
         artist: 'Unknown',
@@ -202,7 +202,7 @@ class LyricsCubit extends Cubit<LyricsState> {
     }
   }
 
-  Future<void> deleteLyricsFromDB(MediaItem mediaItem) async {
+  Future<void> deleteLyricsFromDB(ElythraMediaItem mediaItem) async {
     // Implementation for deleting lyrics from database
     try {
       // Delete from local database

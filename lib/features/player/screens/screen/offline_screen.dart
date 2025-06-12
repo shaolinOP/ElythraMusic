@@ -1,5 +1,5 @@
 import 'package:elythra_music/core/blocs/library/cubit/library_items_cubit.dart';
-import 'package:elythra_music/features/player/blocs/mediaPlayer/bloomee_player_cubit.dart';
+import 'package:elythra_music/features/player/blocs/mediaPlayer/bloomee_player_cubit.dart' as player;
 import 'package:elythra_music/core/blocs/offline/offline_cubit.dart';
 import 'package:elythra_music/core/model/MediaPlaylistModel.dart';
 import 'package:elythra_music/features/player/screens/widgets/more_bottom_sheet.dart';
@@ -42,14 +42,12 @@ class OfflineScreen extends StatelessWidget {
                                 delDownBtn: true,
                                 onTap: () {
                                   context
-                                      .read<ElythraPlayerCubit>()
+                                      .read<player.ElythraPlayerCubit>()
                                       .bloomeePlayer
                                       .loadPlaylist(
-                                          MediaPlaylist(
-                                              mediaItems: state.songs,
-                                              playlistName: "Offline"),
-                                          idx: state.songs.indexOf(e),
-                                          doPlay: true);
+                                          player.MediaPlaylist(
+                                              name: "Offline",
+                                              items: state.songs.map((item) => player.ElythraMediaItem.fromMediaItemModel(item)).toList()));
                                 },
                                 onOptionsTap: () {
                                   showMoreBottomSheet(context, e,

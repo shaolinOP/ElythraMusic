@@ -160,8 +160,7 @@ class _OnlPlaylistViewState extends State<OnlPlaylistView> {
                                                           .read<
                                                               ElythraPlayerCubit>()
                                                           .bloomeePlayer
-                                                          .queueTitle
-                                                          .value !=
+                                                          .queueTitleValue !=
                                                       widget.playlist.name) {
                                                     context
                                                         .read<
@@ -169,9 +168,7 @@ class _OnlPlaylistViewState extends State<OnlPlaylistView> {
                                                         .bloomeePlayer
                                                         .loadPlaylist(
                                                             state.playlist
-                                                                .playlist,
-                                                            doPlay: true,
-                                                            idx: 0);
+                                                                .playlist);
                                                   } else if (!context
                                                       .read<
                                                           ElythraPlayerCubit>()
@@ -283,8 +280,7 @@ class _OnlPlaylistViewState extends State<OnlPlaylistView> {
                               if (context
                                           .read<ElythraPlayerCubit>()
                                           .bloomeePlayer
-                                          .queueTitle
-                                          .value !=
+                                          .queueTitleValue !=
                                       widget.playlist.name ||
                                   context
                                           .read<ElythraPlayerCubit>()
@@ -294,8 +290,7 @@ class _OnlPlaylistViewState extends State<OnlPlaylistView> {
                                 context
                                     .read<ElythraPlayerCubit>()
                                     .bloomeePlayer
-                                    .loadPlaylist(state.playlist.playlist,
-                                        doPlay: true, idx: index);
+                                    .loadPlaylist(state.playlist.playlist);
                               } else if (!context
                                   .read<ElythraPlayerCubit>()
                                   .bloomeePlayer

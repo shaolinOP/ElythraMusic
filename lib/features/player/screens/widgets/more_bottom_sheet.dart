@@ -144,7 +144,7 @@ void showMoreBottomSheet(
                   context
                       .read<ElythraPlayerCubit>()
                       .bloomeePlayer
-                      .addQueueItem(MediaItem.fromMediaItemModel(song));
+                      .addQueueItem(ElythraMediaItem.fromMediaItemModel(song));
                   SnackbarService.showMessage("Added to Queue",
                       duration: const Duration(seconds: 2));
                 },

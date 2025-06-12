@@ -100,7 +100,7 @@ class HorizontalCardView extends StatelessWidget {
                                   await context
                                       .read<ElythraPlayerCubit>()
                                       .bloomeePlayer
-                                      .addQueueItem(MediaItem.fromMediaItemModel(value));
+                                      .addQueueItem(ElythraMediaItem.fromMediaItemModel(value));
                                 }
                               });
                               break;

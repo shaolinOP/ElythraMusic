@@ -67,7 +67,7 @@ class HistoryView extends StatelessWidget {
                                 .read<ElythraPlayerCubit>()
                                 .bloomeePlayer
                                 .addQueueItem(
-                                  state.mediaPlaylist.mediaItems[index],
+                                  ElythraMediaItem.fromMediaItemModel(state.mediaPlaylist.mediaItems[index]),
                                 );
                           },
                           onOptionsTap: () => showMoreBottomSheet(

@@ -67,7 +67,7 @@ class SongCardWidget extends StatelessWidget {
             children: [
               AnimatedSwitcher(
                 duration: const Duration(milliseconds: 500),
-                child: StreamBuilder<MediaItem?>(
+                child: StreamBuilder<ElythraMediaItem?>(
                     stream: context
                         .read<ElythraPlayerCubit>()
                         .bloomeePlayer
@@ -224,7 +224,7 @@ class SongCardWidget extends StatelessWidget {
                                     .read<ElythraPlayerCubit>()
                                     .bloomeePlayer
                                     .currentMedia
-                                    .id !=
+                                    ?.id !=
                                 song.id) {
                               ElythraDBService.removeDownloadDB(song);
                               SnackbarService.showMessage(

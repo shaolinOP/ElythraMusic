@@ -49,7 +49,9 @@ class LastdotfmCubit extends Cubit<LastdotfmState> {
     scrobbleSub = playerCubit.progressStreams.listen((event) {
       if (playerCubit.bloomeePlayer.audioPlayer.playing &&
           event.currentPlaybackState.processingState == ProcessingState.ready) {
-        final currentMediaModel = playerCubit.bloomeePlayer.currentMedia?.toMediaItemModel();
+        final currentMediaModel = playerCubit.bloomeePlayer.currentMedia != null 
+            ? elythraMediaItem2MediaItemModel(playerCubit.bloomeePlayer.currentMedia!) 
+            : null;
         if (lastPlayed != currentMediaModel ||
             !stopwatch.isRunning) {
           if (stopwatch.isRunning) {
@@ -85,7 +87,9 @@ class LastdotfmCubit extends Cubit<LastdotfmState> {
             },
           );
         }
-      } else if (lastPlayed != playerCubit.bloomeePlayer.currentMedia?.toMediaItemModel()) {
+      } else if (lastPlayed != (playerCubit.bloomeePlayer.currentMedia != null 
+          ? elythraMediaItem2MediaItemModel(playerCubit.bloomeePlayer.currentMedia!) 
+          : null)) {
         stopwatch.stop();
         stopwatch.reset();
       } else {

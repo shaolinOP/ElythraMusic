@@ -23,7 +23,7 @@ class MiniPlayerBloc extends Bloc<MiniPlayerEvent, MiniPlayerState> {
     combinedStream = Rx.combineLatest2(
       playerCubit.bloomeePlayer.audioPlayer.playerStateStream,
       playerCubit.bloomeePlayer.mediaItem,
-      (PlayerState playerState, MediaItem? mediaItem) =>
+      (PlayerState playerState, ElythraMediaItem? mediaItem) =>
           [playerState, mediaItem],
     );
     listenToPlayer();
@@ -71,10 +71,10 @@ class MiniPlayerBloc extends Bloc<MiniPlayerEvent, MiniPlayerState> {
     _playerStateSubscription =
         combinedStream?.asBroadcastStream().listen((event) {
       var state = event[0] as PlayerState;
-      var mediaItem = event[1] as MediaItem?;
+      var mediaItem = event[1] as ElythraMediaItem?;
       if (mediaItem == null) return;
 
-      var mediaItem2 = mediaItem.toMediaItemModel();
+      var mediaItem2 = elythraMediaItem2MediaItemModel(mediaItem);
 
       log("$state", name: "MiniPlayer");
       switch (state.processingState) {

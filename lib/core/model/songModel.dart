@@ -2,26 +2,19 @@
 import 'package:elythra_music/core/services/db/GlobalDB.dart';
 import 'package:audio_service/audio_service.dart';
 import 'package:flutter/foundation.dart';
+import 'package:elythra_music/features/player/blocs/mediaPlayer/bloomee_player_cubit.dart';
 
 class MediaItemModel extends MediaItem {
-  late String id;
-  late String title;
-  String? album;
-  Uri? artUri;
-  String? artist;
-  Map<String, dynamic>? extras;
-  String? genre;
-  Duration? duration;
 
   MediaItemModel({
-    required this.id,
-    required this.title,
-    this.album,
-    this.artUri,
-    this.artist,
-    this.extras,
-    this.genre,
-    this.duration,
+    required String id,
+    required String title,
+    String? album,
+    Uri? artUri,
+    String? artist,
+    Map<String, dynamic>? extras,
+    String? genre,
+    Duration? duration,
   }) : super(
             id: id,
             title: title,
@@ -103,4 +96,16 @@ MediaItemModel MediaItemDB2MediaItem(MediaItemDB mediaItemDB) {
         "perma_url": mediaItemDB.permaURL,
         "language": mediaItemDB.language,
       });
+}
+
+MediaItemModel elythraMediaItem2MediaItemModel(ElythraMediaItem elythraMediaItem) {
+  return MediaItemModel(
+    id: elythraMediaItem.id,
+    title: elythraMediaItem.title,
+    album: elythraMediaItem.album,
+    artUri: elythraMediaItem.artUri != null ? Uri.parse(elythraMediaItem.artUri!) : null,
+    artist: elythraMediaItem.artist,
+    extras: elythraMediaItem.extras,
+    duration: elythraMediaItem.duration,
+  );
 }

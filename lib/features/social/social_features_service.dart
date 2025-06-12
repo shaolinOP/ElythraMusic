@@ -41,14 +41,14 @@ class SocialFeaturesService {
 
       switch (method) {
         case ShareMethod.system:
-          await SharePlus.instance.share(
-            '$shareText\n\nListen on Elythra Music: $shareUrl',
+          await SharePlus.instance.share(ShareParams(
+            text: '$shareText\n\nListen on Elythra Music: $shareUrl',
             subject: 'Check out this song!',
-          );
+          ));
           break;
 
         case ShareMethod.link:
-          await SharePlus.instance.share(shareUrl);
+          await SharePlus.instance.share(ShareParams(text: shareUrl));
           break;
 
         case ShareMethod.social:
@@ -94,14 +94,14 @@ class SocialFeaturesService {
 
       switch (method) {
         case ShareMethod.system:
-          await SharePlus.instance.share(
-            '$shareText\n\nListen on Elythra Music: $shareUrl',
+          await SharePlus.instance.share(ShareParams(
+            text: '$shareText\n\nListen on Elythra Music: $shareUrl',
             subject: 'Check out this playlist!',
-          );
+          ));
           break;
 
         case ShareMethod.link:
-          await SharePlus.instance.share(shareUrl);
+          await SharePlus.instance.share(ShareParams(text: shareUrl));
           break;
 
         case ShareMethod.social:
@@ -334,7 +334,7 @@ class SocialFeaturesService {
   Future<void> _shareToSocialMedia(String text, String url, String? imageUrl) async {
     // This would integrate with social media SDKs
     // For now, just open the system share dialog
-    await SharePlus.instance.share('$text\n\n$url');
+    await SharePlus.instance.share(ShareParams(text: '$text\n\n$url'));
   }
 
   /// Record a share action

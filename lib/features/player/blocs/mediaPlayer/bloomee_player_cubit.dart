@@ -4,8 +4,8 @@ import 'package:just_audio/just_audio.dart';
 import 'package:rxdart/rxdart.dart';
 import 'package:elythra_music/core/model/songModel.dart';
 
-// Custom MediaItem class to avoid conflicts
-class MediaItem {
+// Custom ElythraMediaItem class to avoid conflicts
+class ElythraMediaItem {
   final String id;
   final String title;
   final String artist;
@@ -14,7 +14,7 @@ class MediaItem {
   final Duration? duration;
   final Map<String, dynamic>? extras;
 
-  const MediaItem({
+  const ElythraMediaItem({
     required this.id,
     required this.title,
     required this.artist,
@@ -25,8 +25,8 @@ class MediaItem {
   });
 
   // Convert from MediaItemModel
-  factory MediaItem.fromMediaItemModel(MediaItemModel model) {
-    return MediaItem(
+  factory ElythraMediaItem.fromMediaItemModel(MediaItemModel model) {
+    return ElythraMediaItem(
       id: model.id,
       title: model.title,
       artist: model.artist ?? 'Unknown Artist',
@@ -49,12 +49,25 @@ class MediaItem {
       extras: extras,
     );
   }
+
+  // Convert to audio_service.MediaItem
+  audio_service.MediaItem toMediaItem() {
+    return audio_service.MediaItem(
+      id: id,
+      title: title,
+      artist: artist,
+      album: album,
+      artUri: artUri != null ? Uri.parse(artUri!) : null,
+      duration: duration,
+      extras: extras,
+    );
+  }
 }
 
 // MediaPlaylist class
 class MediaPlaylist {
   final String name;
-  final List<MediaItem> items;
+  final List<ElythraMediaItem> items;
   
   const MediaPlaylist({
     required this.name,
@@ -85,13 +98,13 @@ class ElythraPlayerInitial extends ElythraPlayerState {}
 class ElythraPlayerLoading extends ElythraPlayerState {}
 
 class ElythraPlayerPlaying extends ElythraPlayerState {
-  final MediaItem mediaItem;
+  final ElythraMediaItem? mediaItem;
   final bool showLyrics;
   ElythraPlayerPlaying(this.mediaItem, {this.showLyrics = false});
 }
 
 class ElythraPlayerPaused extends ElythraPlayerState {
-  final MediaItem mediaItem;
+  final ElythraMediaItem? mediaItem;
   final bool showLyrics;
   ElythraPlayerPaused(this.mediaItem, {this.showLyrics = false});
 }
@@ -116,16 +129,16 @@ class BloomeePlayer {
   // Streams
   Stream<String> get queueTitle => Stream.value("Current Queue");
   String get queueTitleValue => "Current Queue";
-  Stream<MediaItem?> get mediaItem => _mediaItemController.stream;
-  MediaItem? get currentMedia => _currentMediaItem.value;
+  Stream<ElythraMediaItem?> get mediaItem => _mediaItemController.stream;
+  ElythraMediaItem? get currentMedia => _currentElythraMediaItem?.value;
   Stream<bool> get shuffleMode => _shuffleModeController.stream;
   bool get shuffleModeValue => _shuffleModeController.value;
   
   // Controllers
-  final BehaviorSubject<MediaItem?> _mediaItemController = BehaviorSubject<MediaItem?>();
-  final BehaviorSubject<MediaItem?> _currentMediaItem = BehaviorSubject<MediaItem?>();
+  final BehaviorSubject<ElythraMediaItem?> _mediaItemController = BehaviorSubject<ElythraMediaItem?>();
+  final BehaviorSubject<ElythraMediaItem?> _currentElythraMediaItem = BehaviorSubject<ElythraMediaItem?>();
   final BehaviorSubject<bool> _shuffleModeController = BehaviorSubject<bool>.seeded(false);
-  final BehaviorSubject<List<MediaItem>> _queueController = BehaviorSubject<List<MediaItem>>.seeded([]);
+  final BehaviorSubject<List<ElythraMediaItem>> _queueController = BehaviorSubject<List<ElythraMediaItem>>.seeded([]);
   
   // Player state
   PlayerInitState playerInitState = PlayerInitState.initialized;
@@ -162,9 +175,9 @@ class BloomeePlayer {
   }
 
   // Queue management
-  Future<void> addQueueItem(MediaItem mediaItem) async {
+  Future<void> addQueueItem(ElythraMediaItem? mediaItem) async {
     // Implementation for adding items to queue
-    print('Adding to queue: ${mediaItem.title}');
+    print('Adding to queue: ${mediaItem?.title}');
   }
 
   // Loop mode control
@@ -172,21 +185,20 @@ class BloomeePlayer {
     await audioPlayer.setLoopMode(loopMode);
   }
 
-  // Current media getter
-  MediaItem? get currentMedia => _currentMediaItem.value;
+
 
   // Loop mode stream
   Stream<LoopMode> get loopMode => audioPlayer.loopModeStream;
 
   // Queue stream
-  Stream<List<MediaItem>> get queue => Stream.value([]);
+  Stream<List<ElythraMediaItem>> get queue => _queueController.stream;
 
   // Load playlist
   Future<void> loadPlaylist(MediaPlaylist playlist) async {
     // Implementation for loading playlist
     _queueController.add(playlist.items);
     if (playlist.items.isNotEmpty) {
-      _currentMediaItem.add(playlist.items.first);
+      _currentElythraMediaItem?.add(playlist.items.first);
       _mediaItemController.add(playlist.items.first);
     }
     print('Loading playlist: ${playlist.name}');
@@ -206,11 +218,11 @@ class BloomeePlayer {
   }
 
   Future<void> updateQueue(List<MediaItemModel> items, {bool doPlay = false, int idx = 0}) async {
-    final mediaItems = items.map((item) => MediaItem.fromMediaItemModel(item)).toList();
+    final mediaItems = items.map((item) => ElythraMediaItem.fromMediaItemModel(item)).toList();
     _queueController.add(mediaItems);
     if (mediaItems.isNotEmpty) {
       final targetItem = idx < mediaItems.length ? mediaItems[idx] : mediaItems.first;
-      _currentMediaItem.add(targetItem);
+      _currentElythraMediaItem?.add(targetItem);
       _mediaItemController.add(targetItem);
       if (doPlay) {
         await play();
@@ -219,14 +231,14 @@ class BloomeePlayer {
   }
 
   Future<void> addPlayNextItem(MediaItemModel item) async {
-    final mediaItem = MediaItem.fromMediaItemModel(item);
+    final mediaItem = ElythraMediaItem.fromMediaItemModel(item);
     final currentQueue = _queueController.value;
     final newQueue = [mediaItem, ...currentQueue];
     _queueController.add(newQueue);
   }
 
   Future<void> addQueueItems(List<MediaItemModel> items) async {
-    final mediaItems = items.map((item) => MediaItem.fromMediaItemModel(item)).toList();
+    final mediaItems = items.map((item) => ElythraMediaItem.fromMediaItemModel(item)).toList();
     final currentQueue = _queueController.value;
     final newQueue = [...currentQueue, ...mediaItems];
     _queueController.add(newQueue);
@@ -236,7 +248,7 @@ class BloomeePlayer {
     final currentQueue = _queueController.value;
     if (index >= 0 && index < currentQueue.length) {
       final targetItem = currentQueue[index];
-      _currentMediaItem.add(targetItem);
+      _currentElythraMediaItem?.add(targetItem);
       _mediaItemController.add(targetItem);
     }
   }
@@ -244,7 +256,7 @@ class BloomeePlayer {
   Future<void> removeQueueItemAt(int index) async {
     final currentQueue = _queueController.value;
     if (index >= 0 && index < currentQueue.length) {
-      final newQueue = List<MediaItem>.from(currentQueue);
+      final newQueue = List<ElythraMediaItem>.from(currentQueue);
       newQueue.removeAt(index);
       _queueController.add(newQueue);
     }
@@ -254,7 +266,7 @@ class BloomeePlayer {
     final currentQueue = _queueController.value;
     if (oldIndex >= 0 && oldIndex < currentQueue.length && 
         newIndex >= 0 && newIndex < currentQueue.length) {
-      final newQueue = List<MediaItem>.from(currentQueue);
+      final newQueue = List<ElythraMediaItem>.from(currentQueue);
       final item = newQueue.removeAt(oldIndex);
       newQueue.insert(newIndex, item);
       _queueController.add(newQueue);
@@ -268,7 +280,7 @@ class BloomeePlayer {
   
   void dispose() {
     _mediaItemController.close();
-    _currentMediaItem.close();
+    _currentElythraMediaItem?.close();
     _shuffleModeController.close();
     _queueController.close();
     audioPlayer.dispose();
@@ -278,13 +290,13 @@ class BloomeePlayer {
 // Main player cubit
 class ElythraPlayerCubit extends Cubit<ElythraPlayerState> {
   final BloomeePlayer _bloomeePlayer = BloomeePlayer();
-  MediaItem? _currentMedia;
+  ElythraMediaItem? _currentMedia;
   bool _showLyrics = false;
 
   ElythraPlayerCubit() : super(ElythraPlayerInitial());
 
   // Getters
-  MediaItem? get currentMedia => _currentMedia;
+  ElythraMediaItem? get currentMedia => _currentMedia;
   BloomeePlayer get bloomeePlayer => _bloomeePlayer;
   PlayerInitState get playerInitState => _bloomeePlayer.playerInitState;
   
@@ -357,7 +369,7 @@ class ElythraPlayerCubit extends Cubit<ElythraPlayerState> {
     }
   }
 
-  Future<void> loadMedia(MediaItem mediaItem) async {
+  Future<void> loadMedia(ElythraMediaItem? mediaItem) async {
     try {
       emit(ElythraPlayerLoading());
       _currentMedia = mediaItem;

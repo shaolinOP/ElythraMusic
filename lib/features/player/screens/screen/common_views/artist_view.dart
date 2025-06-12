@@ -159,8 +159,7 @@ class _ArtistViewState extends State<ArtistView> {
                                                             .read<
                                                                 ElythraPlayerCubit>()
                                                             .bloomeePlayer
-                                                            .queueTitle
-                                                            .value !=
+                                                            .queueTitleValue !=
                                                         widget.artist.name) {
                                                       context
                                                           .read<
@@ -168,9 +167,7 @@ class _ArtistViewState extends State<ArtistView> {
                                                           .bloomeePlayer
                                                           .loadPlaylist(
                                                               state.artist
-                                                                  .playlist,
-                                                              doPlay: true,
-                                                              idx: 0);
+                                                                  .playlist);
                                                     } else if (!context
                                                         .read<
                                                             ElythraPlayerCubit>()
@@ -296,8 +293,7 @@ class _ArtistViewState extends State<ArtistView> {
                                         if (context
                                                     .read<ElythraPlayerCubit>()
                                                     .bloomeePlayer
-                                                    .queueTitle
-                                                    .value !=
+                                                    .queueTitleValue !=
                                                 widget.artist.name ||
                                             context
                                                     .read<ElythraPlayerCubit>()
@@ -308,9 +304,7 @@ class _ArtistViewState extends State<ArtistView> {
                                               .read<ElythraPlayerCubit>()
                                               .bloomeePlayer
                                               .loadPlaylist(
-                                                  state.artist.playlist,
-                                                  doPlay: true,
-                                                  idx: index);
+                                                  state.artist.playlist);
                                         } else if (!context
                                             .read<ElythraPlayerCubit>()
                                             .bloomeePlayer

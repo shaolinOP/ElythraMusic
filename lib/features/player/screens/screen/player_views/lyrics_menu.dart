@@ -1,6 +1,7 @@
 import 'package:elythra_music/features/lyrics/lyrics_cubit.dart';
 import 'package:elythra_music/features/player/screens/screen/player_views/lyrics_search.dart';
 import 'package:elythra_music/core/theme_data/default.dart';
+import 'package:elythra_music/core/model/lyrics_models.dart' as lyrics_models;
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:icons_plus/icons_plus.dart';
@@ -78,7 +79,17 @@ class _LyricsMenuState extends State<LyricsMenu> {
           onPressed: () {
             context
                 .read<LyricsCubit>()
-                .setLyricsToDB(widget.state.lyrics, widget.state.mediaItem.id);
+                .setLyricsToDB(
+                  lyrics_models.Lyrics(
+                    id: widget.state.mediaItem.id,
+                    artist: widget.state.mediaItem.artist,
+                    title: widget.state.mediaItem.title,
+                    lyricsPlain: widget.state.lyrics.lyricsPlain,
+                    provider: lyrics_models.LyricsProvider.none,
+                    mediaID: widget.state.mediaItem.id,
+                  ), 
+                  widget.state.mediaItem.id
+                );
           },
           child: const Row(
             children: <Widget>[

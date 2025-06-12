@@ -47,7 +47,6 @@ class EnhancedLyricsService {
         artist: artist,
         album: album,
         duration: duration?.inSeconds.toString(),
-        provider: LyricsProvider.lrcnet,
       );
       
       if (lyrics.lyricsSynced != null && lyrics.lyricsSynced!.isNotEmpty) {

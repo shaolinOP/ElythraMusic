@@ -81,6 +81,9 @@ dependencies:
   # Enhanced lyrics support
   flutter_lyric: ^2.0.4+6
   
+  # Image processing
+  image: ^4.2.0
+  
   # Authentication
   google_sign_in: ^6.2.1
   firebase_core: ^3.6.0

@@ -237,7 +237,7 @@ class _AudioPlayerViewState extends State<AudioPlayerView>
                       child: SizedBox(
                         width: constraints.maxWidth,
                         height: constraints.maxHeight * 0.50,
-                        child: StreamBuilder<MediaItem?>(
+                        child: StreamBuilder<ElythraMediaItem?>(
                             stream: musicPlayer.mediaItem,
                             builder: (context, snapshot) {
                               return AnimatedSwitcher(
@@ -324,7 +324,7 @@ class CoverImageVolSlider extends StatelessWidget {
     return VolumeDragController(
       child: ClipRRect(
         borderRadius: BorderRadius.circular(25),
-        child: StreamBuilder<MediaItem?>(
+        child: StreamBuilder<ElythraMediaItem?>(
             stream: bloomeePlayerCubit.bloomeePlayer.mediaItem,
             builder: (context, snapshot) {
               return LayoutBuilder(builder: (context, constraints) {
@@ -355,7 +355,7 @@ class PlayerCtrlWidgets extends StatelessWidget {
     required this.musicPlayer,
   });
 
-  final ElythraMusicPlayer musicPlayer;
+  final BloomeePlayer musicPlayer;
 
   @override
   Widget build(BuildContext context) {
@@ -370,7 +370,7 @@ class PlayerCtrlWidgets extends StatelessWidget {
             children: [
               Expanded(
                 flex: 7,
-                child: StreamBuilder<MediaItem?>(
+                child: StreamBuilder<ElythraMediaItem?>(
                     stream: bloomeePlayerCubit.bloomeePlayer.mediaItem,
                     builder: (context, snapshot) {
                       return Column(
@@ -419,20 +419,20 @@ class PlayerCtrlWidgets extends StatelessWidget {
                       .bloomeePlayer.audioPlayer.playbackEventStream,
                   builder: (context, snapshot) {
                     return FutureBuilder(
-                      future: context.read<ElythraDBCubit>().isLiked(
-                          bloomeePlayerCubit.bloomeePlayer.currentMedia != null 
-                            ? audio_service.MediaItem(
-                                id: bloomeePlayerCubit.bloomeePlayer.currentMedia!.id,
-                                title: bloomeePlayerCubit.bloomeePlayer.currentMedia!.title,
-                                artist: bloomeePlayerCubit.bloomeePlayer.currentMedia!.artist,
-                                album: bloomeePlayerCubit.bloomeePlayer.currentMedia!.album,
-                                duration: bloomeePlayerCubit.bloomeePlayer.currentMedia!.duration,
-                                artUri: bloomeePlayerCubit.bloomeePlayer.currentMedia!.artUri != null 
-                                  ? Uri.parse(bloomeePlayerCubit.bloomeePlayer.currentMedia!.artUri!) 
-                                  : null,
-                                extras: bloomeePlayerCubit.bloomeePlayer.currentMedia!.extras,
-                              )
-                            : null),
+                      future: bloomeePlayerCubit.bloomeePlayer.currentMedia != null 
+                        ? context.read<ElythraDBCubit>().isLiked(
+                            audio_service.MediaItem(
+                              id: bloomeePlayerCubit.bloomeePlayer.currentMedia!.id,
+                              title: bloomeePlayerCubit.bloomeePlayer.currentMedia!.title,
+                              artist: bloomeePlayerCubit.bloomeePlayer.currentMedia!.artist,
+                              album: bloomeePlayerCubit.bloomeePlayer.currentMedia!.album,
+                              duration: bloomeePlayerCubit.bloomeePlayer.currentMedia!.duration,
+                              artUri: bloomeePlayerCubit.bloomeePlayer.currentMedia!.artUri != null 
+                                ? Uri.parse(bloomeePlayerCubit.bloomeePlayer.currentMedia!.artUri!) 
+                                : null,
+                              extras: bloomeePlayerCubit.bloomeePlayer.currentMedia!.extras,
+                            ))
+                        : Future.value(false),
                       builder: (context, snapshot) {
                         if (snapshot.hasData && snapshot.data != null) {
                           return Padding(
@@ -442,40 +442,40 @@ class PlayerCtrlWidgets extends StatelessWidget {
                               isPlaying: true,
                               isLiked: snapshot.data ?? false,
                               iconSize: 35,
-                              onLiked: () => context
-                                  .read<ElythraDBCubit>()
-                                  .setLike(
-                                      bloomeePlayerCubit.bloomeePlayer.currentMedia != null 
-                                        ? audio_service.MediaItem(
-                                            id: bloomeePlayerCubit.bloomeePlayer.currentMedia!.id,
-                                            title: bloomeePlayerCubit.bloomeePlayer.currentMedia!.title,
-                                            artist: bloomeePlayerCubit.bloomeePlayer.currentMedia!.artist,
-                                            album: bloomeePlayerCubit.bloomeePlayer.currentMedia!.album,
-                                            duration: bloomeePlayerCubit.bloomeePlayer.currentMedia!.duration,
-                                            artUri: bloomeePlayerCubit.bloomeePlayer.currentMedia!.artUri != null 
-                                              ? Uri.parse(bloomeePlayerCubit.bloomeePlayer.currentMedia!.artUri!) 
-                                              : null,
-                                            extras: bloomeePlayerCubit.bloomeePlayer.currentMedia!.extras,
-                                          )
+                              onLiked: () {
+                                if (bloomeePlayerCubit.bloomeePlayer.currentMedia != null) {
+                                  context.read<ElythraDBCubit>().setLike(
+                                    audio_service.MediaItem(
+                                      id: bloomeePlayerCubit.bloomeePlayer.currentMedia!.id,
+                                      title: bloomeePlayerCubit.bloomeePlayer.currentMedia!.title,
+                                      artist: bloomeePlayerCubit.bloomeePlayer.currentMedia!.artist,
+                                      album: bloomeePlayerCubit.bloomeePlayer.currentMedia!.album,
+                                      duration: bloomeePlayerCubit.bloomeePlayer.currentMedia!.duration,
+                                      artUri: bloomeePlayerCubit.bloomeePlayer.currentMedia!.artUri != null 
+                                        ? Uri.parse(bloomeePlayerCubit.bloomeePlayer.currentMedia!.artUri!) 
                                         : null,
-                                      isLiked: true),
-                              onDisliked: () => context
-                                  .read<ElythraDBCubit>()
-                                  .setLike(
-                                      bloomeePlayerCubit.bloomeePlayer.currentMedia != null 
-                                        ? audio_service.MediaItem(
-                                            id: bloomeePlayerCubit.bloomeePlayer.currentMedia!.id,
-                                            title: bloomeePlayerCubit.bloomeePlayer.currentMedia!.title,
-                                            artist: bloomeePlayerCubit.bloomeePlayer.currentMedia!.artist,
-                                            album: bloomeePlayerCubit.bloomeePlayer.currentMedia!.album,
-                                            duration: bloomeePlayerCubit.bloomeePlayer.currentMedia!.duration,
-                                            artUri: bloomeePlayerCubit.bloomeePlayer.currentMedia!.artUri != null 
-                                              ? Uri.parse(bloomeePlayerCubit.bloomeePlayer.currentMedia!.artUri!) 
-                                              : null,
-                                            extras: bloomeePlayerCubit.bloomeePlayer.currentMedia!.extras,
-                                          )
+                                      extras: bloomeePlayerCubit.bloomeePlayer.currentMedia!.extras,
+                                    ),
+                                    isLiked: true);
+                                }
+                              },
+                              onDisliked: () {
+                                if (bloomeePlayerCubit.bloomeePlayer.currentMedia != null) {
+                                  context.read<ElythraDBCubit>().setLike(
+                                    audio_service.MediaItem(
+                                      id: bloomeePlayerCubit.bloomeePlayer.currentMedia!.id,
+                                      title: bloomeePlayerCubit.bloomeePlayer.currentMedia!.title,
+                                      artist: bloomeePlayerCubit.bloomeePlayer.currentMedia!.artist,
+                                      album: bloomeePlayerCubit.bloomeePlayer.currentMedia!.album,
+                                      duration: bloomeePlayerCubit.bloomeePlayer.currentMedia!.duration,
+                                      artUri: bloomeePlayerCubit.bloomeePlayer.currentMedia!.artUri != null 
+                                        ? Uri.parse(bloomeePlayerCubit.bloomeePlayer.currentMedia!.artUri!) 
                                         : null,
-                                      isLiked: false),
+                                      extras: bloomeePlayerCubit.bloomeePlayer.currentMedia!.extras,
+                                    ),
+                                    isLiked: false);
+                                }
+                              },
                             ),
                           );
                         } else {
@@ -509,7 +509,7 @@ class PlayerCtrlWidgets extends StatelessWidget {
                         snapshot.data?.currentPlaybackState.bufferedPosition ??
                             Duration.zero,
                     onSeek: (value) {
-                      musicPlayer.seek(value);
+                      bloomeePlayerCubit.seek(value);
                     },
                     timeLabelPadding: 5,
                     timeLabelTextStyle: Default_Theme.secondoryTextStyle.merge(
@@ -859,7 +859,7 @@ class PlayerCtrlWidgets extends StatelessWidget {
                       tapTargetSize:
                           MaterialTapTargetSize.shrinkWrap, // the '2023' part
                     ),
-                    icon: StreamBuilder<MediaItem?>(
+                    icon: StreamBuilder<ElythraMediaItem?>(
                         stream: bloomeePlayerCubit.bloomeePlayer.mediaItem,
                         builder: (context, snapshot) {
                           if (snapshot.hasData &&
@@ -912,7 +912,7 @@ class PlayerCtrlWidgets extends StatelessWidget {
 }
 
 class AmbientImgShadowWidget extends StatefulWidget {
-  final AsyncSnapshot<MediaItem?> snapshot;
+  final AsyncSnapshot<ElythraMediaItem?> snapshot;
   const AmbientImgShadowWidget({super.key, required this.snapshot});
 
   @override

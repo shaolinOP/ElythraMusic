@@ -1,5 +1,5 @@
 import 'dart:ui';
-import 'package:elythra_music/features/player/blocs/mediaPlayer/bloomee_player_cubit.dart';
+import 'package:elythra_music/features/player/blocs/mediaPlayer/bloomee_player_cubit.dart' as player;
 import 'package:elythra_music/core/model/MediaPlaylistModel.dart';
 import 'package:elythra_music/core/model/songModel.dart';
 import 'package:elythra_music/features/player/screens/screen/library_views/cubit/current_playlist_cubit.dart';
@@ -301,18 +301,16 @@ class PlaylistView extends StatelessWidget {
                                     IconButton(
                                         onPressed: () {
                                           context
-                                              .read<ElythraPlayerCubit>()
+                                              .read<player.ElythraPlayerCubit>()
                                               .bloomeePlayer
                                               .loadPlaylist(
-                                                  MediaPlaylist(
-                                                      mediaItems: state
+                                                  player.MediaPlaylist(
+                                                      name: state
                                                           .mediaPlaylist
-                                                          .mediaItems,
-                                                      playlistName: state
+                                                          .playlistName,
+                                                      items: state
                                                           .mediaPlaylist
-                                                          .playlistName),
-                                                  doPlay: true,
-                                                  shuffling: true);
+                                                          .mediaItems.map((item) => player.ElythraMediaItem.fromMediaItemModel(item)).toList()));
                                         },
                                         padding: EdgeInsets.zero,
                                         icon: Icon(MingCute.shuffle_line,
@@ -326,7 +324,7 @@ class PlaylistView extends StatelessWidget {
                                         builder: (context, state) {
                                           return StreamBuilder<String>(
                                               stream: context
-                                                  .watch<ElythraPlayerCubit>()
+                                                  .watch<player.ElythraPlayerCubit>()
                                                   .bloomeePlayer
                                                   .queueTitle,
                                               builder: (context, snapshot) {
@@ -338,7 +336,7 @@ class PlaylistView extends StatelessWidget {
                                                           PlayerState>(
                                                       stream: context
                                                           .read<
-                                                              ElythraPlayerCubit>()
+                                                              player.ElythraPlayerCubit>()
                                                           .bloomeePlayer
                                                           .audioPlayer
                                                           .playerStateStream,
@@ -351,12 +349,12 @@ class PlaylistView extends StatelessWidget {
                                                           return PlayPauseButton(
                                                             onPause: () => context
                                                                 .read<
-                                                                    ElythraPlayerCubit>()
+                                                                    player.ElythraPlayerCubit>()
                                                                 .bloomeePlayer
                                                                 .pause(),
                                                             onPlay: () => context
                                                                 .read<
-                                                                    ElythraPlayerCubit>()
+                                                                    player.ElythraPlayerCubit>()
                                                                 .bloomeePlayer
                                                                 .audioPlayer
                                                                 .play(),
@@ -367,12 +365,12 @@ class PlaylistView extends StatelessWidget {
                                                           return PlayPauseButton(
                                                             onPause: () => context
                                                                 .read<
-                                                                    ElythraPlayerCubit>()
+                                                                    player.ElythraPlayerCubit>()
                                                                 .bloomeePlayer
                                                                 .pause(),
                                                             onPlay: () => context
                                                                 .read<
-                                                                    ElythraPlayerCubit>()
+                                                                    player.ElythraPlayerCubit>()
                                                                 .bloomeePlayer
                                                                 .audioPlayer
                                                                 .play(),
@@ -385,13 +383,13 @@ class PlaylistView extends StatelessWidget {
                                                   return PlayPauseButton(
                                                     onPause: () => context
                                                         .read<
-                                                            ElythraPlayerCubit>()
+                                                            player.ElythraPlayerCubit>()
                                                         .bloomeePlayer
                                                         .pause(),
                                                     onPlay: () {
                                                       context
                                                           .read<
-                                                              ElythraPlayerCubit>()
+                                                              player.ElythraPlayerCubit>()
                                                           .bloomeePlayer
                                                           .updateQueue(state.mediaPlaylist.mediaItems, doPlay: true, idx: 0);
                                                     },
@@ -405,7 +403,9 @@ class PlaylistView extends StatelessWidget {
                                     IconButton(
                                         onPressed: () {
                                           showPlaylistOptsInrSheet(
-                                              context, state.mediaPlaylist);
+                                              context, player.MediaPlaylist(
+                                                name: state.mediaPlaylist.playlistName,
+                                                items: state.mediaPlaylist.mediaItems.map((item) => player.ElythraMediaItem.fromMediaItemModel(item)).toList()));
                                         },
                                         icon: Icon(MingCute.more_2_line,
                                             color: Default_Theme.primaryColor1
@@ -424,7 +424,7 @@ class PlaylistView extends StatelessWidget {
                               song: state.mediaPlaylist.mediaItems[index],
                               onTap: () {
                                 context
-                                    .read<ElythraPlayerCubit>()
+                                    .read<player.ElythraPlayerCubit>()
                                     .bloomeePlayer
                                     .updateQueue(state.mediaPlaylist.mediaItems, idx: index, doPlay: true);
                               },

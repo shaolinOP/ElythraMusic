@@ -34,7 +34,7 @@ class ExploreScreen extends StatefulWidget {
 class _ExploreScreenState extends State<ExploreScreen> {
   bool isUpdateChecked = false;
   YTMusicCubit yTMusicCubit = YTMusicCubit();
-  Future<MediaPlaylist> lFMData =
+  Future<core_playlist.MediaPlaylist> lFMData =
       Future.value(const core_playlist.MediaPlaylist(mediaItems: [], playlistName: ""));
 
   @override
@@ -52,7 +52,7 @@ class _ExploreScreenState extends State<ExploreScreen> {
     });
   }
 
-  Future<MediaPlaylist> fetchLFMPicks(bool state, BuildContext ctx) async {
+  Future<core_playlist.MediaPlaylist> fetchLFMPicks(bool state, BuildContext ctx) async {
     if (state) {
       try {
         final data = await lFMData;
@@ -173,11 +173,11 @@ class _ExploreScreenState extends State<ExploreScreen> {
                                                     .read<ElythraPlayerCubit>()
                                                     .bloomeePlayer
                                                     .loadPlaylist(
-                                                      snapshot.data!,
-                                                      idx: snapshot
-                                                          .data!.mediaItems
-                                                          .indexOf(e),
-                                                      doPlay: true,
+                                                      MediaPlaylist(
+                                                        name: snapshot.data!.playlistName,
+                                                        items: snapshot.data!.mediaItems.map((item) => 
+                                                          ElythraMediaItem.fromMediaItemModel(item)).toList(),
+                                                      ),
                                                     );
                                               },
                                               onOptionsTap: () =>

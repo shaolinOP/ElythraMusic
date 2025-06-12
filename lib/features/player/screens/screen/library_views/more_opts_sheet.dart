@@ -73,9 +73,9 @@ void showPlaylistOptsInrSheet(
                     onPressed: () async {
                       Navigator.pop(context);
                       SnackbarService.showMessage(
-                          "Preparing ${mediaPlaylist.playlistName} for share");
+                          "Preparing ${mediaPlaylist.name} for share");
                       final _tmpPath = await ImportExportService.exportPlaylist(
-                          mediaPlaylist.playlistName);
+                          mediaPlaylist.name);
                       _tmpPath != null
                           ? Share.shareXFiles([XFile(_tmpPath)])
                           : null;
@@ -94,10 +94,10 @@ void showPlaylistOptsInrSheet(
                               (await getDownloadsDirectory())?.path.toString();
                         }
                         SnackbarService.showMessage(
-                            "Preparing ${mediaPlaylist.playlistName} for export.");
+                            "Preparing ${mediaPlaylist.name} for export.");
                         final _tmpPath =
                             await ImportExportService.exportPlaylist(
-                          mediaPlaylist.playlistName,
+                          mediaPlaylist.name,
                           filePath: path,
                         );
                         SnackbarService.showMessage("Exported to: $_tmpPath");
@@ -152,10 +152,9 @@ void showPlaylistOptsExtSheet(BuildContext context, String playlistName) {
                             .read<ElythraPlayerCubit>()
                             .bloomeePlayer
                             .loadPlaylist(
-                                core_playlist.MediaPlaylist(
-                                    mediaItems: _list,
-                                    playlistName: playlistName),
-                                doPlay: true);
+                                MediaPlaylist(
+                                    name: playlistName,
+                                    items: _list.map((item) => ElythraMediaItem.fromMediaItemModel(item)).toList()));
                         SnackbarService.showMessage("Playing $playlistName");
                       }
                     },

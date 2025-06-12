@@ -211,7 +211,7 @@ class _UpNextPanelState extends State<UpNextPanel> {
                                       .skipToQueueItem(index);
                                 },
                                 //
-                                song: mediaItem2MediaItemModel(
+                                song: elythraMediaItem2MediaItemModel(
                                     snapshot.data![index])),
                           ),
                         );

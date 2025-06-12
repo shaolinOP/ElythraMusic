@@ -2,7 +2,7 @@
 import 'dart:core';
 import 'dart:developer';
 import 'package:elythra_music/core/blocs/internet_connectivity/cubit/connectivity_cubit.dart';
-import 'package:elythra_music/features/player/blocs/mediaPlayer/bloomee_player_cubit.dart';
+import 'package:elythra_music/features/player/blocs/mediaPlayer/bloomee_player_cubit.dart' as player;
 import 'package:elythra_music/core/model/MediaPlaylistModel.dart';
 import 'package:elythra_music/core/model/yt_music_model.dart';
 import 'package:elythra_music/core/repository/Youtube/ytm/ytmusic.dart';
@@ -64,7 +64,16 @@ class _YoutubePlaylistState extends State<YoutubePlaylist> {
     final song = await YouTubeServices()
         .formatVideoFromId(id: id.replaceAll("youtube", ""));
     if (song != null) {
-      return fromYtVidSongMap2MediaItem(song)..artUri = Uri.parse(imgUrl);
+      final mediaItem = fromYtVidSongMap2MediaItem(song);
+      return MediaItemModel(
+        id: mediaItem.id,
+        title: mediaItem.title,
+        artist: mediaItem.artist,
+        album: mediaItem.album,
+        artUri: Uri.parse(imgUrl),
+        duration: mediaItem.duration,
+        extras: mediaItem.extras,
+      );
     }
     return null;
   }
@@ -335,7 +344,7 @@ class _YoutubePlaylistState extends State<YoutubePlaylist> {
                                                                               const Duration(seconds: 2));
                                                                       context
                                                                           .read<
-                                                                              ElythraPlayerCubit>()
+                                                                              player.ElythraPlayerCubit>()
                                                                           .bloomeePlayer
                                                                           .updateQueue(
                                                                             mediaitems,
@@ -366,7 +375,7 @@ class _YoutubePlaylistState extends State<YoutubePlaylist> {
                                                                         String>(
                                                                     stream: context
                                                                         .watch<
-                                                                            ElythraPlayerCubit>()
+                                                                            player.ElythraPlayerCubit>()
                                                                         .bloomeePlayer
                                                                         .queueTitle,
                                                                     builder:
@@ -379,19 +388,19 @@ class _YoutubePlaylistState extends State<YoutubePlaylist> {
                                                                         return StreamBuilder<
                                                                                 PlayerState>(
                                                                             stream:
-                                                                                context.read<ElythraPlayerCubit>().bloomeePlayer.audioPlayer.playerStateStream,
+                                                                                context.read<player.ElythraPlayerCubit>().bloomeePlayer.audioPlayer.playerStateStream,
                                                                             builder: (context, snapshot2) {
                                                                               if (snapshot2.hasData && (snapshot2.data?.playing ?? false)) {
                                                                                 return PlayPauseButton(
-                                                                                  onPause: () => context.read<ElythraPlayerCubit>().bloomeePlayer.pause(),
-                                                                                  onPlay: () => context.read<ElythraPlayerCubit>().bloomeePlayer.play(),
+                                                                                  onPause: () => context.read<player.ElythraPlayerCubit>().bloomeePlayer.pause(),
+                                                                                  onPlay: () => context.read<player.ElythraPlayerCubit>().bloomeePlayer.play(),
                                                                                   isPlaying: true,
                                                                                   size: 45,
                                                                                 );
                                                                               } else {
                                                                                 return PlayPauseButton(
-                                                                                  onPause: () => context.read<ElythraPlayerCubit>().bloomeePlayer.pause(),
-                                                                                  onPlay: () => context.read<ElythraPlayerCubit>().bloomeePlayer.play(),
+                                                                                  onPause: () => context.read<player.ElythraPlayerCubit>().bloomeePlayer.pause(),
+                                                                                  onPlay: () => context.read<player.ElythraPlayerCubit>().bloomeePlayer.play(),
                                                                                   isPlaying: false,
                                                                                   size: 45,
                                                                                 );
@@ -400,15 +409,15 @@ class _YoutubePlaylistState extends State<YoutubePlaylist> {
                                                                       } else {
                                                                         return PlayPauseButton(
                                                                           onPause: () => context
-                                                                              .read<ElythraPlayerCubit>()
+                                                                              .read<player.ElythraPlayerCubit>()
                                                                               .bloomeePlayer
                                                                               .pause(),
                                                                           onPlay:
                                                                               () {
-                                                                            context.read<ElythraPlayerCubit>().bloomeePlayer.loadPlaylist(MediaPlaylist(
-                                                                                mediaItems: mediaitems,
-                                                                                playlistName: "${widget.title} - Youtube"));
-                                                                            context.read<ElythraPlayerCubit>().bloomeePlayer.play();
+                                                                            context.read<player.ElythraPlayerCubit>().bloomeePlayer.loadPlaylist(player.MediaPlaylist(
+                                                                                name: "${widget.title} - Youtube",
+                                                                                items: mediaitems.map((item) => player.ElythraMediaItem.fromMediaItemModel(item)).toList()));
+                                                                            context.read<player.ElythraPlayerCubit>().bloomeePlayer.play();
                                                                           },
                                                                           size:
                                                                               45,
@@ -492,7 +501,7 @@ class _YoutubePlaylistState extends State<YoutubePlaylist> {
                                               },
                                               onTap: () {
                                                 context
-                                                    .read<ElythraPlayerCubit>()
+                                                    .read<player.ElythraPlayerCubit>()
                                                     .bloomeePlayer
                                                     .updateQueue(
                                                         mediaitems,
