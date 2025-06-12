@@ -1,6 +1,7 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:elythra_music/core/blocs/mediaPlayer/elythra_player_cubit.dart';
 import 'package:elythra_music/core/model/lyrics_models.dart' as lyrics_models;
+import 'package:elythra_music/core/model/song_model.dart';
 
 // Lyric Line Model with Duration for start time
 class LyricLine {
@@ -100,17 +101,17 @@ class LyricsCubit extends Cubit<LyricsState> {
   LyricsCubit([this.playerCubit]) : super(LyricsInitial()) {
     // Listen to player state changes if playerCubit is provided
     playerCubit?.stream.listen((playerState) {
-      if (playerState is ElythraPlayerPlaying || playerState is ElythraPlayerPaused) {
-        final mediaItem = playerCubit!.currentMedia;
+      if (playerState is ElythraPlayerReady) {
+        final mediaItem = playerCubit!.bloomeePlayer.currentMedia;
         if (mediaItem != null) {
           updateElythraMediaItem(mediaItem);
-          fetchLyrics(mediaItem.title, mediaItem.artist);
+          fetchLyrics(mediaItem.title, mediaItem.artist ?? 'Unknown Artist');
         }
       }
     });
   }
 
-  void updateElythraMediaItem(ElythraMediaItem mediaItem) {
+  void updateElythraMediaItem(MediaItemModel mediaItem) {
     // For now, just emit loading state
     emit(LyricsLoading());
   }

@@ -8,7 +8,7 @@ import 'package:elythra_music/features/player/screens/widgets/play_pause_widget.
 import 'package:elythra_music/features/player/screens/widgets/sign_board_widget.dart';
 import 'package:elythra_music/features/player/screens/widgets/snackbar.dart';
 import 'package:elythra_music/features/player/screens/widgets/song_tile.dart';
-import 'package:elythra_music/core/services/db/global_db_platform.dart';
+import 'package:elythra_music/core/services/db/global_db.dart';
 import 'package:elythra_music/core/services/db/cubit/bloomee_db_cubit.dart';
 import 'package:elythra_music/core/theme_data/default.dart';
 import 'package:elythra_music/core/utils/imgurl_formator.dart';

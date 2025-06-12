@@ -9,6 +9,7 @@ import 'package:elythra_music/core/model/song_model.dart';
 import 'package:elythra_music/core/routes_and_consts/global_conts.dart';
 import 'package:just_audio/just_audio.dart';
 import 'package:rxdart/rxdart.dart';
+import 'package:audio_service/audio_service.dart';
 
 part 'mini_player_event.dart';
 part 'mini_player_state.dart';
@@ -23,7 +24,7 @@ class MiniPlayerBloc extends Bloc<MiniPlayerEvent, MiniPlayerState> {
     combinedStream = Rx.combineLatest2(
       playerCubit.bloomeePlayer.audioPlayer.playerStateStream,
       playerCubit.bloomeePlayer.mediaItem,
-      (PlayerState playerState, ElythraMediaItem? mediaItem) =>
+      (PlayerState playerState, MediaItem? mediaItem) =>
           [playerState, mediaItem],
     );
     listenToPlayer();
@@ -71,10 +72,10 @@ class MiniPlayerBloc extends Bloc<MiniPlayerEvent, MiniPlayerState> {
     _playerStateSubscription =
         combinedStream?.asBroadcastStream().listen((event) {
       var state = event[0] as PlayerState;
-      var mediaItem = event[1] as ElythraMediaItem?;
+      var mediaItem = event[1] as MediaItem?;
       if (mediaItem == null) return;
 
-      var mediaItem2 = elythraMediaItem2MediaItemModel(mediaItem);
+      var mediaItem2 = mediaItem2MediaItemModel(mediaItem);
 
       log("$state", name: "MiniPlayer");
       switch (state.processingState) {

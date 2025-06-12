@@ -12,11 +12,11 @@ import 'package:elythra_music/features/social/social_features_service.dart';
 import 'package:elythra_music/features/performance/performance_optimizer.dart';
 import 'package:elythra_music/core/blocs/downloader/cubit/downloader_cubit.dart';
 import 'package:elythra_music/core/blocs/internet_connectivity/cubit/connectivity_cubit.dart';
-// import 'package:elythra_music/core/blocs/lastdotfm/lastdotfm_cubit.dart'; // Disabled
-// import 'package:elythra_music/features/lyrics/lyrics_cubit.dart'; // Disabled
+import 'package:elythra_music/core/blocs/lastdotfm/lastdotfm_cubit.dart';
+import 'package:elythra_music/features/lyrics/lyrics_cubit.dart';
 import 'package:elythra_music/core/blocs/mediaPlayer/elythra_player_cubit.dart';
 import 'package:elythra_music/features/auth/auth_cubit.dart';
-// import 'package:elythra_music/core/blocs/mini_player/mini_player_bloc.dart'; // Disabled
+import 'package:elythra_music/core/blocs/mini_player/mini_player_bloc.dart';
 import 'package:elythra_music/core/blocs/notification/notification_cubit.dart';
 import 'package:elythra_music/core/blocs/search_suggestions/search_suggestion_bloc.dart';
 import 'package:elythra_music/core/blocs/settings_cubit/cubit/settings_cubit.dart';
@@ -243,10 +243,10 @@ class MyAppStateState extends State<MyApp> {
           create: (context) => elythraPlayerCubit,
           lazy: false,
         ),
-        // BlocProvider(
-        //     create: (context) =>
-        //         MiniPlayerBloc(playerCubit: elythraPlayerCubit),
-        //     lazy: true),
+        BlocProvider(
+            create: (context) =>
+                MiniPlayerBloc(playerCubit: elythraPlayerCubit),
+            lazy: true),
         BlocProvider(
           create: (context) => elythraDBCubit(),
           lazy: false,
@@ -283,13 +283,13 @@ class MyAppStateState extends State<MyApp> {
           create: (context) => FetchSearchResultsCubit(),
         ),
         BlocProvider(create: (context) => SearchSuggestionBloc()),
-        // BlocProvider<LyricsCubit>(
-        //   create: (context) => LyricsCubit(context.read<ElythraPlayerCubit>()),
-        // ),
-        // BlocProvider(
-        //   create: (context) => LastdotfmCubit(playerCubit: elythraPlayerCubit),
-        //   lazy: false,
-        // ),
+        BlocProvider<LyricsCubit>(
+          create: (context) => LyricsCubit(context.read<ElythraPlayerCubit>()),
+        ),
+        BlocProvider(
+          create: (context) => LastdotfmCubit(playerCubit: elythraPlayerCubit),
+          lazy: false,
+        ),
         BlocProvider(
           create: (context) => AuthCubit(),
           lazy: false,

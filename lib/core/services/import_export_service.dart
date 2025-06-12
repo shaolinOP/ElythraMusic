@@ -2,7 +2,7 @@ import 'dart:convert';
 import 'dart:developer';
 import 'dart:io';
 import 'package:elythra_music/features/player/screens/widgets/snackbar.dart';
-import 'package:elythra_music/core/services/db/global_db_platform.dart';
+import 'package:elythra_music/core/services/db/global_db.dart';
 import 'package:elythra_music/core/services/db/bloomee_db_service.dart';
 import 'package:elythra_music/core/services/m3u_processor.dart';
 import 'package:package_info_plus/package_info_plus.dart';

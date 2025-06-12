@@ -1,7 +1,7 @@
 import 'dart:developer';
 
 import 'package:elythra_music/features/player/screens/screen/home_views/setting_views/check_update_view.dart';
-import 'package:elythra_music/core/services/db/global_db_platform.dart';
+import 'package:elythra_music/core/services/db/global_db.dart';
 import 'package:elythra_music/core/theme_data/default.dart';
 import 'package:flutter/material.dart';
 import 'package:icons_plus/icons_plus.dart';

@@ -11,7 +11,7 @@ import 'package:elythra_music/core/model/song_model.dart';
 import 'package:elythra_music/core/routes_and_consts/global_str_consts.dart';
 import 'package:path/path.dart' as p;
 import 'package:isar/isar.dart';
-import 'package:elythra_music/core/services/db/global_db_platform.dart';
+import 'package:elythra_music/core/services/db/global_db.dart';
 
 class ElythraDBService {
   static late Future<Isar> db;

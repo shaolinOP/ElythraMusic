@@ -2,7 +2,7 @@
 import 'package:equatable/equatable.dart';
 
 import 'package:elythra_music/core/model/song_model.dart';
-import 'package:elythra_music/core/services/db/global_db_platform.dart';
+import 'package:elythra_music/core/services/db/global_db.dart';
 
 class MediaPlaylist extends Equatable {
   final List<MediaItemModel> mediaItems;
