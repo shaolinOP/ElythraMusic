@@ -1,6 +1,8 @@
 import 'dart:async';
 import 'dart:developer';
 import 'dart:io' as io;
+import 'package:firebase_core/firebase_core.dart';
+import 'package:elythra_music/core/firebase/firebase_options.dart';
 import 'package:elythra_music/core/blocs/downloader/cubit/downloader_cubit.dart';
 import 'package:elythra_music/core/blocs/internet_connectivity/cubit/connectivity_cubit.dart';
 import 'package:elythra_music/core/blocs/lastdotfm/lastdotfm_cubit.dart';
@@ -119,6 +121,12 @@ Future<void> initServices() async {
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  
+  // Initialize Firebase
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
+  
   GestureBinding.instance.resamplingEnabled = true;
   if (io.Platform.isLinux || io.Platform.isWindows) {
     JustAudioMediaKit.ensureInitialized(

@@ -2,6 +2,8 @@ plugins {
     id "com.android.application"
     id "kotlin-android"
     id "dev.flutter.flutter-gradle-plugin"
+    // Add the Google services Gradle plugin
+    id "com.google.gms.google-services"
 }
 def localProperties = new Properties()
 def localPropertiesFile = rootProject.file('local.properties')
@@ -110,6 +112,15 @@ if (keystorePropertiesFile.exists()) {
        }
    }
 
+}
+
+dependencies {
+    // Import the Firebase BoM
+    implementation platform('com.google.firebase:firebase-bom:32.7.0')
+    
+    // Add the dependencies for Firebase products you want to use
+    implementation 'com.google.firebase:firebase-auth'
+    implementation 'com.google.android.gms:play-services-auth:20.7.0'
 }
 
 flutter {
