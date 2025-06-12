@@ -32,20 +32,30 @@ class ParsedLyrics {
 }
 
 // Lyrics state classes
-abstract class LyricsState {}
+abstract class LyricsState {
+  // Default implementations for compatibility
+  LyricsModel get lyrics => const LyricsModel(lyricsPlain: '');
+  MediaItem get mediaItem => const MediaItem(id: '', title: '', artist: '');
+}
 
 class LyricsInitial extends LyricsState {}
 
 class LyricsLoading extends LyricsState {}
 
 class LyricsLoaded extends LyricsState {
-  final LyricsModel lyrics;
-  final MediaItem mediaItem;
+  final LyricsModel _lyrics;
+  final MediaItem _mediaItem;
   
   LyricsLoaded({
-    required this.lyrics,
-    required this.mediaItem,
-  });
+    required LyricsModel lyrics,
+    required MediaItem mediaItem,
+  }) : _lyrics = lyrics, _mediaItem = mediaItem;
+  
+  @override
+  LyricsModel get lyrics => _lyrics;
+  
+  @override
+  MediaItem get mediaItem => _mediaItem;
 }
 
 class LyricsError extends LyricsState {
@@ -80,20 +90,7 @@ class LyricsStateCompat {
     );
   }
   
-  // Copy with method for state updates
-  LyricsState copyWith({
-    bool? isLoading,
-    String? error,
-    LyricsModel? lyrics,
-    MediaItem? mediaItem,
-  }) {
-    return LyricsState(
-      isLoading: isLoading ?? this.isLoading,
-      error: error,
-      lyrics: lyrics ?? this.lyrics,
-      mediaItem: mediaItem ?? this.mediaItem,
-    );
-  }
+  // Copy with method for state updates - removed as we use proper state classes now
 }
 
 // Lyrics Cubit

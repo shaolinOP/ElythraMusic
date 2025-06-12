@@ -117,6 +117,7 @@ class BloomeePlayer {
   Stream<String> get queueTitle => Stream.value("Current Queue");
   Stream<MediaItem?> get mediaItem => _mediaItemController.stream;
   Stream<bool> get shuffleMode => _shuffleModeController.stream;
+  bool get shuffleModeValue => _shuffleModeController.value;
   
   // Controllers
   final BehaviorSubject<MediaItem?> _mediaItemController = BehaviorSubject<MediaItem?>();
@@ -283,6 +284,7 @@ class ElythraPlayerCubit extends Cubit<ElythraPlayerState> {
   // Getters
   MediaItem? get currentMedia => _currentMedia;
   BloomeePlayer get bloomeePlayer => _bloomeePlayer;
+  PlayerInitState get playerInitState => _bloomeePlayer.playerInitState;
   
   // Progress streams
   Stream<ProgressBarStreams> get progressStreams {
