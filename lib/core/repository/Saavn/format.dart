@@ -88,13 +88,13 @@ Future<Map> formatSingleSongResponse(Map response) async {
     // final List artistNames = [];
     // if (response['artistMap'] == false ||
     //     response['primary_artists'] == null ||
-    //     response['primary_artists'].length == 0) {
+    //     response['primary_artists'].isEmpty) {
     //   if (response['artistMap'] == false ||
     //       response['featured_artists'] == null ||
-    //       response['featured_artists']?.length == 0) {
+    //       response['featured_artists']?.isEmpty) {
     //     if (response['artistMap'] == false ||
     //         response['artists'] == null ||
-    //         response['artists']?.length == 0) {
+    //         response['artists']?.isEmpty) {
     //       if (response['music'] != null) {
     //         artistNames.add(response['music']);
     //       } else {

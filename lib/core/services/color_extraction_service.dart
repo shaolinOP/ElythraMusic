@@ -66,7 +66,7 @@ class ColorExtractionService {
       // Cache colors for compatibility
       _dominantColor = dominantColor;
       _lightVibrantColor = dominantColor;
-      _darkMutedColor = dominantColor.withOpacity(0.7);
+      _darkMutedColor = dominantColor.withValues(alpha: 0.7);
 
       return dominantColor;
     } catch (e) {
@@ -74,7 +74,7 @@ class ColorExtractionService {
       final fallbackColor = Colors.deepPurple;
       _dominantColor = fallbackColor;
       _lightVibrantColor = fallbackColor;
-      _darkMutedColor = fallbackColor.withOpacity(0.7);
+      _darkMutedColor = fallbackColor.withValues(alpha: 0.7);
       return fallbackColor;
     }
   }

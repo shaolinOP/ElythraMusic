@@ -34,10 +34,10 @@ class EnhancedSongListTile extends StatefulWidget {
   });
 
   @override
-  State<EnhancedSongListTile> createState() => _EnhancedSongListTileState();
+  State<EnhancedSongListTile> createState() => EnhancedSongListTileStateState();
 }
 
-class _EnhancedSongListTileState extends State<EnhancedSongListTile>
+class EnhancedSongListTileStateState extends State<EnhancedSongListTile>
     with TickerProviderStateMixin {
   late AnimationController _scaleController;
   late AnimationController _playingController;
@@ -110,7 +110,7 @@ class _EnhancedSongListTileState extends State<EnhancedSongListTile>
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(12),
               color: widget.isPlaying 
-                  ? theme.primaryColor.withOpacity(0.1)
+                  ? theme.primaryColor.withValues(alpha: 0.1)
                   : Colors.transparent,
             ),
             child: Material(
@@ -189,7 +189,7 @@ class _EnhancedSongListTileState extends State<EnhancedSongListTile>
                 child: Container(
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(8),
-                    color: theme.primaryColor.withOpacity(0.8),
+                    color: theme.primaryColor.withValues(alpha: 0.8),
                   ),
                   child: const Icon(
                     Icons.equalizer,
@@ -323,10 +323,10 @@ class EnhancedShimmer extends StatefulWidget {
   });
 
   @override
-  State<EnhancedShimmer> createState() => _EnhancedShimmerState();
+  State<EnhancedShimmer> createState() => EnhancedShimmerStateState();
 }
 
-class _EnhancedShimmerState extends State<EnhancedShimmer>
+class EnhancedShimmerStateState extends State<EnhancedShimmer>
     with SingleTickerProviderStateMixin {
   late AnimationController _controller;
   late Animation<double> _animation;
@@ -358,7 +358,7 @@ class _EnhancedShimmerState extends State<EnhancedShimmer>
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
     final baseColor = widget.baseColor ?? theme.colorScheme.surfaceContainerHighest;
-    final highlightColor = widget.highlightColor ?? theme.colorScheme.surface.withOpacity(0.8);
+    final highlightColor = widget.highlightColor ?? theme.colorScheme.surface.withValues(alpha: 0.8);
 
     return AnimatedBuilder(
       animation: _animation,
@@ -411,10 +411,10 @@ class EnhancedCard extends StatefulWidget {
   });
 
   @override
-  State<EnhancedCard> createState() => _EnhancedCardState();
+  State<EnhancedCard> createState() => EnhancedCardStateState();
 }
 
-class _EnhancedCardState extends State<EnhancedCard>
+class EnhancedCardStateState extends State<EnhancedCard>
     with SingleTickerProviderStateMixin {
   late AnimationController _controller;
   late Animation<double> _elevationAnimation;
@@ -521,10 +521,10 @@ class EnhancedProgressBar extends StatefulWidget {
   });
 
   @override
-  State<EnhancedProgressBar> createState() => _EnhancedProgressBarState();
+  State<EnhancedProgressBar> createState() => EnhancedProgressBarStateState();
 }
 
-class _EnhancedProgressBarState extends State<EnhancedProgressBar>
+class EnhancedProgressBarStateState extends State<EnhancedProgressBar>
     with SingleTickerProviderStateMixin {
   late AnimationController _controller;
   late Animation<double> _heightAnimation;
@@ -558,7 +558,7 @@ class _EnhancedProgressBarState extends State<EnhancedProgressBar>
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
     final progressColor = widget.progressColor ?? theme.primaryColor;
-    final bufferedColor = widget.bufferedColor ?? theme.primaryColor.withOpacity(0.3);
+    final bufferedColor = widget.bufferedColor ?? theme.primaryColor.withValues(alpha: 0.3);
     final backgroundColor = widget.backgroundColor ?? theme.colorScheme.surfaceContainerHighest;
 
     return AnimatedBuilder(

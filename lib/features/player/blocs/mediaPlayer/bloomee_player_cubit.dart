@@ -235,14 +235,14 @@ class BloomeePlayer {
   Future<void> addPlayNextItem(MediaItemModel item) async {
     final mediaItem = ElythraMediaItem.fromMediaItemModel(item);
     final currentQueue = _queueController.toARGB32;
-    final newQueue = [mediaItem, ...currentQueue];
+    const newQueue = [mediaItem, ...currentQueue];
     _queueController.add(newQueue);
   }
 
   Future<void> addQueueItems(List<MediaItemModel> items) async {
     final mediaItems = items.map((item) => ElythraMediaItem.fromMediaItemModel(item)).toList();
     final currentQueue = _queueController.toARGB32;
-    final newQueue = [...currentQueue, ...mediaItems];
+    const newQueue = [...currentQueue, ...mediaItems];
     _queueController.add(newQueue);
   }
 

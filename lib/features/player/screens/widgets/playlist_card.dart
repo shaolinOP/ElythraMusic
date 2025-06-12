@@ -75,7 +75,7 @@ class PlaylistCard extends StatelessWidget {
                                   child: AnimatedContainer(
                                     duration: const Duration(milliseconds: 200),
                                     color: hovering.toARGB32
-                                        ? Colors.black.withOpacity(0.5)
+                                        ? Colors.black.withValues(alpha: 0.5)
                                         : Colors.transparent,
                                     child: Center(
                                       child: AnimatedOpacity(

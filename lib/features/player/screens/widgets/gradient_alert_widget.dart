@@ -16,11 +16,11 @@ class GradientDialog extends StatefulWidget {
 
   @override
   State<StatefulWidget> createState() {
-    return _GradientDialogState();
+    return GradientDialogStateState();
   }
 }
 
-class _GradientDialogState extends State<GradientDialog> {
+class GradientDialogStateState extends State<GradientDialog> {
   @override
   Widget build(BuildContext context) {
     return AlertDialog(

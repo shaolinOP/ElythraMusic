@@ -21,10 +21,10 @@ class OnlPlaylistView extends StatefulWidget {
       {super.key, required this.playlist, required this.sourceEngine});
 
   @override
-  State<OnlPlaylistView> createState() => _OnlPlaylistViewState();
+  State<OnlPlaylistView> createState() => OnlPlaylistViewStateState();
 }
 
-class _OnlPlaylistViewState extends State<OnlPlaylistView> {
+class OnlPlaylistViewStateState extends State<OnlPlaylistView> {
   late OnlPlaylistCubit onlPlaylistCubit;
   @override
   void initState() {
@@ -104,7 +104,7 @@ class _OnlPlaylistViewState extends State<OnlPlaylistView> {
                                             overflow: TextOverflow.ellipsis,
                                             fontSize: 14,
                                             color: DefaultTheme.primaryColor1
-                                                .withOpacity(0.4),
+                                                .withValues(alpha: 0.4),
                                           ),
                                         ),
                                       ),
@@ -118,7 +118,7 @@ class _OnlPlaylistViewState extends State<OnlPlaylistView> {
                                             overflow: TextOverflow.ellipsis,
                                             fontSize: 14,
                                             color: DefaultTheme.primaryColor1
-                                                .withOpacity(0.9),
+                                                .withValues(alpha: 0.9),
                                           ),
                                         ),
                                       ),
@@ -134,7 +134,7 @@ class _OnlPlaylistViewState extends State<OnlPlaylistView> {
                                                   fontSize: 13,
                                                   color: DefaultTheme
                                                       .primaryColor1
-                                                      .withOpacity(0.5),
+                                                      .withValues(alpha: 0.5),
                                                 ),
                                               ),
                                             )
@@ -257,7 +257,7 @@ class _OnlPlaylistViewState extends State<OnlPlaylistView> {
                       style: DefaultTheme.secondoryTextStyleMedium.merge(
                         TextStyle(
                           fontSize: 20,
-                          color: DefaultTheme.primaryColor1.withOpacity(0.8),
+                          color: DefaultTheme.primaryColor1.withValues(alpha: 0.8),
                         ),
                       ),
                     ),

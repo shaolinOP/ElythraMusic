@@ -27,10 +27,10 @@ class YtSongTile extends StatefulWidget {
   }) : super(key: key);
 
   @override
-  State<YtSongTile> createState() => _YtSongTileState();
+  State<YtSongTile> createState() => YtSongTileStateState();
 }
 
-class _YtSongTileState extends State<YtSongTile> {
+class YtSongTileStateState extends State<YtSongTile> {
   @override
   Widget build(BuildContext context) {
     return InkWell(
@@ -77,7 +77,7 @@ class _YtSongTileState extends State<YtSongTile> {
               overflow: TextOverflow.ellipsis,
               maxLines: 1,
               style: DefaultTheme.tertiaryTextStyle.merge(TextStyle(
-                  color: DefaultTheme.primaryColor1.withOpacity(0.8),
+                  color: DefaultTheme.primaryColor1.withValues(alpha: 0.8),
                   fontSize: 13))),
           // dense: true,
           contentPadding: const EdgeInsets.all(0),

@@ -12,7 +12,7 @@ class DownloadSettings extends StatefulWidget {
   const DownloadSettings({super.key});
 
   @override
-  State<DownloadSettings> createState() => _DownloadSettingsState();
+  State<DownloadSettings> createState() => DownloadSettingsStateState();
 }
 
 Future<bool> storagePermission() async {
@@ -45,7 +45,7 @@ Future<bool> storagePermission() async {
   return havePermission;
 }
 
-class _DownloadSettingsState extends State<DownloadSettings> {
+class DownloadSettingsStateState extends State<DownloadSettings> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(

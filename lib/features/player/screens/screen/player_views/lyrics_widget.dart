@@ -46,7 +46,7 @@ class LyricsWidget extends StatelessWidget {
               bottom: 0,
               child: Container(
                 decoration: BoxDecoration(
-                  color: Colors.black.withOpacity(0.3),
+                  color: Colors.black.withValues(alpha: 0.3),
                   borderRadius: BorderRadius.circular(20),
                 ),
                 child: LyricsMenu(state: state),
@@ -135,10 +135,10 @@ class SyncedLyricsWidget extends StatefulWidget {
   });
 
   @override
-  State<SyncedLyricsWidget> createState() => _SyncedLyricsWidgetState();
+  State<SyncedLyricsWidget> createState() => SyncedLyricsWidgetStateState();
 }
 
-class _SyncedLyricsWidgetState extends State<SyncedLyricsWidget> {
+class SyncedLyricsWidgetStateState extends State<SyncedLyricsWidget> {
   StreamSubscription? _streamSubscription;
   final ItemScrollController _itemScrollController = ItemScrollController();
   final ScrollOffsetController _scrollOffsetController =

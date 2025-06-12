@@ -24,10 +24,10 @@ class SearchScreen extends StatefulWidget {
   }) : super(key: key);
 
   @override
-  State<SearchScreen> createState() => _SearchScreenState();
+  State<SearchScreen> createState() => SearchScreenStateState();
 }
 
-class _SearchScreenState extends State<SearchScreen> {
+class SearchScreenStateState extends State<SearchScreen> {
   late List<SourceEngine> availSourceEngines;
   late SourceEngine _sourceEngine;
   final TextEditingController _textEditingController = TextEditingController();
@@ -159,21 +159,21 @@ class _SearchScreenState extends State<SearchScreen> {
                     enabled: false,
                     textAlign: TextAlign.center,
                     style: TextStyle(
-                        color: DefaultTheme.primaryColor1.withOpacity(0.55)),
+                        color: DefaultTheme.primaryColor1.withValues(alpha: 0.55)),
                     textInputAction: TextInputAction.search,
                     decoration: InputDecoration(
                         filled: true,
                         suffixIcon: Icon(
                           MingCute.search_2_fill,
-                          color: DefaultTheme.primaryColor1.withOpacity(0.4),
+                          color: DefaultTheme.primaryColor1.withValues(alpha: 0.4),
                         ),
                         fillColor:
-                            DefaultTheme.primaryColor2.withOpacity(0.07),
+                            DefaultTheme.primaryColor2.withValues(alpha: 0.07),
                         contentPadding:
                             const EdgeInsets.only(top: 20, left: 15, right: 5),
                         hintText: "Find your next song obsession...",
                         hintStyle: TextStyle(
-                          color: DefaultTheme.primaryColor1.withOpacity(0.3),
+                          color: DefaultTheme.primaryColor1.withValues(alpha: 0.3),
                           fontFamily: "Unageo",
                           fontWeight: FontWeight.normal,
                         ),
@@ -184,7 +184,7 @@ class _SearchScreenState extends State<SearchScreen> {
                         focusedBorder: OutlineInputBorder(
                             borderSide: BorderSide(
                                 color: DefaultTheme.primaryColor1
-                                    .withOpacity(0.7)),
+                                    .withValues(alpha: 0.7)),
                             borderRadius: BorderRadius.circular(50))),
                   ),
                 ),
@@ -235,7 +235,7 @@ class _SearchScreenState extends State<SearchScreen> {
                                                   filled: false,
                                                   fillColor: DefaultTheme
                                                       .primaryColor2
-                                                      .withOpacity(0.07),
+                                                      .withValues(alpha: 0.07),
                                                   contentPadding:
                                                       const EdgeInsets.all(0),
                                                   focusColor: DefaultTheme

@@ -29,10 +29,10 @@ class AudioPlayerView extends StatefulWidget {
   const AudioPlayerView({super.key});
 
   @override
-  State<AudioPlayerView> createState() => _AudioPlayerViewState();
+  State<AudioPlayerView> createState() => AudioPlayerViewStateState();
 }
 
-class _AudioPlayerViewState extends State<AudioPlayerView>
+class AudioPlayerViewStateState extends State<AudioPlayerView>
     with SingleTickerProviderStateMixin {
   final PanelController _panelController = PanelController();
   late TabController _tabController;
@@ -404,7 +404,7 @@ class PlayerCtrlWidgets extends StatelessWidget {
                                       fontWeight: FontWeight.w500,
                                       overflow: TextOverflow.ellipsis,
                                       color: DefaultTheme.primaryColor1
-                                          .withOpacity(0.7))),
+                                          .withValues(alpha: 0.7))),
                             ),
                           )
                         ],
@@ -512,9 +512,9 @@ class PlayerCtrlWidgets extends StatelessWidget {
                         TextStyle(
                             fontSize: 15,
                             color:
-                                DefaultTheme.primaryColor1.withOpacity(0.7))),
+                                DefaultTheme.primaryColor1.withValues(alpha: 0.7))),
                     timeLabelLocation: TimeLabelLocation.above,
-                    baseBarColor: DefaultTheme.primaryColor2.withOpacity(0.1),
+                    baseBarColor: DefaultTheme.primaryColor2.withValues(alpha: 0.1),
                     progressBarColor:
                         snapshot.data?.currentPlayerState.playing ?? false
                             ? DefaultTheme.accentColor1
@@ -526,8 +526,8 @@ class PlayerCtrlWidgets extends StatelessWidget {
                             : DefaultTheme.accentColor2,
                     bufferedBarColor:
                         snapshot.data?.currentPlayerState.playing ?? false
-                            ? DefaultTheme.accentColor1.withOpacity(0.2)
-                            : DefaultTheme.accentColor2.withOpacity(0.2),
+                            ? DefaultTheme.accentColor1.withValues(alpha: 0.2)
+                            : DefaultTheme.accentColor2.withValues(alpha: 0.2),
                     barHeight: 4,
                   );
                 }),
@@ -912,10 +912,10 @@ class AmbientImgShadowWidget extends StatefulWidget {
   const AmbientImgShadowWidget({super.key, required this.snapshot});
 
   @override
-  State<AmbientImgShadowWidget> createState() => _AmbientImgShadowWidgetState();
+  State<AmbientImgShadowWidget> createState() => AmbientImgShadowWidgetStateState();
 }
 
-class _AmbientImgShadowWidgetState extends State<AmbientImgShadowWidget> {
+class AmbientImgShadowWidgetStateState extends State<AmbientImgShadowWidget> {
   Color? cachedColor;
 
   @override

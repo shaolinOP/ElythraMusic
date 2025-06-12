@@ -17,10 +17,10 @@ class PlayPauseButton extends StatefulWidget {
     this.isPlaying = false,
   }) : super(key: key);
   @override
-  _PlayPauseButtonState createState() => _PlayPauseButtonState();
+  PlayPauseButtonStateState createState() => PlayPauseButtonStateState();
 }
 
-class _PlayPauseButtonState extends State<PlayPauseButton> {
+class PlayPauseButtonStateState extends State<PlayPauseButton> {
   late bool _isPlaying;
   late Color _currentColor;
   void _togglePlayPause() {

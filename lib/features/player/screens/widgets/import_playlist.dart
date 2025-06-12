@@ -9,10 +9,10 @@ class ImporterDialogWidget extends StatefulWidget {
   const ImporterDialogWidget({super.key, required this.strm});
 
   @override
-  State<ImporterDialogWidget> createState() => _ImporterDialogWidgetState();
+  State<ImporterDialogWidget> createState() => ImporterDialogWidgetStateState();
 }
 
-class _ImporterDialogWidgetState extends State<ImporterDialogWidget> {
+class ImporterDialogWidgetStateState extends State<ImporterDialogWidget> {
   String message = "";
   bool isCompleted = false;
   bool isFailed = false;

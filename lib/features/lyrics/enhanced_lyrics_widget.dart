@@ -15,10 +15,10 @@ class EnhancedLyricsWidget extends StatefulWidget {
   });
 
   @override
-  State<EnhancedLyricsWidget> createState() => _EnhancedLyricsWidgetState();
+  State<EnhancedLyricsWidget> createState() => EnhancedLyricsWidgetStateState();
 }
 
-class _EnhancedLyricsWidgetState extends State<EnhancedLyricsWidget> {
+class EnhancedLyricsWidgetStateState extends State<EnhancedLyricsWidget> {
   bool _showSyncedLyrics = true;
 
   @override
@@ -223,7 +223,7 @@ class UINetease extends LyricUI {
 
   @override
   TextStyle getOtherMainTextStyle() => TextStyle(
-    color: Colors.white.withOpacity(0.6),
+    color: Colors.white.withValues(alpha: 0.6),
     fontSize: 16,
     fontWeight: FontWeight.w400,
   );
@@ -236,7 +236,7 @@ class UINetease extends LyricUI {
 
   @override
   TextStyle getOtherExtTextStyle() => TextStyle(
-    color: Colors.white.withOpacity(0.4),
+    color: Colors.white.withValues(alpha: 0.4),
     fontSize: 12,
   );
 

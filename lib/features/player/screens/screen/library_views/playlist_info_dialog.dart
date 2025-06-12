@@ -24,7 +24,7 @@ class InfoTile extends StatelessWidget {
         title,
         style: DefaultTheme.secondoryTextStyle.merge(
           TextStyle(
-              color: fg.withOpacity(0.5), fontSize: 13, fontFamily: 'Unageo'),
+              color: fg.withValues(alpha: 0.5), fontSize: 13, fontFamily: 'Unageo'),
         ),
       ),
       hoverColor: Colors.transparent,

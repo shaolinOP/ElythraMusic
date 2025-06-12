@@ -20,10 +20,10 @@ class LikeBtnWidget extends StatefulWidget {
   }) : super(key: key);
 
   @override
-  State<LikeBtnWidget> createState() => _LikeBtnWidgetState();
+  State<LikeBtnWidget> createState() => LikeBtnWidgetStateState();
 }
 
-class _LikeBtnWidgetState extends State<LikeBtnWidget> {
+class LikeBtnWidgetStateState extends State<LikeBtnWidget> {
   @override
   Widget build(BuildContext context) {
     return IconButton(

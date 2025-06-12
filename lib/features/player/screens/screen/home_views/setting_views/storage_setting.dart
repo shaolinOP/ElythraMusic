@@ -228,7 +228,7 @@ class BackupSettings extends StatelessWidget {
                 subtitle: Text(
                     "Automatically create a backup of your data on regular basis.",
                     style: TextStyle(
-                            color: DefaultTheme.primaryColor1.withOpacity(0.5),
+                            color: DefaultTheme.primaryColor1.withValues(alpha: 0.5),
                             fontSize: 12)
                         .merge(DefaultTheme.secondoryTextStyleMedium)),
                 value: state.autoBackup,
@@ -245,7 +245,7 @@ class BackupSettings extends StatelessWidget {
                       "Automatically save lyrics of the song when played.",
                       style: TextStyle(
                               color:
-                                  DefaultTheme.primaryColor1.withOpacity(0.5),
+                                  DefaultTheme.primaryColor1.withValues(alpha: 0.5),
                               fontSize: 12)
                           .merge(DefaultTheme.secondoryTextStyleMedium)),
                   value: state.autoSaveLyrics,

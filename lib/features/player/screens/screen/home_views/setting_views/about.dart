@@ -80,7 +80,7 @@ class About extends StatelessWidget {
                                 "v${packageInfo.version}+${int.parse(packageInfo.buildNumber) % 1000}",
                                 style: TextStyle(
                                   color: DefaultTheme.primaryColor2
-                                      .withOpacity(0.5),
+                                      .withValues(alpha: 0.5),
                                   fontSize: 15,
                                   fontFamily: 'Unageo',
                                 ),

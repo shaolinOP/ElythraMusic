@@ -59,7 +59,7 @@ mixin SearchMixin on YTMusicServices {
           'Invalid filter provided. Please use one of the following filters or leave out the parameter: ${filters.join(', ')}');
     }
 
-    final scopes = ['library', 'uploads'];
+    const scopes = ['library', 'uploads'];
 
     if (scope != null && !scopes.contains(scope)) {
       throw Exception(

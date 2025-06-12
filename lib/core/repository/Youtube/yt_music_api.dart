@@ -308,7 +308,7 @@ class YtMusicService {
       final List finalResults =
           nav(results, ['sectionListRenderer', 'contents']) as List? ?? [];
       for (final sectionItem in finalResults) {
-        final sectionSearchResults = [];
+        const sectionSearchResults = [];
         final String sectionTitle = nav(sectionItem, [
           'musicShelfRenderer',
           'title',

@@ -40,10 +40,10 @@ class YoutubePlaylist extends StatefulWidget {
   }) : super(key: key);
 
   @override
-  State<YoutubePlaylist> createState() => _YoutubePlaylistState();
+  State<YoutubePlaylist> createState() => YoutubePlaylistStateState();
 }
 
-class _YoutubePlaylistState extends State<YoutubePlaylist> {
+class YoutubePlaylistStateState extends State<YoutubePlaylist> {
   late Future<Map<dynamic, dynamic>?> data;
   late List<Map<dynamic, dynamic>> items;
   late List<MediaItemModel> mediaitems;
@@ -269,7 +269,7 @@ class _YoutubePlaylistState extends State<YoutubePlaylist> {
                                                               FontWeight.bold,
                                                           color: DefaultTheme
                                                               .primaryColor2
-                                                              .withOpacity(0.8),
+                                                              .withValues(alpha: 0.8),
                                                         ).merge(DefaultTheme
                                                             .secondoryTextStyle),
                                                       ),
@@ -284,7 +284,7 @@ class _YoutubePlaylistState extends State<YoutubePlaylist> {
                                                               FontWeight.bold,
                                                           color: DefaultTheme
                                                               .primaryColor2
-                                                              .withOpacity(0.8),
+                                                              .withValues(alpha: 0.8),
                                                         ).merge(DefaultTheme
                                                             .secondoryTextStyle),
                                                       ),

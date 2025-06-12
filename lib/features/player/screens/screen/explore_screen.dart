@@ -28,10 +28,10 @@ import 'package:badges/badges.dart' as badges;
 class ExploreScreen extends StatefulWidget {
   const ExploreScreen({super.key});
   @override
-  State<ExploreScreen> createState() => _ExploreScreenState();
+  State<ExploreScreen> createState() => ExploreScreenStateState();
 }
 
-class _ExploreScreenState extends State<ExploreScreen> {
+class ExploreScreenStateState extends State<ExploreScreen> {
   bool isUpdateChecked = false;
   YTMusicCubit yTMusicCubit = YTMusicCubit();
   Future<core_playlist.MediaPlaylist> lFMData =

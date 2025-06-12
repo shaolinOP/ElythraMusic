@@ -200,10 +200,10 @@ class ListOfPlaylists extends StatefulWidget {
   const ListOfPlaylists({super.key, required this.state});
 
   @override
-  State<ListOfPlaylists> createState() => _ListOfPlaylistsState();
+  State<ListOfPlaylists> createState() => ListOfPlaylistsStateState();
 }
 
-class _ListOfPlaylistsState extends State<ListOfPlaylists> {
+class ListOfPlaylistsStateState extends State<ListOfPlaylists> {
   @override
   Widget build(BuildContext context) {
     return SliverList.builder(

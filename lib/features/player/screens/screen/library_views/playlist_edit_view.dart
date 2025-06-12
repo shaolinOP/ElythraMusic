@@ -14,10 +14,10 @@ class PlaylistEditView extends StatefulWidget {
   const PlaylistEditView({super.key});
 
   @override
-  State<PlaylistEditView> createState() => _PlaylistEditViewState();
+  State<PlaylistEditView> createState() => PlaylistEditViewStateState();
 }
 
-class _PlaylistEditViewState extends State<PlaylistEditView> {
+class PlaylistEditViewStateState extends State<PlaylistEditView> {
   TextEditingController titleController = TextEditingController();
   // ValueNotifier isPlaylistExist = ValueNotifier<bool>(false);
   // ValueNotifier isTitleEmpty = ValueNotifier<bool>(false);
@@ -163,7 +163,7 @@ class _PlaylistEditViewState extends State<PlaylistEditView> {
                           TextStyle(
                               fontSize: 14,
                               color: DefaultTheme.primaryColor1
-                                  .withOpacity(0.6))),
+                                  .withValues(alpha: 0.6))),
                     ),
                   ),
                 ),
@@ -201,10 +201,10 @@ class SliverPlaylistItems extends StatefulWidget {
   final Function(List<MediaItemModel>, List<int>)? updatePlaylistItems;
 
   @override
-  State<SliverPlaylistItems> createState() => _SliverPlaylistItemsState();
+  State<SliverPlaylistItems> createState() => SliverPlaylistItemsStateState();
 }
 
-class _SliverPlaylistItemsState extends State<SliverPlaylistItems> {
+class SliverPlaylistItemsStateState extends State<SliverPlaylistItems> {
   List<MediaItemModel> mediaItems = [];
   List<int> mediaOrder = [];
 

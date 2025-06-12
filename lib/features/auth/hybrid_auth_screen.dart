@@ -8,10 +8,10 @@ class HybridAuthScreen extends StatefulWidget {
   const HybridAuthScreen({super.key});
 
   @override
-  State<HybridAuthScreen> createState() => _HybridAuthScreenState();
+  State<HybridAuthScreen> createState() => HybridAuthScreenStateState();
 }
 
-class _HybridAuthScreenState extends State<HybridAuthScreen> {
+class HybridAuthScreenStateState extends State<HybridAuthScreen> {
   bool _isWebViewLoading = false;
   final WebViewAuthService _webViewAuth = WebViewAuthService();
 
@@ -52,8 +52,8 @@ class _HybridAuthScreenState extends State<HybridAuthScreen> {
                 begin: Alignment.topCenter,
                 end: Alignment.bottomCenter,
                 colors: [
-                  Theme.of(context).primaryColor.withOpacity(0.8),
-                  Theme.of(context).primaryColor.withOpacity(0.6),
+                  Theme.of(context).primaryColor.withValues(alpha: 0.8),
+                  Theme.of(context).primaryColor.withValues(alpha: 0.6),
                   Theme.of(context).colorScheme.surface,
                 ],
               ),
@@ -74,7 +74,7 @@ class _HybridAuthScreenState extends State<HybridAuthScreen> {
                         borderRadius: BorderRadius.circular(30),
                         boxShadow: [
                           BoxShadow(
-                            color: Colors.black.withOpacity(0.1),
+                            color: Colors.black.withValues(alpha: 0.1),
                             blurRadius: 20,
                             offset: const Offset(0, 10),
                           ),
@@ -101,7 +101,7 @@ class _HybridAuthScreenState extends State<HybridAuthScreen> {
                     Text(
                       'Your music, synced everywhere',
                       style: Theme.of(context).textTheme.bodyLarge?.copyWith(
-                        color: Colors.white.withOpacity(0.8),
+                        color: Colors.white.withValues(alpha: 0.8),
                       ),
                     ),
                     const SizedBox(height: 64),
@@ -122,7 +122,7 @@ class _HybridAuthScreenState extends State<HybridAuthScreen> {
                       child: Text(
                         'Skip for now',
                         style: TextStyle(
-                          color: Colors.white.withOpacity(0.7),
+                          color: Colors.white.withValues(alpha: 0.7),
                           fontSize: 16,
                         ),
                       ),
@@ -178,7 +178,7 @@ class _HybridAuthScreenState extends State<HybridAuthScreen> {
           children: [
             Expanded(
               child: Divider(
-                color: Colors.white.withOpacity(0.3),
+                color: Colors.white.withValues(alpha: 0.3),
                 thickness: 1,
               ),
             ),
@@ -187,14 +187,14 @@ class _HybridAuthScreenState extends State<HybridAuthScreen> {
               child: Text(
                 'OR',
                 style: TextStyle(
-                  color: Colors.white.withOpacity(0.7),
+                  color: Colors.white.withValues(alpha: 0.7),
                   fontWeight: FontWeight.w500,
                 ),
               ),
             ),
             Expanded(
               child: Divider(
-                color: Colors.white.withOpacity(0.3),
+                color: Colors.white.withValues(alpha: 0.3),
                 thickness: 1,
               ),
             ),
@@ -233,7 +233,7 @@ class _HybridAuthScreenState extends State<HybridAuthScreen> {
         Text(
           'For comprehensive account sync across all platforms',
           style: Theme.of(context).textTheme.bodySmall?.copyWith(
-            color: Colors.white.withOpacity(0.6),
+            color: Colors.white.withValues(alpha: 0.6),
           ),
           textAlign: TextAlign.center,
         ),
@@ -245,7 +245,7 @@ class _HybridAuthScreenState extends State<HybridAuthScreen> {
     return Container(
       padding: const EdgeInsets.all(16),
       decoration: BoxDecoration(
-        color: Colors.white.withOpacity(0.1),
+        color: Colors.white.withValues(alpha: 0.1),
         borderRadius: BorderRadius.circular(12),
       ),
       child: Column(
@@ -276,7 +276,7 @@ class _HybridAuthScreenState extends State<HybridAuthScreen> {
         children: [
           Icon(
             Icons.check_circle,
-            color: Colors.white.withOpacity(0.8),
+            color: Colors.white.withValues(alpha: 0.8),
             size: 16,
           ),
           const SizedBox(width: 8),
@@ -284,7 +284,7 @@ class _HybridAuthScreenState extends State<HybridAuthScreen> {
             child: Text(
               text,
               style: TextStyle(
-                color: Colors.white.withOpacity(0.8),
+                color: Colors.white.withValues(alpha: 0.8),
                 fontSize: 14,
               ),
             ),

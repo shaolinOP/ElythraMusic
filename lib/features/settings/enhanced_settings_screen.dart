@@ -10,10 +10,10 @@ class EnhancedSettingsScreen extends StatefulWidget {
   const EnhancedSettingsScreen({super.key});
 
   @override
-  State<EnhancedSettingsScreen> createState() => _EnhancedSettingsScreenState();
+  State<EnhancedSettingsScreen> createState() => EnhancedSettingsScreenStateState();
 }
 
-class _EnhancedSettingsScreenState extends State<EnhancedSettingsScreen> {
+class EnhancedSettingsScreenStateState extends State<EnhancedSettingsScreen> {
   bool _isLoading = false;
 
   @override

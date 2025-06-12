@@ -34,7 +34,7 @@ class CountrySettings extends StatelessWidget {
                   subtitle: Text(
                     "Automatically check the country to your location when you open the app.",
                     style: TextStyle(
-                            color: DefaultTheme.primaryColor1.withOpacity(0.5),
+                            color: DefaultTheme.primaryColor1.withValues(alpha: 0.5),
                             fontSize: 12.5)
                         .merge(DefaultTheme.secondoryTextStyleMedium),
                   ),

@@ -11,10 +11,10 @@ class AppUISettings extends StatefulWidget {
   const AppUISettings({super.key});
 
   @override
-  State<AppUISettings> createState() => _AppUISettingsState();
+  State<AppUISettings> createState() => AppUISettingsStateState();
 }
 
-class _AppUISettingsState extends State<AppUISettings> {
+class AppUISettingsStateState extends State<AppUISettings> {
   List<bool> sourceEngineSwitches =
       SourceEngine.toARGB32s.map((e) => true).toList();
   @override
@@ -49,7 +49,7 @@ class _AppUISettingsState extends State<AppUISettings> {
                   subtitle: Text(
                     "Slide charts automatically in home screen.",
                     style: TextStyle(
-                            color: DefaultTheme.primaryColor1.withOpacity(0.5),
+                            color: DefaultTheme.primaryColor1.withValues(alpha: 0.5),
                             fontSize: 12)
                         .merge(DefaultTheme.secondoryTextStyleMedium),
                   ),
@@ -67,7 +67,7 @@ class _AppUISettingsState extends State<AppUISettings> {
                   subtitle: Text(
                     "Suggestions from Last.FM will be shown in the home screen. (Login & Restart required)",
                     style: TextStyle(
-                            color: DefaultTheme.primaryColor1.withOpacity(0.5),
+                            color: DefaultTheme.primaryColor1.withValues(alpha: 0.5),
                             fontSize: 12)
                         .merge(DefaultTheme.secondoryTextStyleMedium),
                   ),
@@ -97,7 +97,7 @@ class _AppUISettingsState extends State<AppUISettings> {
                 subtitle: Text(
                   "Manage the source engines you want to use for Music search. (Restart required)",
                   style: TextStyle(
-                          color: DefaultTheme.primaryColor1.withOpacity(0.5),
+                          color: DefaultTheme.primaryColor1.withValues(alpha: 0.5),
                           fontSize: 12)
                       .merge(DefaultTheme.secondoryTextStyleMedium),
                 ),
@@ -130,7 +130,7 @@ class _AppUISettingsState extends State<AppUISettings> {
                 subtitle: Text(
                   "Manage the chart sources you want to see in the home screen.",
                   style: TextStyle(
-                          color: DefaultTheme.primaryColor1.withOpacity(0.5),
+                          color: DefaultTheme.primaryColor1.withValues(alpha: 0.5),
                           fontSize: 12)
                       .merge(DefaultTheme.secondoryTextStyleMedium),
                 ),

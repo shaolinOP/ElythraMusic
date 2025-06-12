@@ -174,10 +174,10 @@ class MyApp extends StatefulWidget {
   const MyApp({super.key});
 
   @override
-  State<MyApp> createState() => _MyAppState();
+  State<MyApp> createState() => MyAppStateState();
 }
 
-class _MyAppState extends State<MyApp> {
+class MyAppStateState extends State<MyApp> {
   // Initialize the player
   // This widget is the root of your application.
   late StreamSubscription _intentSub;

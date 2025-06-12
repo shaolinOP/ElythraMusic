@@ -22,10 +22,10 @@ class CaraouselWidget extends StatefulWidget {
   }
 
   @override
-  State<CaraouselWidget> createState() => _CaraouselWidgetState();
+  State<CaraouselWidget> createState() => CaraouselWidgetStateState();
 }
 
-class _CaraouselWidgetState extends State<CaraouselWidget> {
+class CaraouselWidgetStateState extends State<CaraouselWidget> {
   bool _visibility = true;
   List<ChartCubit> chartCubitList = List.empty(growable: true);
   List<ChartInfo> selectedCharts = List.empty(growable: true);

@@ -11,10 +11,10 @@ class VolumeDragController extends StatefulWidget {
   const VolumeDragController({super.key, required this.child});
 
   @override
-  _VolumeDragControllerState createState() => _VolumeDragControllerState();
+  VolumeDragControllerStateState createState() => VolumeDragControllerStateState();
 }
 
-class _VolumeDragControllerState extends State<VolumeDragController> {
+class VolumeDragControllerStateState extends State<VolumeDragController> {
   double _volume = 0.5; // Initial volume
   bool _showVolumeController = false;
   Timer? _timer;
@@ -120,7 +120,7 @@ class _VolumeDragControllerState extends State<VolumeDragController> {
                       child: Container(
                         padding: const EdgeInsets.all(10.0),
                         decoration: BoxDecoration(
-                          color: Colors.black.withOpacity(0.5),
+                          color: Colors.black.withValues(alpha: 0.5),
                           borderRadius: BorderRadius.circular(20.0),
                         ),
                         child: Column(
@@ -138,7 +138,7 @@ class _VolumeDragControllerState extends State<VolumeDragController> {
                                 data: SliderTheme.of(context).copyWith(
                                   inactiveTrackColor: DefaultTheme
                                       .primaryColor2
-                                      .withOpacity(0.3),
+                                      .withValues(alpha: 0.3),
                                   thumbShape: const RoundSliderThumbShape(
                                       enabledThumbRadius: 6.0),
                                   overlayShape: const RoundSliderOverlayShape(

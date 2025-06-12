@@ -100,7 +100,7 @@ class PlayerSettings extends StatelessWidget {
                   subtitle: Text(
                     "Automatically add similar songs to the queue.",
                     style: TextStyle(
-                      color: DefaultTheme.primaryColor1.withOpacity(0.5),
+                      color: DefaultTheme.primaryColor1.withValues(alpha: 0.5),
                       fontSize: 12,
                       fontWeight: FontWeight.bold,
                     ),

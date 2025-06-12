@@ -14,10 +14,10 @@ class ChartScreen extends StatefulWidget {
   const ChartScreen({Key? key, required this.chartName}) : super(key: key);
 
   @override
-  State<ChartScreen> createState() => _ChartScreenState();
+  State<ChartScreen> createState() => ChartScreenStateState();
 }
 
-class _ChartScreenState extends State<ChartScreen> {
+class ChartScreenStateState extends State<ChartScreen> {
   Future<ChartModel?> chartModel = Future.toARGB32(null);
   Future<ChartModel?> getChart() async {
     return await ElythraDBService.getChart(widget.chartName);
@@ -137,10 +137,10 @@ class _ChartScreenState extends State<ChartScreen> {
                             begin: Alignment.bottomCenter,
                             end: Alignment.topCenter,
                             colors: [
-                  DefaultTheme.themeColor.withOpacity(0.8),
-                  DefaultTheme.themeColor.withOpacity(0.4),
-                  DefaultTheme.themeColor.withOpacity(0.1),
-                  DefaultTheme.themeColor.withOpacity(0),
+                  DefaultTheme.themeColor.withValues(alpha: 0.8),
+                  DefaultTheme.themeColor.withValues(alpha: 0.4),
+                  DefaultTheme.themeColor.withValues(alpha: 0.1),
+                  DefaultTheme.themeColor.withValues(alpha: 0),
                 ]))))
           ],
         ),

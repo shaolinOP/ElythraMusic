@@ -11,10 +11,10 @@ class LyricsMenu extends StatefulWidget {
   const LyricsMenu({super.key, required this.state});
 
   @override
-  State<LyricsMenu> createState() => _LyricsMenuState();
+  State<LyricsMenu> createState() => LyricsMenuStateState();
 }
 
-class _LyricsMenuState extends State<LyricsMenu> {
+class LyricsMenuStateState extends State<LyricsMenu> {
   final FocusNode _buttonFocusNode = FocusNode(debugLabel: 'LyricsMenu');
 
   @override
@@ -143,7 +143,7 @@ class _LyricsMenuState extends State<LyricsMenu> {
               MingCute.settings_3_fill,
               size: 20,
             ),
-            color: DefaultTheme.primaryColor1.withOpacity(0.9),
+            color: DefaultTheme.primaryColor1.withValues(alpha: 0.9),
           ),
         );
       },

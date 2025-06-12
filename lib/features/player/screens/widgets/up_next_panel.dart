@@ -21,10 +21,10 @@ class UpNextPanel extends StatefulWidget {
   final PanelController _panelController;
 
   @override
-  State<UpNextPanel> createState() => _UpNextPanelState();
+  State<UpNextPanel> createState() => UpNextPanelStateState();
 }
 
-class _UpNextPanelState extends State<UpNextPanel> {
+class UpNextPanelStateState extends State<UpNextPanel> {
   StreamSubscription? _mediaItemSub;
 
   @override
@@ -59,7 +59,7 @@ class _UpNextPanelState extends State<UpNextPanel> {
             filter: ImageFilter.blur(sigmaX: 10, sigmaY: 10),
             child: Container(
               decoration: BoxDecoration(
-                color: const Color.fromARGB(255, 28, 17, 24).withOpacity(0.60),
+                color: const Color.fromARGB(255, 28, 17, 24).withValues(alpha: 0.60),
                 borderRadius: const BorderRadius.only(
                   topLeft: Radius.circular(25),
                   topRight: Radius.circular(25),
@@ -94,7 +94,7 @@ class _UpNextPanelState extends State<UpNextPanel> {
                         child: SizedBox(
                           width: 40,
                           child: Divider(
-                            color: DefaultTheme.primaryColor2.withOpacity(0.8),
+                            color: DefaultTheme.primaryColor2.withValues(alpha: 0.8),
                             thickness: 4,
                           ),
                         ),
@@ -118,7 +118,7 @@ class _UpNextPanelState extends State<UpNextPanel> {
               child: Column(
                 children: [
                   Divider(
-                    color: DefaultTheme.primaryColor2.withOpacity(0.5),
+                    color: DefaultTheme.primaryColor2.withValues(alpha: 0.5),
                     thickness: 1.5,
                   ),
                   const SizedBox(height: 5),
@@ -139,7 +139,7 @@ class _UpNextPanelState extends State<UpNextPanel> {
                                   style: DefaultTheme.secondoryTextStyleMedium
                                       .merge(TextStyle(
                                           color: DefaultTheme.primaryColor2
-                                              .withOpacity(0.5),
+                                              .withValues(alpha: 0.5),
                                           fontSize: 14,
                                           fontWeight: FontWeight.bold)));
                             }),

@@ -19,10 +19,10 @@ class AlbumView extends StatefulWidget {
   const AlbumView({super.key, required this.album});
 
   @override
-  State<AlbumView> createState() => _AlbumViewState();
+  State<AlbumView> createState() => AlbumViewStateState();
 }
 
-class _AlbumViewState extends State<AlbumView> {
+class AlbumViewStateState extends State<AlbumView> {
   late AlbumCubit albumCubit;
   @override
   void initState() {
@@ -111,7 +111,7 @@ class _AlbumViewState extends State<AlbumView> {
                                             overflow: TextOverflow.ellipsis,
                                             fontSize: 14,
                                             color: DefaultTheme.primaryColor1
-                                                .withOpacity(0.4),
+                                                .withValues(alpha: 0.4),
                                           ),
                                         ),
                                       ),
@@ -125,7 +125,7 @@ class _AlbumViewState extends State<AlbumView> {
                                             overflow: TextOverflow.ellipsis,
                                             fontSize: 14,
                                             color: DefaultTheme.primaryColor1
-                                                .withOpacity(0.9),
+                                                .withValues(alpha: 0.9),
                                           ),
                                         ),
                                       ),
@@ -137,7 +137,7 @@ class _AlbumViewState extends State<AlbumView> {
                                             overflow: TextOverflow.ellipsis,
                                             fontSize: 13,
                                             color: DefaultTheme.primaryColor1
-                                                .withOpacity(0.5),
+                                                .withValues(alpha: 0.5),
                                           ),
                                         ),
                                       ),
@@ -260,7 +260,7 @@ class _AlbumViewState extends State<AlbumView> {
                       style: DefaultTheme.secondoryTextStyleMedium.merge(
                         TextStyle(
                           fontSize: 20,
-                          color: DefaultTheme.primaryColor1.withOpacity(0.8),
+                          color: DefaultTheme.primaryColor1.withValues(alpha: 0.8),
                         ),
                       ),
                     ),

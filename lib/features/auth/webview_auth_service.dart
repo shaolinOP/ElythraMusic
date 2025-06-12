@@ -172,10 +172,10 @@ class WebViewSignInScreen extends StatefulWidget {
   const WebViewSignInScreen({super.key});
 
   @override
-  State<WebViewSignInScreen> createState() => _WebViewSignInScreenState();
+  State<WebViewSignInScreen> createState() => WebViewSignInScreenStateState();
 }
 
-class _WebViewSignInScreenState extends State<WebViewSignInScreen> {
+class WebViewSignInScreenStateState extends State<WebViewSignInScreen> {
   late final WebViewController _controller;
   bool _isLoading = true;
   String _currentUrl = '';
@@ -312,7 +312,7 @@ class _WebViewSignInScreenState extends State<WebViewSignInScreen> {
             
             // Look for profile photo
             var photoElements = document.querySelectorAll('img[data-src*="googleusercontent"], img[src*="googleusercontent"]');
-            if (photoElements.length > 0) {
+            if (photoElements.isNotEmpty) {
               userPhoto = photoElements[0].src || photoElements[0].getAttribute('data-src') || '';
             }
             

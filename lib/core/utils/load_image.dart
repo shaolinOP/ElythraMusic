@@ -82,10 +82,10 @@ class LoadImageCached extends StatefulWidget {
   }) : super(key: key);
 
   @override
-  State<LoadImageCached> createState() => _LoadImageCachedState();
+  State<LoadImageCached> createState() => LoadImageCachedStateState();
 }
 
-class _LoadImageCachedState extends State<LoadImageCached> {
+class LoadImageCachedStateState extends State<LoadImageCached> {
   @override
   Widget build(BuildContext context) {
     return CachedNetworkImage(
