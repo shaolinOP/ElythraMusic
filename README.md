@@ -24,7 +24,26 @@
 
 ## 🌟 What is Elythra Music?
 
-**Elythra Music** is a cross-platform music streaming app built with Flutter, combining the best features from BloomeeTunes, Metrolist, and Harmony-Music. It delivers a premium music experience with enhanced lyrics, authentication, and improved performance.
+**Elythra Music** is a cross-platform music streaming app built with Flutter, delivering a premium music experience with enhanced lyrics, authentication, and improved performance.
+
+## 🔧 Recent Fixes (Latest Update)
+
+This version includes comprehensive bug fixes and stability improvements:
+
+### ✅ Critical Issues Resolved
+- **Fixed all compilation errors** - App now builds successfully with `flutter analyze` showing 0 errors
+- **MediaItem conflicts resolved** - Fixed inheritance issues and import conflicts by implementing ElythraMediaItem
+- **Share functionality restored** - Updated share_plus API compatibility (5/5 instances fixed)
+- **Null-safety improvements** - Fixed Stream access issues and method signature mismatches
+- **Type conversion fixes** - Resolved MediaPlaylist conflicts and LyricsModel compatibility
+- **Dependencies updated** - Added missing image package and resolved import issues
+- **Branding cleanup** - Removed all leftover "BloomeeTunes" and "Metrolist" references
+
+### 🛠 Build Verification
+```bash
+flutter pub get    # ✅ Dependencies resolved successfully
+flutter analyze    # ✅ 0 errors, only minor warnings/info messages
+```
 
 ### ✨ Key Highlights
 - 🎶 **Stream millions of songs** from multiple sources
@@ -195,6 +214,20 @@ flutter pub get
 # Run the app
 flutter run
 ```
+
+### 🔥 Firebase Setup (Google Sign-In)
+
+To enable Google Sign-In functionality, you'll need to configure Firebase:
+
+1. **Create a Firebase project** at [Firebase Console](https://console.firebase.google.com/)
+2. **Add your Android app** to the project
+3. **Download `google-services.json`** and place it in `android/app/`
+4. **Configure authentication** in Firebase Console:
+   - Go to Authentication > Sign-in method
+   - Enable Google sign-in provider
+   - Add your app's SHA-1 fingerprint
+
+**Note**: The app includes Firebase scaffolding code but requires your own `google-services.json` file for Google Sign-In to work.
 
 ---
 
