@@ -99,15 +99,15 @@ class ElythraPlayerLoading extends ElythraPlayerState {}
 
 class ElythraPlayerPlaying extends ElythraPlayerState {
   final ElythraMediaItem? mediaItem;
-  final @override
- bool showLyrics;
+  @override
+  final bool showLyrics;
   ElythraPlayerPlaying(this.mediaItem, {this.showLyrics = false});
 }
 
 class ElythraPlayerPaused extends ElythraPlayerState {
   final ElythraMediaItem? mediaItem;
-  final @override
- bool showLyrics;
+  @override
+  final bool showLyrics;
   ElythraPlayerPaused(this.mediaItem, {this.showLyrics = false});
 }
 
@@ -129,12 +129,12 @@ class BloomeePlayer {
   final AudioPlayer audioPlayer = AudioPlayer();
   
   // Streams
-  Stream<String> get queueTitle => Stream.toARGB32("Current Queue");
+  Stream<String> get queueTitle => Stream.value("Current Queue");
   String get queueTitleValue => "Current Queue";
   Stream<ElythraMediaItem?> get mediaItem => _mediaItemController.stream;
-  ElythraMediaItem? get currentMedia => _currentElythraMediaItem.toARGB32;
+  ElythraMediaItem? get currentMedia => _currentElythraMediaItem.value;
   Stream<bool> get shuffleMode => _shuffleModeController.stream;
-  bool get shuffleModeValue => _shuffleModeController.toARGB32;
+  bool get shuffleModeValue => _shuffleModeController.value;
   
   // Controllers
   final BehaviorSubject<ElythraMediaItem?> _mediaItemController = BehaviorSubject<ElythraMediaItem?>();
@@ -234,20 +234,20 @@ class BloomeePlayer {
 
   Future<void> addPlayNextItem(MediaItemModel item) async {
     final mediaItem = ElythraMediaItem.fromMediaItemModel(item);
-    final currentQueue = _queueController.toARGB32;
-    const newQueue = [mediaItem, ...currentQueue];
+    final currentQueue = _queueController.value;
+    final newQueue = [mediaItem, ...currentQueue];
     _queueController.add(newQueue);
   }
 
   Future<void> addQueueItems(List<MediaItemModel> items) async {
     final mediaItems = items.map((item) => ElythraMediaItem.fromMediaItemModel(item)).toList();
-    final currentQueue = _queueController.toARGB32;
-    const newQueue = [...currentQueue, ...mediaItems];
+    final currentQueue = _queueController.value;
+    final newQueue = [...currentQueue, ...mediaItems];
     _queueController.add(newQueue);
   }
 
   Future<void> skipToQueueItem(int index) async {
-    final currentQueue = _queueController.toARGB32;
+    final currentQueue = _queueController.value;
     if (index >= 0 && index < currentQueue.length) {
       final targetItem = currentQueue[index];
       _currentElythraMediaItem.add(targetItem);
@@ -256,7 +256,7 @@ class BloomeePlayer {
   }
 
   Future<void> removeQueueItemAt(int index) async {
-    final currentQueue = _queueController.toARGB32;
+    final currentQueue = _queueController.value;
     if (index >= 0 && index < currentQueue.length) {
       final newQueue = List<ElythraMediaItem>.from(currentQueue);
       newQueue.removeAt(index);
@@ -265,7 +265,7 @@ class BloomeePlayer {
   }
 
   Future<void> moveQueueItem(int oldIndex, int newIndex) async {
-    final currentQueue = _queueController.toARGB32;
+    final currentQueue = _queueController.value;
     if (oldIndex >= 0 && oldIndex < currentQueue.length && 
         newIndex >= 0 && newIndex < currentQueue.length) {
       final newQueue = List<ElythraMediaItem>.from(currentQueue);

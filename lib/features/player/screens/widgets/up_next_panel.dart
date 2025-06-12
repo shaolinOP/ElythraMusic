@@ -135,7 +135,7 @@ class UpNextPanelStateState extends State<UpNextPanel> {
                                 .queue,
                             builder: (context, snapshot) {
                               return Text(
-                                  "${snapshot.data.length ?? 0} Items in Queue",
+                                  "${snapshot.data?.length ?? 0} Items in Queue",
                                   style: DefaultTheme.secondoryTextStyleMedium
                                       .merge(TextStyle(
                                           color: DefaultTheme.primaryColor2
@@ -187,7 +187,7 @@ class UpNextPanelStateState extends State<UpNextPanel> {
                     return ReorderableListView.builder(
                       padding: const EdgeInsets.only(top: 5),
                       physics: const BouncingScrollPhysics(),
-                      itemCount: snapshot.data.length ?? 0,
+                      itemCount: snapshot.data?.length ?? 0,
                       // physics: const NeverScrollableScrollPhysics(),
                       itemBuilder: (context, index) {
                         return Dismissible(

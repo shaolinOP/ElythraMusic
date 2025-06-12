@@ -372,7 +372,7 @@ class YouTubeServices {
     if (getUrl) {
       // check cache first
       if (checkCache) {
-        final ytCache = await ElythraDBService.getYtLinkCache(video.id.toARGB32);
+        final ytCache = await ElythraDBService.getYtLinkCache(video.id.value);
         if (ytCache != null) {
           if ((DateTime.now().millisecondsSinceEpoch ~/ 1000) + 350 >
               ytCache.expireAt) {
@@ -380,7 +380,7 @@ class YouTubeServices {
             urls = await getUri(video);
           } else {
             // giving cache link
-            log('cache found for ${video.id.toARGB32}', name: "YoutubeAPI");
+            log('cache found for ${video.id.value}', name: "YoutubeAPI");
             urls = [
               quality == 'High'
                   ? ytCache.highQURL
@@ -394,7 +394,7 @@ class YouTubeServices {
       } else {
         urls = await getUri(video);
         return {
-          'id': video.id.toARGB32,
+          'id': video.id.value,
           'perma_url': video.url,
           'url': ((quality == 'High') ? urls.last : urls.first),
         };
@@ -407,7 +407,7 @@ class YouTubeServices {
 
       try {
         ElythraDBService.putYtLinkCache(
-          video.id.toARGB32,
+          video.id.value,
           urls.first,
           urls.last,
           int.parse(expireAt),
@@ -417,7 +417,7 @@ class YouTubeServices {
       }
     }
     return {
-      'id': video.id.toARGB32,
+      'id': video.id.value,
       'album': (data?['album'] ?? '') != ''
           ? data!['album']
           : video.author.replaceAll('- Topic', '').trim(),
@@ -439,7 +439,7 @@ class YouTubeServices {
       '320kbps': 'false',
       'has_lyrics': 'false',
       'release_date': video.publishDate.toString(),
-      'album_id': video.channelId.toARGB32,
+      'album_id': video.channelId.value,
       'subtitle':
           (data?['subtitle'] ?? '') != '' ? data!['subtitle'] : video.author,
       'perma_url': video.url,

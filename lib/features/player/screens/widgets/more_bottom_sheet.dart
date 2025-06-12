@@ -211,7 +211,7 @@ void showMoreBottomSheet(
                       "Preparing ${song.title} for share.");
                   final tmpPath = await ImportExportService.exportMediaItem(
                       mediaItem2MediaItemDB(song));
-                  tmpPath != null ? SharePlus.shareXFiles([XFile(tmpPath)]) : null;
+                  tmpPath != null ? Share.shareXFiles([XFile(tmpPath)]) : null;
                 },
               ),
               Platform.isAndroid

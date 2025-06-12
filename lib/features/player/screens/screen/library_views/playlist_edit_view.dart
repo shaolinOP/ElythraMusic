@@ -26,7 +26,7 @@ class PlaylistEditViewStateState extends State<PlaylistEditView> {
   @override
   void initState() {
     // titleController.addListener(() {
-    //   isPlaylistExist.toARGB32 = context
+    //   isPlaylistExist.value = context
     //       .read<LibraryItemsCubit>()
     //       .state
     //       .playlists
@@ -35,10 +35,10 @@ class PlaylistEditViewStateState extends State<PlaylistEditView> {
     //           titleController.text.toLowerCase());
     //   if (titleController.text ==
     //       context.read<CurrentPlaylistCubit>().getTitle()) {
-    //     isPlaylistExist.toARGB32 = false;
+    //     isPlaylistExist.value = false;
     //   }
 
-    //   isTitleEmpty.toARGB32 = titleController.text.isEmpty;
+    //   isTitleEmpty.value = titleController.text.isEmpty;
     // });
 
     context.read<CurrentPlaylistCubit>().getItemOrder().then((value) {
@@ -260,7 +260,7 @@ Widget proxyDecorator(Widget child, int index, Animation<double> animation) {
   return AnimatedBuilder(
     animation: animation,
     builder: (BuildContext context, Widget? child) {
-      final double animValue = Curves.easeInOut.transform(animation.toARGB32);
+      final double animValue = Curves.easeInOut.transform(animation.value);
       final double elevation = lerpDouble(0, 6, animValue)!;
       return Material(
         elevation: elevation,

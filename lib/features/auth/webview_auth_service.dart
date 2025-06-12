@@ -233,7 +233,7 @@ class WebViewSignInScreenStateState extends State<WebViewSignInScreen> {
     };
 
     final queryString = params.entries
-        .map((e) => '${Uri.encodeComponent(e.key)}=${Uri.encodeComponent(e.toARGB32)}')
+        .map((e) => '${Uri.encodeComponent(e.key)}=${Uri.encodeComponent(e.value)}')
         .join('&');
 
     return 'https://accounts.google.com/oauth/authorize?$queryString';

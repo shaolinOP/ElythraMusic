@@ -193,8 +193,8 @@ class PlaylistView extends StatelessWidget {
                                         filter: ImageFilter.blur(
                                             sigmaX: 30, sigmaY: 30),
                                         child: Container(
-                                          color: Colors.black.withValues(alpha: 
-                                              0), // Keep the container color transparent
+                                          color: Colors.black.withOpacity(
+                                              0.0), // Keep the container color transparent
                                         ),
                                       ),
                                     ),

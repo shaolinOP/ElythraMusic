@@ -65,7 +65,7 @@ class CountrySettings extends StatelessWidget {
                       context.read<SettingsCubit>().setCountryCode(newValue);
                     }
                   },
-                  items: countries.toARGB32s
+                  items: countries.values
                       .toList()
                       .map<DropdownMenuItem<String>>((String value) {
                     return DropdownMenuItem<String>(
@@ -74,7 +74,7 @@ class CountrySettings extends StatelessWidget {
                         width: 100,
                         child: Text(
                           countries.keys.elementAt(
-                              countries.toARGB32s.toList().indexOf(value)),
+                              countries.values.toList().indexOf(value)),
                           overflow: TextOverflow.ellipsis,
                         ),
                       ),

@@ -8,8 +8,8 @@ final List<ChartInfo> chartInfoList = [
   ChartInfo(
     chartFunction: getSpotifyTop50Chart,
     imgUrl: spotifyRandomIMGs.getImage(),
-    title: SpotifyCharts.TOP_50.title,
-    url: SpotifyCharts.TOP_50,
+    title: SpotifyCharts.top50.title,
+    url: SpotifyCharts.top50,
   ),
   ChartInfo(
     chartFunction: getLastFmCharts,
@@ -20,20 +20,20 @@ final List<ChartInfo> chartInfoList = [
   ChartInfo(
     chartFunction: getMelonChart,
     imgUrl: melonRandomIMGs.getImage(),
-    title: MelonCharts.DOMESTIC_DAILY.title,
-    url: MelonCharts.DOMESTIC_DAILY,
+    title: MelonCharts.domesticDaily.title,
+    url: MelonCharts.domesticDaily,
   ),
   ChartInfo(
     chartFunction: getMelonChart,
     imgUrl: melonRandomIMGs.getImage(),
-    title: MelonCharts.DOMESTIC_WEEKLY.title,
-    url: MelonCharts.DOMESTIC_WEEKLY,
+    title: MelonCharts.domesticWeekly.title,
+    url: MelonCharts.domesticWeekly,
   ),
   ChartInfo(
     chartFunction: getMelonChart,
     imgUrl: melonRandomIMGs.getImage(),
-    title: MelonCharts.DOMESTIC_MONTHLY.title,
-    url: MelonCharts.DOMESTIC_MONTHLY,
+    title: MelonCharts.domesticMonthly.title,
+    url: MelonCharts.domesticMonthly,
   ),
   // ChartInfo(
   //   chartFunction: getMelonChart,

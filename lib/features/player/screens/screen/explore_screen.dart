@@ -35,7 +35,7 @@ class ExploreScreenStateState extends State<ExploreScreen> {
   bool isUpdateChecked = false;
   YTMusicCubit yTMusicCubit = YTMusicCubit();
   Future<core_playlist.MediaPlaylist> lFMData =
-      Future.toARGB32(const core_playlist.MediaPlaylist(mediaItems: [], playlistName: ""));
+      Future.value(const core_playlist.MediaPlaylist(mediaItems: [], playlistName: ""));
 
   @override
   void initState() {

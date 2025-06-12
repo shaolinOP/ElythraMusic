@@ -43,8 +43,6 @@ class FetchSearchResultsState extends Equatable {
   final List<PlaylistOnlModel> playlistItems;
   final List<ArtistModel> artistItems;
   final SourceEngine? sourceEngine;
-  @override
-
   final ResultTypes resultType;
   final bool hasReachedMax;
   const FetchSearchResultsState({

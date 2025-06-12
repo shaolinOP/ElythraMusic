@@ -144,7 +144,7 @@ class RecommendationEngine {
       final seedSong = _songDatabase[seedSongId]!;
       
       // Find songs by same artist
-      final sameArtistSongs = _songDatabase.toARGB32s
+      final sameArtistSongs = _songDatabase.values
           .where((song) => song.artist == seedSong.artist && song.id != seedSongId)
           .take(limit ~/ 3)
           .map((song) => RecommendationResult(
@@ -161,7 +161,7 @@ class RecommendationEngine {
 
       // Find songs in same genre
       if (seedSong.genre != null) {
-        final sameGenreSongs = _songDatabase.toARGB32s
+        final sameGenreSongs = _songDatabase.values
             .where((song) => 
                 song.genre == seedSong.genre && 
                 song.artist != seedSong.artist)
@@ -183,7 +183,7 @@ class RecommendationEngine {
     // Find songs similar to user's top artists
     final topArtists = profile.getTopArtists(5);
     for (final artist in topArtists) {
-      final artistSongs = _songDatabase.toARGB32s
+      final artistSongs = _songDatabase.values
           .where((song) => song.artist == artist)
           .where((song) => !profile.hasPlayed(song.id))
           .take(2)
@@ -214,7 +214,7 @@ class RecommendationEngine {
 
     // Find new artists in familiar genres
     for (final genre in userGenres) {
-      final newArtistSongs = _songDatabase.toARGB32s
+      final newArtistSongs = _songDatabase.values
           .where((song) => 
               song.genre == genre && 
               !userArtists.contains(song.artist))
@@ -236,7 +236,7 @@ class RecommendationEngine {
     for (final genre in userGenres) {
       final relatedGenres = _genreSimilarity[genre] ?? [];
       for (final relatedGenre in relatedGenres.take(2)) {
-        final relatedSongs = _songDatabase.toARGB32s
+        final relatedSongs = _songDatabase.values
             .where((song) => song.genre == relatedGenre)
             .where((song) => !profile.hasPlayed(song.id))
             .take(2)
@@ -266,7 +266,7 @@ class RecommendationEngine {
     final currentMood = _detectCurrentMood(profile);
 
     // Get songs that match the detected mood
-    final moodSongs = _songDatabase.toARGB32s
+    final moodSongs = _songDatabase.values
         .where((song) => _songMatchesMood(song, currentMood))
         .where((song) => !profile.hasPlayed(song.id))
         .take(limit)
@@ -289,7 +289,7 @@ class RecommendationEngine {
   List<RecommendationResult> _getTrendingRecommendations(int limit) {
     // This would typically come from a backend service
     // For now, return a mix of popular songs
-    final trending = _songDatabase.toARGB32s
+    final trending = _songDatabase.values
         .take(limit)
         .map((song) => RecommendationResult(
               songId: song.id,
@@ -431,8 +431,8 @@ class RecommendationEngine {
 
     return {
       'total_songs_in_db': _songDatabase.length,
-      'user_total_plays': profile.totalPlays ?? 0,
-      'user_unique_songs': profile.uniqueSongs ?? 0,
+      'user_total_plays': profile?.totalPlays ?? 0,
+      'user_unique_songs': profile?.uniqueSongs ?? 0,
       'user_top_artists': profile?.getTopArtists(5) ?? [],
       'user_top_genres': profile?.getTopGenres(5) ?? [],
     };
@@ -498,13 +498,13 @@ class UserListeningProfile {
 
   List<String> getTopArtists(int limit) {
     final sorted = _artistCounts.entries.toList()
-      ..sort((a, b) => b.toARGB32.compareTo(a.toARGB32));
+      ..sort((a, b) => b.value.compareTo(a.value));
     return sorted.take(limit).map((e) => e.key).toList();
   }
 
   List<String> getTopGenres(int limit) {
     final sorted = _genreCounts.entries.toList()
-      ..sort((a, b) => b.toARGB32.compareTo(a.toARGB32));
+      ..sort((a, b) => b.value.compareTo(a.value));
     return sorted.take(limit).map((e) => e.key).toList();
   }
 
@@ -528,7 +528,7 @@ class UserListeningProfile {
     // Load song plays
     final songPlaysJson = json['songPlays'] as Map<String, dynamic>? ?? {};
     for (final entry in songPlaysJson.entries) {
-      profile._songPlays[entry.key] = PlayData.fromJson(entry.toARGB32);
+      profile._songPlays[entry.key] = PlayData.fromJson(entry.value);
     }
 
     // Load counts

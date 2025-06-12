@@ -35,8 +35,8 @@ class DiscordService {
           DiscordPresence(
               details: mediaItem.title,
               state: isPlaying
-                  ? "Playing・${mediaItem.artist.isNotEmpty ?? false ? mediaItem.artist : 'Unknown Artist'}"
-                  : "Paused・${mediaItem.artist.isNotEmpty ?? false ? mediaItem.artist : 'Unknown Artist'}",
+                  ? "Playing・${mediaItem.artist?.isNotEmpty == true ? mediaItem.artist : 'Unknown Artist'}"
+                  : "Paused・${mediaItem.artist?.isNotEmpty == true ? mediaItem.artist : 'Unknown Artist'}",
               largeImageKey: "bloomeetunes_logo",
               largeImageText: "ElythraTunes",
               startTimeStamp: _startTimeStamp),

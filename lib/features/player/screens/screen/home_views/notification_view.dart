@@ -13,7 +13,7 @@ class NotificationView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return PopScope(
-      onPopInvokedWithResult: (didPop) {
+      onPopInvokedWithResult: (didPop, result) {
         if (didPop) {
           context.read<NotificationCubit>().clearNotification();
         }

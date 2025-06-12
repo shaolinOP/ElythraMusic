@@ -212,7 +212,7 @@ class EnhancedStreamService {
   /// Get cache statistics
   Map<String, dynamic> getCacheStats() {
     final total = _streamCache.length;
-    final playable = _streamCache.toARGB32s.where((v) => v.playable).length;
+    final playable = _streamCache.values.where((v) => v.playable).length;
     final failed = total - playable;
 
     return {

@@ -48,7 +48,7 @@ class ColorExtractionService {
           
           // Skip very dark or very light colors
           if (_isValidColor(color)) {
-            final colorKey = color.toARGB32;
+            final colorKey = color.value;
             colorCounts[colorKey] = (colorCounts[colorKey] ?? 0) + 1;
           }
         }
@@ -58,7 +58,7 @@ class ColorExtractionService {
 
       // Find most frequent color
       final dominantColorValue = colorCounts.entries
-          .reduce((a, b) => a.toARGB32 > b.toARGB32 ? a : b)
+          .reduce((a, b) => a.value > b.value ? a : b)
           .key;
 
       final dominantColor = Color(dominantColorValue);
@@ -94,7 +94,7 @@ class ColorExtractionService {
           final color = _pixelToColor(pixel);
           
           if (_isValidColor(color)) {
-            final colorKey = color.toARGB32;
+            final colorKey = color.value;
             colorCounts[colorKey] = (colorCounts[colorKey] ?? 0) + 1;
           }
         }
@@ -105,7 +105,7 @@ class ColorExtractionService {
       // Sort by frequency and take top colors
       final sortedColors = colorCounts.entries
           .toList()
-          ..sort((a, b) => b.toARGB32.compareTo(a.toARGB32));
+          ..sort((a, b) => b.value.compareTo(a.value));
 
       return sortedColors
           .take(maxColors)
@@ -186,7 +186,7 @@ class ColorExtractionService {
       shades[i * 100] = hsl.withLightness(lightness).toColor();
     }
     
-    return MaterialColor(color.toARGB32, shades);
+    return MaterialColor(color.value, shades);
   }
 
   Color _getContrastColor(Color color) {

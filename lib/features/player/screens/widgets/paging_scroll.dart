@@ -48,7 +48,7 @@ class PagingScrollPhysics extends ScrollPhysics {
     final double target = _getTargetPixels(position, tolerance, velocity);
     if (target != position.pixels) {
       return ScrollSpringSimulation(spring, position.pixels, target, velocity,
-          toleranceFor: tolerance);
+          tolerance: tolerance);
     }
     return null;
   }

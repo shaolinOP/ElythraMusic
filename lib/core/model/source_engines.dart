@@ -7,7 +7,7 @@ enum SourceEngine {
   engYtv("YTVideo");
 
   final String value;
-  const SourceEngine(this.toARGB32);
+  const SourceEngine(this.value);
 }
 
 Map<SourceEngine, List<String>> sourceEngineCountries = {
@@ -25,9 +25,9 @@ Future<List<SourceEngine>> availableSourceEngines() async {
   String country =
       await ElythraDBService.getSettingStr(GlobalStrConsts.countryCode) ?? "IN";
   List<SourceEngine> availSourceEngines = [];
-  for (var engine in SourceEngine.toARGB32s) {
+  for (var engine in SourceEngine.values) {
     bool isAvailable =
-        await ElythraDBService.getSettingBool(engine.toARGB32) ?? true;
+        await ElythraDBService.getSettingBool(engine.value) ?? true;
     if (isAvailable == true) {
       if (sourceEngineCountries[engine]!.contains(country) ||
           sourceEngineCountries[engine]!.isEmpty) {

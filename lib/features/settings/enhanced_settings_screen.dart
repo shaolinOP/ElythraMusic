@@ -64,12 +64,12 @@ class EnhancedSettingsScreenStateState extends State<EnhancedSettingsScreen> {
             ),
             const SizedBox(height: 16),
             FutureBuilder<AudioQuality>(
-              future: Future.toARGB32(EnhancedAudioService.currentQuality),
+              future: Future.value(EnhancedAudioService.currentQuality),
               builder: (context, snapshot) {
                 final currentQuality = snapshot.data ?? AudioQuality.extreme;
                 
                 return Column(
-                  children: AudioQuality.toARGB32s.map((quality) {
+                  children: AudioQuality.values.map((quality) {
                     return RadioListTile<AudioQuality>(
                       title: Text(quality.displayName),
                       subtitle: Text('${quality.bitrate} kbps'),
@@ -88,7 +88,7 @@ class EnhancedSettingsScreenStateState extends State<EnhancedSettingsScreen> {
             ),
             const Divider(),
             FutureBuilder<StreamingMode>(
-              future: Future.toARGB32(EnhancedAudioService.streamingMode),
+              future: Future.value(EnhancedAudioService.streamingMode),
               builder: (context, snapshot) {
                 final currentMode = snapshot.data ?? StreamingMode.wifi;
                 
@@ -98,7 +98,7 @@ class EnhancedSettingsScreenStateState extends State<EnhancedSettingsScreen> {
                     border: OutlineInputBorder(),
                   ),
                   value: currentMode,
-                  items: StreamingMode.toARGB32s.map((mode) {
+                  items: StreamingMode.values.map((mode) {
                     return DropdownMenuItem(
                       value: mode,
                       child: Text(mode.displayName),
@@ -192,7 +192,7 @@ class EnhancedSettingsScreenStateState extends State<EnhancedSettingsScreen> {
             ),
             const SizedBox(height: 16),
             FutureBuilder<Map<String, dynamic>>(
-              future: Future.toARGB32(PerformanceOptimizer().getEnhancedPerformanceStats()),
+              future: Future.value(PerformanceOptimizer().getEnhancedPerformanceStats()),
               builder: (context, snapshot) {
                 final stats = snapshot.data ?? {};
                 final batteryOptEnabled = stats['batteryOptimizationEnabled'] ?? false;
@@ -342,7 +342,7 @@ class EnhancedSettingsScreenStateState extends State<EnhancedSettingsScreen> {
             ),
             const SizedBox(height: 16),
             FutureBuilder<bool>(
-              future: Future.toARGB32(EnhancedAudioService.isCacheEnabled),
+              future: Future.value(EnhancedAudioService.isCacheEnabled),
               builder: (context, snapshot) {
                 final cacheEnabled = snapshot.data ?? true;
                 

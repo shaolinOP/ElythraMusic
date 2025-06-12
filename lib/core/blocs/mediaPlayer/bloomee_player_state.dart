@@ -3,8 +3,6 @@ import 'package:just_audio/just_audio.dart';
 
 class ElythraPlayerState {
   bool isReady;
-  @override
-
   bool showLyrics;
   ElythraPlayerState({required this.isReady, this.showLyrics = false});
 }

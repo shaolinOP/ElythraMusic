@@ -120,7 +120,7 @@ class ElythraDBService {
         directory: appSuppDir,
       );
     }
-    return Future.toARGB32(Isar.getInstance());
+    return Future.value(Isar.getInstance());
   }
 
   static Future<bool> createBackUp() async {
@@ -894,7 +894,7 @@ class ElythraDBService {
       } else {
         isarDB.writeTxnSync(() => isarDB.recentlyPlayedDBs.putSync(
             RecentlyPlayedDB(lastPlayed: DateTime.now())
-              ..mediaItem.toARGB32 = _mediaItemDB));
+              ..mediaItem.value = _mediaItemDB));
       }
     } else {
       log("Failed to add in Recently_Played", name: "DB");
@@ -913,9 +913,9 @@ class ElythraDBService {
     for (var element in _recentlyPlayed) {
       if (DateTime.now().difference(element.lastPlayed).inDays > days) {
         await element.mediaItem.load();
-        if (element.mediaItem.toARGB32 != null) {
-          log("Removing ${element.mediaItem.toARGB32!.title}", name: "DB");
-          removeMediaItemFromPlaylist(element.mediaItem.toARGB32!,
+        if (element.mediaItem.value != null) {
+          log("Removing ${element.mediaItem.value!.title}", name: "DB");
+          removeMediaItemFromPlaylist(element.mediaItem.value!,
               MediaPlaylistDB(playlistName: "recently_played"));
           ids.add(element.id!);
         } else {
@@ -933,8 +933,8 @@ class ElythraDBService {
       List<RecentlyPlayedDB> recentlyPlayed =
           isarDB.recentlyPlayedDBs.where().sortByLastPlayedDesc().findAllSync();
       for (var element in recentlyPlayed) {
-        if (element.mediaItem.toARGB32 != null) {
-          mediaItems.add(mediaItemDB2MediaItem(element.mediaItem.toARGB32!));
+        if (element.mediaItem.value != null) {
+          mediaItems.add(mediaItemDB2MediaItem(element.mediaItem.value!));
         }
       }
     } else {
@@ -944,8 +944,8 @@ class ElythraDBService {
           .limit(limit)
           .findAllSync();
       for (var element in recentlyPlayed) {
-        if (element.mediaItem.toARGB32 != null) {
-          mediaItems.add(mediaItemDB2MediaItem(element.mediaItem.toARGB32!));
+        if (element.mediaItem.value != null) {
+          mediaItems.add(mediaItemDB2MediaItem(element.mediaItem.value!));
         }
       }
     }

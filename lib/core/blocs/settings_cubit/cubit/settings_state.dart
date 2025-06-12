@@ -122,7 +122,7 @@ class SettingsInitial extends SettingsState {
           historyClearTime: "30",
           autoGetCountry: true,
           countryCode: "IN",
-          sourceEngineSwitches: SourceEngine.toARGB32s.map((e) => true).toList(),
+          sourceEngineSwitches: SourceEngine.values.map((e) => true).toList(),
           chartMap: {},
           lFMPicks: false,
           lastFMScrobble: true,

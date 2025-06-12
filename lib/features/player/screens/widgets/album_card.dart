@@ -16,7 +16,7 @@ class AlbumCard extends StatelessWidget {
   });
 
   void setHovering(bool isHovering) {
-    hovering.toARGB32 = isHovering;
+    hovering.value = isHovering;
   }
 
   @override
@@ -68,14 +68,14 @@ class AlbumCard extends StatelessWidget {
                                     child: AnimatedContainer(
                                       duration:
                                           const Duration(milliseconds: 300),
-                                      color: hovering.toARGB32
+                                      color: hovering.value
                                           ? Colors.black.withOpacity(0.5)
                                           : Colors.transparent,
                                       child: Center(
                                         child: AnimatedOpacity(
                                           duration:
                                               const Duration(milliseconds: 200),
-                                          opacity: hovering.toARGB32 ? 1 : 0,
+                                          opacity: hovering.value ? 1 : 0,
                                           child: const Icon(
                                             MingCute.play_circle_line,
                                             color: Colors.white,

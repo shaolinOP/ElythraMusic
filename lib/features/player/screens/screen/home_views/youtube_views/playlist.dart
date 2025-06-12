@@ -148,7 +148,7 @@ class YoutubePlaylistStateState extends State<YoutubePlaylist> {
                                               right: 10.0),
                                           child: IconButton(
                                             onPressed: () {
-                                              SharePlus.share(
+                                              Share.share(
                                                   "${widget.title} - ${widget.subtitle} \nhttps://youtube.com/playlist?list=${widget.id.replaceAll("youtube", "")}");
                                             },
                                             padding: const EdgeInsets.all(5),
@@ -388,7 +388,7 @@ class YoutubePlaylistStateState extends State<YoutubePlaylist> {
                                                                             stream:
                                                                                 context.read<player.ElythraPlayerCubit>().bloomeePlayer.audioPlayer.playerStateStream,
                                                                             builder: (context, snapshot2) {
-                                                                              if (snapshot2.hasData && (snapshot2.data.playing ?? false)) {
+                                                                              if (snapshot2.hasData && (snapshot2.data?.playing ?? false)) {
                                                                                 return PlayPauseButton(
                                                                                   onPause: () => context.read<player.ElythraPlayerCubit>().bloomeePlayer.pause(),
                                                                                   onPlay: () => context.read<player.ElythraPlayerCubit>().bloomeePlayer.play(),

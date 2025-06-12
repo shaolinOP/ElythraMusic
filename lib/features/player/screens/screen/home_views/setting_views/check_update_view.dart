@@ -44,8 +44,8 @@ class CheckUpdateView extends StatelessWidget {
                       padding: const EdgeInsets.all(5.0),
                       child: FilledButton(
                         onPressed: () {
-                          launchUrl(Uri.parse(
-                              "https://github.com/HemantKArya/ElythraTunes/releases"));
+                          launchUrlExternal(
+                              "https://github.com/HemantKArya/ElythraTunes/releases");
                         },
                         child: SizedBox(
                           // width: 150,
@@ -112,7 +112,7 @@ class CheckUpdateView extends StatelessWidget {
                       padding: const EdgeInsets.all(8.0),
                       child: FilledButton(
                         onPressed: () {
-                          launchUrl(Uri.parse(snapshot.data?["download_url"]));
+                          launchUrlExternal(snapshot.data?["download_url"]);
                         },
                         child: SizedBox(
                           width: 150,

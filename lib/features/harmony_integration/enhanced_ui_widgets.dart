@@ -104,7 +104,7 @@ class EnhancedSongListTileStateState extends State<EnhancedSongListTile>
       animation: _scaleAnimation,
       builder: (context, child) {
         return Transform.scale(
-          scale: _scaleAnimation.toARGB32,
+          scale: _scaleAnimation.value,
           child: Container(
             margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 4),
             decoration: BoxDecoration(
@@ -185,7 +185,7 @@ class EnhancedSongListTileStateState extends State<EnhancedSongListTile>
           builder: (context, child) {
             return Positioned.fill(
               child: Opacity(
-                opacity: _playingAnimation.toARGB32,
+                opacity: _playingAnimation.value,
                 child: Container(
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(8),
@@ -374,9 +374,9 @@ class EnhancedShimmerStateState extends State<EnhancedShimmer>
                 baseColor,
               ],
               stops: [
-                _animation.toARGB32 - 0.3,
-                _animation.toARGB32,
-                _animation.toARGB32 + 0.3,
+                _animation.value - 0.3,
+                _animation.value,
+                _animation.value + 0.3,
               ].map((stop) => stop.clamp(0.0, 1.0)).toList(),
             ).createShader(bounds);
           },
@@ -462,12 +462,12 @@ class EnhancedCardStateState extends State<EnhancedCard>
       animation: _controller,
       builder: (context, child) {
         return Transform.scale(
-          scale: _scaleAnimation.toARGB32,
+          scale: _scaleAnimation.value,
           child: Container(
             margin: widget.margin,
             child: Material(
               color: widget.color ?? theme.cardColor,
-              elevation: _elevationAnimation.toARGB32,
+              elevation: _elevationAnimation.value,
               borderRadius: widget.borderRadius ?? BorderRadius.circular(12),
               child: InkWell(
                 borderRadius: widget.borderRadius ?? BorderRadius.circular(12),
@@ -605,10 +605,10 @@ class EnhancedProgressBarStateState extends State<EnhancedProgressBar>
             }
           },
           child: Container(
-            height: _heightAnimation.toARGB32,
+            height: _heightAnimation.value,
             decoration: BoxDecoration(
               color: backgroundColor,
-              borderRadius: widget.borderRadius ?? BorderRadius.circular(_heightAnimation.toARGB32 / 2),
+              borderRadius: widget.borderRadius ?? BorderRadius.circular(_heightAnimation.value / 2),
             ),
             child: Stack(
               children: [
@@ -619,7 +619,7 @@ class EnhancedProgressBarStateState extends State<EnhancedProgressBar>
                     child: Container(
                       decoration: BoxDecoration(
                         color: bufferedColor,
-                        borderRadius: widget.borderRadius ?? BorderRadius.circular(_heightAnimation.toARGB32 / 2),
+                        borderRadius: widget.borderRadius ?? BorderRadius.circular(_heightAnimation.value / 2),
                       ),
                     ),
                   ),
@@ -630,7 +630,7 @@ class EnhancedProgressBarStateState extends State<EnhancedProgressBar>
                   child: Container(
                     decoration: BoxDecoration(
                       color: progressColor,
-                      borderRadius: widget.borderRadius ?? BorderRadius.circular(_heightAnimation.toARGB32 / 2),
+                      borderRadius: widget.borderRadius ?? BorderRadius.circular(_heightAnimation.value / 2),
                     ),
                   ),
                 ),

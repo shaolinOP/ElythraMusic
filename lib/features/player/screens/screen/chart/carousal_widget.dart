@@ -34,7 +34,7 @@ class CaraouselWidgetStateState extends State<CaraouselWidget> {
   StreamSubscription? ss;
 
   Future<void> initSettings() async {
-    autoSlideCharts.toARGB32 = await ElythraDBService.getSettingBool(
+    autoSlideCharts.value = await ElythraDBService.getSettingBool(
             GlobalStrConsts.autoSlideCharts) ??
         true;
   }
@@ -64,9 +64,9 @@ class CaraouselWidgetStateState extends State<CaraouselWidget> {
     initSettings();
     getSelectedCharts(context.read<SettingsCubit>().state.chartMap);
     ss = context.read<SettingsCubit>().stream.listen((event) {
-      if (autoSlideCharts.toARGB32 != event.autoSlideCharts) {
-        autoSlideCharts.toARGB32 = event.autoSlideCharts;
-        if (autoSlideCharts.toARGB32) {
+      if (autoSlideCharts.value != event.autoSlideCharts) {
+        autoSlideCharts.value = event.autoSlideCharts;
+        if (autoSlideCharts.value) {
           log("Auto Slide Charts Enabled");
         } else {
           log("Auto Slide Charts Disabled");
@@ -132,7 +132,7 @@ class CaraouselWidgetStateState extends State<CaraouselWidget> {
                                     null ||
                                 state.chartMap[selectedCharts[index].title] ==
                                     true) {
-                              return BlocProvider.toARGB32(
+                              return BlocProvider.value(
                                 value: chartCubitList[index],
                                 child: GestureDetector(
                                   onTap: () => GoRouter.of(context).pushNamed(

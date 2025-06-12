@@ -43,7 +43,7 @@ class TrendingCubit extends Cubit<TrendingCubitState> {
     ChartModel? ytChart = await ElythraDBService.getChart("Trending Videos");
     if ((!isLatest) &&
         ytChart != null &&
-        (ytChart.chartItems.isNotEmpty ?? false)) {
+        ytChart.chartItems?.isNotEmpty == true) {
       ChartModel chart = ytChart
         ..chartItems = getFirstElements(ytChart.chartItems!, 16);
       emit(state.copyWith(ytCharts: [chart]));
