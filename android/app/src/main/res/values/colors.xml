@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Elythra Music Brand Colors -->
+    <color name="elythra_purple">#7B2CBF</color>
+    <color name="elythra_white">#FFFFFF</color>
+    <color name="elythra_dark">#1A1A1A</color>
+</resources>

@@ -130,17 +130,20 @@ dev_dependencies:
 flutter_launcher_icons:
   android: "launcher_icon"
   ios: true
-  adaptive_icon_background: "assets/icons/bloomee_new_logo_gradient_bg.png"
-  adaptive_icon_foreground: "assets/icons/new_bloomee_logo_zoomedout.png"
-  image_path: "assets/icons/bloomee_new_logo_transparent_c.png"
+  adaptive_icon_background: "#7B2CBF"  # Elythra purple background
+  adaptive_icon_foreground: "assets/icons/app_icon_symbol.png"
+  image_path: "assets/icons/app_icon.png"
   min_sdk_android: 21 # android min sdk min:16, default 21
 
   macos:
     generate: true
-    image_path: "assets/icons/bloomee_new_logo_c.png"
+    image_path: "assets/icons/app_icon.png"
   windows:
     generate: true
-    image_path: "assets/icons/bloomee_new_logo_transparent_c.png"
+    image_path: "assets/icons/app_icon.png"
+  linux:
+    generate: true
+    image_path: "assets/icons/app_icon.png"
     
 
 # The following section is specific to Flutter packages.

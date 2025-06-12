@@ -1,7 +1,7 @@
 # Elythra Music
 
 <p align="center">
-  <img src="https://via.placeholder.com/200x200/6366f1/ffffff?text=EM" alt="Elythra Music Logo" width="200"/>
+  <img src="assets/icons/app_icon.png" alt="Elythra Music Logo" width="200"/>
 </p>
 
 <p align="center">
