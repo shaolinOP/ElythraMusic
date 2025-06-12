@@ -5,6 +5,12 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:elythra_music/core/firebase/firebase_options.dart';
 import 'package:elythra_music/features/auth/webview_auth_service.dart';
 import 'package:elythra_music/features/auth/cross_platform_sync_service.dart';
+import 'package:elythra_music/features/harmony_integration/enhanced_stream_service.dart';
+import 'package:elythra_music/features/harmony_integration/enhanced_lyrics_service.dart';
+import 'package:elythra_music/features/harmony_integration/desktop_system_tray.dart';
+import 'package:elythra_music/features/music_intelligence/recommendation_engine.dart';
+import 'package:elythra_music/features/social/social_features_service.dart';
+import 'package:elythra_music/features/performance/performance_optimizer.dart';
 import 'package:elythra_music/core/blocs/downloader/cubit/downloader_cubit.dart';
 import 'package:elythra_music/core/blocs/internet_connectivity/cubit/connectivity_cubit.dart';
 import 'package:elythra_music/core/blocs/lastdotfm/lastdotfm_cubit.dart';
@@ -120,9 +126,25 @@ Future<void> initServices() async {
   ElythraDBService(appDocPath: appDocPath, appSuppPath: appSuppPath);
   YouTubeServices(appDocPath: appDocPath, appSuppPath: appSuppPath);
   
+  // Initialize performance optimizer first for better startup
+  await PerformanceOptimizer().initialize();
+  
   // Initialize authentication services
   await WebViewAuthService().initialize();
   await CrossPlatformSyncService().initialize();
+  
+  // Initialize enhanced services from Harmony-Music integration
+  // Note: EnhancedStreamService is a singleton, no initialization needed
+  await EnhancedLyricsService().initialize();
+  
+  // Initialize desktop system tray (desktop platforms only)
+  await DesktopSystemTray().initialize();
+  
+  // Initialize music intelligence
+  await RecommendationEngine().initialize();
+  
+  // Initialize social features
+  await SocialFeaturesService().initialize();
 }
 
 Future<void> main() async {
