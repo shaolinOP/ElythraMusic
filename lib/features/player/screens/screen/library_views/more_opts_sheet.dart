@@ -2,7 +2,7 @@ import 'dart:io';
 
 import 'package:elythra_music/core/blocs/library/cubit/library_items_cubit.dart';
 import 'package:elythra_music/features/player/blocs/mediaPlayer/bloomee_player_cubit.dart';
-import 'package:elythra_music/core/model/MediaPlaylistModel.dart';
+import 'package:elythra_music/core/model/MediaPlaylistModel.dart' as core_playlist;
 import 'package:elythra_music/features/player/screens/screen/library_views/playlist_edit_view.dart';
 import 'package:elythra_music/features/player/screens/widgets/snackbar.dart';
 import 'package:elythra_music/core/services/db/GlobalDB.dart';
@@ -152,7 +152,7 @@ void showPlaylistOptsExtSheet(BuildContext context, String playlistName) {
                             .read<ElythraPlayerCubit>()
                             .bloomeePlayer
                             .loadPlaylist(
-                                MediaPlaylist(
+                                core_playlist.MediaPlaylist(
                                     mediaItems: _list,
                                     playlistName: playlistName),
                                 doPlay: true);

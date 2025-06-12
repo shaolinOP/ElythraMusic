@@ -29,7 +29,7 @@ class MediaItem {
     return MediaItem(
       id: model.id,
       title: model.title,
-      artist: model.artist,
+      artist: model.artist ?? 'Unknown Artist',
       album: model.album,
       artUri: model.artUri?.toString(),
       duration: model.duration,

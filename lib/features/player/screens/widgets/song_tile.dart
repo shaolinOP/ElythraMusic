@@ -3,7 +3,7 @@ import 'package:elythra_music/features/player/screens/screen/common_views/song_i
 import 'package:elythra_music/features/player/screens/widgets/snackbar.dart';
 import 'package:elythra_music/core/services/db/bloomee_db_service.dart';
 import 'package:elythra_music/core/utils/imgurl_formator.dart';
-import 'package:audio_service/audio_service.dart';
+import 'package:audio_service/audio_service.dart' as audio_service;
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';

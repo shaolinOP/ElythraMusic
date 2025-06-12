@@ -57,7 +57,9 @@ class LastdotfmCubit extends Cubit<LastdotfmState> {
             stopwatch.reset();
           }
           stopwatch.start();
-          lastPlayed = currentMediaModel;
+          if (currentMediaModel != null) {
+            lastPlayed = currentMediaModel;
+          }
         } else if ((stopwatch.elapsed.inSeconds > 30 ||
                 (stopwatch.elapsed.inSeconds /
                         (playerCubit.bloomeePlayer.currentMedia?.duration ??
@@ -68,7 +70,9 @@ class LastdotfmCubit extends Cubit<LastdotfmState> {
                     0.5) &&
             currentMediaModel == lastPlayed &&
             currentMediaModel != playedMedia.value) {
-          playedMedia.add(currentMediaModel);
+          if (currentMediaModel != null) {
+            playedMedia.add(currentMediaModel);
+          }
           log("Scrobbling: ${playerCubit.bloomeePlayer.currentMedia?.title}",
               name: "Last.FM");
           scrobble(lastPlayed).then(
@@ -273,7 +277,7 @@ class LastdotfmCubit extends Cubit<LastdotfmState> {
     return [];
   }
 
-  Future<MediaPlaylist> getRecommendedTracks() async {
+  Future<core_playlist.MediaPlaylist> getRecommendedTracks() async {
     if (!LastFmAPI.initialized) {
       while (!LastFmAPI.initialized) {
         await Future.delayed(const Duration(seconds: 10));

@@ -5,7 +5,7 @@ import 'package:elythra_music/core/blocs/lastdotfm/lastdotfm_cubit.dart';
 import 'package:elythra_music/features/player/blocs/mediaPlayer/bloomee_player_cubit.dart';
 import 'package:elythra_music/core/blocs/notification/notification_cubit.dart';
 import 'package:elythra_music/core/blocs/settings_cubit/cubit/settings_cubit.dart';
-import 'package:elythra_music/core/model/MediaPlaylistModel.dart';
+import 'package:elythra_music/core/model/MediaPlaylistModel.dart' as core_playlist;
 import 'package:elythra_music/core/routes_and_consts/global_str_consts.dart';
 import 'package:elythra_music/features/player/screens/screen/home_views/recents_view.dart';
 import 'package:elythra_music/features/player/screens/widgets/more_bottom_sheet.dart';
@@ -35,7 +35,7 @@ class _ExploreScreenState extends State<ExploreScreen> {
   bool isUpdateChecked = false;
   YTMusicCubit yTMusicCubit = YTMusicCubit();
   Future<MediaPlaylist> lFMData =
-      Future.value(const MediaPlaylist(mediaItems: [], playlistName: ""));
+      Future.value(const core_playlist.MediaPlaylist(mediaItems: [], playlistName: ""));
 
   @override
   void initState() {
@@ -65,7 +65,7 @@ class _ExploreScreenState extends State<ExploreScreen> {
         log(e.toString(), name: "ExploreScreen");
       }
     }
-    return const MediaPlaylist(mediaItems: [], playlistName: "");
+    return const core_playlist.MediaPlaylist(mediaItems: [], playlistName: "");
   }
 
   @override

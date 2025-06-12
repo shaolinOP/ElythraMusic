@@ -393,15 +393,7 @@ class PlaylistView extends StatelessWidget {
                                                           .read<
                                                               ElythraPlayerCubit>()
                                                           .bloomeePlayer
-                                                          .loadPlaylist(
-                                                              MediaPlaylist(
-                                                                  mediaItems: state
-                                                                      .mediaPlaylist
-                                                                      .mediaItems,
-                                                                  playlistName: state
-                                                                      .mediaPlaylist
-                                                                      .playlistName),
-                                                              doPlay: true);
+                                                          .updateQueue(state.mediaPlaylist.mediaItems, doPlay: true, idx: 0);
                                                     },
                                                     size: 40,
                                                   );
@@ -434,14 +426,7 @@ class PlaylistView extends StatelessWidget {
                                 context
                                     .read<ElythraPlayerCubit>()
                                     .bloomeePlayer
-                                    .loadPlaylist(
-                                        MediaPlaylist(
-                                            mediaItems:
-                                                state.mediaPlaylist.mediaItems,
-                                            playlistName: state
-                                                .mediaPlaylist.playlistName),
-                                        idx: index,
-                                        doPlay: true);
+                                    .updateQueue(state.mediaPlaylist.mediaItems, idx: index, doPlay: true);
                               },
                               onOptionsTap: () {
                                 showMoreBottomSheet(
