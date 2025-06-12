@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "183847243614",
+    "project_id": "elythra-music",
+    "storage_bucket": "elythra-music.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:183847243614:android:cfe3ef6933a4b9cd3c09cf",
+        "android_client_info": {
+          "package_name": "com.elythra.music"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "183847243614-8b9mjaagd73fo7lg202hn78upqm1bcpi.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.elythra.music",
+            "certificate_hash": "100454846cd0a89e3d2db962bc2a961948c1d32e"
+          }
+        },
+        {
+          "client_id": "183847243614-a80gh529jkdftivd326539p2qv1c1hba.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBBFmRkdruWq9JwOM7qAJmf12cLYaOTFrs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "183847243614-a80gh529jkdftivd326539p2qv1c1hba.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
