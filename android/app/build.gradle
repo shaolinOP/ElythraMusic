@@ -116,11 +116,16 @@ if (keystorePropertiesFile.exists()) {
 
 dependencies {
     // Import the Firebase BoM
-    implementation platform('com.google.firebase:firebase-bom:32.7.0')
+    implementation platform('com.google.firebase:firebase-bom:33.15.0')
     
     // Add the dependencies for Firebase products you want to use
+    // When using the BoM, don't specify versions in Firebase dependencies
     implementation 'com.google.firebase:firebase-auth'
-    implementation 'com.google.android.gms:play-services-auth:20.7.0'
+    implementation 'com.google.firebase:firebase-firestore'
+    implementation 'com.google.firebase:firebase-analytics'
+    
+    // Google Play Services for authentication
+    implementation 'com.google.android.gms:play-services-auth:21.3.0'
 }
 
 flutter {
