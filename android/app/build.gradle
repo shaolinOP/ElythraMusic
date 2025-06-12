@@ -32,7 +32,7 @@ def keystoreProperties = new Properties()
 android {
     namespace "com.elythra.music"
     compileSdkVersion flutter.compileSdkVersion
-    ndkVersion "27.0.12077973"
+    ndkVersion "29.0.13599879"
 
     // flavorDimensions "flavors"
     // productFlavors {
