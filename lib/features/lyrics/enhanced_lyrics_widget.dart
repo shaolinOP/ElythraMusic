@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_lyric/lyrics_reader.dart';
 import 'package:elythra_music/features/lyrics/lyrics_cubit.dart';
-import 'package:elythra_music/core/blocs/mediaPlayer/bloomee_player_cubit.dart';
+import 'package:elythra_music/features/player/blocs/mediaPlayer/bloomee_player_cubit.dart';
 
 class EnhancedLyricsWidget extends StatefulWidget {
   final EdgeInsetsGeometry padding;

@@ -26,8 +26,9 @@ class CurrentPlaylistCubit extends Cubit<CurrentPlaylistState> {
         .getPlaylistItems(MediaPlaylistDB(playlistName: playlistName));
 
     if (mediaPlaylist?.mediaItems.isNotEmpty ?? false) {
-      paletteGenerator = await getPalleteFromImage(
+      final dominantColor = await getPalleteFromImage(
           mediaPlaylist!.mediaItems[0].artUri.toString());
+      colorExtractor = ColorExtractionService();
     }
     // log(paletteGenerator.toString());
     emit(state.copyWith(

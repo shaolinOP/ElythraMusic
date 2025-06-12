@@ -1,6 +1,6 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:elythra_music/core/blocs/history/cubit/history_cubit.dart';
-import 'package:elythra_music/core/blocs/mediaPlayer/bloomee_player_cubit.dart';
+import 'package:elythra_music/features/player/blocs/mediaPlayer/bloomee_player_cubit.dart';
 import 'package:elythra_music/features/player/screens/screen/home_views/setting_views/storage_setting.dart';
 import 'package:elythra_music/features/player/screens/widgets/more_bottom_sheet.dart';
 import 'package:elythra_music/features/player/screens/widgets/song_tile.dart';

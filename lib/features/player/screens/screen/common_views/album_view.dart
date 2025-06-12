@@ -1,5 +1,5 @@
 import 'package:elythra_music/core/blocs/album_view/album_cubit.dart';
-import 'package:elythra_music/core/blocs/mediaPlayer/bloomee_player_cubit.dart';
+import 'package:elythra_music/features/player/blocs/mediaPlayer/bloomee_player_cubit.dart';
 import 'package:elythra_music/core/model/album_onl_model.dart';
 import 'package:elythra_music/core/model/source_engines.dart';
 import 'package:elythra_music/features/player/screens/widgets/more_bottom_sheet.dart';

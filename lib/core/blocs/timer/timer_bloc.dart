@@ -1,7 +1,7 @@
 import 'dart:async';
 import 'dart:developer';
 
-import 'package:elythra_music/core/blocs/mediaPlayer/bloomee_player_cubit.dart';
+import 'package:elythra_music/features/player/blocs/mediaPlayer/bloomee_player_cubit.dart';
 import 'package:elythra_music/main.dart';
 import 'package:elythra_music/core/utils/ticker.dart';
 import 'package:bloc/bloc.dart';

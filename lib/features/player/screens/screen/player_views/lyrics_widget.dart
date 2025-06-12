@@ -1,6 +1,6 @@
 import 'dart:async';
 import 'package:elythra_music/features/lyrics/lyrics_cubit.dart';
-import 'package:elythra_music/core/blocs/mediaPlayer/bloomee_player_cubit.dart';
+import 'package:elythra_music/features/player/blocs/mediaPlayer/bloomee_player_cubit.dart';
 import 'package:elythra_music/features/player/screens/screen/player_views/lyrics_menu.dart';
 import 'package:elythra_music/features/player/screens/widgets/sign_board_widget.dart';
 import 'package:elythra_music/core/theme_data/default.dart';

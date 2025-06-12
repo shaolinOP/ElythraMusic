@@ -1,4 +1,4 @@
-import 'package:elythra_music/core/blocs/mediaPlayer/bloomee_player_cubit.dart';
+import 'package:elythra_music/features/player/blocs/mediaPlayer/bloomee_player_cubit.dart';
 import 'package:elythra_music/core/blocs/playlist_view/online_playlist_cubit.dart';
 import 'package:elythra_music/core/model/playlist_onl_model.dart';
 import 'package:elythra_music/core/model/source_engines.dart';

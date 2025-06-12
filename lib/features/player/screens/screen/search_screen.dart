@@ -1,6 +1,6 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'dart:developer';
-import 'package:elythra_music/core/blocs/mediaPlayer/bloomee_player_cubit.dart';
+import 'package:elythra_music/features/player/blocs/mediaPlayer/bloomee_player_cubit.dart';
 import 'package:elythra_music/core/model/source_engines.dart';
 import 'package:elythra_music/features/player/screens/widgets/album_card.dart';
 import 'package:elythra_music/features/player/screens/widgets/artist_card.dart';

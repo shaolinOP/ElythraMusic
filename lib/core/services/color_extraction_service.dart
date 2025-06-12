@@ -3,12 +3,31 @@ import 'dart:ui' as ui;
 import 'package:flutter/material.dart';
 import 'package:image/image.dart' as img;
 
+/// Wrapper class for color compatibility
+class ColorWrapper {
+  final Color color;
+  ColorWrapper(this.color);
+}
+
 /// Color extraction service to replace discontinued palette_generator
 /// Provides dominant color extraction from images
 class ColorExtractionService {
   static final ColorExtractionService _instance = ColorExtractionService._internal();
   factory ColorExtractionService() => _instance;
   ColorExtractionService._internal();
+
+  // Cached colors for compatibility
+  Color? _lightVibrantColor;
+  Color? _darkMutedColor;
+  Color? _dominantColor;
+
+  // Compatibility properties
+  ColorWrapper? get lightVibrantColor => _lightVibrantColor != null 
+      ? ColorWrapper(_lightVibrantColor!) : null;
+  ColorWrapper? get darkMutedColor => _darkMutedColor != null 
+      ? ColorWrapper(_darkMutedColor!) : null;
+  ColorWrapper? get dominantColor => _dominantColor != null 
+      ? ColorWrapper(_dominantColor!) : null;
 
   /// Extract dominant color from image bytes
   Future<Color> extractDominantColor(Uint8List imageBytes) async {
@@ -43,10 +62,21 @@ class ColorExtractionService {
           .reduce((a, b) => a.value > b.value ? a : b)
           .key;
 
-      return Color(dominantColorValue);
+      final dominantColor = Color(dominantColorValue);
+      
+      // Cache colors for compatibility
+      _dominantColor = dominantColor;
+      _lightVibrantColor = dominantColor;
+      _darkMutedColor = dominantColor.withOpacity(0.7);
+
+      return dominantColor;
     } catch (e) {
       print('Error extracting color: $e');
-      return Colors.deepPurple;
+      final fallbackColor = Colors.deepPurple;
+      _dominantColor = fallbackColor;
+      _lightVibrantColor = fallbackColor;
+      _darkMutedColor = fallbackColor.withOpacity(0.7);
+      return fallbackColor;
     }
   }
 
@@ -147,7 +177,7 @@ class ColorExtractionService {
         backgroundColor: primaryColor,
         foregroundColor: _getContrastColor(primaryColor),
       ),
-      cardTheme: CardTheme(
+      cardTheme: CardThemeData(
         color: colors[1], // Light variant
       ),
     );

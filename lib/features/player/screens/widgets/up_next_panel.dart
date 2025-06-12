@@ -1,7 +1,7 @@
 import 'dart:async';
 import 'dart:io';
 import 'dart:ui';
-import 'package:elythra_music/core/blocs/mediaPlayer/bloomee_player_cubit.dart';
+import 'package:elythra_music/features/player/blocs/mediaPlayer/bloomee_player_cubit.dart';
 import 'package:elythra_music/core/blocs/settings_cubit/cubit/settings_cubit.dart';
 import 'package:elythra_music/core/model/songModel.dart';
 import 'package:elythra_music/features/player/screens/widgets/toogle_btn.dart';

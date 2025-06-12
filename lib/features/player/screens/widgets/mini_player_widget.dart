@@ -1,7 +1,7 @@
 import 'dart:ui';
 
 import 'package:elythra_music/core/blocs/add_to_playlist/cubit/add_to_playlist_cubit.dart';
-import 'package:elythra_music/core/blocs/mediaPlayer/bloomee_player_cubit.dart';
+import 'package:elythra_music/features/player/blocs/mediaPlayer/bloomee_player_cubit.dart';
 import 'package:elythra_music/core/blocs/mini_player/mini_player_bloc.dart';
 import 'package:elythra_music/core/model/songModel.dart';
 import 'package:elythra_music/core/routes_and_consts/global_str_consts.dart';

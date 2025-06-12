@@ -1,5 +1,5 @@
 import 'dart:io';
-import 'package:elythra_music/core/blocs/mediaPlayer/bloomee_player_cubit.dart';
+import 'package:elythra_music/features/player/blocs/mediaPlayer/bloomee_player_cubit.dart';
 import 'package:elythra_music/features/player/screens/screen/home_views/youtube_views/playlist.dart';
 import 'package:elythra_music/features/player/screens/widgets/square_card.dart';
 import 'package:elythra_music/core/theme_data/default.dart';

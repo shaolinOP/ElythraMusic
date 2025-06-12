@@ -899,7 +899,7 @@ class _AmbientImgShadowWidgetState extends State<AmbientImgShadowWidget> {
         widget.snapshot.data?.artUri?.toString() ?? "");
     if (mounted) {
       setState(() {
-        cachedColor = palette.dominantColor?.color ??
+        cachedColor = palette ??
             const Color.fromARGB(255, 68, 252, 255);
       });
     }

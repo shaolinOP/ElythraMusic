@@ -1,7 +1,7 @@
 import 'dart:io';
 
 import 'package:elythra_music/core/blocs/library/cubit/library_items_cubit.dart';
-import 'package:elythra_music/core/blocs/mediaPlayer/bloomee_player_cubit.dart';
+import 'package:elythra_music/features/player/blocs/mediaPlayer/bloomee_player_cubit.dart';
 import 'package:elythra_music/core/model/MediaPlaylistModel.dart';
 import 'package:elythra_music/features/player/screens/screen/library_views/playlist_edit_view.dart';
 import 'package:elythra_music/features/player/screens/widgets/snackbar.dart';

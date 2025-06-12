@@ -2,7 +2,7 @@
 import 'dart:core';
 import 'dart:developer';
 import 'package:elythra_music/core/blocs/internet_connectivity/cubit/connectivity_cubit.dart';
-import 'package:elythra_music/core/blocs/mediaPlayer/bloomee_player_cubit.dart';
+import 'package:elythra_music/features/player/blocs/mediaPlayer/bloomee_player_cubit.dart';
 import 'package:elythra_music/core/model/MediaPlaylistModel.dart';
 import 'package:elythra_music/core/model/yt_music_model.dart';
 import 'package:elythra_music/core/repository/Youtube/ytm/ytmusic.dart';

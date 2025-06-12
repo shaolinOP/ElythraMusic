@@ -1,7 +1,7 @@
 import 'dart:async';
 import 'dart:convert';
 import 'dart:developer';
-import 'package:elythra_music/core/blocs/mediaPlayer/bloomee_player_cubit.dart';
+import 'package:elythra_music/features/player/blocs/mediaPlayer/bloomee_player_cubit.dart';
 import 'package:elythra_music/core/model/MediaPlaylistModel.dart';
 import 'package:elythra_music/core/model/songModel.dart';
 import 'package:elythra_music/core/repository/LastFM/lastfmapi.dart';

@@ -1,5 +1,6 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:elythra_music/features/player/blocs/mediaPlayer/bloomee_player_cubit.dart';
+import 'package:elythra_music/core/model/lyrics_models.dart' as lyrics_models;
 
 // Lyric Line Model with Duration for start time
 class LyricLine {
@@ -148,11 +149,18 @@ class LyricsCubit extends Cubit<LyricsState> {
   }
 
   // Methods expected by the UI
-  Future<void> setLyricsToDB(LyricsModel lyrics, String mediaId) async {
+  Future<void> setLyricsToDB(lyrics_models.Lyrics lyrics, String mediaId) async {
     // Implementation for saving lyrics to database
     try {
+      // Convert to LyricsModel and save
+      final lyricsModel = LyricsModel(
+        lyricsPlain: lyrics.lyricsPlain,
+        parsedLyrics: lyrics.parsedLyrics,
+      );
+      
       // Save to local database
       print('Saving lyrics for media ID: $mediaId');
+      emit(state.copyWith(lyrics: lyricsModel));
       // Implementation would go here
     } catch (e) {
       emit(state.copyWith(error: "Failed to save lyrics: $e"));

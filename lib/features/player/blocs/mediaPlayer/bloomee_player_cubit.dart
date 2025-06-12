@@ -22,6 +22,17 @@ class MediaItem {
   });
 }
 
+// MediaPlaylist class
+class MediaPlaylist {
+  final String name;
+  final List<MediaItem> items;
+  
+  const MediaPlaylist({
+    required this.name,
+    required this.items,
+  });
+}
+
 // Progress bar streams for UI
 class ProgressBarStreams {
   final Duration currentPos;
@@ -36,7 +47,9 @@ class ProgressBarStreams {
 }
 
 // Player states
-abstract class ElythraPlayerState {}
+abstract class ElythraPlayerState {
+  bool get showLyrics => false;
+}
 
 class ElythraPlayerInitial extends ElythraPlayerState {}
 
@@ -44,12 +57,14 @@ class ElythraPlayerLoading extends ElythraPlayerState {}
 
 class ElythraPlayerPlaying extends ElythraPlayerState {
   final MediaItem mediaItem;
-  ElythraPlayerPlaying(this.mediaItem);
+  final bool showLyrics;
+  ElythraPlayerPlaying(this.mediaItem, {this.showLyrics = false});
 }
 
 class ElythraPlayerPaused extends ElythraPlayerState {
   final MediaItem mediaItem;
-  ElythraPlayerPaused(this.mediaItem);
+  final bool showLyrics;
+  ElythraPlayerPaused(this.mediaItem, {this.showLyrics = false});
 }
 
 class ElythraPlayerError extends ElythraPlayerState {
@@ -86,6 +101,45 @@ class BloomeePlayer {
   
   Future<void> setRepeatMode(LoopMode mode) async {
     await audioPlayer.setLoopMode(mode);
+  }
+
+  // Additional seek methods
+  Future<void> seekNSecForward(Duration duration) async {
+    final currentPosition = audioPlayer.position;
+    final newPosition = currentPosition + duration;
+    await audioPlayer.seek(newPosition);
+  }
+
+  Future<void> seekNSecBackward(Duration duration) async {
+    final currentPosition = audioPlayer.position;
+    final newPosition = currentPosition - duration;
+    await audioPlayer.seek(newPosition > Duration.zero ? newPosition : Duration.zero);
+  }
+
+  // Queue management
+  Future<void> addQueueItem(MediaItem mediaItem) async {
+    // Implementation for adding items to queue
+    print('Adding to queue: ${mediaItem.title}');
+  }
+
+  // Loop mode control
+  Future<void> setLoopMode(LoopMode loopMode) async {
+    await audioPlayer.setLoopMode(loopMode);
+  }
+
+  // Current media getter
+  MediaItem? get currentMedia => _currentMediaItem.value;
+
+  // Loop mode stream
+  Stream<LoopMode> get loopMode => audioPlayer.loopModeStream;
+
+  // Queue stream
+  Stream<List<MediaItem>> get queue => Stream.value([]);
+
+  // Load playlist
+  Future<void> loadPlaylist(MediaPlaylist playlist) async {
+    // Implementation for loading playlist
+    print('Loading playlist: ${playlist.name}');
   }
   
   void dispose() {
@@ -124,6 +178,14 @@ class ElythraPlayerCubit extends Cubit<ElythraPlayerState> {
   // Lyrics control
   void switchShowLyrics({required bool value}) {
     _showLyrics = value;
+    // Re-emit current state with updated lyrics flag
+    if (state is ElythraPlayerPlaying) {
+      final playingState = state as ElythraPlayerPlaying;
+      emit(ElythraPlayerPlaying(playingState.mediaItem, showLyrics: _showLyrics));
+    } else if (state is ElythraPlayerPaused) {
+      final pausedState = state as ElythraPlayerPaused;
+      emit(ElythraPlayerPaused(pausedState.mediaItem, showLyrics: _showLyrics));
+    }
   }
 
   bool get showLyrics => _showLyrics;
@@ -133,7 +195,7 @@ class ElythraPlayerCubit extends Cubit<ElythraPlayerState> {
     try {
       await _bloomeePlayer.audioPlayer.play();
       if (_currentMedia != null) {
-        emit(ElythraPlayerPlaying(_currentMedia!));
+        emit(ElythraPlayerPlaying(_currentMedia!, showLyrics: _showLyrics));
       }
     } catch (e) {
       emit(ElythraPlayerError('Failed to play: $e'));
@@ -144,7 +206,7 @@ class ElythraPlayerCubit extends Cubit<ElythraPlayerState> {
     try {
       await _bloomeePlayer.audioPlayer.pause();
       if (_currentMedia != null) {
-        emit(ElythraPlayerPaused(_currentMedia!));
+        emit(ElythraPlayerPaused(_currentMedia!, showLyrics: _showLyrics));
       }
     } catch (e) {
       emit(ElythraPlayerError('Failed to pause: $e'));
