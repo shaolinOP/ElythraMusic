@@ -15,6 +15,7 @@ import 'package:elythra_music/core/blocs/downloader/cubit/downloader_cubit.dart'
 import 'package:elythra_music/core/blocs/internet_connectivity/cubit/connectivity_cubit.dart';
 import 'package:elythra_music/core/blocs/lastdotfm/lastdotfm_cubit.dart';
 import 'package:elythra_music/features/lyrics/lyrics_cubit.dart';
+import 'package:elythra_music/features/player/blocs/mediaPlayer/bloomee_player_cubit.dart';
 import 'package:elythra_music/features/auth/auth_cubit.dart';
 import 'package:elythra_music/core/blocs/mini_player/mini_player_bloc.dart';
 import 'package:elythra_music/core/blocs/notification/notification_cubit.dart';
@@ -272,8 +273,8 @@ class _MyAppState extends State<MyApp> {
           create: (context) => FetchSearchResultsCubit(),
         ),
         BlocProvider(create: (context) => SearchSuggestionBloc()),
-        BlocProvider(
-          create: (context) => LyricsCubit(bloomeePlayerCubit),
+        BlocProvider<LyricsCubit>(
+          create: (context) => LyricsCubit(context.read<ElythraPlayerCubit>()),
         ),
         BlocProvider(
           create: (context) => LastdotfmCubit(playerCubit: bloomeePlayerCubit),

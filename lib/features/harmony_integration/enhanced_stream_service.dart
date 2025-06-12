@@ -113,8 +113,8 @@ class EnhancedStreamService {
         itag: stream.tag,
         audioCodec: stream.audioCodec.contains('mp4') ? AudioCodec.mp4a : AudioCodec.opus,
         bitrate: stream.bitrate.bitsPerSecond,
-        duration: stream.duration?.inMilliseconds ?? 0,
-        loudnessDb: stream.loudnessDb,
+        duration: 0, // stream.duration?.inMilliseconds ?? 0,
+        loudnessDb: null, // stream.loudnessDb,
         url: stream.url.toString(),
         size: stream.size.totalBytes,
         quality: _getQualityLabel(stream.bitrate.bitsPerSecond),
@@ -138,7 +138,7 @@ class EnhancedStreamService {
       } else if (e is VideoUnplayableException) {
         return StreamProvider(
           playable: false,
-          statusMSG: e.reason ?? "Video is unplayable",
+          statusMSG: "Video is unplayable", // e.reason ?? "Video is unplayable",
           error: "Video cannot be played",
         );
       } else if (e is VideoRequiresPurchaseException) {

@@ -10,6 +10,12 @@ class EnhancedLyricsService {
   factory EnhancedLyricsService() => _instance;
   EnhancedLyricsService._internal();
 
+  /// Initialize the enhanced lyrics service
+  Future<void> initialize() async {
+    print('🎤 Enhanced Lyrics Service initialized');
+    // Initialize any required services or configurations
+  }
+
   final Dio _dio = Dio();
   final Map<String, LyricsData> _lyricsCache = {};
 
