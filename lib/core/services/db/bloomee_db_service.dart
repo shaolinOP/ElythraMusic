@@ -1,7 +1,7 @@
 import 'dart:convert';
 import 'dart:developer';
 import 'dart:io';
-import 'package:elythra_music/core/model/MediaPlaylistModel.dart';
+import 'package:elythra_music/core/model/media_playlist_model.dart';
 import 'package:elythra_music/core/model/album_onl_model.dart';
 import 'package:elythra_music/core/model/artist_onl_model.dart';
 import 'package:elythra_music/core/model/chart_model.dart';

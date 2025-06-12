@@ -6,7 +6,7 @@ import 'dart:isolate';
 import 'package:elythra_music/core/repository/Youtube/yt_music_home.dart';
 import 'package:elythra_music/core/services/db/GlobalDB.dart';
 import 'package:elythra_music/core/utils/country_info.dart';
-import 'package:elythra_music/core/model/MediaPlaylistModel.dart';
+import 'package:elythra_music/core/model/media_playlist_model.dart';
 import 'package:elythra_music/core/model/chart_model.dart';
 import 'package:elythra_music/plugins/ext_charts/chart_defines.dart';
 import 'package:elythra_music/core/repository/Youtube/yt_charts_home.dart';

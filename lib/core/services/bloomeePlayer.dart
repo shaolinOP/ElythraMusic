@@ -15,7 +15,7 @@ import 'package:flutter/foundation.dart';
 import 'package:just_audio/just_audio.dart';
 import 'package:rxdart/rxdart.dart';
 import 'package:elythra_music/core/model/songModel.dart';
-import '../model/MediaPlaylistModel.dart';
+import '../model/media_playlist_model.dart';
 import 'package:elythra_music/core/services/discord_service.dart';
 
 List<int> generateRandomIndices(int length) {

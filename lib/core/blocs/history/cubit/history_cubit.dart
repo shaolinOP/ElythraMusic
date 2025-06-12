@@ -2,7 +2,7 @@ import 'dart:async';
 import 'dart:developer';
 import 'package:elythra_music/core/services/db/bloomee_db_service.dart';
 import 'package:bloc/bloc.dart';
-import 'package:elythra_music/core/model/MediaPlaylistModel.dart';
+import 'package:elythra_music/core/model/media_playlist_model.dart';
 part 'history_state.dart';
 
 class HistoryCubit extends Cubit<HistoryState> {

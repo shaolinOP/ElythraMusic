@@ -1,7 +1,7 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'dart:async';
 import 'dart:developer';
-import 'package:elythra_music/core/model/MediaPlaylistModel.dart';
+import 'package:elythra_music/core/model/media_playlist_model.dart';
 import 'package:elythra_music/core/model/album_onl_model.dart';
 import 'package:elythra_music/core/model/artist_onl_model.dart';
 import 'package:elythra_music/core/model/playlist_onl_model.dart';
