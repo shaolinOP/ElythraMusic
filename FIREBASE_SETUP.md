@@ -1,148 +1,166 @@
-# Firebase Setup Guide for Elythra Music
+# 🔥 Firebase Setup Guide for Elythra Music
 
-This guide will help you set up Firebase Authentication with Google Sign-In for Elythra Music.
+## 📋 Required Information
 
-## Prerequisites
-
-- Flutter SDK installed
-- Android Studio or VS Code with Flutter extensions
-- A Google account
-
-## Step 1: Create Firebase Project
-
-1. Go to the [Firebase Console](https://console.firebase.google.com/)
-2. Click "Create a project" or "Add project"
-3. Enter project name: `Elythra Music`
-4. Choose whether to enable Google Analytics (recommended)
-5. Click "Create project"
-
-## Step 2: Add Android App to Firebase
-
-1. In your Firebase project, click "Add app" and select Android
-2. Enter the following details:
-   - **Android package name**: `com.elythra.music`
-   - **App nickname**: `Elythra Music Android`
-   - **Debug signing certificate SHA-1**: (Get this from your development environment)
-
-### Getting SHA-1 Certificate
-
-Run this command in your project root:
-
-```bash
-cd android
-./gradlew signingReport
+### **SHA-1 Certificate Fingerprint (Debug)**
+```
+10:04:54:84:6C:D0:A8:9E:3D:2D:B9:62:BC:2A:96:19:48:C1:D3:2E
 ```
 
-Look for the SHA-1 under "Variant: debug" and copy it.
+### **App Configuration**
+- **Package Name**: `com.elythra.music`
+- **App Name**: `Elythra Music`
+- **Project ID**: `elythra-music` (or auto-generated)
 
-## Step 3: Download Configuration File
+---
 
-1. Download the `google-services.json` file
-2. Place it in `android/app/` directory
-3. **Important**: Replace the template file `android/app/google-services.json.template`
+## 🚀 Step-by-Step Firebase Console Setup
 
-## Step 4: Enable Authentication
+### **1. Create Firebase Project**
+1. Go to: https://console.firebase.google.com
+2. Click **"Create a project"**
+3. **Project name**: `Elythra Music`
+4. **Enable Google Analytics**: ✅ Yes
+5. Choose your Analytics account
+6. Click **"Create project"**
 
-1. In Firebase Console, go to "Authentication" → "Sign-in method"
-2. Enable "Google" sign-in provider
-3. Set the project support email
-4. Save the configuration
+### **2. Add Android App**
+1. In project dashboard, click **"Add app"** → **Android** 📱
+2. **Android package name**: `com.elythra.music`
+3. **App nickname**: `Elythra Music Android`
+4. **Debug signing certificate SHA-1**: 
+   ```
+   10:04:54:84:6C:D0:A8:9E:3D:2D:B9:62:BC:2A:96:19:48:C1:D3:2E
+   ```
+5. Click **"Register app"**
+6. **Download `google-services.json`** 📥
 
-## Step 5: Update Firebase Options
+### **3. Enable Authentication**
+1. Go to **Authentication** → **Sign-in method**
+2. Click **"Google"** provider
+3. **Enable** the toggle ✅
+4. **Project support email**: Enter your email
+5. **Web SDK configuration**:
+   - Web client ID will be auto-generated
+   - Web client secret will be auto-generated
+6. Click **"Save"**
 
-1. Install FlutterFire CLI:
+### **4. Enable Firestore Database**
+1. Go to **Firestore Database**
+2. Click **"Create database"**
+3. **Security rules**: Choose **"Start in test mode"** (for development)
+4. **Location**: Choose closest to your users (e.g., `us-central1`)
+5. Click **"Done"**
+
+### **5. Configure Project Settings**
+1. Go to **Project Settings** ⚙️ → **Your apps**
+2. Find your Android app
+3. **SHA certificate fingerprints** section:
+   - Verify the SHA-1 is added: `10:04:54:84:6C:D0:A8:9E:3D:2D:B9:62:BC:2A:96:19:48:C1:D3:2E`
+4. **Web client ID** (for Google Sign-In):
+   - Copy this value (you'll need it later)
+
+---
+
+## 📁 Place Configuration Files
+
+### **After downloading from Firebase Console:**
+
+**Android Configuration:**
 ```bash
-dart pub global activate flutterfire_cli
+# Place the downloaded google-services.json in:
+cp ~/Downloads/google-services.json /workspace/android/app/google-services.json
 ```
 
-2. Configure FlutterFire:
+**Verify placement:**
 ```bash
-flutterfire configure
+ls -la /workspace/android/app/google-services.json
 ```
 
-3. Select your Firebase project: `Elythra Music`
-4. Select platforms: Android (and others if needed)
-5. This will generate/update `lib/core/firebase/firebase_options.dart`
+---
 
-## Step 6: Test the Setup
+## ✅ Verification Checklist
 
-1. Run the app:
+### **Firebase Console Setup:**
+- [ ] Firebase project created with name "Elythra Music"
+- [ ] Android app added with package `com.elythra.music`
+- [ ] SHA-1 fingerprint added: `10:04:54:84:6C:D0:A8:9E:3D:2D:B9:62:BC:2A:96:19:48:C1:D3:2E`
+- [ ] Google Sign-In enabled in Authentication
+- [ ] Firestore Database created in test mode
+- [ ] `google-services.json` downloaded
+
+### **Local Configuration:**
+- [ ] `google-services.json` placed in `/workspace/android/app/`
+- [ ] File is not the template (contains real Firebase config)
+
+---
+
+## 🔧 Build After Setup
+
+**Once Firebase is configured:**
 ```bash
-flutter run
-```
-
-2. Navigate to the authentication screen
-3. Try signing in with Google
-4. Check Firebase Console → Authentication → Users to see if the user was created
-
-## Troubleshooting
-
-### Common Issues
-
-1. **SHA-1 Certificate Mismatch**
-   - Make sure the SHA-1 in Firebase matches your development certificate
-   - For release builds, add the release SHA-1 as well
-
-2. **Google Sign-In Fails**
-   - Verify the package name matches exactly: `com.elythra.music`
-   - Check that Google Sign-In is enabled in Firebase Console
-   - Ensure `google-services.json` is in the correct location
-
-3. **Build Errors**
-   - Run `flutter clean && flutter pub get`
-   - Check that all Gradle configurations are correct
-
-### Debug Commands
-
-```bash
-# Clean and rebuild
+cd /workspace
 flutter clean
 flutter pub get
-
-# Check package name
-grep applicationId android/app/build.gradle
-
-# Verify Firebase configuration
-flutter packages get
+flutter build apk --debug
 ```
 
-## File Structure
+---
 
-After setup, your project should have:
+## 🚨 Important Notes
 
-```
-android/
-├── app/
-│   ├── google-services.json          # ✅ Downloaded from Firebase
-│   └── build.gradle                  # ✅ Updated with Firebase plugins
-├── build.gradle                      # ✅ Updated with Firebase classpath
-lib/
-├── core/
-│   └── firebase/
-│       ├── firebase_options.dart     # ✅ Generated by FlutterFire CLI
-│       └── firebase_service.dart     # ✅ Already created
-└── features/
-    └── auth/
-        ├── auth_cubit.dart           # ✅ Already configured
-        ├── auth_screen.dart          # ✅ Already configured
-        └── auth_state.dart           # ✅ Already configured
+### **Security Rules (Firestore)**
+The database is currently in **test mode** (open access). For production, update rules:
+```javascript
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    match /{document=**} {
+      allow read, write: if request.auth != null;
+    }
+  }
+}
 ```
 
-## Security Notes
+### **SHA-1 for Production**
+For production releases, you'll need to add the **release SHA-1** fingerprint:
+```bash
+# Generate release keystore (when ready for production)
+keytool -genkey -v -keystore release.keystore -alias release -keyalg RSA -keysize 2048 -validity 10000
+```
 
-- Never commit `google-services.json` to public repositories
-- Add `android/app/google-services.json` to your `.gitignore`
-- Use environment variables for sensitive configuration in production
+### **Web Client ID**
+The Web Client ID from Firebase Console will be needed for Google Sign-In configuration in the app.
 
-## Next Steps
+---
 
-Once Firebase is set up:
+## 🛠️ Troubleshooting
 
-1. Test authentication flow
-2. Implement user profile features
-3. Add playlist synchronization
-4. Set up analytics (optional)
+### **If Google Sign-In fails:**
+1. Verify SHA-1 fingerprint is correct in Firebase Console
+2. Check that `google-services.json` is in the right location
+3. Ensure Google Sign-In is enabled in Firebase Authentication
 
-For additional help, refer to:
-- [Firebase Documentation](https://firebase.google.com/docs)
-- [FlutterFire Documentation](https://firebase.flutter.dev/)
+### **If build fails:**
+1. Make sure `google-services.json` is not the template file
+2. Run `flutter clean && flutter pub get`
+3. Check that Firebase dependencies are up to date
+
+### **Get SHA-1 again:**
+```bash
+# Use the provided script
+./scripts/get_sha1.sh
+```
+
+---
+
+## 📞 Support
+
+If you encounter issues:
+1. Check Firebase Console for any error messages
+2. Verify all configuration files are in place
+3. Ensure all Firebase services are enabled
+4. Check that package names match exactly
+
+**Firebase Console**: https://console.firebase.google.com
+**Firebase Documentation**: https://firebase.google.com/docs/android/setup
