@@ -111,7 +111,7 @@ class AlbumViewStateState extends State<AlbumView> {
                                             overflow: TextOverflow.ellipsis,
                                             fontSize: 14,
                                             color: DefaultTheme.primaryColor1
-                                                .withValues(alpha: 0.4),
+                                                .withOpacity(0.4),
                                           ),
                                         ),
                                       ),
@@ -125,7 +125,7 @@ class AlbumViewStateState extends State<AlbumView> {
                                             overflow: TextOverflow.ellipsis,
                                             fontSize: 14,
                                             color: DefaultTheme.primaryColor1
-                                                .withValues(alpha: 0.9),
+                                                .withOpacity(0.9),
                                           ),
                                         ),
                                       ),
@@ -137,7 +137,7 @@ class AlbumViewStateState extends State<AlbumView> {
                                             overflow: TextOverflow.ellipsis,
                                             fontSize: 13,
                                             color: DefaultTheme.primaryColor1
-                                                .withValues(alpha: 0.5),
+                                                .withOpacity(0.5),
                                           ),
                                         ),
                                       ),
@@ -260,7 +260,7 @@ class AlbumViewStateState extends State<AlbumView> {
                       style: DefaultTheme.secondoryTextStyleMedium.merge(
                         TextStyle(
                           fontSize: 20,
-                          color: DefaultTheme.primaryColor1.withValues(alpha: 0.8),
+                          color: DefaultTheme.primaryColor1.withOpacity(0.8),
                         ),
                       ),
                     ),

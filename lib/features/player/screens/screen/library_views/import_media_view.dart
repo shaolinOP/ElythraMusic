@@ -262,7 +262,7 @@ Future getIdAndShowBottomSheet(BuildContext context,
                                   hintText: hintText,
                                   hintStyle: TextStyle(
                                       color: DefaultTheme.primaryColor2
-                                          .withValues(alpha: 0.3)),
+                                          .withOpacity(0.3)),
                                   enabledBorder: const OutlineInputBorder(
                                     borderSide:
                                         BorderSide(style: BorderStyle.none),

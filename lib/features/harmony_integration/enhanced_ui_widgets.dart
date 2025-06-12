@@ -110,7 +110,7 @@ class EnhancedSongListTileStateState extends State<EnhancedSongListTile>
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(12),
               color: widget.isPlaying 
-                  ? theme.primaryColor.withValues(alpha: 0.1)
+                  ? theme.primaryColor.withOpacity(0.1)
                   : Colors.transparent,
             ),
             child: Material(
@@ -189,7 +189,7 @@ class EnhancedSongListTileStateState extends State<EnhancedSongListTile>
                 child: Container(
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(8),
-                    color: theme.primaryColor.withValues(alpha: 0.8),
+                    color: theme.primaryColor.withOpacity(0.8),
                   ),
                   child: const Icon(
                     Icons.equalizer,
@@ -358,7 +358,7 @@ class EnhancedShimmerStateState extends State<EnhancedShimmer>
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
     final baseColor = widget.baseColor ?? theme.colorScheme.surfaceContainerHighest;
-    final highlightColor = widget.highlightColor ?? theme.colorScheme.surface.withValues(alpha: 0.8);
+    final highlightColor = widget.highlightColor ?? theme.colorScheme.surface.withOpacity(0.8);
 
     return AnimatedBuilder(
       animation: _animation,
@@ -558,7 +558,7 @@ class EnhancedProgressBarStateState extends State<EnhancedProgressBar>
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
     final progressColor = widget.progressColor ?? theme.primaryColor;
-    final bufferedColor = widget.bufferedColor ?? theme.primaryColor.withValues(alpha: 0.3);
+    final bufferedColor = widget.bufferedColor ?? theme.primaryColor.withOpacity(0.3);
     final backgroundColor = widget.backgroundColor ?? theme.colorScheme.surfaceContainerHighest;
 
     return AnimatedBuilder(

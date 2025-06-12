@@ -223,7 +223,7 @@ class UINetease extends LyricUI {
 
   @override
   TextStyle getOtherMainTextStyle() => TextStyle(
-    color: Colors.white.withValues(alpha: 0.6),
+    color: Colors.white.withOpacity(0.6),
     fontSize: 16,
     fontWeight: FontWeight.w400,
   );
@@ -236,7 +236,7 @@ class UINetease extends LyricUI {
 
   @override
   TextStyle getOtherExtTextStyle() => TextStyle(
-    color: Colors.white.withValues(alpha: 0.4),
+    color: Colors.white.withOpacity(0.4),
     fontSize: 12,
   );
 

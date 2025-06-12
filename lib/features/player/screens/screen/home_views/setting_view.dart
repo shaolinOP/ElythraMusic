@@ -154,7 +154,7 @@ class SettingsView extends StatelessWidget {
       subtitle: Text(
         subtitle,
         style: TextStyle(
-                color: DefaultTheme.primaryColor1.withValues(alpha: 0.5),
+                color: DefaultTheme.primaryColor1.withOpacity(0.5),
                 fontSize: 12)
             .merge(DefaultTheme.secondoryTextStyleMedium),
       ),

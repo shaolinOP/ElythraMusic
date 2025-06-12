@@ -59,7 +59,7 @@ class DefaultTheme {
         trackColor: WidgetStateProperty.resolveWith((states) =>
             states.contains(WidgetState.selected)
                 ? accentColor1
-                : const Color(0x009E9E9E))), // primaryColor2.withValues(alpha: 0) equivalent
+                : const Color(0x009E9E9E))), // primaryColor2.withOpacity(0) equivalent
     searchBarTheme: const SearchBarThemeData(
       backgroundColor: WidgetStatePropertyAll(themeColor),
     ),

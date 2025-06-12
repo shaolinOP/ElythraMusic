@@ -38,7 +38,7 @@ class DefaultTheme {
       elevation: 0,
     ),
     cardTheme: const CardThemeData(
-      color: Color(0xCC1A1A1A), // themeColor.withValues(alpha: 0.8) equivalent
+      color: Color(0xCC1A1A1A), // themeColor.withOpacity(0.8) equivalent
       elevation: 4,
     ),
     textTheme: const TextTheme(

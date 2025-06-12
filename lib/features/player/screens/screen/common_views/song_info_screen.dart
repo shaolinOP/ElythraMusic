@@ -122,7 +122,7 @@ class InfoTile extends StatelessWidget {
       title: Text(
         title,
         style: DefaultTheme.secondoryTextStyle.merge(TextStyle(
-            color: DefaultTheme.primaryColor1.withValues(alpha: 0.7),
+            color: DefaultTheme.primaryColor1.withOpacity(0.7),
             fontSize: 13,
             fontWeight: FontWeight.bold)),
       ),

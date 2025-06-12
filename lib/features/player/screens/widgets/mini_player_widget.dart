@@ -162,7 +162,7 @@ class MiniPlayerCard extends StatelessWidget {
                                   fontWeight: FontWeight.bold,
                                   fontSize: 12.5,
                                   color: DefaultTheme.primaryColor1
-                                      .withValues(alpha: 0.7))),
+                                      .withOpacity(0.7))),
                           maxLines: 1,
                           overflow: TextOverflow.ellipsis,
                         ),

@@ -69,7 +69,7 @@ class AlbumCard extends StatelessWidget {
                                       duration:
                                           const Duration(milliseconds: 300),
                                       color: hovering.toARGB32
-                                          ? Colors.black.withValues(alpha: 0.5)
+                                          ? Colors.black.withOpacity(0.5)
                                           : Colors.transparent,
                                       child: Center(
                                         child: AnimatedOpacity(
@@ -102,7 +102,7 @@ class AlbumCard extends StatelessWidget {
                           style: DefaultTheme.secondoryTextStyleMedium
                               .merge(TextStyle(
                             fontSize: 14,
-                            color: DefaultTheme.primaryColor1.withValues(alpha: 0.9),
+                            color: DefaultTheme.primaryColor1.withOpacity(0.9),
                           )),
                         ),
                       ),
@@ -112,7 +112,7 @@ class AlbumCard extends StatelessWidget {
                           style: DefaultTheme.secondoryTextStyleMedium
                               .merge(TextStyle(
                             fontSize: 12,
-                            color: DefaultTheme.primaryColor1.withValues(alpha: 0.7),
+                            color: DefaultTheme.primaryColor1.withOpacity(0.7),
                             overflow: TextOverflow.ellipsis,
                           ))),
                     ],

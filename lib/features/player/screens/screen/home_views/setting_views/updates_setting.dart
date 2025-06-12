@@ -47,7 +47,7 @@ class UpdatesSettings extends StatelessWidget {
                   subtitle: Text(
                     "Get notified when new updates are available in app start up.",
                     style: TextStyle(
-                            color: DefaultTheme.primaryColor1.withValues(alpha: 0.5),
+                            color: DefaultTheme.primaryColor1.withOpacity(0.5),
                             fontSize: 12.5)
                         .merge(DefaultTheme.secondoryTextStyleMedium),
                   ),

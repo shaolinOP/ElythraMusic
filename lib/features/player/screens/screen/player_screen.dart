@@ -404,7 +404,7 @@ class PlayerCtrlWidgets extends StatelessWidget {
                                       fontWeight: FontWeight.w500,
                                       overflow: TextOverflow.ellipsis,
                                       color: DefaultTheme.primaryColor1
-                                          .withValues(alpha: 0.7))),
+                                          .withOpacity(0.7))),
                             ),
                           )
                         ],
@@ -512,9 +512,9 @@ class PlayerCtrlWidgets extends StatelessWidget {
                         TextStyle(
                             fontSize: 15,
                             color:
-                                DefaultTheme.primaryColor1.withValues(alpha: 0.7))),
+                                DefaultTheme.primaryColor1.withOpacity(0.7))),
                     timeLabelLocation: TimeLabelLocation.above,
-                    baseBarColor: DefaultTheme.primaryColor2.withValues(alpha: 0.1),
+                    baseBarColor: DefaultTheme.primaryColor2.withOpacity(0.1),
                     progressBarColor:
                         snapshot.data?.currentPlayerState.playing ?? false
                             ? DefaultTheme.accentColor1
@@ -526,8 +526,8 @@ class PlayerCtrlWidgets extends StatelessWidget {
                             : DefaultTheme.accentColor2,
                     bufferedBarColor:
                         snapshot.data?.currentPlayerState.playing ?? false
-                            ? DefaultTheme.accentColor1.withValues(alpha: 0.2)
-                            : DefaultTheme.accentColor2.withValues(alpha: 0.2),
+                            ? DefaultTheme.accentColor1.withOpacity(0.2)
+                            : DefaultTheme.accentColor2.withOpacity(0.2),
                     barHeight: 4,
                   );
                 }),

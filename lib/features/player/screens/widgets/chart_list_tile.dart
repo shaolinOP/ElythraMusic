@@ -102,7 +102,7 @@ class ChartListTile extends StatelessWidget {
               overflow: TextOverflow.ellipsis,
               maxLines: 1,
               style: DefaultTheme.tertiaryTextStyle.merge(TextStyle(
-                  color: DefaultTheme.primaryColor1.withValues(alpha: 0.8),
+                  color: DefaultTheme.primaryColor1.withOpacity(0.8),
                   fontSize: 13))),
         ),
       ),

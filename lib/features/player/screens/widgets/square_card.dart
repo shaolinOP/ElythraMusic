@@ -51,7 +51,7 @@ class SquareImgCard extends StatelessWidget {
                     child: Container(
                       padding: const EdgeInsets.all(5),
                       decoration: BoxDecoration(
-                        color: DefaultTheme.accentColor2.withValues(alpha: 0.95),
+                        color: DefaultTheme.accentColor2.withOpacity(0.95),
                         borderRadius: const BorderRadius.only(
                           bottomLeft: Radius.circular(15),
                         ),
@@ -130,7 +130,7 @@ class SquareImgCard extends StatelessWidget {
               style: TextStyle(
                       fontSize: 11,
                       fontWeight: FontWeight.bold,
-                      color: DefaultTheme.primaryColor2.withValues(alpha: 0.8))
+                      color: DefaultTheme.primaryColor2.withOpacity(0.8))
                   .merge(DefaultTheme.secondoryTextStyle),
             ),
           ],

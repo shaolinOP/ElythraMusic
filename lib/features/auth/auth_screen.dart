@@ -27,8 +27,8 @@ class AuthScreen extends StatelessWidget {
                 begin: Alignment.topCenter,
                 end: Alignment.bottomCenter,
                 colors: [
-                  Theme.of(context).primaryColor.withValues(alpha: 0.8),
-                  Theme.of(context).primaryColor.withValues(alpha: 0.2),
+                  Theme.of(context).primaryColor.withOpacity(0.8),
+                  Theme.of(context).primaryColor.withOpacity(0.2),
                 ],
               ),
             ),
@@ -44,7 +44,7 @@ class AuthScreen extends StatelessWidget {
                       height: 120,
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(24),
-                        color: Colors.white.withValues(alpha: 0.1),
+                        color: Colors.white.withOpacity(0.1),
                       ),
                       child: const Icon(
                         Icons.music_note,
@@ -67,7 +67,7 @@ class AuthScreen extends StatelessWidget {
                     Text(
                       'Your music, your way',
                       style: Theme.of(context).textTheme.bodyLarge?.copyWith(
-                        color: Colors.white.withValues(alpha: 0.8),
+                        color: Colors.white.withOpacity(0.8),
                       ),
                     ),
                     const SizedBox(height: 64),
@@ -112,7 +112,7 @@ class AuthScreen extends StatelessWidget {
                       child: Text(
                         'Continue without signing in',
                         style: TextStyle(
-                          color: Colors.white.withValues(alpha: 0.8),
+                          color: Colors.white.withOpacity(0.8),
                           fontSize: 16,
                         ),
                       ),
@@ -124,7 +124,7 @@ class AuthScreen extends StatelessWidget {
                     Container(
                       padding: const EdgeInsets.all(16),
                       decoration: BoxDecoration(
-                        color: Colors.white.withValues(alpha: 0.1),
+                        color: Colors.white.withOpacity(0.1),
                         borderRadius: BorderRadius.circular(12),
                       ),
                       child: Column(
@@ -161,7 +161,7 @@ class AuthScreen extends StatelessWidget {
         children: [
           Icon(
             Icons.check_circle,
-            color: Colors.white.withValues(alpha: 0.8),
+            color: Colors.white.withOpacity(0.8),
             size: 16,
           ),
           const SizedBox(width: 8),
@@ -169,7 +169,7 @@ class AuthScreen extends StatelessWidget {
             child: Text(
               text,
               style: TextStyle(
-                color: Colors.white.withValues(alpha: 0.8),
+                color: Colors.white.withOpacity(0.8),
                 fontSize: 14,
               ),
             ),

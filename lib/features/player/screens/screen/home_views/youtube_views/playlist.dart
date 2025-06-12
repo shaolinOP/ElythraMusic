@@ -269,7 +269,7 @@ class YoutubePlaylistStateState extends State<YoutubePlaylist> {
                                                               FontWeight.bold,
                                                           color: DefaultTheme
                                                               .primaryColor2
-                                                              .withValues(alpha: 0.8),
+                                                              .withOpacity(0.8),
                                                         ).merge(DefaultTheme
                                                             .secondoryTextStyle),
                                                       ),
@@ -284,7 +284,7 @@ class YoutubePlaylistStateState extends State<YoutubePlaylist> {
                                                               FontWeight.bold,
                                                           color: DefaultTheme
                                                               .primaryColor2
-                                                              .withValues(alpha: 0.8),
+                                                              .withOpacity(0.8),
                                                         ).merge(DefaultTheme
                                                             .secondoryTextStyle),
                                                       ),

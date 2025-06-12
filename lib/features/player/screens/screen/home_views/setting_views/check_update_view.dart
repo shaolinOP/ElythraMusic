@@ -77,7 +77,7 @@ class CheckUpdateView extends StatelessWidget {
                         'Current Version: ${snapshot.data?["currVer"]} + ${snapshot.data?["currBuild"]}',
                         style: TextStyle(
                                 color: DefaultTheme.primaryColor2
-                                    .withValues(alpha: 0.5),
+                                    .withOpacity(0.5),
                                 fontSize: 12)
                             .merge(DefaultTheme.tertiaryTextStyle),
                       ),
@@ -102,7 +102,7 @@ class CheckUpdateView extends StatelessWidget {
                         'Version: ${snapshot.data?["newVer"]}+ ${snapshot.data?["newBuild"]}',
                         style: TextStyle(
                                 color: DefaultTheme.primaryColor1
-                                    .withValues(alpha: 0.8),
+                                    .withOpacity(0.8),
                                 fontSize: 16)
                             .merge(DefaultTheme.tertiaryTextStyle),
                         textAlign: TextAlign.center,
@@ -138,7 +138,7 @@ class CheckUpdateView extends StatelessWidget {
                         'Current Version: ${snapshot.data?["currVer"]} + ${snapshot.data?["currBuild"]}',
                         style: TextStyle(
                                 color: DefaultTheme.primaryColor2
-                                    .withValues(alpha: 0.5),
+                                    .withOpacity(0.5),
                                 fontSize: 12)
                             .merge(DefaultTheme.tertiaryTextStyle),
                       ),
