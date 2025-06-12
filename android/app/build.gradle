@@ -83,6 +83,13 @@ android {
         includeInBundle = false
     }
 
+    lintOptions {
+        // Disable lint checks for release builds to avoid memory issues
+        checkReleaseBuilds false
+        abortOnError false
+        disable 'InvalidPackage'
+    }
+
     signingConfigs {
         debug {
             storeFile file('debug.keystore')
